@@ -1,0 +1,212 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A reference title is a reference title no matter how long that title is.</title>
+    <meta name="description" content="A sample article (or blog post) page.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="article">
+    <a href="article"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>A reference title is a reference title no matter how long that title is.</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>This is a reference article (or blog post) page. It contains text as well as other media. For reference purposes, this page will contain a variety of text format types and variations, in order to have a good overview on how the real article pages might look like when they are using specific text formatting classes.</p>
+<p>Let's just start with two separate paragraphs in order to see how they are visually separated - just by the paragraph spacing itself.</p>
+<h3 id="headings">Headings</h3>
+<p>Beside the page title, the article may contain headings (titles) as well. The headings system support up to 4 levels, ranging from <code>&lt;h3&gt;</code> to <code>&lt;h6&gt;</code>. Above you can see a level 1 heading, which corresponds to the HTML <code>&lt;h3&gt;</code> tag.</p>
+<h4 id="a-second-level-heading">A second level heading</h4>
+<p>The next level heading is shown above (second level).</p>
+<h5 id="a-third-level-heading">A third level heading</h5>
+<p>Rarely, there's need for a third title level. The third level is shown above. Note that typically, the third level for headings might be used for complementary titles of supportive content.</p>
+<h6 id="the-last-level-heading">The last level heading</h6>
+<p>This last level of heading actually shouldn't be used. If the article is that large, it might equally be printed out as book.</p>
+<hr />
+<p>Although this paragraph has been separated by the above paragraph by an <em>horizontal rule</em> (<code>&lt;HR&gt;</code> in HTML), you most probably won't see the rule on the desktop version.</p>
+<h3 id="common-text-formatting">Common text formatting</h3>
+<p>This reference text already used some of the inline formatting styles. Apart from the common styles like <em>emphasis (italic)</em> and <strong>strong (bold)</strong>, there's a special inline format for <code>monospace</code> or <code>typewriter</code> or <code>code</code> fragments.</p>
+<p>Naturally, inline text may contain <a href="index.html">References</a> to other pages as well. Note that most probably there's no visual difference between visited and active links. However, the visualization might change when you <a href="#">hover over</a> a link.</p>
+<p>Although it's widely used in the internet, common emoticons like :-) smilies ;-) and others :P most probably are displayed as is.</p>
+<p>Interestingly, citations and quotes are being used quite often.</p>
+<blockquote>
+<p>Make it simple, but not simpler.
+<em>Albert Einstein</em></p>
+</blockquote>
+<p>That's actually a famous quote which I personally like very much.</p>
+<p>It's possible to have a truly monospaced paragraph as well:</p>
+<div class="codehilite"><pre><span class="n">This</span> <span class="n">is</span> <span class="n">the</span> <span class="n">output</span> <span class="n">of</span> <span class="n">a</span> <span class="n">simple</span> <span class="n">ASCII</span> <span class="n">text</span> <span class="n">file</span>
+<span class="n">on</span> <span class="n">a</span> <span class="n">TTY</span> <span class="n">console</span> <span class="n">of</span> <span class="n">a</span> <span class="n">SPARC</span> <span class="n">machine</span><span class="o">.</span> <span class="n">Nice</span><span class="p">,</span> <span class="n">uh</span><span class="p">?</span>
+</pre></div>
+
+
+<p>Infrequently, source code quotations and fragments need to be integrated into the overall textual content as well. This is very challenging, since it would be nice to have the code highlighted by the syntax rules of the language. Frankly, there's the almighty <code>pygments</code> highlighter, which is being supported by <code>hyde</code>out of the box.</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Chronograph</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="n">CultureInfo</span> <span class="n">_culture</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsDirty</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="k">public</span> <span class="n">LocalTime</span> <span class="nf">SyncWith</span><span class="p">(</span><span class="n">TimeServer</span> <span class="n">ts</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">IsDirty</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">TimeEntry</span> <span class="n">te</span> <span class="p">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">GetTime</span><span class="p">();</span>
+      <span class="n">te</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">_culture</span><span class="p">);</span>
+      <span class="n">localTime</span> <span class="p">=</span> <span class="n">te</span><span class="p">.</span><span class="n">ToLocalTime</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">TimeEntry</span> <span class="n">tw</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeEntry</span><span class="p">(</span><span class="n">localTime</span><span class="p">);</span> <span class="n">te</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">_culture</span><span class="p">);</span> <span class="n">localTime</span> <span class="p">=</span> <span class="n">te</span><span class="p">.</span><span class="n">ToLocalTime</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">localTime</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4 id="listings">Listings</h4>
+<p>Sometimes it's useful to list things up. Like an enumeration of things to consider when you want to cook a nice dish. An unordered listing might look like this:</p>
+<ul>
+<li>4 Eggs</li>
+<li>200g Half-bitter chocolate</li>
+<li>1 liter of milk</li>
+<li>some strawberries</li>
+<li>actually someone who understands cooking.</li>
+</ul>
+<p>A second form of listing is the ordered list:</p>
+<ol>
+<li>A good set of things to list</li>
+<li>A good sense of meta-thinking</li>
+<li>The requirement to list them orderedly</li>
+<li>Actually listing them in the document</li>
+</ol>
+<p>Some interesting - more or less exotic - constellations with listings:</p>
+<ul>
+<li>A listed item which spans<br />
+  over two or more<br />
+  lines</li>
+<li>A listed item containing some <em>inline</em> <strong>formatting</strong> including <code>code</code></li>
+<li>A listed item which contains a  <blockquote>
+<p>quote within</p>
+</blockquote>
+</li>
+</ul>
+<p>Granted, the above examples won't occur that often.</p>
+<h3 id="images">Images</h3>
+<p>A very interesting thing actually is the inclusion of images. Embedding images to articles is a good thing. It emphasizes and illustrates the topic on which the whole content is all about.</p>
+<p><img alt="Large Image" src="/media/images/screen_m.png" /></p>
+<p>By convention, two sizes of images are supported to be embedded into an article page. The above image is the larger format. It's single constraint it to have a maximum width of <code>640px</code>. </p>
+<p><img alt="" class="alignleft" src="/media/images/screen_s.png" />
+The second, small sized image format is scales to <code>150px</code> in both width and height. This "smaller" (thumbnail) version of images are well suited to be placed floating right or left beneath the actual content.</p>
+<p>One of the noteworthy features when it comes to embedding images is the "illustration" (or figure) mode.</p>
+<p>With the known extended annotation syntax in Markdown, the embedded image can be decorated with a figure statement (descriptive text). Even more, the class annotations can be utilized to align the embedded thumbnail on the left or right hand side.</p>
+<p class="figure">
+<img alt="Large Image" src="/media/images/screen_m.png" />
+Fig 1: This is a screenshot of the <em>dark skin</em> I used to in VS2010 some time ago.</p>
+<p>Now, that's all from the reference side.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>29 July 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/meta/index.html">Meta</a>
+                            / <a href="/meta/refs/index.html">Refs</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/meta/refs/article.html&title=A reference title is a reference title no matter how long that title is.">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

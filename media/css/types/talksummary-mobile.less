@@ -1,0 +1,23 @@
+@import "talksummary";
+
+#content.talksummary {
+  .journal {
+    .order { display: none; }
+    .location { text-align: right; }
+  }
+
+  .facts {
+    width:100%;
+
+    th+th, td+td {
+      width:auto;
+    }
+
+    th+th+th,
+    th+th+th+th,
+    td+td+td,
+    td+td+td+td {
+      display:none;
+    }
+  }
+}

@@ -1,0 +1,211 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Selenium on Fedora 17</title>
+    <meta name="description" content="A short log on how to install and run selenium on Fedora 17. It turns out to be trickier than one might expect.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="selenium-on-fedora-17">
+    <a href="selenium-on-fedora-17"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Selenium on Fedora 17</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>I use <a href="http://seleniumhq.org">Selenium</a> since many years. It's a great project and turned out to be very useful for me on various small and large projects. Currently, I'm creating a few tests for a project of mine using <a href="http://python.org">Python</a>. This works reasonably well. However, it turned out to be a little tricky to get things up and running.</p>
+<h3 id="installing-the-bits">Installing the Bits</h3>
+<p>Installing Selenium looks pretty straight-forward at first sight. A quick check on the fedora repolist reveals that all we need is provided:</p>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">yum</span> <span class="n">info</span> <span class="n">selenium</span><span class="o">-</span><span class="n">core</span>
+
+<span class="n">Loaded</span> <span class="n">plugins:</span> <span class="n">fastestmirror</span><span class="p">,</span> <span class="n">langpacks</span><span class="p">,</span> <span class="n">presto</span><span class="p">,</span> <span class="n">refresh</span><span class="o">-</span><span class="n">packagekit</span>
+<span class="n">Installed</span> <span class="n">Packages</span>
+<span class="n">Name</span>        <span class="p">:</span> <span class="n">selenium</span><span class="o">-</span><span class="n">core</span>
+<span class="n">Arch</span>        <span class="p">:</span> <span class="n">noarch</span>
+<span class="n">Version</span>     <span class="p">:</span> <span class="mf">1.0.2</span>
+<span class="n">Release</span>     <span class="p">:</span> <span class="mf">0.5.20100324</span><span class="n">svn</span><span class="o">.</span><span class="n">fc15</span>
+<span class="n">Size</span>        <span class="p">:</span> <span class="mf">1.0</span> <span class="n">M</span>
+<span class="n">Repo</span>        <span class="p">:</span> <span class="n">installed</span>
+<span class="n">From</span> <span class="n">repo</span>   <span class="p">:</span> <span class="n">fedora</span>
+<span class="n">Summary</span>     <span class="p">:</span> <span class="n">A</span> <span class="n">DHTML</span> <span class="n">test</span> <span class="n">execution</span> <span class="n">framework</span>
+<span class="n">URL</span>         <span class="p">:</span> <span class="n">http:</span><span class="sr">//s</span><span class="n">eleniumhq</span><span class="o">.</span><span class="n">org</span><span class="sr">/projects/co</span><span class="n">re</span><span class="o">/</span>
+<span class="n">License</span>     <span class="p">:</span> <span class="n">LGPLv2</span> <span class="ow">and</span> <span class="n">MIT</span> <span class="ow">and</span> <span class="n">ASL</span> <span class="mf">2.0</span> <span class="ow">and</span> <span class="n">GPLv2</span><span class="o">+</span> <span class="ow">and</span> <span class="p">(</span><span class="n">MPLv1</span><span class="mf">.1</span> <span class="ow">or</span> <span class="n">GPLv2</span><span class="o">+</span> <span class="ow">or</span> <span class="n">LGPLv2</span><span class="o">+</span><span class="p">)</span>
+<span class="n">Description</span> <span class="p">:</span> <span class="n">Selenium</span> <span class="n">Core</span> <span class="n">is</span> <span class="n">the</span> <span class="n">engine</span> <span class="n">of</span> <span class="n">both</span><span class="p">,</span> <span class="n">Selenium</span> <span class="n">IDE</span> <span class="ow">and</span> <span class="n">Selenium</span> <span class="n">RC</span> <span class="p">(</span><span class="n">driven</span>
+            <span class="p">:</span> <span class="n">mode</span><span class="p">),</span> <span class="n">but</span> <span class="n">it</span> <span class="n">also</span> <span class="n">can</span> <span class="n">be</span> <span class="n">deployed</span> <span class="n">on</span> <span class="n">the</span> <span class="n">desired</span> <span class="n">application</span> <span class="n">server</span><span class="o">.</span>
+</pre></div>
+
+
+<p>Same goes for <code>selenium-server</code>, btw. Well, not really. Surprisingly, the selenium packages for fedora are quite outdated. They provide selenium version 1.02, while the current standalone server version happens to be on version 2.24.x. This is quite exceptional since fedora packages are quite on track with latest stables in general.</p>
+<p>That's not a big stopper anyway, since downloading and using selenium is a kids task. Grab the <a href="_">standalone server</a>, put in on a reasonable place like <code>/usr/local/lib/java</code> and create a simple start-script called <code>selenium-server</code>:</p>
+<div class="codehilite"><pre>#!/bin/bash
+java -jar /usr/local/lib/java/selenium-standalone-server.jar
+</pre></div>
+
+
+<p>plus a quick <code>chmod a+x</code>, and we're basically done. Starting your server with <code>selenium-server</code> on the command line should be fine now.</p>
+<p>As for the python side, the python bindings for selenium are not in fedora repos. Hence we're going to PyPI and get them there with a quick</p>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">selenium</span>
+</pre></div>
+
+
+<p>Voila, we're done with the installation part.</p>
+<h3 id="webdriving-firefox-64bit">Webdriving Firefox 64bit</h3>
+<p>A subsequent check with python to verify correct operation revealed another caveat. I checked the firefox webdriver with</p>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">selenium</span> <span class="nb">import</span> <span class="n">webdriver</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+</pre></div>
+
+
+<p>and got a nice message that the webdriver wasn't able to fire up firefox due to a <em>"wrong ELF class: ELFCLASS32"</em> error for <code>libX11.so.6</code>. A short research uncovered the issue being a known problem of selenium as described in <a href="http://code.google.com/p/selenium/issues/detail?id=2852">Issue 2852</a>. The selenium driver looks up libX11 on a wrong location.</p>
+<p>The somewhat ugly workaround for this is to redirect to the lib64 dll with a symlink:</p>
+<div class="codehilite"><pre><span class="n">mv</span> <span class="sr">/usr/</span><span class="n">lib</span><span class="o">/</span><span class="n">libX11</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span><span class="p">{,</span><span class="o">.</span><span class="n">x86</span><span class="p">}</span>
+<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="sr">/usr/</span><span class="n">lib64</span><span class="sr">/libX11.so.6.3.0 /</span><span class="n">usr</span><span class="sr">/lib/</span><span class="n">libX11</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span>
+</pre></div>
+
+
+<p>After this little hack, the firefox webdriver works as expected and the selenium testing fun finally was about to begin!</p>
+<h3 id="going-headless">Going headless</h3>
+<p>I had written a couple of tests, I wanted to integrate them to the overall testing scripts. This actually requires to enable the tests to be <em>headless</em>. The're basically two options to choose from for headless testing.</p>
+<p>The first option is to go for the (above created) server and use the <code>RemoteDriver</code> in the tests. This is quite straight-forward and did work very well in a few other projects I made. So I decided to check this path from within Python as well. Well, basically, it's just as easy as:</p>
+<div class="codehilite"><pre><span class="n">from</span> <span class="n">selenium</span> <span class="nb">import</span> <span class="n">webdriver</span>
+<span class="n">from</span> <span class="n">selenium</span><span class="o">.</span><span class="n">webdriver</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">desired_capabilities</span> <span class="nb">import</span> <span class="n">DesiredCapabilities</span>
+
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span>
+    <span class="n">desired_capabilities</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">HTMLUNIT</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Naturally, the selenium server must be running as well. In our case it's running on localhost.</p>
+<p>It's worth mentioning that the python bindings are fairly <a href="http://selenium.googlecode.com/svn/trunk/docs/api/py/index.html">well documented</a>.</p>
+<p>While this server-based approach works very well and in my experience plays well in mid-sized projects / teams, there's a second neat alternative to go headless using a virtual display like <a href="http://en.wikipedia.org/wiki/Xvfb">Xvfb</a>. This is especially useful if you want to use specific functionality like capturing network traffic of taking screenshots. I came across a nice <a href="http://coreygoldberg.blogspot.de/2011/06/python-headless-selenium-webdriver.html">blog post</a> describing the basic usage and want to reiterate it for my case.</p>
+<p>In order to use Xvfb with python, <code>Xvfb</code> itself and <code>pyvirtualdisplay</code> need to be grabbed:</p>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">xorg</span><span class="o">-</span><span class="n">x11</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">Xvfb</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyvirtualdisplay</span>
+</pre></div>
+
+
+<p>The xvfb package name may vary on other distributions. After installing pyvirtualdisplay, running a headless test with Xvfb is as easy as:</p>
+<div class="codehilite"><pre><span class="n">from</span> <span class="n">pyvirtualdisplay</span> <span class="nb">import</span> <span class="n">Display</span>
+<span class="n">from</span> <span class="n">selenium</span> <span class="nb">import</span> <span class="n">webdriver</span>
+
+<span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span><span class="mi">768</span><span class="p">))</span>
+<span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://google.com&#39;</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">browser</span><span class="o">.</span><span class="n">title</span>
+
+<span class="n">browser</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+<span class="n">display</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+
+
+<p>And: it works beautifully! The nice thing about it is that switching from headless to visual mode is just changing a few lines, which can be easily parameterized. As for my simple tests on my little project, I'm using the virtual display version. It's fast enough and enables me to do some advanced checking as well.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>23 July 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/selenium-on-fedora-17.html&title=Selenium on Fedora 17">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

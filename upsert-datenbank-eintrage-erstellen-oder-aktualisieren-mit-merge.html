@@ -1,0 +1,147 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Upsert – Datenbank-Einträge erstellen oder aktualisieren mit MERGE</title>
+    <meta name="description" content="Implementierung des Speichern des Datensatzes (ActiveRecord.Save) mit Hilfe der UPSERT-Technik. Anwenden des SQL-Befehls &#34;MERGE&#34; für das anlegen oder aktualisieren des Datensatzes.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="upsert-datenbank-eintrage-erstellen-oder-aktualisieren-mit-merge">
+    <a href="upsert-datenbank-eintrage-erstellen-oder-aktualisieren-mit-merge"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Upsert – Datenbank-Einträge erstellen oder aktualisieren mit MERGE</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Erst kürzlich bekam ich die Frage gestellt, wie man einen Datenbank-Eintrag erstellen kann, ohne zu wissen ob dieser Eintrag existiert oder nicht. Konkret handelt es sich hierbei um ein klassisches <a href="http://en.wikipedia.org/wiki/Upsert">UPSERT</a>, also ein INSERT-Statement falls der Eintrag nicht existiert oder ein UPDATE-Statement falls der Eintrag existiert. Für die meisten Datenbanken gibt es dafür das <a href="http://en.wikipedia.org/wiki/Merge_%28SQL%29">MERGE-Statement</a> (übrigens SQL:2003-Standard).</p>
+<p>Das eigentlich interessante bei dem UPSERT-Verfahren ist das Anwendungsgebiet. Ich persönlich verwende es oft bei Tabellen, die außer dem Primär- bzw. Surrogatschlüssel noch einen weiteren eindeutigen Schlüssel (Unique Key) hat. Dort ist der Einsatz meiner Meinung nach besonders elegant. Ein kleines Beispiel (mit Oracle):</p>
+<div class="codehilite"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">USERS</span> <span class="p">(</span><span class="n">ID</span> <span class="nb">NUMBER</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span> <span class="n">USERNAME</span> <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> <span class="n">DESCRIPTION</span> <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">50</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="n">SEQUENCE</span> <span class="n">USERS_SEQ</span> <span class="k">START</span> <span class="k">WITH</span> <span class="mi">1</span> <span class="n">NOCYCLE</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">USERS</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">USERS_SEQ</span><span class="p">.</span><span class="n">NEXTVAL</span><span class="p">,</span> <span class="s1">&#39;JohnDoe&#39;</span><span class="p">,</span> <span class="s1">&#39;Johnny be good.&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Sollte man jetzt sicherstellen, dass der Eintrag für JohnDoe mit der Beschreibung "Johnny is the best." in der Tabelle eingetragen ist, kann das folgende Merge-Statement verwendet werden:</p>
+<div class="codehilite"><pre><span class="n">MERGE</span> <span class="k">INTO</span> <span class="n">USERS</span> <span class="k">USING</span>
+<span class="p">(</span>
+  <span class="k">SELECT</span>  <span class="s1">&#39;JohnDoe&#39;</span> <span class="n">NEW_USERNAME</span><span class="p">,</span> <span class="s1">&#39;Johnny is the best.&#39;</span> <span class="n">NEW_DESCRIPTION</span> <span class="k">FROM</span> <span class="n">DUAL</span>
+<span class="p">)</span>
+<span class="k">ON</span>
+<span class="p">(</span>
+  <span class="n">USERNAME</span> <span class="o">=</span> <span class="n">NEW_USERNAME</span>
+<span class="p">)</span>
+<span class="k">WHEN</span> <span class="n">MATCHED</span> <span class="k">THEN</span>
+  <span class="k">UPDATE</span> <span class="k">SET</span> <span class="n">DESCRIPTION</span> <span class="o">=</span> <span class="n">NEW_DESCRIPTION</span>
+<span class="k">WHEN</span> <span class="k">NOT</span> <span class="n">MATCHED</span> <span class="k">THEN</span>
+  <span class="k">INSERT</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">USERS_SEQ</span><span class="p">.</span><span class="n">NEXTVAL</span><span class="p">,</span> <span class="n">NEW_USERNAME</span><span class="p">,</span> <span class="n">NEW_DESCRIPTION</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Das Ganze funktioniert natürlich auch auf Basis des surrogate primary keys. Das Beispiel mag etwas weit hergeholt wirken, es kommt aber dennoch oft genug in der Praxis vor.</p>
+<p>Äußerst interessant wird es meiner Meinung nach allerdings, wenn man genau dasselbe Prinzip zum Beispiel generell für die <code>Save()</code>-Methode eines <a href="http://en.wikipedia.org/wiki/Active_record">Active Records</a> verwendet. Man braucht sich nicht mehr darum zu kümmern, ob das Objekt nun tatsächlich in der Datenbank existiert oder nicht. Stattdessen wird einfach das MERGE-Statement abgesetzt und fertig. Dieser Ansatz ist vor allem für verteilte Anwendungen besonders sinnvoll. Ich persönlich habe es in der beschriebenen Art und Form noch nicht eingesetzt, habe allerdings bis dato nur Gutes darüber gehört. Ich bin wie immer gespannt auf eure Meinungen. :-)</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>26 October 2007</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/upsert-datenbank-eintrage-erstellen-oder-aktualisieren-mit-merge.html&title=Upsert – Datenbank-Einträge erstellen oder aktualisieren mit MERGE">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

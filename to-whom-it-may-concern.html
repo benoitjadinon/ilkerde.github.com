@@ -1,0 +1,149 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>To Whom It May Concern ?!?</title>
+    <meta name="description" content="A slightly emotional rambling about BDD-style specifications and their place in relation to the SUT. Argues that specs should be placed as near as possible to the resulting code, ideally side-by-side.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="to-whom-it-may-concern">
+    <a href="to-whom-it-may-concern"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>To Whom It May Concern ?!?</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Note: <em>Diesen Artikel gibt es auch auf <a href="unit-tests-sind-immer-dabei.html">Deutsch</a></em></p>
+<p>It’s been something like a week since Stefan asked a provoking question in his blog (german): „<a href="http://www.lieser-online.de/blog/?p=235">Where to put the Tests?</a>” He wrote that he’s strictly separating tests from their implementation in separate projects. However, motivated by a statement of me, he gave the idea of having tests &amp; implementation in the same project a try. Wow, all code in one assembly. He as well as a punch of commentators on his blog came to the conclusion, that separating tests from implementation using separate projects is better. I argue the converse.</p>
+<p>It’s simply <a href="auf-dem-eisberg.html">old-fashioned style to separate tests &amp; implementation with separate projects</a>. I did separate my tests from implementation code for years. However, about half a year ago, I realized that this separation doesn’t help me much. Instead, it hinders my development process. Since then I keep tests &amp; implementation together in one project. They are located as near to each other as possible. Let’s name this “side-by-side” residency. In this post I want to show and explain the main reasons, consequences and experiences in favor of “side-by-side specifications” or “near specs”.</p>
+<p>Well, first of all, I reduce the practice of „near specs” to unit tests only. Just as in classical sense of TDD. Integration tests and verification-driven tests are located in separate projects (thus being “far specs”), as usual. For me, putting tests and implementation altogether in one project makes sense in test-first approaches. That is, TDD testing or BDD specifications. Ergo: It’s about tests I use to drive my implementation. Tests, which I’m using to design and develop the desired functionality.</p>
+<h3 id="the-grip-of-behavior">The grip of behavior</h3>
+<p>So, what’s the point then to put tests and implementation side-by-side? In my opinion there’s a quite naive, yet effective reason: You get grip of your tests. The tests are simply there. They’re where I need them; they’re there where I expect them. They are right there where the behavior is. Since I keep tests next to my implementation, I’m just better able to “put them in shape”. Means: I do refactorings a lot more effective and frequent. Naturally not only on SUT, but tests as well.</p>
+<p>Generally speaking, it’s a kind of different, more efficient style of development to work with implementation &amp; tests right at hand. Coming back to projects after some time makes it a breeze. I just look and read the tests. Then, I navigate frequently between tests and implementation to understand the details. “Near specs” make it less painful and more pleasant to read the code. This is especially the case for tests where several dependencies / mocks exist. No jumps through projects, no loading of solutions here and there. Just reading, that’s it.</p>
+<p>To put it candidly, it was hard at start. The number of test classes – or the amount of test code in general – is quite a lot compared to implementation code only. I had to get used to it somehow. From time to time, I had a strange feeling that my tests are distracting me. It was so unusual for me that I felt that my tests “messed up” my organization in my “production” project. It didn’t last long though. As I continued to keep my tests right where my implementation is, I more and more realized how cool and beneficiary it is to do so. Especially as I utilized this approach on a larger codebase. Since then, it’s clear for me: putting specifications/tests side-by-side rules!</p>
+<p>Wait, the world’s not shining always. New questions arise with this new “colocation” of tests right where the implementation is. Probably the most often asked is how the release assemblies of such applications look like. Needless to say, it’s desirable to let release assemblies contain only what the customer actually needs: the functionality. However, with tests in same assembly, how would you achieve this?</p>
+<h3 id="reduce-to-the-max">Reduce to the Max</h3>
+<p>The solution is quite simple: If tests and implementation are no longer divided in design- or development-time, then the split-up needs to take place later on, at delivery-time! Simply put, the build needs to take care of this task. Since I’m used to use build scripts for my projects, it’s quite a common thing for me to adjust end enhance my scripts to filter out the test classes and test-related references. For my own tiny projects, I most often use powershell scripts. At larger contexts with CI and Buildsystems, a call to a cleanup extension is an obvious, handy task.</p>
+<p>Back to Stefan’s post. As I read through comments, I thought to myself: Why do so many people write so much about it and judge this approach as “tricky” or “dirty” without obviously not having tried it once? I did give it a try and I’m feeling very fine with it. It’s neither difficult, not dirty at all. The contrary is the case. Now that I use „near specs“, my daily TDD and development life is more pleasant and effective than before. Building a filter for test-related artifacts is an easy task. In my scripts, I usually need about 10 lines for this. Moreover, it’s worth to keep in mind that filtering is “only” needed for release builds. No CI build whatsoever affected.</p>
+<p>Once read through the whole thread, I just said to myself: „I even would build my build script test-first faster than reading all this”. As some of you know me as a <a href="http://twitter.com/ilkerde/status/18264412106">friend of empiric results and measurement</a>, it’s obvious that I needed to check if my statement really would turn out true. Just do it and see if it’s really that fast and easy. No sooner said than done! I pushed the <a href="https://github.com/ilkerde/CodeKatas/tree/master/KataFizzBuzz.SideBySide">results to my github repository</a>. Brief summary: Even without test-framework and with my „limited“ powershell knowledge, I was able to build my test-artifact filtering in about the same amount of time I spent to read the blog. ;-)</p>
+<h3 id="separation-of-concerns">Separation of Concerns</h3>
+<p>Another argument quite often rose against putting tests and implementation together is “Separation of Concerns” (SoC). “Partitioning tests and implementation in separate projects is following this principle”, it’s being said. Even good friends of mine, like <a href="http://twitter.com/tehlike">Tehlike</a> bring SoC onto the table against “near specs”. By the way, I specially write this article in <a href="http://twitter.com/tehlike/status/18223527988">English for Tehlike</a>, and therefore:</p>
+<p><strong>Tehlike, yanılıyorsun! ;-)</strong>
+<em>(In english: Tehlike, you are mistaken!)</em></p>
+<p>Yes, I think that those are mistaken who think that SoC is a reason to split tests and implementation. From my perspective, the opposite is the case. SoC is – once considered to look at it carefully - even a reason to put tests and implementation side-by-side.</p>
+<p>The essence of <a href="http://en.wikipedia.org/wiki/Separation_of_concerns">Separation of Concerns</a> is quite easy: diverse perspectives, say „concerns“, of a behavior of an object should be separated. „Concerns“, in context of domain modeling and system analysis, are aspects of behavior and functionality. Take the calculator example. The functionality of „addition“ of a calculator has different aspects. You need to enter the numbers through keys, the calculation unit needs to add the numbers, and the sum needs to be displayed. All concerns – better: different concerns – of one functionality. With respect to „Separation of Concerns“, those aspects need to be separated. In consequence, a component-oriented and reusable solution is fostered.</p>
+<h3 id="completeness-of-concern">Completeness of Concern</h3>
+<p>So far, so good. But wait. For my understanding, Separation of Concerns means by implication, that a single concern should strive towards entirety. That is, one single concern ideally should aim completeness. „Isn’t this automatically the case?“ you might think. Mhh, not really, in my opinion. Most often, one concern is located on very diverse and unusual locations within a software development process.</p>
+<p>Take the „classical“ software engineering scenario as an example. A behavior and its concern is described in requirements documentation. You can find different, mostly edgy details of the same concern in UML diagrams and Use Case documents. Of course, tests reflect the concern again. Well crafted, tests most likely specify the concern at its best. Naturally, the concern is in production code, implanted as final functionality of the system. And what’s the result now? Straight answer: The result is a mess. Most often, a developer finding himself in such a situation is faced with puzzle pieces everywhere – but not on the table.</p>
+<p>Hence, for me it’s obvious that partitioning tests and implementation in separate projects is not helping me to strive towards „Completeness of Concern“. Moreover, splitting up tests an implementation is not related to Separation of Concerns. Both tests and implementation care about the same concern, that’s the simple truth.</p>
+<p>BDD lovers in the wild will clap their hands. The abovementioned is more or less the same they proclaim over and over. They don’t talk about tests; they care about “specs”. They don’t talk about verification; they care about “behavior”. Yes, they even care about concerns, drivers and observations. Altogether, this is even for beginners quite a good hint towards a mindset, where tests and implementation build a chained, inseparable pair.</p>
+<h3 id="feels-just-like-it-should">Feels just like it should</h3>
+<p>Let’s face it. Once developing a reasonable time in TDD/BDD style, you clearly realize one thing: Whenever you need to change or extend the system, you have at least two „changepoints“. First, you change tests. Right afterwards, you change your implementation. One single behavior, one single concern. But two perspectives, two edits. That’s the case for „far specs“ (that is, tests located in a separate project) as well as for “near specs” (that is, tests residing in the same project along with the implementation “side-by-side”).</p>
+<p>The difference: With near specs, you change and develop the system faster, &amp; easier. It’s simply more efficient and intuitive. Near specs foster „Completeness of Concern“. This essentially contributes to better readability, maintainability and flexibility of the overall system.</p>
+<p>It’s been more than 3 months now since I started to structure my unit tests strictly side-by-side along to my implementation. For me, this “different” style of code organization is absolutely pleasant and effective. Right now, I can’t think of switching back. In my opinion, putting tests and implementation as near as possible is in favor of the “TDD spirit”. With tests and implementation being at the same place, for me TDD now more and more “<a href="http://www.youtube.com/watch?v=9LCEsRno1cg">feels just like it should</a>” ;-)</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>12 July 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/to-whom-it-may-concern.html&title=To Whom It May Concern ?!?">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

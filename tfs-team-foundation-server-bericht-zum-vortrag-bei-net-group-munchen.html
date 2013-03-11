@@ -1,0 +1,163 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>TFS – Bericht zum Vortrag bei .NET Group München</title>
+    <meta name="description" content="Bericht vom .NET User Group Vortrag zum Team Foundation Server.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="tfs-team-foundation-server-bericht-zum-vortrag-bei-net-group-munchen">
+    <a href="tfs-team-foundation-server-bericht-zum-vortrag-bei-net-group-munchen"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>TFS – Bericht zum Vortrag bei .NET Group München</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Gestern war ich im Rahmen der .NET Developers Group München bei einem Vortrag über den Einsatz von <a href="http://www.munichdot.net/Events/484.aspx">TFS in der Praxis</a>. Ich muss zu allererst loswerden, dass der Vortrag und die Stimmung recht gut waren. Es wurde eine Funktionsübersicht geboten, praktische Beispiele an Hand eines kleinen Demo-Projektes aufgezeigt und der Betriebsalltag diskutiert.</p>
+<p>Dabei wurden nahezu alle Aspekte des <a href="http://www.microsoft.com/germany/msdn/vstudio/products/teamsystem/team/default.mspx">Team Foundation Server</a> durchleuchtet: Source Code Control, Work Item Management, Process Management &amp; Communication, Build Management sowie Reporting Services. Kurz davor wurde noch auf den Aufbau des TFS, die unterstützten Prozesse und die verschiedenen Benutzergruppen (Projektrollen) oberflächlich eingegangen.</p>
+<h4 id="source-control">Source Control</h4>
+<p>Beim Source Control Management wurde die konzeptionelle Änderung der "Concurrency" gegenüber VSS deutlich gemacht. Bei einem solchen „Key Feature“ kann man einem User von <a href="http://subversion.tigris.org/">Subversion</a> nur ein müdes Lächeln abringen. Fakt ist allerdings auch, dass TFS die von z.B. SVN gewohnten Funktionen mitbringt: Check-in/-out, History, Tagging (unter TFS Labels), Branching, Merging - das gewohnte Repertoire. </p>
+<p>Elegant gelöst, aber bei weitem nicht neu sind die Check-in Policies. So kann man z. B. Kommentare, Code Analysis, Builds oder Test Runs vor dem Check-in erzwingen. Ein nettes Gimmick ist auch das sog. „Shelving“. Dabei werden die Source Code Files an den Server gesendet, allerdings nicht in einem Changeset (Revision) committed. Praktisch also nur am Server zur freien Verfügung abgelegt. Der praktische Einsatz in größeren Teams ist aus meiner Sicht für so etwas doch relativ begrenzt. Allenfalls lässt sich das Feature für Prototypisierung und Easy Change anwenden.</p>
+<h4 id="work-items">Work Items</h4>
+<p>Als nächstes Stand das berüchtigte Work Item Management an. An und für sich bietet hier der TFS eine art Issue Tracking System. Natürlich wurde die Integration in Visual Studio, Excel, Project und Sharepoint nicht unerwähnt gelassen. Interessant dabei war, dass man - sozusagen als Workaround – Work Items mit Hilfe von Excel auch offline bearbeiten und anlegen kann. Ein weiterer Aspekt bei Work Items ist die Flexibilität. Praktisch jedes Feld eines Items kann definiert werden - auch wie letztendlich dann das Formular für die Eingabe auszusehen hat.</p>
+<p>Zusätzlich zu dieser Indiviualität des Work Items gibt es bestimmte, feste „Anhaltspunkte“ für Work Items. So kann man z.B. Items thematisch mit Hilfe von sog. „Areas“ – ähnlich Themengebieten kategorisieren. Dies kann übrigens – entgegen weitläufiger Meinung – auch hierarchisch gegliedert sein. Eine weitere Kategorisierungsmöglichkeit – diesmal mit Zeitbezug – beiten die Iterationsdefinitionen.</p>
+<p>Besonders hervorheben möchte ich auch das integrierte „Workflow-Management“ für Work Items. Im weitesten Sinne arbeitet eine stark vereinfachte Workflow-Engine nach jeder Änderung eines Items definierbare Regeln und State-Transitions ab. Der Witz dabei ist die sehr bequeme Definition des Workflows mit Hilfe eines visuellen Editors. So kann man z.B. einfach und schnell den Workflow für den Work Item Typ „Bug“ an seine Bedürfnisse anpassen.</p>
+<p>Apropos Anpassungsfähigkeit – der Team Foundation Server ist im Großen und Ganzen sehr flexibel und lässt sich in sehr vielen einzelnen Punkten anpassen. Angefangen bei Work Items über Process Guidance, Check-In Policies, Process Templates bis hin zur Sharepoint-Modifikation ist alles möglich. Allerdings bringt diese große Flexibilität auch Fallstricke mit sich. Anpassungen sind mit einem relativ hoen Zeitaufwand verbunden und greifen zum Teil Tief in das TFS-System ein. Dabei ist die Wahrscheinlichkeit einer Fehlkonfiguration deutlich höher als mit anderen etablierten Tools.</p>
+<p>Das Thema Work Items bei TFS hat seit dem Release des TFS immer wieder eine Frage mit sich gezogen: Warum kann man Work Items nicht im Sharepoint editieren? Diese Frage ist mittlerweile mit „Verwende einfach TeamPlain“ zu beantworten. <a href="http://www.devbiz.com/teamplain/webaccess/default.aspx">TeamPlain</a> ist ein inzwischen von Microsoft aufgekauftes Drittprodukt zu TFS, welches für Work Items und einiges mehr eine Web-Oberfläche bietet. Das Tool funktioniert gut, ist stabil und freundlich zu bedienen. Im Übrigen ist der TFS von Haus aus sowieso „nahezu unverwendbar“ (O-Ton Sprecher des Vortrages). Erst das „<a href="http://msdn2.microsoft.com/en-us/vstudio/aa718351.aspx">Power Tool</a>“ für TFS und weitere Add-Ons wie z.B. TeamPlain machen TFS für den Alltag richtig fit.</p>
+<h4 id="testing">Testing</h4>
+<p>In diesem Zusammenhang möchte ich auch ein wenig in die Test-Thematik eingehen. TFS sieht von Haus aus eine „Tester-Rolle“ innerhalb des Entwicklungsprozesses vor. Dieser wird mit Hilfe der Tester-Edition von VSTS in die TFS-Familie eingebunden. Das einzig herausragende hierbei ist die Verknüpfungsfähigkeit von Tests zu Work Items und Builds. Für Automation stehen dem Tester „Test-Lists“ zur Verfügung, die z.B. nach einem Build automatisch durchgeführt werden können. Alle Test-Projekte werden auch in die Versionsverwealtung des TFS aufgenommen.</p>
+<p>Schade ist nur, dass Team Foundation Server nur die eigenen – also von Visual Studio angebotenen – Test-Typen und –Projekte akzeptiert. Eine werksmäßige Unterstützung für andere Test-Frameworks sucht man leider vergeblich.</p>
+<p>Es ist wohl eine Art von Brauch bei Microsoft, Produkte zu entwickeln die die Integration von bestehenden Systemen bzw. Dritt-Systemen schwerlich unterstützen. Generell ist bei TFS – bis auf das <a href="http://msdn2.microsoft.com/en-us/library/bb130146(VS.80).aspx">SDK</a> – die mangelnde Zahl an offenen Schnittstellen ein Minuspunkt. Hoffentlich wird dies im Laufe der Evolution des TFS verbessert werden.</p>
+<h4 id="build-management">Build-Management</h4>
+<p>Beim Build Management wurde der Vortrag lebendiger; die Praxiserfahrungen wurden offen ausgetauscht. TFS unterstützt hiebei eine Reihe von Funktionen, die helfen sollen, bessere Releases und Roll-Outs durchzuführen. Das aus meiner Sicht wichtigste allerdings wird sträflich vernachlässigt: Automated Builds und Continious Integration. Vergeblich sucht man im Standardumfang des TFS Möglichkeiten für automatische Buildprozesse. Zwar kann man mit einigem Aufwand und ein paar Hilfswerkzeugen sich eine automatisierte Build-Umgebung zusammenschustern, aber bei einem System, welches den Anspruch hat den Software-Entwicklungsprozess optimal zu unterstützen ist diese Tatsache schon fast ein Armutszeugnis.</p>
+<p>Ein weiterer Minuspunkt ist der mangelhafte Komfort beim Editieren der Buildscripts. Wenn man z. B. den TFS - welcher intern <a href="http://msdn2.microsoft.com/de-de/library/wea2sca5(VS.80).aspx">MSBuild</a> verwendet - dazu bewegen möchte ein .NET 1.1-Projekt zu bauen, hat man außer der Installation von <a href="http://www.codeplex.com/Wiki/View.aspx?ProjectName=MSBee">MSBee</a> noch viele Stunden Scriptarbeit vor sich.</p>
+<p>Alles in allem ist die Buildunterstützung für heutige Verhältnisse eher unbefriedigend. Da bleibt einem nur der Trost, dass Microsoft gerade hier kräftig nacharbeitet und mit TFS for <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=B533619A-0008-4DD6-9ED1-47D482683C78&amp;displaylang=en">Orcas</a> deutlich verbesserte Buildfunktionalitäten anbieten möchte.</p>
+<h4 id="tfs-vor-und-nachteile">TFS - Vor- und Nachteile</h4>
+<p>Ich habe vor dem Vortrag den TFS schon kennenlernen dürfen. Nach dem Vortrag muss ich sagen, dass sich mein eigener Eindruck von TFS bestätigt hat. Kurz zusammengefasst die Pros and Cons aus meiner Sicht:</p>
+<p>Vorteile:</p>
+<ul>
+<li>Gutes Konzept, Unterstützt nahezu komplett den Entwicklungsprozess</li>
+<li>Integration in Visual Studio</li>
+<li>.NET-Entwicklungen sehr gut unterstützt </li>
+<li>Extreme Anpassungsfähigkeit (Prozesse, Work Items, Workflows)</li>
+<li>Gutes Reporting und Monitoring</li>
+</ul>
+<p>Nachteile:</p>
+<ul>
+<li>Langsam</li>
+<li>Prozessüberdosierung - zu viel Artefakte und Informationen</li>
+<li>Fehlerbehaftet und z.T. Instabil</li>
+<li>Continious Integration absolut unbefriedigend</li>
+<li>Web-Oberfläche / Sharepoint-Support eingeschränkt</li>
+<li>Keine Backup-Funktionen oder –Strategie</li>
+<li>De Facto nur Online-Modus, keine Offline-Funktionalität (Thema Off-Site/On-Site)</li>
+<li>Installation, Wartung und Individualisierung aufwendig</li>
+<li>Kein klares Konzept bei Dokumentationsaufgaben (kein Wiki, keine Sandcastle-Integration)</li>
+</ul>
+<p>So, nachdem ich aus einem Meeting-Bericht schon fast ein TFS-Artikel produziert habe, befürchte ich, dass meine Leserschaft ein wenig zu Müde ist für weitere Themen wie Bewertung von TFS aus Unternehmenssicht, Einführung des TFS in die Entwicklung, Vergleich von TFS zu anderen Systemen und noch einiges mehr. Falls Interesse besteht, etwas mehr in das Thema Team Foundation Server einzusteigen – einfach kommentieren oder bei mir melden.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>25 July 2007</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/tfs-team-foundation-server-bericht-zum-vortrag-bei-net-group-munchen.html&title=TFS – Bericht zum Vortrag bei .NET Group München">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

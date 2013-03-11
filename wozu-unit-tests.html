@@ -1,0 +1,135 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Wozu Unit Tests?</title>
+    <meta name="description" content="Ein Plädoyer für den konsequenten Einsatz von Unit Tests und TDD.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="wozu-unit-tests">
+    <a href="wozu-unit-tests"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Wozu Unit Tests?</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Die Frage stellen sich einige Entwickler und Manager immer wieder. Nicht nur diejenigen (hoffentlich wenigen), die noch keine Unit Tests schreiben, sondern vielmehr jene, die schon seit längerem Unit Tests einsetzen. Der Hauptgrund dafür ist sicherlich die falsche Anwendung und falsche Erwartungshaltung beim einsetzen von Unit Tests.</p>
+<p>Steve Sanderson beantwortet diese Fragen in seinem <a href="http://blog.codeville.net/2009/08/24/writing-great-unit-tests-best-and-worst-practises/">Unit Test Best &amp; Worst Practices</a> Artikel äußerst anschaulich. Ich möchte hier dennoch einen kurzen Abriss über die Fragestellung und seine Antworten geben.</p>
+<p>Zunächst einmal sollte die Eingangsfrage geklärt werden: <em>Wozu Unit Tests? Ganz einfach: Um konsequent stabile Software entwickeln zu können</em>. Bei Unit Tests geht's also nicht um Fehlerfindung (jeglicher Art), sondern um eine Entwicklungsmethode, von vornherein Komponenten einer Software funktional korrekt und technisch stabil zu entwickeln. Unit Tests helfen auch deutlich bei der Verwaltung und Veränderung von Komponenten (z.B. durch Extensions oder Refactoring), um Instabilitäten während Refactorings zu erkennen und zu beheben.</p>
+<h3 id="gute-und-schlechte-unit-tests">Gute und schlechte Unit Tests</h3>
+<p>Damit kommt man auch unweigerlich zur nächsten Problemstellung. Wie kann ich Unit Tests anwenden, dass Sie mir dabei helfen, stabile Software zu entwickeln? Einfacher grafragt Was sind "gute", und was sind "schlechte" Unit Tests? Steve beantwortet diese Frage aus der TDD-Sicht. Für ihn sind Unit Tests besonders dann gut, wenn sie ausschliesslich eine funktionale Beschreibung der Software-Komponente abbilden. Das kann man natürlich besonders dann gut machen, wenn man nichts über die Art und Weise der Implementierung der Funktionalität kennt, also klassisches TDD Test-First betreibt.</p>
+<p>Ein ebenso guter Test (welches man mit Unit Testing Werkzeugen abbilden kann) ist ein echter Integrations-Test. Bei dieser Art von Tests wird nicht die Software in ihren einzelnen Bestandteilen (Klassen, Komponenten) betrachtet, sondern als Ganzes aus der Sicht des Benutzers. Es werden funktionale Bereiche getestet, ohne die Implementierung der Software zu kennen. Diese Integrations-Tests sind besonders hilfreich Regressionen des Systems festzustellen.</p>
+<p>Damit ist auch beantwortet, welche Unit Tests nun schlechte sind: alle anderen. Im Alltag spiegelt sich das durch Tests wieder, die zu sehr auf die Implementierung eingehen (z.B. ein <code>*Returns_Not_Null</code> Test), auf die technischen Elemente (z.B. ein <code>*Db_User_Created</code> Test) oder eine komische Mischung aus reinem Unit Test und Integrations-Test sind.</p>
+<h3 id="unit-tests-sind-katalysator-fur-komponenten-orientierte-software">Unit Tests sind Katalysator für komponenten-orientierte Software</h3>
+<p>Die Beurteilung über schlechte und gute Unit Tests ist im täglichen Einsatz von Unit Tests immer wieder in den Vordergrund zu rücken, denn dadurch lässt sich auch einiges über das System-Design und die Software-Architektur sagen. Ein System, welches das schreiben und verwalten von Unit Tests leicht ermöglicht, bei dem die Unit Tests reine Funktionalitäten testen, bei dem Unit Tests nicht von anderen Tests oder sogar der Laufzeitumgebung abhängig sind ist ein deutlich auf den Grundkonzepten der Objekt- und Komponentenorientierung aufgebautes System. Die Kohäsion ist im Mikro-System sehr hoch, um Makro-System sehr niedrig. Ein Austausch einer Komponente ist problemlos, aber funktional immer wirkend.</p>
+<p>Sind die Symptome jedoch, dass man für die Erstellung der Unit Tests schon Zielbereiche suchen muss, das Unit Tests nur rudimentäre fachliche Aussagen treffen oder das Verwalten der Test Suite mit zunehmender Test-Anzahl immer aufwendiger und schwieriger wird, dann kann man daraus ableiten, dass das System-Design der Software tendenziell nicht auf Komponentenorientierung ausgelegt ist. Überdies lässt sich weiter schlußfolgern, dass das System mit hoher Wahrscheinlichkeit die Prinzipien "Single Responsibility" und des "Divide &amp; Conquer" missachtet.</p>
+<h3 id="schmerztherapie-unit-tests">Schmerztherapie Unit Tests</h3>
+<p>Besonders bei existierenden Systemen, bei denen die Weiterentwicklung strategisch wichtig ist und die ökonomische Effizienz gesteigert werden soll, sind echte, gute Unit Tests ein mittelfristig starkes Werkzeug, um das gesamte System effizienter und stabiler zu gestalten. Damit ist nicht nur die Funktionalität (Integrity) oder Defekt-Quote (Defect Rate) gemeint, sondern im Besonderen der Verwaltungsaufwand (Maintenance), die Weiterentwicklungskosten (Features) und die hochgelobte niedrige Reaktionslatenz zum Markt (Time To Market). Manchmal ist es schwer Unit Tests zu schreiben, weil man grundlegende Systemkomponenten anders aufbauen und strukturieren muss, um diese testbar zu machen.</p>
+<p>Manchmal ist es schwer, Tests für Dinge zu schreiben, deren Implementierung nicht bekannt ist. Manchmal ist es schwer, die geänderte Grundfunktionalität in dutzenden Tests nochmals zu adaptieren. Doch am Ende wird man belohnt mit schnellerer Feature-Entwicklung und einer besonders vertrauenswürdigen, stabilen Software.</p>
+<p><strong>Unit Testing tut gut, auch wenn es weh tut.</strong></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>28 August 2009</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/wozu-unit-tests.html&title=Wozu Unit Tests?">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

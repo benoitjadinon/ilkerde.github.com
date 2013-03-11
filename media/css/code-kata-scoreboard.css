@@ -1,0 +1,87 @@
+/*
+### colors.less
+
+Definition of colors used throughout the entire website.
+
+The color system divides into two sections. The first section
+defines the colors itself (similar to a palette definition).
+
+The second section actually semantically defines which color
+is used for whatever component on the website. By convention,
+three color types exist:
+
+- Foreground color, suffixed "_fg"
+  This is the (primary) stroke color, used for text
+
+- Background color, suffixed "_bg"
+  This is the fill color, i.e. used for filled boxes
+
+- Line color, suffixed "_line"
+  The (secondary) hairline stroke color, used for borders
+
+Apart from the color type, colors can be defined
+for several object states as well. The default state
+is the "idle" (or passive) state. It's the only state
+which is not explicitly weaved into the color name.
+In addition to the default state there's:
+
+- over: user focuses object with mouse (mouseover/hover)
+- active: highlighted, active object, important in context
+- inactive: dimmed, inactive object, commonly unusable
+- error: strong highlight, object is errornous
+
+*/
+/*
+The main color set only contains greys, light whites
+and the theme blue color called "ease".
+*/
+/* > standard text colors */
+/* > colors for links */
+/* > code sections / fragments */
+/* > quotes / citations */
+/* > image captions / subtitles */
+/* > icons (usually imagery only) */
+/* > informational, contextually lower important text elements */
+/* > presentational canvas (slide) colors */
+/* > headings and titles */
+/* > main menu */
+/* > form labels */
+/* > input elements */
+/* > command button */
+/* > border colors */
+#code-kata-scoreboard #content #matchresults + table thead {
+  display: none;
+}
+#code-kata-scoreboard #content #matchresults + table td {
+  padding: 4px;
+  border-bottom: 1px solid #c2c3c4;
+}
+#code-kata-scoreboard #content #matchresults + table tr > td:first-child {
+  width: 120px;
+  text-align: right;
+}
+#code-kata-scoreboard #content #matchresults + table tr > td:first-child + td {
+  padding-right: 16px;
+}
+#code-kata-scoreboard #content #matchresults + table tr > td:first-child + td + td {
+  padding-left: 16px;
+}
+#code-kata-scoreboard #content #matchresults + table tr > td:first-child + td + td + td {
+  width: 120px;
+}
+#code-kata-scoreboard #content #scoreboard_1 + table th {
+  font-weight: normal;
+  text-align: left;
+  padding: 4px;
+  border-bottom: 1px solid #c2c3c4;
+  width: 80px;
+}
+#code-kata-scoreboard #content #scoreboard_1 + table td {
+  padding: 4px;
+  border-bottom: 1px solid #c2c3c4;
+  width: 80px;
+}
+#code-kata-scoreboard #content #scoreboard_1 + table th:first-child,
+#code-kata-scoreboard #content #scoreboard_1 + table td:first-child {
+  width: 120px;
+}

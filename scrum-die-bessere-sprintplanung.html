@@ -1,0 +1,171 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Scrum: Die bessere Sprintplanung</title>
+    <meta name="description" content="Vorschläge zur Verbesserung der gemeinschaftlichen Sprintplanung und Konzeption von Software-Design innerhalb eines Sprints bei der agilen Management-Methode Scrum.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="scrum-die-bessere-sprintplanung">
+    <a href="scrum-die-bessere-sprintplanung"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Scrum: Die bessere Sprintplanung</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Scrum ist nicht einfach. Verstehen lässt es sich sehr leicht. Bei der Umsetzung wird es jedoch oftmals um ein vielfaches schwerer. Besonders schwer erscheint hierbei das Konzept der Planung des Sprints.</p>
+<p>Es ist zwar schon eine Weile her, als ich über meine Sicht der <a href="funf-schwachpunkte-von-scrum.html">5 Schwachpunkte von Scrum</a> erzählt habe. Einer dieser Schwachpunkte ist eben die Planung und das Design der Stories in einem Sprint.</p>
+<h3 id="planen-und-designen-jetzt">Planen und Designen: Jetzt!</h3>
+<p>In Scrum ist die Planung und das Design der User Stories genau deshalb ein Schwachpunkt, weil es formal - als Bestandteil des Frameworks - nur im Sprint-Planning-Meeting manifestiert ist. Sogar eingespielte Scrum-Teams schaffen es kaum, in 4 bis 8 Stunden alle User Stories eines Sprints mit einer gangbaren Lösungskonzeption zu bereichern. Das Problem ist offensichtlich: die unnötige Fokussierung auf das Sprint-Planning-Meeting.</p>
+<p>Jetzt gibt es sicherlich Scrum-Freunde, die einem solchen Argument mit “Scrum verbietet ja nicht, dass man mehr als nur eine Sprint-Planung macht”. So einen Satz muss man erst einmal sacken lassen. Fadenscheinig, Lachhaft, Unpräzise. Das sind die Eigenschaften eines solchen Arguments.</p>
+<p>Darüber hinaus beschweren sich Entwickler und Architekten mit ausgeprägtem Sinn für Software-Design über mangelnde konzeptionelle Integrität, wenn man “agil lossprintet”. Sie empfinden die Sprint-Plannings als “aktionistisch” und “affektiert”. Manche sagen sogar, dass Sprint-Planning sei ein Paradebeispiel für das berüchtigte <a href="http://en.wikipedia.org/wiki/Design_by_committee">Design by Comittee</a>.</p>
+<p>Doch nun genug der Kritik. Wie auch in meinen Verbesserungsvorschlägen zu der <a href="scrum-die-bessere-sprintdauer.html">besseren Sprintdauer</a> als auch zum <a href="scrum-der-bessere-scrum-master.html">besseren Scrum Master</a> möchte ich in diesem Artikel ein paar Anregungen zu einer besseren Planung und einem besseren Software Design geben.</p>
+<h3 id="zeitlose-kunst">Zeitlose Kunst</h3>
+<p>Aus meiner Sicht gibt es eine besonders wichtige Erkenntis, wenn es um agiles Software-Design im Allgemeinen geht: Software-Design ist zeitlos. Zeitlos im Sinne des Zeitpunktes und nicht unbedingt im Sinne der Dauer. Die gemeinschaftliche geistige Leistung des Designs von Softwarelösungen ist rein konzeptionell in der Agilität nicht mit einem festen Zeitpunkt vereinbar.</p>
+<p>Das heißt: Die Sprint-Planung als Meeting (sowohl der erste, als auch der zweite Teil) sind in ihrem Schwerpunkt <em>organisatorisch</em>. Das Sprint-Planning sollte nicht als “Planungs-und-Design-Workshop” wahrgenommen werden, sondern als eine “Ermittlung des Status-Quo”. </p>
+<p>Das Ziel des Sprint-Plannings ist es eben nicht, konzeptionelle Produktivität abzurufen. Die “Wie machen wir das?”-Frage im zweiten Sprint-Planning zielt nicht darauf ab, Problemstellungen zu Software-Design mit Lösungskonzepten aufzulösen. Die Frage regt vielmehr dazu an, das gesamte verfügbare Arsenal an Wissen und Informationen bzgl. der Herangehensweise zu einer User Story abzurufen. Das ist ein kleiner, aber entscheidender Unterschied.</p>
+<p>Besonders unerfahrene (oder unwissende) Scrum Master machen oft den Fehler, in den Sprint-Plannings das Team mit wiederholten “Wie können wir das lösen?”-Fragen auf eine schnelle und unüberlegte Konzeption zu drängen. Natürlich ist es gut, nochmals sich selbst zu fragen, ob alle Fakten auf dem Tisch sind. Aber das war’s dann auch. Wenn Ungewißheiten oder Fragen offen bleiben, dann ist das eben so.</p>
+<h3 id="storyboards">Storyboards</h3>
+<p>Hat man es als Team mal gedanklich geschafft, die Aktivität des Software-Designs und damit auch der kurzfristigen Planung von einer zeitlichen Schranke zu entkoppeln, werden viele Dinge offensichtlicher und leichter. </p>
+<p>So stellt man dann auf einmal fest, wie irreführend eigentlich die Bezeichnung “Estimation Meeting” für die Veranstaltungen sind, in denen unter Anderem erstmals über Stories gepokert wird. Eigentlich sollten die Meetings eher “Story Gathering” genannt werden. Denn neben der eigentlichen Erhebung von “Story Points” geht es gerade dabei um den Austausch von unterschiedlichen Problem- und Lösungsmodellen zu einer User Story.</p>
+<p>Mehr noch, man stellt weiter fest, dass es völlig normal und legitim ist, während den Daily Scrums weitere Tasks auf das Board zu schreiben. Oft sind es gerade die teaminternen Gespräche über die neuen Tasks nach dem Daily, die konzeptionell wertvoll sind.</p>
+<p>Mit der Zeit werden Teams, die die Konzeption von Software-Komponenten als stetigen Begleiter der Entwicklung selbst verinnerlicht haben, verschiedene weitere Maßnahmen eigenständig herausarbeiten. So ist es überaus hilfreich, wenn sich Teams sog. “Storyboards” zulegen. </p>
+<p>In XP sind das meistens physische Boards oder Wände, an denen ein konzeptioneller und technischer Überblick über die User Story gegeben wird. Storyboards werden nicht erst im Sprint aufgestellt, sondern werden meist 1-2 Sprints im voraus schon im Flur oder am Graffiti gesichtet.</p>
+<h3 id="die-reise-des-konzeptes">Die Reise des Konzeptes</h3>
+<p>Eine weitere Maßnahme zur Verbesserung der “suboptimalen” Design- und Planungsgrundlagen von Scrum ist wiederum eine aus XP entlehnte Methode der gemeinsamen Erarbeitung von Lösungen. Gemeint ist hier das altbewährte “Task Travelling”-Prinzip. Es war eines der ersten XP-Planungstechniken, die ich lernen durfte und hat sich bis heute als ein sehr wirksames Mittel erwiesen.</p>
+<p>Im Kontext des Software-Designs und der User-Story-Planung werden dabei eine oder wenige User Stories - z.B. diejenigen, die in dem Estimation Meeting vorgestellt wurden - als Paket im Team “herumgereicht”. Jeden Tag bewegt sich das Paket von Team-Mitglied zu Team-Mitglied, bis es schlußendlich wieder beim ersten Mitglied landet.</p>
+<p>Hat der Einzelne nun einmal so ein “Paket”, sollte schon im Daily erwähnt werden, dass man sich mit dem Paket beschäftigen wird. Das Paket wird in einer kurzen Session vom Vorgänger übergeben. Meist mit Informationen über den aktuellen Stand und die Herausforderungen, die zu erwarten sind. Danach entwickelt man in ein oder mehreren Stunden <em>alleine</em> die Konzepte weiter. Die Erkenntnisse bzw. Ergebnisse werden im Paket festgehalten und mitgegeben. Am Folgetag wird das Paket - unabhängig von den Ergebnissen - weitergereicht.</p>
+<p>Das Resultat dieser “Reise des Konzeptes” ist oft verblüffend gut. Alle Beteiligten kennen die User Story und mögliche Lösungspfade, es liegt im Allgemeinen ein dokumentiertes Konzeptpapier vor und alle Teammitglieder konnten gemeinsam am Konzept wirken. Ich habe sehr positive Erfahrungen mit Task Travelling und der “Reise des Konzeptes” gehabt.</p>
+<h3 id="tdd-und-bdd">TDD und BDD</h3>
+<p>Zu guter Letzt sollte man TDD, BDD und ATDD als agile Designverfahren unbedingt in Betracht ziehen. Ich persönlich lehne mich da auch gerne weit aus dem Fenster. Ein Team, welches kein TDD, BDD oder ähnliche Verfahren einsetzt ist in meinen Augen einem Team mit TDD / BDD haushoch unterlegen. Agiles Design ist ohne TDD und BDD de Facto sehr schwer durchführbar.</p>
+<p>Interessanterweise fängt gerade BDD auch schon beim Storyboard und den Akzeptanzkriterien an. Erfahrene Team-Mitglieder schreiben z.B. schon während des Sprint-Plannings ihre Specs zusammen und checken sie auch sofort ein.</p>
+<p>Darüber hinaus werden in der aus dem TDD bekannten Keyword-Analyse sofort Kandidaten für Klassen und Methoden herausgearbeitet. Obwohl ich das selbst leider nie gemacht habe, empfand ich es schon smart und hilfreich, als ein sehr erfahrener Entwickler während des Meetings ab und zu in seine Konsole kurze Klassendefinitionen eintippte:</p>
+<div class="codehilite"><pre><span class="n">echo</span> <span class="err">“</span><span class="n">class</span> <span class="n">Recommendation:</span>
+  <span class="n">pass</span><span class="err">”</span> <span class="o">&gt;</span> <span class="n">recommendation</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+
+
+<p>Es ist sicherlich auch eine Frage des Geschmacks, wie man die Konzeption schlußendlich festhält. Hervorzuheben ist allerdings, dass es besonders hilfreich ist, früh in die Codebasis einzutauchen und sog. “executable specs” zu formulieren.</p>
+<h3 id="kontinuierliche-konzepte">Kontinuierliche Konzepte</h3>
+<p>Summa summarum lässt sich folgendes schließen: Scrum hat den Schwachpunkt, dass es wenig greifbare Mittel für ein agiles Software-Design - und damit auch eine agile Iterationsplanung vorgibt. Dieser Umstand macht es notwendig, verschiedene Design- und Planungsmethoden in den Alltag agiler Teams einzubeziehen. Ganz besonders Praktiken aus XP können bei agiler Software-Entwicklung einen großen Mehrwert liefern. </p>
+<p>Schlüssel für eine bessere Planung und ein besseres Design ist die gemeinschaftliche Erkenntnis, dass sowohl agile Planung als auch agiles Software-Design eine kontinuierliche Aufgabe ist, die stetig als kollaborative Teamaufgabe umgesetzt werden will.</p><div id="see">
+  <h6>
+Weiterführende Artikel</h6>
+                  <ul class="">
+  <li><a href="/funf-schwachpunkte-von-scrum.html">Fünf Schwachpunkte von Scrum
+    <span class="order">08 February 2010</span>
+  </a></li>
+  <li><a href="/scrum-die-bessere-sprintdauer.html">Scrum: Die bessere Sprintdauer
+    <span class="order">04 March 2010</span>
+  </a></li>
+  <li><a href="/scrum-der-bessere-scrum-master.html">Scrum: Der bessere Scrum Master
+    <span class="order">16 June 2010</span>
+  </a></li>
+</ul>
+</div>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>11 February 2013</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/scrum-die-bessere-sprintplanung.html&title=Scrum: Die bessere Sprintplanung">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

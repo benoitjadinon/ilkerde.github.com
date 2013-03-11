@@ -1,0 +1,87 @@
+/*
+talksummary.less
+================
+
+styles for page mode 'talksummary', an informational index page for talks.
+*/
+
+.talksummary-page {
+  #published { display:none; }
+}
+
+#content.talksummary {
+  .go {
+    float:right;
+    margin-left:8px;
+    margin-top:10px;
+
+    a {
+      .is_command;
+      .colors(@color_chalk, @color_ease);
+
+      padding:8px;
+      text-align:left;
+    }
+  }
+
+  .facts {
+    * {
+      font-size:14px;
+    }
+
+    td {
+      width:100px;
+      padding:2px 0px;
+    }
+
+    th {
+      text-align:left;
+      font-weight:normal;
+      border-bottom:1px solid @palette_border;
+      padding:2px 0px;
+    }
+
+    th:first-child {
+      padding-left:10px;
+    }
+
+    th:last-child {
+      padding-right:10px;
+    }
+
+    tr {
+      td:first-child {
+        padding-left:10px;
+      }
+
+      td:last-child {
+        width:320px;
+        padding-right:10px;
+      }
+    }
+  }
+
+  .journal {
+    .is_sub_list;
+
+    .order {
+      width:160px;
+    }
+
+    .location {
+      text-align:left;
+      width:160px;
+    }
+
+    padding-bottom:4px;
+  }
+
+  img {
+    margin-bottom:12px;
+  }
+
+  h5 {
+    clear:both;
+  }
+}
+

@@ -1,0 +1,259 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Effektives &amp; Effizientes Bugreporting</title>
+    <meta name="description" content="In der Software-Entwicklung werden sie verabscheut, dennoch kommt man nicht ohne sie aus: die Software-Bugs. Nun ist es ja schon ärgerlich, das ein Programmfehler überhaupt existiert. Ein Bug kann aber durchaus noch mehr Probleme bereiten, zum Beispiel beim Berichten des Fehlers.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="effektives-und-effizientes-bugreporting">
+    <a href="effektives-und-effizientes-bugreporting"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Effektives &amp; Effizientes Bugreporting</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Bug Reporting ist oftmals ein "notwendiges Übel" und wird als Randaufgabe verschmäht. Zu Unrecht, denn effektives &amp; effizientes Bug Reporting ist ein hilfreicher Beitrag zur Steigerung von Qualität und Produktivität.</p>
+<p>In diesem Artikel wird darauf eingegangen, was einen Fehler überhaupt als solches ausmacht und mit welchen Mitteln man einen Fehler beschreiben kann. Des Weiteren wird gezeigt, wie Bug Reporting heutzutage durchgeführt werden kann. Ein abschließender Blick auf die Kerneigenschaften eines Bug Reports und deren Bewertungsmöglichkeiten wird das Bild über das Thema Bug Reporting weiter geschärft.</p>
+<h3 id="die-anatomie-eines-problems">Die Anatomie eines Problems</h3>
+<p>Bevor man sich näher mit der Beschreibung eines Bugs beschäftigt, ist es hilfreich, kurz in die Terminologie von Bug-Reports einzutauchen. Das ist besonders in Bezug auf gute und unmissverständliche Kommunikation hilfreich. </p>
+<p>Die primäre Lesergruppe eines Fehlerberichtes ist der Entwickler - und Entwickler sind zuweilen ein etwas komplizierterer Menschenschlag. So ist es für manch einen Entwickler nicht einfach, lesen zu müssen, das jemand seine Arbeit als fehlerhaft bezeichnet. Vor Allem dann, wenn diese "Kritik" nicht beweiskräftig genug ist. Insofern ist es im Allgemeinen wesentlich "diplomatischer", von einem <a href="http://de.wikipedia.org/wiki/Problem">Problem</a> zu sprechen, und nicht gleich einen Fehler zu unterstellen.</p>
+<h4 id="ein-problem-ist-kein-fehler-ein-fehler-ist-kein-problem">Ein Problem ist kein Fehler, ein Fehler ist kein Problem</h4>
+<ul>
+<li>Problem <em>(engl. Issue)</em>: Ein Problem ist die <em>allgemeine</em> Feststellung über ein unerwartetes Verhalten einer Software, ohne deren Ursache, Reproduktion oder Auswirkung vollends zu kennen.</li>
+<li>Fehler <em>(engl. Bug)</em>: Ein Fehler ist die <em>spezifische</em> Feststellung über ein unerwartetes Verhalten einer Software. Obgleich die Ursache des Fehlers unbekannt ist, ist dessen Reproduktion und Auswirkung klar, eindeutig definiert.</li>
+<li>Besserung <em>(engl. Improvement): Eine Besserung ist die _allgemeine</em> Feststellung zur Modifikation der Erwartung an das Verhalten einer Software, wobei zudem eine allgemeiner Vorschlag zur Überarbeitung des Verhaltens gegeben wird.</li>
+<li>Änderung <em>(engl. Change)</em>: Eine Änderung ist die <em>spezifische</em> Feststellung zur Modifikation der Erwartung an das Verhalten einer Software. Die Änderung ist wohl definiert, klar, eindeutig.</li>
+</ul>
+<h4 id="das-problem-was-will-man-eigentlich">Das Problem: Was will man eigentlich?</h4>
+<p>Nach diesem kurzen Exkurs kann man sich dem eigentlichen Problem widmen. Dazu ist es vonnöten, die Anatomie eines Problemes zu kennen, um diese auch stichhaltig beschreiben zu können. Es wurde schon festgestellt, das ein Problem (im Sinne des Bug-Reportings) einen klaren Bezug auf die Anforderung an die Software hat.</p>
+<p>Konsequenterweise hat ein Problem zunächst einmal eine "Zielbeschreibung", also eine Beschreibung dessen, welches Verhalten vom System erwartet wird. Idealerweise kann man dabei auf die <a href="http://de.wikipedia.org/wiki/Anforderung_(Informatik)">Anforderungsspezifikation</a> einer Software zurückgreifen und die entsprechende Anforderung rezitieren. In vielen Situationen ist es zuweilen der Fall, das man die Anforderung aus dem Stegreif kennt und nicht notwendigerweise alle Anforderungsdokumente durchzuwühlen gewillt ist. Hier hilft ein Konzept aus dem <a href="http://en.wikipedia.org/wiki/Requirements_engineering">Requirements Engineering</a> bzw. <a href="http://en.wikipedia.org/wiki/Behavior_driven_development">Behavior Driven Development (BDD)</a> weiter.</p>
+<h4 id="erwartungen-so-soll-es-sein">Erwartungen: So soll es sein</h4>
+<p>Man kann eine Erwartung an einen Software-Prozess oder eine Aktivität des Systems wie folgt mit einfachen Worten beschreiben:</p>
+<blockquote>
+<p>As a [Role], I want [Feature], so that [Benefit].<br />
+<em>(Als [Rolle], möchte ich die [Funktion], so dass [Nutzen] entsteht.)</em></p>
+</blockquote>
+<p><strong>Beispiel:</strong> Als Kunde <em>(Rolle)</em> möchte ich den Newsletter abbestellen können <em>(Funktion)</em>, damit ich keine ungewünschten Mails erhalte <em>(Nutzen)</em>.</p>
+<p>Für eine grobe Beschreibung einer Erwartungshaltung an eine Software ist das ein guter Anfang. Für die Verwendung in einer Problem- oder Fehlerbeschreibung sollte man allerdings noch ein paar Dinge beachten. Denn im Kern versucht der obige BDD-Satz nur drei essentielle Faktoren eines Verhaltens (bzw. Anforderung) zu beschreiben:
+<em> <em>Kontext</em>: Unter welchen Umständen soll das System wie beschrieben verhalten?</em> <em>Aktivität</em>: Welche Aktionen und/oder Interaktionen soll das System durchführen, um sich wie beschrieben zu verhalten?
+* <em>Ergebnis</em>: Was ist das erwartete Resultat, damit sich das System wie beschrieben verhält?</p>
+<p><strong>Beispiel:</strong> Wenn ich als Kunde auf der Website angemeldet bin und mich bei der Seite für die Addressverwaltung befinde <em>(Kontext)</em>, möchte ich auswählen können, ob ich eine bestehende Addresse ändern, eine neue Addresse hinzufügen oder eine bestehende Addresse löschen möchte <em>(Aktion)</em>, so dass ich meine Liefer- und Rechnungsaddresse aktuell halten kann <em>(Ergebnis)</em>.</p>
+<p>In Anbetracht dessen, braucht man für den Zweck der Fehlerbeschreibung den obigen BDD-Satz nur ein wenig umzuformulieren, um eine einfache, aber dennoch wirkungsvolle Anleitung zur Erwartungsbeschreibung zu haben:</p>
+<blockquote>
+<p>I expect in given [Context], I can do [Activity], so that [Result].<br />
+<em>(Wenn [Kontext] gegeben ist, so erwarte ich folgend [Aktion], um [Ergebnis] zu erreichen.)</em></p>
+</blockquote>
+<p>Dieser einfache Satz kann so natürlich nicht für jede Beschreibung herhalten - z.B. gibt es ja auch Erwartungen an ein System, die eigenständig ohne Benutzereinwirkung durchgeführt sollen. Entscheidend ist hierbei das Grundgerüst, das bei einer Erwartungsbeschreibung mindestens auf Kontext, Aktivität und Ergebnis eingegangen werden sollte.</p>
+<h4 id="tatsachen-so-ist-es-wirklich">Tatsachen: So ist es wirklich</h4>
+<p>Der zweite essentielle Teil der Problembeschreibung ist die Tatsachenbeschreibung, also das wie sich das System (unerwarteterweise) tatsächlich verhält. Auch hier mag man vorerst annehmen, das man einfach beschreibt, was passiert, wenn man da und dort klickt, und damit wäre es das gewesen.</p>
+<p>Betrachtet man das Thema etwas genauer, wird aber schnell deutlich, das auch hier einige Fallstricke auf den Bug-Reporter warten. Bei der Tatsachenbeschreibung ist vor Allem ein informativer Schreibstil angebracht. Informativ ist hierbei der exakte Bezug zur Erwartungsbeschreibung (Soll), sowie eine genaue Beschreibung der "Wahrnehmung" des unerwarteten Verhaltens.</p>
+<p>Die Wahrnehmung ist bei der Tatsachenbeschreibung ein sehr wichtiger Umstand, denn für einen Tester, Produktmanager oder Anwender kann das subjektive Verständnis über das Verhalten eines Systems variieren. Es hört sich irritierend und unlogisch an, aber bei der Tatsachenbeschreibung ist der Bezug zur subjektiven Wahrnehmung entscheidend. Es ist öfters als man denkt der Fall, das eine oder mehrere Beschreibungen von Fehler-Symptomen zu einer Art <a href="http://en.wikipedia.org/wiki/Multistable_perception">multistabilen Wahrnehmung</a> des Fehlers führen.</p>
+<p>Anders gesprochen: wenn die Fakten so beschrieben sind, das das System sich <em>genau so und nicht anders</em> verhält, dann versucht der Entwickler <em>genau dieses</em> Verhalten nachzustellen. Wird es jedoch so beschrieben, dass das beschriebene Verhalten <em>eine mögliche Auswirkung</em> des Fehlers ist, so versucht der Entwickler, den kausalen Bezug zur Ursache des Fehlers durch Verallgemeinerung nachzustellen.</p>
+<h4 id="fakten-so-habe-ich-das-gesehen">Fakten: So habe ich das gesehen</h4>
+<p>Es ist also bei der Beschreibung eines tatsächlichen Verhaltens die Kunst, die Balance zwischen objektivem Fakt und subjektiver Wahrnehmung zu wahren. Ein sehr einfacher, aber effektiver Ansatz ist das Aufstellen einer These für eine <a href="http://de.wikipedia.org/wiki/Implikation">Implikation</a>. Wenn man nun eine Tatsache beschreibt, referenziert man den Kontext der Sollbeschreibung und wendet darauf die Tatsache an.</p>
+<p><strong>Beispiel:</strong> Wenn ich als Kunde auf der Website angemeldet bin und mich bei der Seite für die Addressverwaltung befinde <em>(Kontext)</em>, dann sehe ich meine eingegebene Adresse und klicke auf den "Ändern"-Schalter. Unerwarteterweise reagiert die Anwendung nicht auf den Klick, der Ausgangsbildschirm bleibt erhalten <em>(Auswirkung)</em>.</p>
+<p>Das Beipiel ist vielleicht etwas "gestochen" formuliert, im Kern jedoch ist es eine einfache Satzvorlage:</p>
+<blockquote>
+<p>In given [Context], I unexpectedly encounter [Misbehavior].<br />
+<em>(Bei gegebenem [Kontext] geschieht unerwarteterweise [Auswirkung].)</em></p>
+</blockquote>
+<p>Die gesamte vorangegangene Erörterung über die Anatomie eines Problems ist zugegebenermaßen trocken. Es ist in meinen Augen jedoch notwendig, diese etwas theoretische Basis zu kennen, um in der praktischen Anwendung effektiv und effizient zu arbeiten.</p>
+<h3 id="effektives-bugreporting">Effektives Bugreporting</h3>
+<p>Effektiv ist ein Bug Report dann, wenn es klar und deutlich zum Auffinden und Beheben des Fehlers beiträgt. Mit der Kenntnis, das ein Problem zumindest eine Soll- und Ist-Perspektive hat, lässt sich eine Fehlerbeschreibung relativ gut aufbauen.</p>
+<h4 id="von-ganz-konkret-bis-allgemein">Von ganz konkret bis allgemein</h4>
+<p>Zuweilen ist ein Problem jedoch nicht mit einfachen Worten zu beschreiben. Man sieht immer wieder Fehlerberichte, die mangelhaft ausformuliert sind, wie zum Beispiel: "Ich erwarte, das ich mich einloggen kann, aber es geht nicht. Das Programm liefert die Fehlermeldung: Das System ist nicht verfügbar." Solche Beschreibungen schaffen mehr Konfusion als Klarheit, denn es fehlt faktisch der gesamte Kontext.</p>
+<p>Um den Kontext (die umgebenden Bedingungen) eines Problems gut ausführen zu können, gibt es eine Merkregel, die man anwenden kann. Man stellt eine stichpunktartige Liste der Rahmenbedingungen auf, angefangen vom konkreten, spezifischen Umstand bis zum "allgemeinen", gegebenen Umstand. Wäre die gerade eben erwähnte "Fehlerbeschreibung" zum Beispiel für eine <a href="http://de.wikipedia.org/wiki/Webanwendung">Webanwendung</a>, dann wäre die folgende Liste der Rahmenbedingungen (Kontext) denkbar:</p>
+<ol>
+<li>Eingabe vom gültigem Benutzernamen / Passwort</li>
+<li>Benutzer ist ein Privatkunde, aktiv und freigeschaltet</li>
+<li>Benutzeranmeldungsversuch nach Zugriff auf geschützte Funktion </li>
+<li>Anwendung: Version 3.2, beta, deutsche Sprachversion</li>
+<li>Umgebung: Nightly Build, Continuous, zum 12.09.2008</li>
+<li>Browser: Internet Explorer 6</li>
+</ol>
+<p>Natürlich variiert eine Kontextbeschreibung je nach dem welchen Typ von Anwendung man verwendet. Grundsätzlich ist aber die Regel</p>
+<blockquote>
+<p>Describe context from most specific to most common.<br />
+<em>(Beschreibe die Umstände von ganz spezifisch bis ganz allgemein)</em>.</p>
+</blockquote>
+<p>eine gute Hilfestellung. In den meisten Bug-Reporting-Tools sind die allgemeinen, häufig angewendeten Rahmenbedingungen wie z.B. Programmversion, Testumgebung oder Browser explizit als eigenständiges Feld im Report-Formular ausgezeichnet. Das fördert die schnelle Eingabe des Berichtes und verkürzt den beschreibenden Text.</p>
+<h4 id="gute-drehbucher-sind-gefragt">Gute Drehbücher sind gefragt</h4>
+<p>Hat man den Kontext erst einmal erfasst, sind Soll- und Ist-Beschreibungen noch durchzuführen. Befindet man sich in einem vollständigen, modernen Software-Entwicklungs-Prozess, so ist zumindest die Zielbeschreibung sehr leicht umsetzbar, zumal sie im Kern der <a href="http://de.wikipedia.org/wiki/User_Story">User Story</a>, einem (Teil-)<a href="http://de.wikipedia.org/wiki/Use_Case">Use Case</a> oder einem <a href="http://en.wikipedia.org/wiki/Scenario_(computing)">Scenario</a> entspricht. Die Tatsachenbeschreibung kann diesem Paradigma folgen und sich textuell daran orientieren.</p>
+<p>Man beschreibt also das tatsächliche Verhalten in gleichem Umfang und Maße, wie man ein erwartetes Verhalten beschreibt. Am Beispiel einer User Story könnte die Ist-Beschreibung (für den o.g. hypothetischen Fehlerfall) wie folgt aussehen:</p>
+<p><strong>Beispiel:</strong> Ich bin aktiver, freigeschalteter Privatkunde und möchte auf der Website XY anmelden, weil ich mir ein Produkt vormerken möchte. Nach dem Klick auf "Produkt merken" (in der Produktergebnisliste) gelange ich zum Anmeldeformular, gebe meinen Benutzernamen und Passwort ein und klicke auf "Anmelden". Nach kurzer Wartezeit erscheint wieder das Anmeldeformular sowie die folgende Hinweismeldung: "Das System ist nicht verfügbar." Ich konnte mein gewünschtes Produkt nicht vormerken.</p>
+<p>Zugegebenermaßen, in der Praxis sind solche Ausformulierungen eher rar. Das ist allerdings auch nicht unbedingt erforderlich, denn der primäre Fokus bei der textuellen Fehlerbeschreibung liegt nicht auf korrektem Satzbau oder flüssiger Ausdruckskraft, sondern vielmehr auf explizite, möglichst eindeutige Kommunikation. So ist es durchaus denkbar, das obige Beispiel auch stichpunktartig und knapp niederzuschreiben, solange der Informationswert der gleiche ist.</p>
+<h4 id="beschreibung-ist-gut-visualisierung-ist-besser">Beschreibung ist gut, Visualisierung ist besser</h4>
+<p>Es mag in einigen Fällen durchaus ausreichend sein, ein Fehlverhalten von Software textuell festzuhalten. Zumeist ist es jedoch noch effektiver, das Fehlverhalten durch Visualisierung aufzuzeigen. Es ist insofern ein stückweit vergleichbar mit der Filmproduktion: Das Drehbuch ist ausreichend, um die Handlung zu verstehen, der Film jedoch ist ausdrucksstärker und vermittelt die Handlung unmittelbar.</p>
+<blockquote>
+<p>Description is good, visualization is better.<br />
+<em>(Beschreibung ist gut, Visualisierung ist besser.)</em></p>
+</blockquote>
+<p>Ein gängiges Mittel zur Visualisierung sind <a href="http://de.wikipedia.org/wiki/Screenshot">Screenshots</a>, um z.B. einen fehlerhaften Zustand oder unvorteilhafte Darstellung der Software aufzuzeigen. Manchmal werden die Screens noch mit Kommentaren und Hinweispfeilen "ausgeschmückt", um klarzustellen, in welcher Situation man sich befindet.</p>
+<p>Obwohl ein Bild meist mehr sagt als tausend Worte, sind heutzutage Screenshots in der professionellen Fehlerbeschreibung eher ein schlechtes als rechtes Mittel zur Visualisierung (Anmerkung: eine Ausnahme sind hier Usability-, Design- und Layoutfehler). Anstatt einem oder mehrerer Abbildungen greift man bevorzugt auf bewegte Bilder zurück, den sog. <a href="http://de.wikipedia.org/wiki/Screencast">Screencasts</a>. Mit Hilfe von <a href="http://de.wikipedia.org/wiki/Bildschirmkamera">Screen-Cams</a> nimmt man die gesamte Interaktion mit der Software auf. Der so entstandene "Fehlerfilm" zeigt die Ausgangssituation, die auszuführenden Schritte und Aktionen sowie das unerwartete Fehlverhalten der Software.</p>
+<p>Bei Webanwendungen geht man sogar noch einen Schritt weiter. Statt Screencasts werden vermehrt Web Test Recorder eingesetzt, um den Sachverhalt klar zu visualisieren. Gängige Web Test Frameworks wie z.B. <a href="http://selenium-ide.openqa.org/">Selenium</a> oder <a href="http://watintestrecord.sourceforge.net/">WatiN</a> bieten Aufnahmeprogramme, mit denen die gesamte Interaktion in einem Webbrowser festgehalten werden kann. Vielmehr als das, bieten diese weitere Vorteile, unter anderem die Prüfung von Kriterien und Merkmalen auf der Website sowie die Möglichkeit der Automatisierung durch Scripte oder Programme.</p>
+<p>Genau diese Eigenschaften sind es, die Fehlerberichete durch die Verwendung von z.B. Selenium so effektiv machen. So kann z.B. ein Produktmanager oder Tester, der ein Fehlverhalten festgestellt hat, dieses einfach mit dem Test Recorder aufzeichnen, abspeichern und mit der Fehlerbeschreibung mitliefern. Der Entwickler kann das Fehlverhalten einfach durch Abspielen reproduzieren und schnell Behebungsmaßnahmen einleiten. Er selbst oder ein Test-Engineer kann die Aufzeichnung als Basis für einen Fehlertest, <a href="http://de.wikipedia.org/wiki/Integrationstest">Integrationstest</a> oder <a href="http://en.wikipedia.org/wiki/User_acceptance_test">User Acceptance Test</a> nehmen, ihn verallgemeinern und in eine automatische <a href="http://en.wikipedia.org/wiki/Test_suite">Test Suite</a> mit aufnehmen. Nach Behebung des Fehlers kann der Produktmanager wiederum eine einfache Verifikation durchführen, in dem er das zu Beginn aufgezeichnete Test Script wieder abspielt.</p>
+<h3 id="effizientes-bugreporting">Effizientes Bugreporting</h3>
+<p>Eines der grundlegendsten Bausteine für effizientes Bug Reporting ist die Kenntnis der Möglichkeiten der Fehlerberichterstattung. Hierzu zählen nicht nur Methodik und Prozesse. Insbesondere die richtige Anwendung der Werkzeuge, also die verwendete <a href="http://de.wikipedia.org/wiki/Bugtracker">Bugtracking-Software</a>, die eingesetzten Hilfsprogramme wie Screen-Cams, Test-Frameworks, Debugger oder ähnlichem sind ein Schlüsselfaktor für effiziente und professionelle Fehlerberichte.</p>
+<h4 id="erkenne-die-moglichkeiten">(Er)Kenne die Möglichkeiten</h4>
+<p>Vor Allem für den professionellen Einsatz ist ein aufeinander und abteilungsübergreifend abgestimmtes Toolset für Bugreporting ein großer Effizienzgewinn. Der Markt für derartige Programme ist groß und je nach Art des Unternehmens oder der zu entwickelnden Software sind die "Wunschkandidaten" für das eigene Toolset unterschiedlich. Dennoch gibt es für die einzelnen Teilbereiche gängige Software (z.T Open Source), unter anderem</p>
+<ul>
+<li><em><a href="http://www.bugzilla.org/">Bugzilla</a></em>, <em><a href="http://www.atlassian.com/software/jira/">Jira</a></em>, <em><a href="http://www.mantisbt.org/">Mantis</a></em>, <em><a href="http://trac.edgewall.org/">Trac</a></em><br />
+  Als Bug- bzw. Issue-Tracking-Systeme, die ein zentrales, unternehmensweites, z.T. sogar öffentliches Portal für Fehler und Probleme von Softwareprodukten darstellen.</li>
+<li>
+<p><em><a href="http://www.jingproject.com/">Jing</a></em>, <em><a href="http://www.debugmode.com/wink/">Wink</a></em>, <em><a href="http://www.techsmith.com/camtasia.asp">Camtasia</a></em>, <em><a href="http://www.adobe.com/products/captivate/">Captivate</a></em><br />
+  Screencast-Utilities oder Screen-Cams, mit denen auf einfache Weise Teile oder der gesamte Bildschirm aufgenommen werden kann. Die meisten unterstützen auch Audio-Aufnahme, Kompression der Videos und Wiedergabe im Web mit Hilfe von <a href="http://www.adobe.com/products/flash/">Flash</a> oder <a href="http://silverlight.net/">Silverlight</a>.</p>
+</li>
+<li>
+<p><em><a href="http://selenium-ide.openqa.org/">Selenium</a></em>, <em><a href="http://watin.sourceforge.net/">WatiN</a></em>, <em><a href="http://www.bredex.de/de/guidancer/first.html">GUIDancer</a></em>, <em><a href="http://msdn.microsoft.com/en-us/vsts2008/test/default.aspx">Visual Studio TS 2008 Tester Edition</a></em><br />
+  Test-Frameworks und Web-Test-Frameworks, mit denen man Software-Interaktionen aufzeichnen kann und diese mit Hilfe von Scripts und Programmen automatisieren kann.</p>
+</li>
+</ul>
+<blockquote>
+<p>Use and know your tools to build and optimize your reports.<br />
+<em>(Kenne und verwende die Hilfsmittel, um Deine Berichte zu erstellen.)</em></p>
+</blockquote>
+<p>Neben diese drei Kernbereichen gibt es natürlich noch eine Reihe weiterer Hilfsprogramme, die bei der Erstellung von Bug Reports nützlich sein können. Wichtig - vor Allem bei der Auswahl des geeigneten Bugtrackers - sind zumeist intuitive Bedienung, Flexibilität und Erweiterbarkeit sowie Skalierbarkeit (für Last und Volumen).</p>
+<h4 id="konventionen-fordern-eindeutigkeit-und-produktivitat">Konventionen fördern Eindeutigkeit und Produktivität</h4>
+<p>Hat man ein für seine Bedürfnisse geeignetes Toolset zusammengestellt, kann man die nächste Stufe des Effizienzgewinns erklimmen, in dem man Konventionen für Fehler- bzw. Problemberichte einführt. Wie in vielen anderen Branchen und Disziplinen ist auch beim Bug Reporting gemeinsames Verständnis, vereinbarte Methodik und einheitliche Terminologie ein überaus wirksames Mittel für Effizienzsteigerung.</p>
+<p>Die Problemstellung bei dem Einsatz von Konventionen ist in erster Linie die Kenntnis aller Beteiligten über die Konventionen. Es hat sich im Allgemeinen bewährt, ein Standardpapier über Bug Reporting bzw. Testing zu führen. Vereinzelt wird auch noch ein Code of Conduct erstellt, um eine reibungsfreie Kommunikation bei Fehlerberichten zu ermöglichen.</p>
+<blockquote>
+<p>Setup, agree and strengthen conventions, which is a unified understanding of tools, methods and terms.<br />
+<em>(Finde, vereinbare und stärke Konventionen, d.h. ein vereinheitlichtes Verständnis von Mitteln, Methoden und Ausdrücken.)</em></p>
+</blockquote>
+<p>Eine äußerst effiziente Form der Konvention für Bug Reports ist die Einführung von Symbolen oder Stichwörtern. Der Grundgedanke ist dabei sehr einfach: Anstatt immer wiederkehrende Aktionen vollends auszuformulieren, wird für eine gesamte Kette von Aktionen ein Sammelbegriff definiert. Ein prägnantes Beispiel dafür ist die Benutzeranmeldung. Statt "Als aktiver, freigeschalteter Privatkunde klicke ich auf Anmelden, der Anmeldebildschirm erscheint. Ich gebe meinen Benutzernamen und Passwort ein und klicke auf Anmelden" zu schreiben, fasst man die gesamte Aktionskette unter dem Begriff "Privatanmeldung" zusammen.</p>
+<p>Das dadurch entstehende sog. <a href="http://de.wikipedia.org/wiki/Keyword_driven_testing">Keyword Driven Testing</a> fördert die Eindeutigkeit der Fehlerbeschreibung und kürzt diese zudem deutlich auf das notwendigste ab, ohne dabei den Informationswert zu schmälern. Darüber hinaus eignet sich dieses Verfahren sehr für die Testautomation, in der die Keywords als "Actions" in Scripten implementiert werden. Für das eben erwähnte Beispiel der Privatanmeldung könnte eine dazugehörige Testmethode wie folgt aussehen:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">void</span> <span class="nf">PrivateCustomerLoginPossible</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">Account</span> <span class="n">account</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PrivateAccount</span><span class="p">();</span>
+  <span class="n">Website</span><span class="p">.</span><span class="n">AccountLogin</span><span class="p">(</span><span class="n">account</span><span class="p">);</span>
+  <span class="n">Assert</span><span class="p">.</span><span class="n">IsTrue</span><span class="p">(</span><span class="n">account</span><span class="p">.</span><span class="n">IsAuthenticated</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4 id="personas-ein-rollenspiel-fur-anforderungen-tests-und-bugreports">Personas: Ein Rollenspiel für Anforderungen, Tests und Bugreports</h4>
+<p>Ein weiteres Mittel zur Verbesserung von Bug Reports ist der Einsatz von sog. <a href="http://en.wikipedia.org/wiki/Personas">Personas</a>. Personas sind fiktive Personen, die eine spezielle Benutzergruppe der Software repräsentieren. Ursprünglich ein Konzept aus der <a href="http://en.wikipedia.org/wiki/Usability">Usability</a>-Branche und der <a href="http://en.wikipedia.org/wiki/Interaction_design">Interaction Design</a>-Forschung, ist es innerhalb einer <a href="http://de.wikipedia.org/wiki/Agile_Softwareentwicklung">agilen Softwareentwicklung</a> in der Konzeption (Anforderungen, Prototypisierung, Produktdesign, HCI) sowie beim Test (Validierung, Verifikation, Testdaten, Mocking, Simulationen) mittlerweile etabliert. Personas sind in diesem Sinne auch bei Bug Reports gut einsetzbar.</p>
+<p>Im Allgemeinen wird eine User Persona nach der Zielgruppe der Software aufgebaut. Am Beispiel der Webanwendung mit Privatkunden könnten Personas wie folgt beschrieben sein:</p>
+<p>Persona 1:
+<em>Cindy</em>, 22 Jahre, weiblich, ledig, sportlich. Sie ist derzeit Studentin für Mediengestaltung in Hamburg. Sie ist täglich mehrere Stunden online, führt einen MySpace-Blog, Skyped und Twittert gerne, meist über Ihr neues iphone 3g. Die meisten Lifestyle-Produkte bezieht sie aus dem Internet.</p>
+<p>Persona 2:
+<em>Walter</em>, 49 Jahre, männlich, geschieden, impulsiv. Gelernter Koch, vor 8 Jahren Umschulung zum KFZ-Mechaniker. Er ist begeisterter Autotuner und hat eine kleine "Do-It-Yourself"-Auto-Werkstatt in Bochum. Ab und an surft er im Internet-Café neben seiner Werkstatt um neue Ideen und Neuigkeiten im Tuning zu bekommen.</p>
+<p>Beide "Profile" bezeichnen eine bestimmte Benutzergruppe, die einige Gemeinsamkeiten, aber dennoch viele Unterschiede haben. Für das Bug Reporting mag es auf den ersten Blick egal sein, ob es nun Cindy oder Walter ist, bei dem die Registrierung als Privatkunde fehlschlägt. Nutzt man jedoch Personas effektiv, so haben Cindy und Walter ein komplettes Datenprofil, wie z.B. Hausadresse, Bankverbindung oder Email-Adresse.</p>
+<p>Stellt man nun fest, das die Benutzerregistrierung bei Cindy klappt aber bei Walter fehlschlägt, so ist diese Information für den Entwickler ganz besonders hilfreich, denn  durch einen Vergleich der Personas (und deren Daten) kann er leichter feststellen, wo das Problem bei der Registrierung schlußendlich liegen muss.</p>
+<p>Zumeist werden Personas mit Besonderheiten ausgestattet, wie außergewöhnliche Daten (z.B. lange Email-Adressen) oder besondere Verhaltensweisen (z.B. kommentar-freudigkeit). Des Weiteren ist es üblich, eine Persona auf verschiedene Kriterien zu bewerten (z.B. Konsumverhalten, Internet-Kenntnis, Geschäfts-Affinität).</p>
+<p>Für das Bug Reporting sind Personas vor Allem hilfreich in Bezug auf Testdaten, geschäftliche Relevanz und Einsatzgebiete bzw. Anwendungsbereiche der Software. In der Praxis sind Fehlerberichte mit Personas wesentlich effizienter, denn ein einfacher Satz wie z.B. "Cindy geht über die Privatanmeldung, um einen Kommentar zu einem zuvor gekauften Produkt abzugeben, kann es aber in ihrer Produkthistorie nicht finden" ermöglicht schon eine nahezu eindeutige Aktionskette, mit der das Fehlverhalten nachgestellt werden kann.</p>
+<h3 id="eigenschaften-und-bewertung">Eigenschaften und Bewertung</h3>
+<p>aller Sorgfalt um Effektivität und Effizienz des Bug Reportings ist im Alltag nicht immer alles so umsetzbar, wie es in der Theorie beschrieben wird. Die Hauptgründe sind natürlich mangelnde Kapazitäten oder Zeitdruck. In der Praxis wird dem Bug Reporting so gut wie gar keine dedizierte Zeit gewidmet, was ein korrektes Reporting noch weiter erschwert.</p>
+<h4 id="keep-it-simple">Keep it simple!</h4>
+<p>Insofern ist es im Alltag hilfreich, sich beim Bug Reporting auf das nötigste zu beschränken. Allerdings sollte man sich im Einzelfall darüber im Klaren sein, was denn das nötigste ist. Bei einer höheren Report-Rate (z.B. 100 Reports pro Woche) macht es wohl keinen größeren Sinn, für jedes dieser Berichte einen Screencast zu erstellen. Für "wichtige" oder "komische" Fehler (wie z.B. <a href="http://en.wikipedia.org/wiki/Unusual_software_bug">Heisenbugs oder Mandelbugs</a>) ist es jedoch ein dediziertes Mittel zur Fehleranalyse.</p>
+<p>Auch bei der Fehlerbeschreibung gilt es, Informationen komprimiert, aber eindeutig zu vermitteln. Man braucht in den meisten Fällen keine Romane schreiben, um ein Problem zu schildern. Jedoch gilt bei textueller Beschreibung ebenso, das die Situation und das Problem den Umfang des Bug Reports beeinflussen.</p>
+<h4 id="anspruchsvoller-als-vermutet">Anspruchsvoller als vermutet</h4>
+<p>Abschließend lässt sich sagen, das Bug Reporting anspruchsvoller ist als allgemein vermutet wird. Eine gute Fehlerberichterstattung ist das Fundament für effektive und effiziente Fehlerbehebung. Es ist vor Allem im professionellen Umfeld unumgänglich, das Methoden und Konventionen für Bug Reports definiert und umgesetzt werden. Zum Einen wird dadurch die Reaktionsfähigkeit bei Problemsituationen gestärkt, zum Anderen ergibt sich mittelfristig eine Produktivitätssteigerung, indem man mit verschiedenen verbundenen Themen wie Testing und Anforderungsmanagement Gemeinsamkeiten ausarbeitet.</p>
+<p>In jedem Fall jedoch ist es die beste Methode, es gar nicht erst zum Fehlerbericht kommen zu lassen - dies jedoch ist zumeist sogar für die besten Software-Entwickler ein schier ungreifbares Ziel - <a href="http://de.wiktionary.org/wiki/errare_humanum_est">Errare humanum est</a>.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>04 November 2008</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/effektives-und-effizientes-bugreporting.html&title=Effektives &amp; Effizientes Bugreporting">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

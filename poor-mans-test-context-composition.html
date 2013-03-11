@@ -1,0 +1,321 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Poor Man&#39;s Test Context Composition</title>
+    <meta name="description" content="A short introdocution on how to compose complex test contexts (testbed environments and test data setup) with Mixins to ease testing of existing (and new) functionality.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="poor-mans-test-context-composition">
+    <a href="poor-mans-test-context-composition"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Poor Man&#39;s Test Context Composition</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <h3 id="or-mixin-strategies-in-the-fields">Or: Mixin strategies in the fields</h3>
+<p>Before I continue on my little post about Unit Tests and their test context, let me just be one thing very clear: A handful of unit test frameworks out there have dozens of other approaches for complex context setup. The one I'm going to blog about right now is just one out of those. The following context composition method is rare to be found, because it has some obvious downsides. More about the pros and cons later, let's just start.</p>
+<p>With TDD, BDD and Unit Testing in general you always need to set the stage of your test. That is, you need to <em>establish a test context</em>, where you prepare your environment and all involved parties for your system under test. Basically it's the first A (= Arrange) of the <a href="http://c2.com/cgi/wiki?ArrangeActAssert">AAA-Rule</a>. Now that's nothing new.</p>
+<p>In everyday testing, contexts can get fairly complex. Although I personally consider a complex (or large) context to be a smell, it's sometimes unavoidable. One practical application of large and complex contexts is the dissection of a brownfield. Once you're faced with a large context, your test/spec will be bloated by contextual setup. </p>
+<p>As mentioned before, some frameworks have very smart tooling and concepts to help you minimize the context clutter. I'll post a separate blog about one of my favorites, the <a href="https://github.com/machine/machine.specifications">MSpec</a> and <a href="https://github.com/BjRo/Machine.Fakes">MFakes</a> bundle. But this is a story of its own, so we just disregard them for a minute. By the way: in some organizations you might not be even able to just change the testing framework of your choice and need to get along with what you have been provided.</p>
+<h3 id="context-is-super">Context is super !?!</h3>
+<p>As for "traditional" frameworks like <a href="http://www.nunit.org/">NUnit</a> or <a href="http://xunit.codeplex.com/">XUnit</a> (me likes <em>both of them</em>), the Setup method, constructor or whatever initialization method contains the context complexity to its full extent. Hence, your test fixtures will grow in size and complexity. Undesirable. </p>
+<p>A very common solution to this is to refactor out context code to an abstract base "context" class. Although most developers do this primarily for readability purposes, the base class is created to favor reuse as well. Which is an illusion, actually. Once following that path, you quickly find your self back in bewildered inheritance hierarchies of "BaseContextClasses". The tests themselves get more and more obfuscated.</p>
+<p>Let's examine. A typical base context class might look like this:</p>
+<div class="codehilite"><pre><span class="na">[TestFixture]</span>
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">With_CashMachine_Having_100Dollars</span> <span class="p">{</span>
+
+<span class="na">  [TestFixtureSetUp]</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">CashMachine</span> <span class="p">=</span> <span class="n">MockRepository</span><span class="p">.</span><span class="n">DynamicMock</span><span class="p">();</span>
+    <span class="n">CashMachine</span>
+      <span class="p">.</span><span class="n">Stub</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">CheckBalance</span><span class="p">())</span>
+      <span class="p">.</span><span class="n">Return</span><span class="p">(</span><span class="m">100.D</span><span class="n">ollar</span><span class="p">());</span>
+  <span class="p">}</span>
+
+  <span class="k">protected</span> <span class="n">ICashMashine</span> <span class="n">CashMachine</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>With the above "context base class", a BDD-style test reads quite expressive:</p>
+<div class="codehilite"><pre><span class="na">[TestFixture]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">When_ATM_Checkout_Request_With_200Dollar_Is_Performed</span>
+  <span class="p">:</span> <span class="n">With_CashMachine_Having_100Dollar</span> <span class="p">{</span>
+
+<span class="na">  [Test]</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_Checkout_Should_Fail_With_CashMashine_Failure</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">CashMashine</span><span class="p">);</span>
+    <span class="n">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollar</span><span class="p">());</span>
+    <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">checkoutResult</span><span class="p">.</span><span class="n">Failure</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="n">FailureCode</span><span class="p">.</span><span class="n">CashMashine</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="bold-backgrounds">Bold Backgrounds</h3>
+<p>Now, the above ATM example is good to serve as fictional example. Nonetheless, reality is complex. Sometimes, it is by far more complex than the above glorified ATM. In every-day use-case-scenarios, a broad set of dependecies play a note in the overall context orchestra. That is, why test context bases start to become a difficult task.</p>
+<p>What if the ATM does not only respect the CashMachine, but as well User, Location, Configuration and Time for this particular scenario? How can we construct this broad set of contextual dependencies while keeping up a high readability and maintainability for the tests/specs? A typical approach is to create "the super-context":</p>
+<div class="codehilite"><pre><span class="na">[TestFixture]</span>
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">With_CashMashine_In_Europe_By_Night_Using_Strict_Policies_Having_100Dollar</span> <span class="p">{</span>
+
+<span class="na">  [TestFixtureSetUp]</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">CashMachine</span> <span class="p">=</span> <span class="n">MockRepository</span><span class="p">.</span><span class="n">DynamicMock</span><span class="p">();</span>
+    <span class="n">CashMachine</span>
+      <span class="p">.</span><span class="n">Stub</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">CheckBalance</span><span class="p">())</span>
+      <span class="p">.</span><span class="n">Return</span><span class="p">(</span><span class="m">100.D</span><span class="n">ollar</span><span class="p">());</span>
+
+    <span class="n">Location</span> <span class="p">=</span> <span class="n">MockRepository</span><span class="p">.</span><span class="n">DynamicMock</span><span class="p">();</span>
+    <span class="n">Location</span>
+      <span class="p">.</span><span class="n">Stub</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">Area</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">Return</span><span class="p">(</span><span class="n">ATMDistributionArea</span><span class="p">.</span><span class="n">Europe</span><span class="p">);</span>
+
+    <span class="cm">/* aso. aso. ... </span>
+<span class="cm">     * you get the picture, huh? </span>
+<span class="cm">     **/</span>    
+  <span class="p">}</span>
+
+  <span class="k">protected</span> <span class="n">ICashMashine</span> <span class="n">CashMachine</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">protected</span> <span class="n">IATMLocation</span> <span class="n">Location</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="cm">/* ... */</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>A fair thing, isn't it? Well, apparently the context name (class name) is long. And it's <em>too specific</em>. Whenever one of my contextual members change, the context changes as well. Consequently, a new super-base-context and redundant code for context establishment is required.</p>
+<p>Ok. Naturally, there's room for improvement. Obviously, parameterization of values would be a plus. So, let's refactor the values out of the context class:</p>
+<div class="codehilite"><pre><span class="na">[TestFixture]</span>
+<span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">With_CashMashine_And_Location_And_DayTime_And_Config</span> <span class="p">{</span>
+
+<span class="na">  [TestFixtureSetUp]</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">CashMachine</span> <span class="p">=</span> <span class="n">MockRepository</span><span class="p">.</span><span class="n">DynamicMock</span><span class="p">();</span>
+
+    <span class="n">Location</span> <span class="p">=</span> <span class="n">MockRepository</span><span class="p">.</span><span class="n">DynamicMock</span><span class="p">();</span>
+    <span class="n">Location</span>
+      <span class="p">.</span><span class="n">Stub</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">Area</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">Return</span><span class="p">(</span><span class="n">ATMDistributionArea</span><span class="p">.</span><span class="n">Europe</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">protected</span> <span class="n">ICashMashine</span> <span class="nf">GetCashMachine</span><span class="p">(</span><span class="kt">int</span> <span class="n">balance</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">CashMashine</span><span class="p">.</span><span class="n">BackToRecord</span><span class="p">();</span>
+    <span class="n">CashMachine</span>
+      <span class="p">.</span><span class="n">Stub</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">CheckBalance</span><span class="p">())</span>
+      <span class="p">.</span><span class="n">Return</span><span class="p">(</span><span class="n">balance</span><span class="p">.</span><span class="n">Dollar</span><span class="p">());</span>
+    <span class="n">CashMashine</span><span class="p">.</span><span class="n">Replay</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">protected</span> <span class="n">IATMLocation</span> <span class="nf">GetLocation</span><span class="p">(</span><span class="n">ATMDistributionArea</span> <span class="n">area</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Location</span><span class="p">.</span><span class="n">BackToRecord</span><span class="p">();</span>
+    <span class="n">Location</span>
+      <span class="p">.</span><span class="n">Stub</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">Area</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">Return</span><span class="p">(</span><span class="n">area</span><span class="p">);</span>
+    <span class="n">Location</span><span class="p">.</span><span class="n">Replay</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="cm">/* etc. ... etc. ... */</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Parameterization relaxes contextual strictness while giving back flexibility (and responsibility) to the fixture class. Granted, it might sound a bit picky. It is however a big difference when your test suite is large. With the parametrized context base class from above, a fixture might look like this one:</p>
+<div class="codehilite"><pre><span class="na">[TestFixture]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">When_ATM_Checkout_Request_With_200Dollar_Is_Performed</span>
+  <span class="p">:</span> <span class="n">With_CashMashine_And_Location_And_DayTime_And_Config</span> <span class="p">{</span>
+
+  <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">ICashMashine</span> 
+    <span class="n">cashMachine</span> <span class="p">=</span> <span class="n">GetCashMashine</span><span class="p">(</span><span class="m">100.D</span><span class="n">ollar</span><span class="p">());</span>
+
+  <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IATMLocation</span>
+    <span class="n">location</span> <span class="p">=</span> <span class="n">GetLocation</span><span class="p">(</span><span class="n">ATMDistributionArea</span><span class="p">.</span><span class="n">Europe</span><span class="p">);</span>
+
+  <span class="cm">/* ... aso... aso... </span>
+<span class="cm">   * side note: i could have done this</span>
+<span class="cm">   * in a method/constructor as well.</span>
+<span class="cm">   **/</span>
+
+<span class="na">  [Test]</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_Checkout_Should_Fail_With_CashMashine_Failure</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">cashMashine</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">daytime</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+    <span class="n">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollars</span><span class="p">();</span>
+    <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">checkoutResult</span><span class="p">.</span><span class="n">Failure</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="n">FailureCode</span><span class="p">.</span><span class="n">CashMashine</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Obviously, this approach is a bit better in terms of flexibility and reduced redundancy. But it's not all shine, there's shadow as well. Now what if the context being composed is dynamic? That is, when a valid context can be made of a variety components and combinations, you end up building base context classes for all combinations. In our trivial ATM example, quite a few context classes for CashMashine, Location and Config may be required.</p>
+<h3 id="composing-contexts-with-mixins">Composing Contexts With Mixins</h3>
+<p>As mentioned before, this should not be a big issue when you're in a TDD field. With TDD and adequate regard to SOLID principles, you rarely end up with overly complex contexts. In contrast, when tackling a brown-field and trying to get is covered, you often have complex component interdependencies to tackle.</p>
+<p>A (not so common) pattern for composition is to use <a href="http://en.wikipedia.org/wiki/Mixin">Mixins</a>. Mixins have a notion to me of being somewhat like a poor mans <a href="http://en.wikipedia.org/wiki/Multiple_inheritance">multiple inheritance</a>. I won't to open pandora's box here and discuss the multiple inheritance religions. So let's just stick with the fact that C# does not support multiple inheritance. </p>
+<p>One of the simple - if not the easiest - mixin implementations in <a href="mehrfachvererbung-in-c.html">C# is to use extension methods over interfaces</a>. It's easy and yet quite manageable. I've been using this type of mixins for quite a long time now in different scenarios and it feels quite intuitive. Let's see how a mixin composed test might actually look like:</p>
+<div class="codehilite"><pre><span class="na">[TestFixture]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">When_Requesting_Checkout_Of_200Dollar</span> <span class="p">:</span> <span class="n">Using_ATM</span>
+  <span class="p">,</span> <span class="n">With_CashMashine</span><span class="p">.</span><span class="n">In_Context</span>
+  <span class="p">,</span> <span class="n">With_Location_Europe</span><span class="p">.</span><span class="n">In_Context</span> <span class="p">{</span>
+
+<span class="na">  [Test]</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_Checkout_Request_Is_Denied</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Having</span><span class="p">.</span><span class="n">A_CashMashine_With_Balance_Of</span><span class="p">(</span><span class="m">100.D</span><span class="n">ollar</span><span class="p">());</span>
+    <span class="n">Having</span><span class="p">.</span><span class="n">A_European_Location</span><span class="p">();</span>
+
+    <span class="n">Assert</span><span class="p">.</span><span class="n">False</span><span class="p">(</span><span class="n">The</span><span class="p">().</span><span class="n">CanCheckout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollar</span><span class="p">()));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This actually reads pretty straight-forward, at least. I'm sure you already spotted the trick in the first lines of class declaration. And you're right: <code>With_CashMashine</code> is a class containing the interface <code>In_Context</code>. This is the binding for our little mixin fun. The rest of the game is just sugar. A glimpse on how the context is being defined reveals the mixin trick:</p>
+<div class="codehilite"><pre><span class="cm">/* traditional base context class with sut */</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Using_ATM</span> <span class="p">:</span> <span class="n">In_Tests</span><span class="p">.</span><span class="n">As_Subject</span> <span class="p">{}</span>
+
+<span class="cm">/* context component */</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">With_CashMashine</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">interface</span> <span class="n">In_Context</span> <span class="p">:</span> <span class="n">In_Tests</span><span class="p">.</span><span class="n">As_Context</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">static</span> <span class="n">In_Tests</span><span class="p">.</span><span class="n">As_Subject</span> <span class="n">A_CashMashine_With_Balance_Of</span><span class="p">(</span><span class="k">this</span> <span class="n">In_Tests</span><span class="p">.</span><span class="n">As_Subject</span> <span class="n">subject</span><span class="p">,</span> <span class="n">Amount</span> <span class="n">amount</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ICashMashine</span> <span class="n">cashmashine</span> <span class="p">=</span> <span class="n">MockRepository</span><span class="p">.</span><span class="n">DynamicMock</span><span class="p">();</span>
+    <span class="n">cashmashine</span><span class="p">.</span><span class="n">Stub</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">Balance</span><span class="p">).</span><span class="n">Return</span><span class="p">(</span><span class="n">amount</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">subject</span><span class="p">.</span><span class="n">WithContext</span><span class="p">(</span><span class="n">cashmashine</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* poor man&#39;s context composition &quot;framework&quot; */</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">In_Tests</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">interface</span> <span class="n">As_Subject</span> <span class="p">{</span>
+    <span class="n">As_Subject</span> <span class="nf">WithContext</span><span class="p">(</span><span class="n">T</span> <span class="n">context</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">As_Subject</span> <span class="p">:</span> <span class="n">As_Subject</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">IKernel</span> <span class="n">_kernel</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StandardKernel</span><span class="p">();</span>
+
+    <span class="k">public</span> <span class="n">T</span> <span class="nf">The</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">_kernel</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">As_Subject</span> <span class="nf">WithContext</span><span class="p">(</span><span class="n">T</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">_kernel</span><span class="p">.</span><span class="n">Bind</span><span class="p">().</span><span class="n">ToConstant</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="n">As_Subject</span> <span class="n">Having</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">interface</span> <span class="n">As_Context</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Most of the neaty mixin weaving is done through the extension method, which in turn uses the context base class for context establishment (the <code>WithContext</code> call). There's no great magic in the context base class <code>As_Subject</code> itself. It uses an IoC-Container to collect all puzzle items and finally lay them out using the <code>The</code> syntactical sugar method. C'est ca.</p>
+<h3 id="mix-it-baby">Mix it, baby ?!?</h3>
+<p>Fine, so we mixed our context, tests are looking good and can be read (and understood) easily. Does this mean that this is the way to do test context composition?</p>
+<p>Straight Answer: <em>No</em>.</p>
+<p>Sometimes, <em>it might be helpful</em>, yes. However, in TDD development it most likely won't be of a great benefit. I always felt a good pay-off when I used this pattern in brown-field safari. For plain development, this slightly sophisticated kind of context establishment felt too heavy for me. Obviously, there's a maintenance and controllability issue with this approach. That said, I haven't seen the usage of mixins in context establishment anywhere else, which in turn is the primary reason I wanted to share this pattern with you. </p>
+<p>Conclusion: Mixins as test context composition strategy can be beneficial, if used wisely and rarely. It can be a good interim stage method to get existing systems under test.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>14 March 2011</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/poor-mans-test-context-composition.html&title=Poor Man&#39;s Test Context Composition">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

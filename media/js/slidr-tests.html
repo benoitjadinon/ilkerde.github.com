@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="extras/qunit.css">
+  </head>
+  <body>
+    <script type="text/javascript" src="extras/qunit.js"></script>
+    <script type="text/javascript" src="extras/coffee-script.js"></script>
+    <script type="text/javascript" src="extras/require.js"></script>
+    <script type="text/coffeescript">
+      QUnit.config.autostart = false
+      require.config {
+        paths: {
+          cs: 'extras/cs',
+          'coffee-script': 'extras/coffee-script'
+        }
+      }
+
+      require ['cs!slidr-tests'], ->
+        QUnit.start()
+
+    </script>
+
+    <h1 id="qunit-header"></h1>
+    <h2 id="qunit-banner"></h2>
+    <ol id="qunit-tests"></ol>
+
+    <div id="qunit-fixture">
+      <a class='slide-cover'>Slide</a>
+      <a class='slide-script'>Script</a>
+      <a class='slide-mode'>Mode</a>
+      <div class='slide'>
+        <div class='slide-content'>
+          <h2>Test</h2>
+        </div>
+      </div>
+      <div class='slide-text'>
+        This is the script text.
+      </div>
+      <div id="disclaimer">Disclaimer</div>
+      <div id="breadcrumb">the / bread / crumb</div>
+      <div id="logo" style="background-image:url('any-image.jpg')"></div>
+      <div id="page" class="slide-page"></div>
+      <div id="content" class="slide"></div>
+    </div>
+  </body>
+</html>

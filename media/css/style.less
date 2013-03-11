@@ -1,0 +1,400 @@
+/*
+style.less
+==========
+
+Master stylesheet definition file.
+
+This is the master stylesheet which composes all required styles for
+the entire website. Note that it serves as a foundation (read: theme)
+for the website rather than covering all use cases. 
+
+
+
+### Supported Elements ###
+
+The master stylesheet specifically is designed to cover 
+the following presentational elements and use cases:
+
+* Article or Blog Post
+  Displaying articles, including comments, a comment feedback form
+  and topic keywords.
+
+* Articles Listing
+  Displaying a set or articles, topic related or chronographically
+  sorted, with article metadata and one main article.
+
+* Home Page (TODO)
+  The starting index page, displaying almost nothing but the main
+  entry points for the web site as well as contact information.
+  It _always_ presents the main topic in focus as well.
+
+* About Page (TODO)
+
+
+
+### Uncovered Use Cases ###
+
+Apart of the abovementioned page types, the website will certainly
+have other presentational cases as well. As for those, a distinct,
+additional stylesheet file is recommended. Other use cases are:
+
+* Presentation Slides
+* Download Pages
+* Documentation Pages
+* Project Presentation (Portfolio) Pages
+* Project Detail Pages
+
+
+
+### Style Organization ###
+
+This master stylesheet contains three distinct sections:
+- Style assets definition
+- Functional elements styles
+- Global site-wide styles
+
+The site-wide, _global styles_ are organized by position,
+that is header, content, footer, meta and disclaimer. Those global
+styles are defined here in the master stylesheet.
+
+The _functional elements_ are defined in separate files. They
+explicitly only take care of a distinct, isolated functionality
+of the website, i.e. article comments.
+
+The _asset definitions_ are fundamental layout definitions,
+such as fonts, colors, images or general style components (so
+called "mixins"). They can be used by any stylesheet definition.
+Even by additional presentation use cases, such as project pages.
+
+
+
+### Layout Fundamentals ###
+
+By convention, this global stylesheet handles the _default_
+layout case, which is the layout for desktop screens. The website
+might have different layouts for special devices or device categories,
+such as mobile devices, as well. These different layouts _must_ be
+treated _completely different_. That is, there should be only 
+very few dependencies between device-specific layouts.
+
+Currently, the only accepted dependency between device-specific
+layouts is everything defined as layout _asset definition_
+(fonts, colors, etc...). All other style definitions _must be separate_.
+
+As a minimum, the website should support 3 different layouts:
+
+* Desktop Screen (default)
+* Mobile Small Screen (only _rudimentary_, still _a lot of things to do_)
+* Print Layout (TODO)
+
+
+
+#### Desktop Screen Layout ####
+
+The desktop screen layout will have a 16-columns based 960-pixels wide
+grid as layout foundation. The 960gs framework will be used for grid
+layouting.
+
+It will also adhere to the rule of using only 3 different typographic styles.
+Basically, it's only 2 fonts used (title type and text type), but there's
+a third monospaced type for source code as well.
+
+The layout is _required_ to have a light background and black typography.
+As a general layout theme, the site should communicate following values
+primarily:
+
+* Professional Content
+  The layout clearly needs to communicate: "Here's pro content." It should
+  put the content under spotlights. That is, the layout should be light,
+  clean and minimal.
+
+* Thoughtful & Trustful Sources
+  The visitor should put into a context of thoughtfulness. The aura of
+  science, knowledge and serious engineering should be translated within
+  the layout. There should be no distractions from main content presented.
+
+* Modern & Progressive Culture
+  The notion of a modern, tolerant and progressive culture should be
+  communicated in a very strong manner. The main goal here is to give
+  the user a feeling of future-awareness and "early adoptership", yet
+  not without having thought about the implications and consequences.
+
+*/
+
+
+
+/* reset and use 960/16 */
+@import "reset";
+@import "960_16";
+
+/* assets */
+@import "assets/fonts";
+@import "assets/colors";
+@import "assets/images";
+@import "assets/mixins";
+@import "assets/code";
+
+/* components */
+@import "types/core";
+@import "types/home";
+@import "types/listing";
+@import "types/portfolio";
+@import "types/bio";
+@import "types/talks";
+@import "types/talksummary";
+@import "types/slide";
+@import "types/support";
+@import "types/commandbox";
+
+/* 
+### Global Layout ###
+*/
+
+#page {
+  .container;
+
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+#header {
+  height:120px;
+
+  /*
+  * the 'pin' is the home button of the website.
+  * as home button, it provides always a link to start
+  * as well as context-aware links/info.
+  */ 
+  #pin {
+    .grid_1;
+    
+    margin-top:20px;
+
+    a {
+      .is_square;
+      width:60px;
+      min-width:60px;
+      background:@image_pin;
+      display:block;
+      position:relative;
+      left:-20px;
+    }
+
+    a:hover {
+      background:@image_pin_active;
+    }
+
+    a * {
+      display:none;
+    }
+  }
+
+  /*
+  * the 'bar' is a long title/text line, usually
+  * representing the page/blog/article/project title.
+  * it may be context-aware as well (like pin).
+  */
+  #bar {
+    .grid_11;
+
+    margin-top:12px;
+    padding-top:2px;
+    display:block;
+    height:42px;
+    z-index:-1;
+  }
+}
+
+#content {
+  .prefix_1;
+  .grid_11;
+
+  background-color:@color_white;
+
+  h5 {
+    margin-top:20px;
+  }
+}
+
+#footer {
+  .grid_4;
+
+  height:150px;
+
+  .about {
+    .pull_11;
+    .size(640px, 30px);
+    .colors(@palette_info_fg, @palette_info_bg);
+
+    font:12px @type_black;
+
+    display:block;
+    position:relative;
+    top:-128px;
+    z-index:-2;
+    text-align:right;
+  }
+
+  .location {
+    .pull_11;
+    .size(480px, 30px);
+    .colors(@palette_info_fg, @palette_info_bg);
+    
+    font:12px @type_black;
+    
+    display:block;
+    top:-158px;
+    position:relative;
+    z-index:-1;
+
+    * {
+      .colors(@palette_info_fg, @palette_info_bg);
+    }
+
+    a {
+      text-decoration:none;
+    }
+
+    a:hover {
+      text-decoration:underline;
+    }
+  }
+
+  .index {
+    clear:both;
+    position:relative;
+    top:-160px;
+  }
+}
+
+#logo {
+  .size(220px, 66px);
+
+  background:@image_logo;
+
+  * {
+    display:none;
+  }
+}
+
+#menu {
+  position:relative;
+  top:40px;
+
+  li {
+    margin-left:80px;
+    width:160px;
+    float:left;
+
+    a {
+      .is_panel;
+      .colors(@color_granit, @color_snow);
+
+      font:16px @type_text;
+      padding:4px 20px 4px 20px;
+
+      display:block;
+      width:100px;
+      margin-bottom:8px;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    a:hover {
+      .colors(@color_snow, @color_ease);
+
+      text-decoration:none;
+    }
+  }
+}
+
+#meta {
+  .grid_4;
+
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+#related, #website {
+  margin-left:80px;
+
+  * {
+    font-size:9pt;
+    color:@color_granit;
+  }
+
+  h5 {
+    text-align:center;
+    text-transform:uppercase;
+    color:@color_granit;
+    padding:0px 10px;
+    margin-bottom:4px;
+    border-bottom:1px solid @palette_border;
+    margin-top:20px;
+  }
+
+  ul li {
+    a {
+      .is_command;
+      .colors(@color_granit, @color_white);
+
+      display:block;
+      margin:0px 10px;
+      padding:0px 10px;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    a:hover {
+      .colors(@color_graphite, @color_snow);
+    }
+  }
+
+  table {
+    margin:0px 10px;
+    width:120px;
+  }
+
+  td {
+    width:60px;
+  }
+}
+
+#disclaimer {
+  .prefix_1;
+  .grid_15;
+
+  font-size:10px;
+  font-weight:normal;
+
+  margin-top:20px;
+  margin-bottom:20px;
+
+  * {
+    color:@color_fog;
+    font-size:10px;
+    font-weight:normal;
+    line-height:12px;
+    padding:0px;
+  }
+
+  p {
+    text-align:left;
+  }
+  
+  a, a:hover, a:visited {
+    color:@color_fog;
+    text-decoration:underline;
+  }
+}
+
+#see {
+  ul {
+    .is_sub_list;
+    .is_panel;
+    .colors(@color_graphite, @color_chalk);
+    border:1px solid @color_fog;
+    padding:4px 8px;
+  }
+}
+

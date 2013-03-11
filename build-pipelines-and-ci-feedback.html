@@ -1,0 +1,141 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Build Pipelines and CI Feedback</title>
+    <meta name="description" content="A short essay on how to mitigate long running continuous integration builds using phases to construct a build pipeline.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="build-pipelines-and-ci-feedback">
+    <a href="build-pipelines-and-ci-feedback"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Build Pipelines and CI Feedback</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Yeah well, sometimes, a developer's life is not that easy. Especially when your CI-Build is slow. If it's as slow as a coffee-break, most of us think of it as "acceptable" speed. If it's as half an hour, most developers feel "a pain" somewhere - wherever that might be - when they commit. However, if your build frequency is trying to catch up the hourly ringing bells of Big Ben, then you're pretty cautious about what to check-in or not.</p>
+<h3 id="theres-nothing-wrong-here">There's nothing wrong here</h3>
+<p>First off, when a CI-Build gets remarkably slower over time, some people think that something is wrong. As a fact, the contrary is the case. You should really revisit your CI-Build, Tests and Installations when the build does not "grow" over time! A growing - and slowing - build is basically a good thing. It means that your software is growing. Your features, specs, tests and regressions should be growing then, too.</p>
+<p>Nonetheless, slow processes (and builds) hinder productivity. This is especially the case for a CI Build. The centralized character of a CI Build makes it a potential bottleneck as well. A CI Build is like the center of a shopping mall where all consumers go by and meet. Literally everybody is there at least once per visit. Just to enter the mall, find directions, meet relatives or wait for appointments. However, whenever you are at the meeting point, you want to leave it (in general). The purpose of the shopping mall visit is most often to buy something in a shop, isn't it?</p>
+<h3 id="snailistic-scenery">Snailistic Scenery</h3>
+<p>The same applies for a CI Build. You need it. It's the meeting point of your code where the software "gets done". However, you (as a developer of a feature) don't want to spend much time with "meetings". You just want to do "your thing". That is, getting the feature done with serious coding. Just as simple as that.</p>
+<p>Now, suppose you did everything right. First, your build was freaking fast. Then you hacked the keys out of the board and delivered tons of features. Of course, you're a pro and hence you don't miss to have executable specs, unit tests and automated installers. Now, your build is that slow that an extensive lunch is not enough to get a green bulb on a build. Darn! What's next?</p>
+<h3 id="works-verifies-runs">Works, Verifies, Runs!</h3>
+<p>The answer is simple, yet effective: Partitioning! In order to keep the CI-Build fast, you split the work being done in your Build into distinct parts. "Hey, cheating!" I hear you yellin' at me. No, it's not cheating. It's just focussing on the most important things for your individual project.</p>
+<p>A CI Build is there for a reason. One of the most important reasons is to give you feedback. Feedback that you work actually is ok. Feedback that your stuff works with all the other neaty things of your software. Feedback that in the end your customer will be happy because everything just simply runs. For you - the software engineer - a smart and fast feedback cycle is crucial, since you want to safely progress in your development. This is why we all want a fast CI Build at the end of the day.</p>
+<p>Recently, I thought about a common pattern on how a build can be staged effectively, yet providing good feedback value. The feed-backing mechanisms came to my mind and I decided in trying to partition a CI Build by aligning them to the feedback responsibilities a CI Build has. My take: 3 easy steps. It Works! It Verifies! It Runs!</p>
+<p><img alt="Staged Build: Works, Verifies, Runs" src="/media/images/Staged-Build.jpg" /></p>
+<p><strong>It's Working!</strong>
+The first stage is (almost) immediate response to the question: Does it actually work? Common tasks in such a "Commit Build" are: Compile, Unit Tests (focused on business/problem domain).</p>
+<p><strong>It's Verified!</strong>
+The second stage deals with the almighty completeness and correctness aspects. It's basically what the "Integration" of CI and tries to give a detailed answer for the question: Is it verified to be correct &amp; complete? Tasks in here are typically more sophisticated Unit Tests, Integration Tests, Database Tests, Code Coverage, Code Analysis, Dependency Analysis.</p>
+<p><strong>It's Running!</strong>
+The final stage is the polishing side of your software product. In the end, your product should not only be fine. It should be ready to use and ready to amaze your customer. Yes, it needs to run, isn't it? Therefore, this final step will most probably contain lengthy and finishing tasks: Automated Regression Tests, Documentation Generation and Assembly, Localization, Data Integrity and Sanity Checks, Setup &amp; Install.</p>
+<p>For me, this quite looks like a simple, yet effective guideline strategy for a build pipeline. <em>Works, Verifies, Runs!</em></p>
+<p>Feedback &amp; comments appreciated!</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>13 January 2011</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/build-pipelines-and-ci-feedback.html&title=Build Pipelines and CI Feedback">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

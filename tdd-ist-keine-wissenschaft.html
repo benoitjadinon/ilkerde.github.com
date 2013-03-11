@@ -1,0 +1,138 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>TDD ist keine Wissenschaft!</title>
+    <meta name="description" content="Ein Appell an einen fundierten Pragmatismus und alltägliche Zweckgebundenheit von Test-Driven-Design.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="tdd-ist-keine-wissenschaft">
+    <a href="tdd-ist-keine-wissenschaft"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>TDD ist keine Wissenschaft!</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>In letzter Zeit wird viel über TDD geredet und diskutiert. Das ist gut, denn offensichtlich gibt es da noch einiges zu besprechen und zu lernen. Ich habe erst kürzlich gelernt, dass es absolut sinnlos ist, bestehende Projekte ohne TDD anzugehen. Auch wenn ich viele Tests im nachhinein schreibe. Ich schreibe sie einfach so wie ich die Anforderungen verstanden habe. Mal nähert sich der Code an die Tests, mal die Tests an den Code. Das schöne daran ist, dass man wesentlich schneller den bestehenden Code versteht und auch deren Schwachstellen identifiziert. Dadurch wird auch die Wartung des Brownfield-Projektes gestärkt. Innerhalb von kurzer Zeit kann ich Aufwände und Problemstellungen gut einschätzen.</p>
+<h3 id="tdd-im-rampenlicht">TDD im Rampenlicht</h3>
+<p>Naja, das nur nebenbei. Mir geht es eigentlich um ein anderes Thema. Mir geht es um etwas Generelles. Als Pete und ich mit den .NET Coding Dojos angefangen haben, gab es positive Resonanz. Es wurden Dojo's veranstaltet und Code Kata's exerziert. Super! Meiner Ansicht nach kam TDD dadurch ein kleines Stück mehr in's Rampenlicht als es schon durch <a href="http://clean-code-developer.de/">Clean Code Developer</a> bereits war. In zahlreichen Posts gab es Diskussionen um die <a href="http://www.des-eisbaeren-blog.de/post/2009/11/01/Wie-viel-Sinn-machen-Unittests.aspx">Sinnhaftigkeit von Unit Tests</a>, die <a href="http://ralfw.blogspot.com/2009/09/code-kata-statt-thai-chi-vor-dem.html">Kata Berichte</a> und grundlegender <a href="http://ralfw.blogspot.com/2009/10/tdd-wofur-oop-2010-endlich-cleannet.html">Erkenntnisse über TDD</a>. Eine besonders positive Sache, denn Weiterentwicklung und Entdeckung sind schöne Dinge.</p>
+<p>Doch eine Sache stört mich. Manchmal stört es mich sogar gewaltig. Dieses Trara und <a href="http://de.wikipedia.org/wiki/Tamtam">Tamtam</a> um TDD und <a href="http://www.des-eisbaeren-blog.de/post/2009/11/07/Auch-Kirchen-haben-Kragsteine.aspx">Beeinflussung des OO-Designs durch Tests</a> und das <a href="http://ralfw.blogspot.com/2009/11/zustand-als-abhangigkeit-ioc-konsequent.html">Entkoppeln von Zustand</a>. Bei dem einen oder anderen Post kann ich mir das Kopfschütteln während des Lesens einfach nicht verkneifen. Die Spitzfindigkeit und unnötige Verkomplizierung einfacher Sachverhalte geht mir zuwider. Für manch einen mag es Anspruch sein, über ein Feuerwerk an <a href="http://de.wikipedia.org/wiki/Sprachfertigkeit">Eloquenz</a> einfachste Dinge mit fesselnden Trapezschwüngen der <a href="http://de.wikipedia.org/wiki/Rhetorik">Rhetorik</a> auf das Hochseil des Softewareentwicklungszirkusses zu katapultieren. Die lufterhitzenden Spots, der nervöse Trommelwirbel, der adrenalisierende Schweiß der Konzentration inklusive. Für manch einen. Für mich jedenfalls nicht.</p>
+<p>Im Gegenteil. Es stört mich. Es irritiert mich. Denn mich interessiert das Thema selbst. Ich denke es Bedarf keines jonglierens mit <a href="http://de.wikipedia.org/wiki/Dependency_Inversion_Principle">DIP</a>, <a href="http://de.wikipedia.org/wiki/Single_Responsibility_Principle">SRP</a>, <a href="http://de.wikipedia.org/wiki/YAGNI">YAGNI</a>, <a href="http://de.wikipedia.org/wiki/DRY">DRY</a>, um wirklich im Alltag der Software-Entwicklung gut bestehen zu können. Man darf mich hier nicht falsch interpretieren. Auch ich finde es wichtig, sich mit "Dependency Inversion", "Single Responsibility", "Decisions on Last Responsible Moment" und "Repetition Avoidance" auseinanderzusetzen, damit umzugehen und täglich einzusetzen.</p>
+<h3 id="tdd-ist-keine-rocket-science">TDD ist keine "Rocket Science"</h3>
+<p><img alt="" class="alignright" src="/media/images/bart-simpson-zustand.png" />
+Doch man kann es übertreiben. Die ständige, gestelzte und wie ein Ritus sich selbst auferlegte "<a href="http://clean-code-developer.de/wiki/CcdRoterGrad#T%C3%A4glichreflektieren">Tagesreflexionsprogramm</a>" ist meines Erachtens nicht förderlich. Überspitzt betrachtet ist es genau dasselbe wie das Bart-Simpson-Einhämmerungs-Ritual "Ich werde keinen Zustand testen!" - <a href="http://de.wiktionary.org/wiki/repetitiv">repetitiv</a>, jedoch nicht <a href="http://de.wiktionary.org/wiki/kognitiv">kognitiv</a>. </p>
+<p>Wer's mag, kann ruhig jeden Tag nicht nur Selbstreflexion betreiben, sondern auch jeden Tag ein Code Kata lösen, damit die Entwicklerseele rein wird. Ich jedenfalls werde das nicht tun.</p>
+<p>Ich arbeite auch nach Prinzipien, löse Probleme auch mit Patterns und programmiere neben dem Tagesgeschäft ab und an auch mal Code Kata's. Aber ich bin mir gleichermaßen bewußt, das ich jedes Mittel und Werkzeug richtig einordnen und im richtigen Maß anwenden muss, damit es mich langfristig weiterbringt.</p>
+<p>Gleiches gilt für mich auch beim Thema TDD. Ich arbeite nun seit etwas mehr als einem halben Jahr stringent mit TDD. Zuvor habe ich es immer ab und an eingesetzt, aber nie "ernsthaft" betrachtet. Ich finde TDD (und auch BDD) sind eine besonders gute Methodik, um das <em>V</em> in <a href="http://de.wikipedia.org/wiki/EVA-Prinzip">EVA</a> groß schreiben zu können. Es stärkt wunderbar die logischen Bestandteile der Anwendung und fördert mit der granularen Testanforderung lose Kopplung und komponentenorientiertes Design. Mittlerweile ist TDD für mich fester Bestandteil jeder Entwicklungsaufgabe.</p>
+<p>Während der ersten Phase, in der ich TDD konsequenter eingesetzt habe, habe ich auch <a href="http://www.mockobjects.com/book/index.html">einiges darüber gelesen</a> und durch das "Doing" auch vieles gelernt. So ist es z.B. überhaupt nicht schlimm, wenn man statusbehaftete Tests an den Enden der Datenverarbeitung macht. Konkret: Auch <a href="http://benpryor.com/blog/2007/01/16/state-based-vs-interaction-based-unit-testing/">statusbasierte Tests</a> sind ok, vor allem in Richtung DB oder UI. Ein schönes Beispiel dafür ist <a href="test-driven-dojo-das-einmaleins-von-tdd.html">KataFizzBuzz als WinForms-Anwendung</a> oder KataBlog. Natürlich ist interaktionsbasiertes Testen "schöner", fördert die lose Kopplung und die isolierte Verifikation. Doch hier gibt es kein Schwarz oder Weiß. Es geht um den Einsatzbereich. Am Rand des Datenstroms ist man mehr statusbasiert, in der mitte eben mehr interaktionsbasiert. Außerdem ist das Thema Statustests vs. Interaktionstests ein relativ "alter Hut". Schon mit <a href="http://martinfowler.com/articles/mocksArentStubs.html">Mocks Aren't Stubs</a> hat Fowler klar gemacht, dass beides in Ordnung ist.</p>
+<p>Diese Zustands-Geschichte ist jedoch nur ein Beispiel. Es gibt da noch einige andere Klassiker: Kapselung, Verkettung, Referentielle Transparenz. Doch ungeachtet dieser Dinge, ist TDD <a href="http://www.dict.cc/englisch-deutsch/It%27s+not+rocket+science.html">keine Rocket Science</a>. Im Gegenteil, TDD ist in der Kernaussage und Grundregeln so einfach, das sich die anderen "Problemstellungen" automatisch ableiten und auflösen. Gerade deswegen ist es meiner Meinung nach so wichtig, die Dinge einfach zu erklären und und diese "Leichtigkeit" auch zu transportieren. Die <a href="http://codekata.pragprog.com/">Code Kata's von Dave</a> sind ein Beispiel. Sie sagen nicht "Mach dies! Beachte das!". Nein, sie sind eigenständige Probleme, auf deren Lösungsweg man individuell und für sich eine gute Lösung findet. Daraus ergeben sich automatisch mit der Zeit Verbesserungen und Erkenntnisse.</p>
+<p>Fazit: Beim Verständnis und der Anwendung von Test-Driven-Development gilt, obgleich TDD ein bis Dato <a href="http://research.microsoft.com/en-us/projects/esm/nagappan_tdd.pdf">empirisch betrachtetes, jedoch theoretisch nicht ausreichend erforschtes</a> Vorgehensmodell ist, das Prinzip von <a href="http://de.wikipedia.org/wiki/Ockhams_Rasiermesser">Ockhams Rasiermesser</a>. Der praxisorientierte, frequentive Einsatz sowie das Erkennen der Grundtheoreme der TDD-Methodik sind das Fundament für den erfolgreichen Einsatz.</p>
+<p>Und wenn ich das für alle diejenigen, die wie ich auch in der Kommunikation Wert auf Einfachheit legen, mal übersetzen darf:</p>
+<p><strong>TDD ist keine Wissenschaft!</strong></p>
+<p>Man kann viel darüber Lesen. Das ist auch gut. Besser ist es jedoch, <a href="http://blog.thomasbandt.de/39/2291/de/blog/unit-tests-sind-gut.html">TDD zu machen</a>! Nicht viel über "dies und das" nachdenken. Die Devise lautet: "<a href="http://www.quotes.net/quote/9349">Mach es einfach, aber nicht einfacher</a>". Es wird von alleine gut und mit der Zeit sogar besser werden.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>16 November 2009</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/tdd-ist-keine-wissenschaft.html&title=TDD ist keine Wissenschaft!">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

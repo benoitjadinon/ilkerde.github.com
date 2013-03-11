@@ -1,0 +1,141 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Definition Of Delivery</title>
+    <meta name="description" content="My perspective on Scrums &#34;Definition of Done&#34; and &#34;Definition of Ready&#34; as a self-referencing, self-descriptive rule of quality.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="definition-of-delivery">
+    <a href="definition-of-delivery"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Definition Of Delivery</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>No, this blog post is not about what some of you might expect after reading its title. I'm not going to talk about any release criteria or "yet another derivate of Definition of Done". Granted, my topic is about Definition of Done, but in a very different sense. So let me just wrap up things now a little.</p>
+<p>A few weeks ago I read a very interesting <a href="http://stefanroock.wordpress.com/2012/08/04/definition-of-ready-a-double-edged-sword/">article by Stefan Roock</a> about the correlation between <em>Definition of Done</em> and <em>Definition of Ready</em>. For those who don't know any of those terms, I'll just summarize it briefly. The "<a href="http://www.scrumalliance.org/articles/105-what-is-definition-of-done-dod">Definition of Done</a>" (DoD) is a team agreement about the quality criteria a given task should meet before it actually can be considered done. Likewise, the "<a href="http://www.romanpichler.com/blog/product-backlog/the-definition-of-ready/">Definition of Ready</a>" (DoR) is a set of quality criteria a user story should fulfill in order to be "ready" for the development team.</p>
+<p>Now the interesting part of abovementioned article actually is the correlation he is drawing between both of them. His argument seems reasonable: While the "Definition of Done" should grow over time, the "Definition of Ready" should shrink over the same time.</p>
+<p class="figure">
+<img alt="A wrong assumption on how DoD and DoR should develop over time." src="/media/images/bad_dod_dor.png" /><br />
+Figure 1: A <strong>wrong assumption</strong> on how DoD and DoR should develop over time.</p>
+<p>And that's what made me scratch my head. To be honest, I not only was wondering why this should be as laid out in the article, but was equally wondering about the weak reasoning behind that statement. My perspective is the absolute contrary: I firmly believe that both DoD and DoR should grow and be extended over time. That's why I was very irritated when I read this - well, to my perception sort of naive statement.</p>
+<p>So, let's just get into it: Why should both DoR and DoD tend towards growth? The reason behind this is quite easy. Both DoR and DoD share the same purpose and characteristics. They are a transparent means to agree upon the quality criteria for a certain deliverable (or type of deliverable). One might generalize this shared purpose to the term <em>"Definition of Delivery"</em>. (And voila, here's this articles title).</p>
+<p>For me, there are two very important aspects of such a "Definition of Delivery", which I'll abbreviate as "DeDe" further on. First of all, a DeDe targets a transparent definition of quality characteristics for the deliverable in question. It's important to realize that it's not adding up to the core value of the deliverable itself, but rather view the deliverable from the supportive and qualitative perspective.</p>
+<p>Second, there's an even more important thing to know about a DeDe. A DeDe is self-directed. This basically means that any "Definition of X" is defined and directed towards its author. This property of self-directedness is a <em>key property</em>. It means that only the producer(s) of the deliverable are eligible to define the DeDe for themselves.</p>
+<p class="figure">
+<img alt="A desirable growth of self-expected quality through DoD and DoR over time." src="/media/images/good_dod_dor.png" /><br />
+Figure 2: A <strong>desirable growth</strong> of self-expected quality through DoD and DoR over time.</p>
+<p>And this is mainly why I disagree with Stefan's statement. The very same as DoD is defined by the team, the DoR is defined by the Product Owner. All just with the purpose to deliver better results. Hence, both DoR and DoD should be improved over time (mainly by extension). No third party should be able to alter or define the DeDe. However, that's actually my impression of what happens in Stefan's article.</p>
+<p>I recognize that Stefan looks at the DoR from the <em>team perspective</em>. From this perspective he concludes that the DoR should be kept reasonably small in order to enable the team to work on the user story as early as possible. And as time goes by, the team does know more and more about the product itself. The DoR can be lowered even more now, since the team has gained a solid knowledge of the domain in order to reasonably handle even the bare minimum user story written on a post-it.</p>
+<p>As fair as this might sound in first place, it's a critical thing to look at in the long run. The ultimate "sense for quality work" might get lost on PO side. User stories might then not have essential acceptance criteria to ensure the proper realization of the business value. Even more, the "what" part of the development might be influenced too much by the team itself. That's surely something not desirable.</p>
+<p>Instead, I think it's important to let the PO decide how the qualitative characteristics of a user story should look like. If he thinks that it's an important quality improvement that every user story should have personas and two business case studies, then he should be able to independently define that in the DoR.</p>
+<p>Of course, there's this risk of "over-engineering" a user story. We all are afraid of such a scenario: what if the PO starts to write extensive 200 page documentation about every user story because he thinks that it's needed for a "high quality user story"? Well, that's why Scrum has Scrum Masters to ensure a well-balanced and reasonable usage of all practices and tools. Oh, and by the way, the risk of over-engineering is surely not only limited to the DoR. It might just equally well happen at the team level with a DoD.</p>
+<p>To put it simple and straight, my point is that a "Definition of Delivery" of any kind should be a self-directed agreement about the quality criteria of a deliverable. As such, it strives to be improved and extended until a point is reached where the efforts for the properties of quality outweigh the benefits of them. This decision is normally being made by the consumer of the deliverable in question (i.e. the team if we were talking about a DoR on user stories).</p>
+<p>In consequence, I strongly favour the <em>will to extend and improve</em> both the Definition of Done and the Definition of Ready. This is very much the opposite of the 'raise DoD, lower DoR' statement of Stefan. I personally think that such a one-dimensional view of DoD and DoR might cause very negative effects in practice. Hence, I'd like you to be very thoughtful and attentive when it comes to dealing with either Definition of Ready or Definition of Done.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>15 October 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/definition-of-delivery.html&title=Definition Of Delivery">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

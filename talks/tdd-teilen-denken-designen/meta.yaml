@@ -1,0 +1,5 @@
+extends: slide.j2
+pagetype: slide
+default_block: slide
+title: "TDD - Teilen, Denken, Designed"
+lastmodified: "20. Februar 2012, DNUG Hamburg"

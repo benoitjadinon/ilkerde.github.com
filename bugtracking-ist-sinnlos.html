@@ -1,0 +1,140 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Bugtracking ist sinnlos!</title>
+    <meta name="description" content="Eine Streitschrift über die Zeitverschwendung und vergebene Lebensmühe zu intensivem Bugtracking von Software-Produkten.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="bugtracking-ist-sinnlos">
+    <a href="bugtracking-ist-sinnlos"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Bugtracking ist sinnlos!</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Es ist nun schon einige Zeit vergangen, seit dem ich das letzte Mal über Bugs geschrieben habe. Damals habe ich mich etwas näher mit dem Thema <a href="effektives-und-effizientes-bugreporting.html">Bugreporting</a> auseinandergesetzt. Und nach wie vor bin ich der Meinung, dass das Bugreporting ein wichtiger und wesentlicher Bestandteil des Issue Managements ist. Was das Bugtracking allerdings angeht, so bin ich anderer Meinung.</p>
+<p>Ich möchte gleich mal eine provokante Aussage in den Raum werfen: Bugtracking für Software-Projekte ist sinnlos. Jedenfalls in den meisten Fällen. Mehr noch, Bugtracking sollte soweit wie nur irgend möglich vermieden werden!</p>
+<p>Was will ich damit sagen? Man betrachte einmal das mittlerweile so "selbstverständliche" Tooling bei Software-Projekten: Man nehme ein <a href="http://en.wikipedia.org/wiki/Revision_control">SCM</a> (z.B. SVN oder git), ein <a href="http://en.wikipedia.org/wiki/Continuous_integration">CI-System</a> (z.B. TeamCity oder CruiseControl) und einen <a href="http://en.wikipedia.org/wiki/Bug_tracking_system">IssueTracker</a> (z.B. Bugzilla oder Trac). Man kann das ganze natürlich auch als Gesamtpaket haben, z.B. mit <a href="http://en.wikipedia.org/wiki/Team_Foundation_Server">TFS</a>. So, damit hat man die Eckpfeiler einer Software-Entwicklungsumgebung parat und kann frisch und fröhlich programmieren. Ich denke allerdings das dieses Toolset nicht ganz so glücklich gewählt ist.</p>
+<h3 id="bugtracking-ist-zeitverschwendung">Bugtracking ist Zeitverschwendung</h3>
+<p>In einer Zeit, in der viel getan wird, um einen sauberen Code zu produzieren ist meiner Meinung nach die jetzige "Methodik des Bugtrackings" nicht mehr adequat. Entwickler versuchen mit agilen Methoden (teilweise krampfhaft) mehr Qualität und Stabilität in ihre Produkte zu bringen. Ein aktuelles Beispiel ist die Beachtung und Anwendung der Prinzipien von "Clean Code", die Ihre Kernaussage aus der <a href="http://manifesto.softwarecraftsmanship.org/">Craftsmanship-Ideologie</a> von <a href="http://objectmentor.com/omTeam/martin_r.html">UncleBob</a> schöpft. Darüber hinaus beschäftigt sich die gesamte Softwareentwicklungsindustrie seit Jahren mit Themen wie z.B. Continuous Integration oder Test-Driven-Development, die mitunter das Ziel haben, die Qualität des Softwareproduktes schon während der "Produktionsphase" stetig hoch zu halten. Flankiert wird das ganze auch noch mit agilen Managementmethoden wie z.B. <a href="http://de.wikipedia.org/wiki/Scrum">Scrum</a> oder <a href="http://de.wikipedia.org/wiki/Kanban">Kanban</a>, die auch einen besonderen Anspruch auf stetige, hohe Qualität legen.</p>
+<p>Nichtsdestotrotz findet man in jedem Tool-Setup den altbekannten "Bugtracker" wieder. Wieso? Auf der einen Seite strebt man nach dem "Zero-Defect", nach hochqualitativer Software. Aber mit dem gleichen Atemzug gibt man sich dennoch geschlagen, indem man von vornherein mit Bugs rechnet. Denn einen Bugtracker zu betreiben ist in den allermeisten Fällen nichts anderes als ein Geständnis. Undzwar das Geständnis sich selbst gegenüber, doch nicht alles "hundertprozentig" zu machen. Es ist ein Widerspruch in sich. Ja: Clean Code, TDD, BDD, DDD und noch eine handvoll anderer bewährter Methoden, von mir aus noch Pair Programming, Continuous Integration / Deployment und Scrum. Aber: Ein Bugtracker muss auf jeden Fall auch her.</p>
+<h3 id="bugtracker-ist-nicht-gleich-liste-und-gleich-gar-nicht-archiv">Bugtracker ist nicht gleich Liste und gleich gar nicht Archiv</h3>
+<p>Man mag mir entgegenbringen, dass mit einem "Issue Tracking"-System nicht nur Bugs verwaltet werden, sondern auch Feature-Requests und ähnliches. Featurelisten sind eine wunderbare Sache, vor Allem wenn man sie priorisieren kann. Aber dazu braucht man keinen Bugtracker. Im Allgemeinen reichen einfachere Tools aus.</p>
+<p>Das am meisten erwähnte Gegen-Argument ist wohl, das man mit dem Bugtracker die Bugs "verwalte", um sie ja nicht zu vergessen und Ihnen angemessene Priorität zu geben. Lächerlich! Eine Farce, denn in der professionellen (wirtschaftlich orientierten) Softwareentwicklung ist solch ein Ansatz absolut kontraproduktiv. Erstens schafft es einen weiteren Verwaltungs- und Organisationsapparat, den es erst mal zu bewältigen gilt. Zweitens mutiert es mit der Zeit zu einer Halde (ich will schon fast sagen Müllhalde) von unwichtigen Bugs und Feature-Requests, die man irgendwann einmal angehen will. Drittens stellt es automatisch und implizit ein Konkurrenzsystem zur Roadmap dar. Warum?</p>
+<p>Na ganz einfach: wenn ein Bug wirklich ein wichtiger Bug ist, dann wird er sofort gefixed. Alles andere ist entweder nicht wichtig oder wird dann erst wichtig, wenn die wichtigeren Dinge schon erledigt sind. So einfach ist das.</p>
+<p>Außerdem: Gefühlt implementiert nahezu jeder, der was auf sich hält seine Software mit agilen Methoden und Praktiken. Scrum und XP sind schon längst angekommen; und mit TDD und Clean Code wir bewegen uns auf einem hohen Niveau, oder nicht? Unsere Grundmotivation ist es doch, fehlerfreie Software auszuliefern, oder nicht? Ok, 100%ig gibt es nie, aber wir streben doch zumindest die <a href="http://en.wikipedia.org/wiki/High_availability">three nines</a> der "High Quality" an, oder nicht? Ich denke schon - zumindest ist das mein Verständnis. Wenn dem so ist, warum brauchen wir dann ein Bugtracking-Tool?</p>
+<h3 id="bugreporting-ist-wichtig-bugtracking-jedoch-unwichtig">Bugreporting ist wichtig, Bugtracking jedoch unwichtig</h3>
+<p>Ich möchte mit meiner provokanten Aussage nicht erreichen, das man grundsätzlich das Issue Management anzweifelt. Es ist eher das Gegenteil der Fall. Ich stärke sogar die Wichtigkeit &amp; Effizienz, zumal nach wie vor ein richtiges Bugreporting und eine Bug Triage entscheidend sind, um die richtige Entscheidung treffen zu können. Mein Augenmerk gilt der Bugverwaltung an sich, also der zentralisierten Auflistung, Verwaltung und Archivierung von Fehlerprotokollen. Im Lean Management sind zentrale Prozesspunkte ein "rotes Tuch". Statt dem sternförmigen Kommunikations- und Prozessmodell wird dort das Netzmodell favorisiert. Dieser Ansatz ist meiner Meinung nach besonders auf das Issue Management anwendbar.</p>
+<p>Natürlich kann ich nicht generell sagen, dass ein Bugtracking-Tool sinnlos ist. Es gibt immer wieder Situationen und Rahmenbedingungen, die auch ein Bugtracking-Tool und eine zentrale Fehlerverwaltung rechtfertigen. Ein absolut valider Punkt ist die <em>Distanz</em> - also z.B. bei verteilten Teams oder anderen Szenarien, in den direkte Kommunikation nicht umgesetzt werden kann. Doch auch hier gilt für mich die Regel: erst wenn <em>alle</em> Möglichkeiten der direkten Kommunikation ausgeschöpft sind, kann eine Indirektion der Informationsübertragung über Persistierung und Werkzeug in Erwägung gezogen werden.</p>
+<p>Man könnte ein Bugreporting auch derart gestalten, dass man sich beim Reporter für den Bericht bedankt und ihm verspricht, das Problem zu analysieren. Dann schaut man sich den Fehler an. Ist er wichtig genug, wird er sofort gefixed - und der Benutzer ist glücklich. Ist er nicht wichtig genug (also ist entweder ein anderer Bug oder ein anstehendes Feature wichtiger), so wird der Report weggeworfen. Der Benutzer wird benachrichtigt dass der Fehler momentan nicht korrigiert wird. Ehrlich, sachlich, klar. Der Berichterstatter kann nun nochmals (mit Vehemenz) darauf pochen, den Fehler behoben zu wissen. So kann man z.B. bei benutzerorientierten Produkten auch ein Voting einsetzen (wie z.B. bei Codeplex). Erhöht sich das Voting (die Priorität) nicht, wird der Bug nicht gefixed und weggeworfen. That's it.</p>
+<h3 id="es-gibt-nur-ein-go-oder-nogo-fur-einen-bugfix">Es gibt nur ein Go oder Nogo für einen Bugfix</h3>
+<p>Ich bin der festen Überzeugung, das diese Verfahrensweise vor Allem dann effizient ist, wenn man in der Software-Entwicklung agile Methoden anwendet. Für mich sind Software Craftsmanship, TDD, XP und all die weiteren modernen Methoden einfach nicht mit dem veralteten Zentralverwaltungs-Muff "Bugtracking" vereinbar. Statt dessen sollte man ein leichtgewichtiges Bugreporting etablieren und die Entscheidung über den Fix oder No-Fix des Bugs schnell herbeiführen. Nur so kann man sich selbst dazu erziehen, von Anfang an in der Software-Entwicklung das Qualitätsbewusstsein zu schärfen und die Qualität konstant adequat hoch zu halten. Denn nur mit dieser "KO-Entscheidung" über den Fix eines Bugs kommt man (leidend, aber relativ schnell) zu der Erkenntnis, dass man wenn man wirklich das Produkt stetig weiterentwickeln möchte auch immer sich zum Ziel setzen muss, ein möglichst fehlerfreies Produkt auszuliefern.</p>
+<p>Die Erkenntnis, Bugs nicht zu verwalten und sofort zu entscheiden, ob es gefixed werden soll oder einfach ignoriert werden soll ist meiner Meinung nach ein wichtiger Bestandteil für qualitative, agile Software-Entwicklungs-Methoden.</p>
+<p>Ergo: <strong>Bugtracking ist sinnlos!</strong></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>20 October 2009</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/bugtracking-ist-sinnlos.html&title=Bugtracking ist sinnlos!">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

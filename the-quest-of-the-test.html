@@ -1,0 +1,335 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The Quest Of The Test</title>
+    <meta name="description" content="A (strange) story about a software developer, a company dedicated to TDD and a journey in exploring function-level testing and mocking with lambda functions in C#.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="the-quest-of-the-test">
+    <a href="the-quest-of-the-test"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>The Quest Of The Test</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Today, I'm going to tell you something about <em>"Test Implants"</em>. Sounds a bit scary, but in fact it isn't at all. I recently wrote about a <a href="poor-mans-test-context-composition.html">technique on how you can improve brownfield code with tests</a>. In fact, I showed that it's surely possible to do some TDD on an existing codebase with the help of simple "Mixin Contexts".</p>
+<p>This time I'm going to share another technique which I found to be very helpful in brownfield engineering scenarios. Obviously, I named this technique "Test Implants". Test Implants are no solution to "untestable" code, but help you to find out the parts which need to be addressed. </p>
+<p>Effectively, every test implant I wrote made me rethink on how the code might be restructured to fit all requirements. For me, test implants are a simple, feasible way to get interaction tested without essentially restructuring the organization of the code. I personally use test implants for over a year now and found it very useful most of the time.</p>
+<p>I'm going to show you test implants using a little fictional story. No intentions behind that, the story is just a cake with topping alongside the coffee. The title of the story, obviously, is <em>"The Quest Of The Test"</em>. Enough introduction, let's just start.</p>
+<p>I'm going to tell a little story about legacy code, bugs and testability. You, my dear reader, will be put right into the fabulous adventure of finding out what a test implant is. Enjoy.</p>
+<h3 id="a-typical-brownie">A typical Brownie</h3>
+<p>It's a regular, rainy Thursday morning, five past nine. As always, you're a little late to work. You quickly pull of your coat while switching on your monitor and logging in with your left hand. It's not that your password isn't complex. It is fairly complex. It's the virtuosity of your memorized typing of course that makes it possible to login single-handed.</p>
+<p>Once you're seated, you see bad news in your inbox. "Bug in Chronograph!" says the title of the mail. What? <em>The</em> chronograph? The legacy code you just have become the official maintainer for? </p>
+<p>Justice has left this town. That's for sure.</p>
+<p>Ok. Ok, ok. While you concentrate to breathe in regular intervals again, your brain starts to send plausible signals: "Get me a coffee. Then we'll fix this bitcrap, buddy". Aight! You put in a Nespresso "<a href="http://www.nespresso.com/ch/en/product/volluto">Volluto</a>" for starters and hit the button. While the coffee machine is at your command, you open the Chronograph files. You happen to recall that it's using <code>TimeServer</code>, an almighty third-party DLL. It contains classes and methods to fetch a global standard time from internet and translate it to local time.</p>
+<p>Bing! Coffee done! <em>"A morning with bugs and coffee. The usual suspects in my ordinary life."</em> is the most original thing what you are able to tweet right now about your adventure. Ok. Social shit done as well. Start working. Now.</p>
+<p>Sources refreshed, project opened in Visual Studio, table light dimmed. You're just rereading the code of Chronograph, which has been written in "ancient times". Obviously without any unit tests at all:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Chronograph</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="n">CultureInfo</span> <span class="n">_culture</span> <span class="p">=</span> <span class="n">CultureInfo</span><span class="p">.</span><span class="n">InvariantCulture</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsDirty</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="k">public</span> <span class="n">LocalTime</span> <span class="nf">SyncWith</span><span class="p">(</span><span class="n">TimeServer</span> <span class="n">ts</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">IsDirty</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">TimeEntry</span> <span class="n">te</span> <span class="p">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">GetTime</span><span class="p">();</span>
+      <span class="n">te</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">_culture</span><span class="p">);</span>
+      <span class="n">localTime</span> <span class="p">=</span> <span class="n">te</span><span class="p">.</span><span class="n">ToLocalTime</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">TimeEntry</span> <span class="n">te</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeEntry</span><span class="p">(</span><span class="n">localTime</span><span class="p">);</span>
+      <span class="n">te</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">_culture</span><span class="p">);</span>
+      <span class="n">localTime</span> <span class="p">=</span> <span class="n">te</span><span class="p">.</span><span class="n">ToLocalTime</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">localTime</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Hmm. This code smells to have bugs. You're staring at it and think <em>"Oh my. Look at the dupes. Rookies."</em> If you wouldn't just slurp your coffee while browsing code, your left hand would be ready to serve a generous face-palm. Your excellent nose didn't mislead you, as you soon realize while reading the bug report in Bugzilla:</p>
+<div class="codehilite"><pre><span class="n">Bug</span> <span class="n">Nr</span>      <span class="p">:</span> <span class="mi">0815</span>
+<span class="n">Title</span>       <span class="p">:</span> <span class="n">culture</span> <span class="n">is</span> <span class="ow">not</span> <span class="n">updated</span> <span class="n">when</span> <span class="n">clock</span> <span class="n">is</span> <span class="n">in</span> <span class="n">sync</span> <span class="n">with</span> <span class="n">server</span>
+<span class="n">Component</span>   <span class="p">:</span> <span class="n">Time</span> <span class="n">Sychronizer</span> <span class="p">(</span><span class="n">Chronograph</span><span class="p">)</span>
+<span class="n">Description</span> <span class="p">:</span> <span class="n">While</span> <span class="n">the</span> <span class="nb">local</span> <span class="nb">time</span> <span class="n">is</span> <span class="n">in</span> <span class="n">sync</span> <span class="n">with</span> <span class="n">server</span><span class="p">,</span> <span class="n">the</span> <span class="n">culture</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="s">&quot;updated&quot;</span> <span class="n">regularly</span><span class="o">.</span> <span class="n">It</span> <span class="n">happens</span> <span class="ow">not</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="k">case</span><span class="o">.</span> <span class="n">The</span> <span class="nb">time</span> <span class="n">server</span> <span class="n">API</span> <span class="n">has</span> <span class="n">a</span> <span class="n">specific</span> <span class="n">function</span> <span class="n">to</span> <span class="n">update</span> <span class="n">a</span> <span class="nb">time</span> <span class="n">entry</span> <span class="n">with</span> <span class="n">culture:</span> <span class="n">TimeEntry</span><span class="o">.</span><span class="n">Ensure</span><span class="p">(</span><span class="n">CultureInfo</span><span class="p">)</span><span class="o">.</span> <span class="n">Use</span> <span class="n">this</span> <span class="n">function</span> <span class="n">to</span> <span class="n">keep</span> <span class="n">culture</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span><span class="o">.</span>
+</pre></div>
+
+
+<p>Good to know that a professional like you is taking care of this nifty bug. While browsing through TimeServer API, you realize that <code>TimeServer</code>, <code>TimeEntry</code> and <code>LocalTime</code> classes are all sealed. Without interfaces. </p>
+<p>Your mouse pointer moves the scrollbar slow. Very slow. You try to cheer up yourself: "An API style I've seen a hundred times at least. Nothing shocking so far." You know the truth is different. You wished to stay at home today. Now you're here. Right in front of this artfully crafted code. Not.</p>
+<p><em>Riiing!</em> 10 AM! Stand-up time! "Come on, <a href="http://en.wikipedia.org/wiki/Marty_McFly">McFly</a>, wake up!" is the flash of thought right after the alarm window popped up on your screen. Lock the box, put off the mug, off to 3rd floor! Since your department has moved last year from 3rd to 1st floor, these dailies happen to have the notion of helping the staff to burn calories. You hurry up to entrance. "Yeah. Right." - all elevators blocked. Stairs, as always.</p>
+<h3 id="tdd-is-en-vogue">TDD is En Vogue</h3>
+<p>Arrived at 3rd floor you see all devs listening to the lead developer. You don't like him, yeah. Nonetheless, this time it's as if an important announcement is about to happen. "Will he retire?" is all what you can imagine to be a positive thing right now. However, surprise is ahead.</p>
+<blockquote>
+<p>From now on, the management and the entire organization will support and encourage to develop literally everything with TDD. No code will be put in production which is not TDD'd, no bug will be resolved without proper tests using test-first method. Period.</p>
+</blockquote>
+<p>It's Christmas and Eastern altogether. Did he really say TDD? Yes, he did! Life is a roller-coaster. After having reached the grounds this morning, you're now back on track. Finally TDD. All those arguments you had in kitchen, all those emails you wrote to colleagues with links to <a href="http://www.objectmentor.com/omTeam/martin_r.html">Uncle Bob</a> and <a href="http://en.wikipedia.org/wiki/Kent_Beck">Kent Beck</a>, all those code reviews and little wars about test frameworks and CI integration have come to an end. Whoohoo!</p>
+<p>Ok, great stuff! Finally your company is on the right path. Right after daily you hurry down to your desk again. Now let's do some bug hunting! You start to examine the class signatures involved in that nasty bug again:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">TimeServer</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="n">TimeEntry</span> <span class="nf">GetTime</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">TimeEntry</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="nf">TimeEntry</span><span class="p">(</span><span class="n">LocalTime</span> <span class="n">lt</span><span class="p">);</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Apply</span><span class="p">(</span><span class="n">CultureInfo</span> <span class="n">ci</span><span class="p">);</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Ensure</span><span class="p">(</span><span class="n">CultureInfo</span> <span class="n">ci</span><span class="p">);</span>
+  <span class="k">public</span> <span class="n">LocalTime</span> <span class="nf">ToLocalTime</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">LocalTime</span> <span class="p">{}</span>
+</pre></div>
+
+
+<p>Wow. Sealed. The Dev who wrote this must have got a <a href="http://www.youtube.com/watch?v=AMD2TwRvuoU">Kiss from a Rose</a>. Looking back at the original <code>Chronograph</code> class, it's crystal-clear that the <code>else</code> branch needs to call <code>Ensure</code> instead of <code>Apply</code>. Pretty easy. But wait! How to write a test for this tiny typo? You look back into your digital toolbox: Only <a href="http://nunit.org/">NUnit</a> and <a href="http://code.google.com/p/moq/">Moq</a> available. Hmm. You stop for a minute and rephrase the question in your mind: <em>"How to write a sensible unit test beforehand to ensure that the bug is fixed right after you have just replaced a single word?"</em></p>
+<h3 id="the-quest-of-the-test">The Quest Of The Test</h3>
+<p>You wouldn't be a geek if you wouldn't consider it as a duty to find an answer to this question. With years being in this business, you very surely know: There's coders, there's hero coders, and - there's you. The metaphorical ant of all coders. You'll sit here, with your coffee mug on your left, and take the quest. <a href="http://www.callofduty.com/">Duty is calling</a>, comrade.</p>
+<p>First, you just do the regular easy stuff. That is, get NUnit referenced, build up a skeleton of the test class and write up your environment to be "ready to assert". No minute later, you're staring at this code fragment:</p>
+<div class="codehilite"><pre><span class="na">[TestFixture]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">When_chrono_is_in_sync</span> <span class="p">{</span>
+<span class="na">  [Test]</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_culture_is_ensured_with_time_entry</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="n">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
+    <span class="n">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">();</span>
+
+    <span class="n">chrono</span><span class="p">.</span><span class="n">IsDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="n">chrono</span><span class="p">.</span><span class="n">SyncWith</span><span class="p">(</span><span class="n">ts</span><span class="p">);</span>
+
+    <span class="n">Assert</span><span class="p">.</span><span class="n">IsTrue</span><span class="p">(</span><span class="n">ensureWasCalled</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>So far, so good. Now the kindergarten is over. Right now is the time to separate real men from boys. You need to find a <em>plausible</em> and <em>sensible</em> way to express the expectation, that <code>te.Ensure()</code> is being called instead of <code>te.Apply()</code>.</p>
+<p>It's time for another coffee. Volluto doesn't do any more. This exceptional situation cries for exceptional coffee. You put in the "<a href="http://www.nespresso.com/ch/en/product/roma">Roma</a>" tab into the machine and let the mug do its job: awesome coffee storage. No milk. No sugar. Outlook off, Browser off, Tweetdeck off. You literally feel the scientific aura now.</p>
+<p>"Wait a minute..." you think. "... scientific? Science. Yes, science is a good catch right now. I need to express a function in order to put it under assertion.". Express. A. Function.</p>
+<p><strong>Eureka!</strong></p>
+<p>That's the key! You'll go for a lambda expression. You need to define the function which actually calls the <code>Ensure</code> method and then assert its proper usage simply by checking whether this function has been called. That's like implanting a lambda into the existing code. You quickly smash in some prototypical code to verify your solution path:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">TimeEntryImplant</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">Ensure</span><span class="p">(</span><span class="n">CultureInfo</span> <span class="n">culture</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>That's the delegate. Let's weave that into <code>Chronograph</code> in order to be able to utilize it:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Chronograph</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="n">CultureInfo</span> <span class="n">_culture</span> <span class="p">=</span> <span class="n">CultureInfo</span><span class="p">.</span><span class="n">InvariantCulture</span><span class="p">;</span>
+  <span class="k">private</span> <span class="n">TimeEntryImplant</span><span class="p">.</span><span class="n">Ensure</span> <span class="n">_implant</span><span class="p">;</span>
+
+  <span class="k">internal</span> <span class="nf">Chronograph</span><span class="p">(</span><span class="n">TimeEntryImplant</span><span class="p">.</span><span class="n">Ensure</span> <span class="n">implant</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_implant</span> <span class="p">=</span> <span class="n">implant</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>And finally heading on to extend the test:</p>
+<div class="codehilite"><pre><span class="na">[TestFixture]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">When_chrono_is_in_sync</span> <span class="p">{</span>
+<span class="na">  [Test]</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_culture_is_ensured_with_time_entry</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="n">TimeEntryImplant</span><span class="p">.</span><span class="n">Ensure</span> <span class="n">implant</span> <span class="p">=</span>
+      <span class="n">culture</span>
+        <span class="p">=&gt;</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+
+    <span class="n">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
+    <span class="n">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">(</span><span class="n">implant</span><span class="p">);</span>
+
+    <span class="n">chrono</span><span class="p">.</span><span class="n">IsDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="n">chrono</span><span class="p">.</span><span class="n">SyncWith</span><span class="p">(</span><span class="n">ts</span><span class="p">);</span>
+
+    <span class="n">Assert</span><span class="p">.</span><span class="n">IsTrue</span><span class="p">(</span><span class="n">ensureWasCalled</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>"Yeah, right." Looks good so far. The strategy now is hacked in. You feel good, you feel confident. Nonetheless, you still feel the need to reiterate your solution path again. The pro is working here. Swiftly, almost gracefully, you stand up from your seat, followed by two elegant sidesteps towards the whiteboard. On a small space on the upper left corner you rewrite the essentials steps again:</p>
+<ol>
+<li>Declare &amp; define expression containing the new functionality.</li>
+<li>Use the expression within assertion to get the test red.</li>
+<li>Implant the expression within class under test to get the test green.</li>
+</ol>
+<h3 id="freddy-fredpecker">Freddy Fredpecker</h3>
+<p>"Hey, hey, heeeeeeey!" you hear a dark, arrogant and unemotional voice on your back saying with low voice. It's Fred, your "colleague". No. Collegue is not the right word. Fred is an arrogant Egomaniac, who coincidentally happen to work at the same company as you do. To make it even worse, Fred is the self-proclaimed "Testing Expert" in your department. He actually hasn't heard anything about <a href="https://github.com/machine/machine.specifications">MSpec</a>, he writes "Unit Tests" with database usage and he is very keen to rigorously punish every developer with irony and sarcasm who is not obeying the almighty AAA-rule. Testing Expert, you know.</p>
+<p>You turn your back slowly and see him sitting on your desk. "What an ignorant, low-life piece of crap he is" you think as you see him tipping with his dirty fingers on your beloved <a href="http://shop.github.com/products/octocat-mug">Octocat Mug</a> while swinging around in lay-back mode on your swivel-chair.</p>
+<p>"You seem to have a faible for testing, aren't you? Buddy, realize testing is not about colors or expressions. I see..." Fred continues while having a glimpse at your test code, "... you're trying to test something with lambda. Man, I knew you're crazy. Like '<a href="http://en.wikipedia.org/wiki/I_Now_Pronounce_You_Chuck_and_Larry">Adam Sandler-Crazy</a>'. But I didn't knew you're dumb as well. Like '<a href="http://en.wikipedia.org/wiki/Dumb_and_Dumber">Jim Carrey-Dumb</a>', y'know?" He harshly puts your mug back on your desk while moving his butt off your chair.</p>
+<p>"Fred," you reply, "ehh... eh... well... em, you're right. I'm just trying out something, y'know? It's wrong shit anyway, so don't care about it. Well, y'know it's hard for me as an 'average' coder to get into this testing stuff. I'm experimenting a bit, that's all.". </p>
+<p>You know you need to get rid of him. Now. You put that ordinary, demotivated Looser-Look on your face and stare at Fred. Deranged. - "You better get a life, kid." mouns Fred and slowly moves out of the door. You follow him, with a little, respectful distance, grab the knob of the door and close it silently.</p>
+<h3 id="two-strikes-to-green">Two Strikes To Green</h3>
+<p>"Phew... at least I got rid of this low life looser". You quickly move back to your desk and grab the keyboard. You're so close to the solution, only a few keystrokes away. The test is red. You know you could go green by just invoking <code>_ensure</code> function you injected through <code>Chronograph</code>s constructor. </p>
+<p>However, that's not the idea of this game. The Idea is to ensure that the <em>real</em> <code>Ensure</code> method of <code>TimeEntry</code> has been called. You lean back for a minute, then decide to slowly hack in an extension method to <code>TimeEntryImplant</code>:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">TimeEntryImplant</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">EnsureImplant</span><span class="p">(</span><span class="k">this</span> <span class="n">TimeEntry</span> <span class="n">entry</span><span class="p">,</span> <span class="n">CultureInfo</span> <span class="n">culture</span><span class="p">,</span> <span class="n">Ensure</span> <span class="n">implant</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span><span class="n">implant</span> <span class="p">??</span> <span class="n">entry</span><span class="p">.</span><span class="n">Ensure</span><span class="p">)(</span><span class="n">culture</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Yep. You pause. Just staring at your code. It's these little moments, these little seconds in your poor hacker life you're loving to have. You made it. And it looks beautiful. You just got your very first <strong>test implant</strong>.</p>
+<h3 id="grande-finale">Grande Finale</h3>
+<p>Now let's head on to the finishing move! It somehow amazes you that you're able to switch back into rapid fire mode so easily after being in the 'code monkey stares at code'-position. Rolling back with yout chair to your desk, you almost spilled your coffee on your beloved keyboard. Almost.</p>
+<p>Ok. Concentration. You already know it. Victory is only one single line away. With the heart of a winner, a generous and confident smile in your face, you open the <code>Chronograph</code> class and change the line you knew you needed to change from the beginning. You locate your enemy:</p>
+<div class="codehilite"><pre><span class="n">te</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">_culture</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Squash this buggy line away and place in your implant:</p>
+<div class="codehilite"><pre><span class="n">te</span><span class="p">.</span><span class="n">EnsureImplant</span><span class="p">(</span><span class="n">_culture</span><span class="p">,</span> <span class="n">_implant</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Save. Run test. <em>This is the moment.</em> You stare with eager into test results window while your stuff compiles. You're sweating, altough you haven't moved your ass even an inch away from your computer.</p>
+<p>Ok, runner starting... testing... green!</p>
+<p><strong>Victory!</strong></p>
+<p>You lean back, grab your mug, sip a little bit, switch back to code to see the beauty of the complete <code>Chronograph</code> class:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Chronograph</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="n">CultureInfo</span> <span class="n">_culture</span> <span class="p">=</span> <span class="n">CultureInfo</span><span class="p">.</span><span class="n">InvariantCulture</span><span class="p">;</span>
+  <span class="k">private</span> <span class="n">TimeEntryImplant</span><span class="p">.</span><span class="n">Ensure</span> <span class="n">_implant</span><span class="p">;</span>
+
+  <span class="k">internal</span> <span class="nf">Chronograph</span><span class="p">(</span><span class="n">TimeEntryImplant</span><span class="p">.</span><span class="n">Ensure</span> <span class="n">implant</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_implant</span> <span class="p">=</span> <span class="n">implant</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsDirty</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="k">public</span> <span class="n">LocalTime</span> <span class="nf">SyncWith</span><span class="p">(</span><span class="n">TimeServer</span> <span class="n">ts</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">IsDirty</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">TimeEntry</span> <span class="n">te</span> <span class="p">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">GetTime</span><span class="p">();</span>
+      <span class="n">te</span><span class="p">.</span><span class="n">Apply</span><span class="p">(</span><span class="n">_culture</span><span class="p">);</span>
+      <span class="n">localTime</span> <span class="p">=</span> <span class="n">te</span><span class="p">.</span><span class="n">ToLocalTime</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">TimeEntry</span> <span class="n">te</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeEntry</span><span class="p">(</span><span class="n">localTime</span><span class="p">);</span>
+      <span class="n">te</span><span class="p">.</span><span class="n">EnsureImplant</span><span class="p">(</span><span class="n">_culture</span><span class="p">,</span> <span class="n">_implant</span><span class="p">);</span>
+      <span class="n">localTime</span> <span class="p">=</span> <span class="n">te</span><span class="p">.</span><span class="n">ToLocalTime</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">localTime</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>You did it. You squashed the bug. TDD. Test-First. Brownfield. What a victory.</p>
+<p>After this tremendous win, you surely got excited enough from your <em>test implant</em> to tell all your mates about it. In your office, though IM, Facebook, Twitter and whatever medium you have ready. For hours and hours, you reiterate your journey.</p>
+<p>Through all this excitement, you even get your hands on other, similar pieces of code and try using the implant technique. It's easy, it's expressive, it just works.</p>
+<p>After all these exciting hours, you literally didn't notice how fast time flew away. It's 9 P.M and you're still in office. "Oh shit, I'm supposed to meet with my honey at 10!". You grab your jacket, lock your box, switch off lights and slowly move stairs down to basement. Time to leave with pride. With the 'test implant' feather in your cap you walk out of the office and step into the bus.</p>
+<p>An hour later you're finally at the bar to meet your sweetheart. She steps in, beautiful as ever, smiles and quickly skirrs into your arms. This day can't get better. She gives you a long, affectionate kiss - willing to stop at nothing.</p>
+<p>All of a sudden you stop the kiss, smile at her at your best and whisper: "I love you, hon..." while thinking... <strong>"OMG, I forgot to check-in!"</strong></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>21 January 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/the-quest-of-the-test.html&title=The Quest Of The Test">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

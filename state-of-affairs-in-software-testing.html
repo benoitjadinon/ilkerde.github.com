@@ -1,0 +1,261 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>State Of Affairs In Software Testing</title>
+    <meta name="description" content="A rather personal comment on the results of the survey on software testing from german and swiss software testing boards, including a brief analysis and consequences from an agile perspective.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="state-of-affairs-in-software-testing">
+    <a href="state-of-affairs-in-software-testing"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>State Of Affairs In Software Testing</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>This is a report and personal comment about the current state of testing in the software engineering industry. A few months ago, I attended a symposium about quality in software engineering. During this event, the results of a <a href="http://softwaretest-umfrage.de">study on software quality and testing</a> were presented. The study was conducted by <a href="http://www.german-testing-board.de">GTB</a> of Germany and <a href="http://www.software-tester.ch/stb.html">STB</a> of Switzerland. As far as I can judge, the study can be considered representative.</p>
+<p>I want to catch up and comment some study results here. I'll do that in <em>english by intent</em>, so that my international readers have a chance to compare this with their own findings they might have in their country, region or industry.</p>
+<h3 id="methodologies">Methodologies</h3>
+<p>First of all, let's look into what's the state of the industry on methodologies (or process frameworks). Just as a reminder, the survey was conducted in 2011.</p>
+<p>It's interesting to point out that more than 50% of all participants use a process model based on <em>phases</em>. This practically means: sequential thinking - sequential doing. That's very disappointing to me, especially when you read further on and realize that <em>not even one third</em> is using a model which <em>claims to be oriented</em> on agile principles.</p>
+<p><img alt="Methodologies in industry" src="/media/images/test_methods.jpg" /></p>
+<h3 id="agile-is-fragile">Agile is Fragile</h3>
+<p>Now, if we zoom in and analyze from those who claimed to follow agile principles what agile methodology they actually practice, a terrific picture is being revealed.</p>
+<p><img alt="Agile methodologies applied in industry" src="/media/images/test_agile.jpg" /></p>
+<p>This figure is evidence enough that todays software industry is approaching towards a dangerous thinking that not only Scrum is Agile, but Agile is Scrum. However, what actually is shocking me is the fact that almost 30% (yes, it's really <em>one out of three</em>) are doing "something very agile on their own". That said, they claim to have an agile working environment and mindset without referring to existing agile methodologies. To me, this sounds like there's a large dark figure of organizations thinking that they're agile while their reality is much likely very different.</p>
+<p>A second, very interesting figure from that study actually is the answer to following question:</p>
+<blockquote>
+<p>What are the most valuable agile practices with regard to software quality?</p>
+</blockquote>
+<p>The answers to this question are partly surprising:</p>
+<p><img alt="Important agile practices" src="/media/images/test_agile_practices.jpg" /></p>
+<p>First, the <em>good news</em>: 50% of all participants believe that <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a> is essential for good software quality. Retrospectives are being valued high (46%), followed by (Continuous) Refactoring (40%). Despite these positive signs, there's room for improvement as well. Namely on the most important aspect of cultural effects like Collective Code Ownership (22%) and <a href="http://en.wikipedia.org/wiki/Pair_programming">Pair Programming</a> (30%). Those should be at least as high as TDD is right now.</p>
+<p>Surprisingly, the most important agile practice from software quality point of view seems to be shared effort estimation (60%), most notably using <a href="http://en.wikipedia.org/wiki/Planning_poker">Planning Poker</a> and the like. Clean and concise user stories are of great importance, very much like daily standups are (both 50%). <em>(Note: If you're missing Code Reviews here, don't be surprised. There's a separate survey result  regarding reviews which I'll discuss later on).</em></p>
+<h3 id="goals-in-testing">Goals in Testing</h3>
+<p>Before I'll have a closer look at the interesting questions (like how is testing done in organizations nowadays), it's worth to have a short strategic perspective on testing and software quality. The topmost target in software quality testing is gain of productivity (66%), followed by the all-time favorite economical chuck-norris-sidekick-answer of cost reduction (37%). Interestingly, automation (34%) and standardization (32%) are almost as equally high valued strategic goals as cost efficiency.</p>
+<p><img alt="Strategic goals of software quality testing" src="/media/images/test_goals.jpg" /></p>
+<p>Apart from these goals, another interesting fact surely is the organization of responsibility in testing. While keeping in mind that almost one out of three organizations claim to be "agile", the question of who actually is responsible for software quality testing in their organization is pretty disillusioning.</p>
+<p><img alt="Responsibles for software quality and testing" src="/media/images/test_responsibility.jpg" /></p>
+<p>Here we are, back again in our waterfall dreams, where the project manager (57%) and test manager (51%) are being kept responsible for software quality  and hence surely will have "adequate measures" to "assure" that the almighty "quality KPIs" are going to be fulfilled.</p>
+<p>Although many testing communities love to communicate that "testing is a general concern" and needs to be adopted using a "holistic approach", the survey result speaks a very different language. Even the testers seem to favor positional (or role) responsibilities instead of just saying "the team is responsible for quality and testing". I'm not saying that no QA should be established. I'm just saying that a widespread responsibility nowadays is crucial for interdisciplinary awareness.</p>
+<h3 id="testing-practices">Testing Practices</h3>
+<p>Now let's have a closer look at the current state of affairs for testing practices. It's very interesting to me that the industry standard for estimating testing efforts is leaning more towards a <em>complete efforts estimation</em> model. This is a contrast to the previously mentioned responsibility perspective. From all participants, 59% stated that the testing and quality efforts are being estimated with the complete development efforts. In plain english: quality efforts are being included in all estimations.</p>
+<p><img alt="Efforts estimation for software quality and testing" src="/media/images/test_estimation.jpg" /></p>
+<p>At first sight, this seems to be a very positive thing. However, if you read the figures between the lines, it's not that much a positive sign, me thinks. Especially taking into consideration that there's quite a large number who say that <em>quality efforts are not estimated at all</em> (7%) or "somewhat differently" (4%). That makes me scratch my head a little. My interpretation of the large number of "quality efforts are all inclusive" statement is that most organizations don't have a deliberate process towards quality assurance activities and efforts. It's just a guess, though.</p>
+<p>Another interesting aspect is the test systems question. Let's look at the survey results for this question:</p>
+<blockquote>
+<p>What is the primary test system you are using for quality assurance?</p>
+</blockquote>
+<p><img alt="Primary test systems" src="/media/images/test_systems.jpg" /></p>
+<p>I have a twofolded opinion regarding this chart. While it's very positive for me to see that 84% have a separate UAT/QA environment to have their tests running on, there's a flipside. Now imagine that almost 1 out of 4 organizations are testing their releases on live systems (24%). I don't want to imagine that, but I guess I have too. Crazy stuff.</p>
+<h3 id="the-art-of-testing">The Art Of Testing</h3>
+<p>Let's deep dive into testing and look what core activities are being performed nowadays before the actual testing happens. Please bear in mind that more than 50% of all organizations are using a development process based on phases. This effectively means that those companies test <em>after</em> the development has finished. </p>
+<p>A very weird fact, isn't it? Everybody is talking how agile they are, but nearly everybody is putting test activities at the end of the process. What a shame.</p>
+<p>Back to the initial question at hand:</p>
+<blockquote>
+<p>What are the primary activities prior testing?</p>
+</blockquote>
+<p><img alt="Test preparation activities" src="/media/images/test_prep.jpg" /></p>
+<p>Obviously, before testing something, 83% of all survey participants are creating test cases. Good thing. A little surprise: 60% are taking care about defining test data as well. Now, <em>re-read</em> this. While 83% do test cases, only 60% are performing test data definitions. This basically implies to me that 23% seem to define test cases without test data. Ok, I know this is a naive miscalculation. Still, it smells strangely to me.</p>
+<p>One of the most interesting facts to me was <em>test case definition</em>. In particular, the type of test case documentation / definition. Let's take a deep breath and look at the following question:</p>
+<blockquote>
+<p>How do you define your test cases?</p>
+</blockquote>
+<p>The answer - honestly - made me a little sad.</p>
+<p><img alt="Test case definition" src="/media/images/test_case_definition.jpg" /></p>
+<p>The majority in the software industry <em>just writes the test cases down in free text</em> (54%). Got that? Need to repeat? No keyword/action based testing, no DSL's, no formalization whatsoever. </p>
+<p>This sounds to me as if these organizations are in a testing maze. The door to verification: locked. The door to reuse: locked. The door to automation: locked! I wonder if those 54% ever heard of FIT or FITNESSE. What a horrible number. </p>
+<p>On the other hand, 16% like to have their test cases defined the other way round: in a formal language or DSL. There's even a minority of 5% who generate test cases which were previously defined by a particular domain model. There's hope in testing land.</p>
+<h3 id="done-completion-criteria">Done: Completion Criteria</h3>
+<p>Given we have completed all our preparations and did a nice acceptance test run. From the QA perspective, there must be some indication of what is "enough quality" to accept a given system and have it passed over to production. In order to be able to give a sensible statement for such a question, a number of quality perspectives need to be taken into account. These are widely known as <em>Quality KPIs (KPI = <a href="http://en.wikipedia.org/wiki/Performance_indicator">Key Performance Indicator</a>)</em>.</p>
+<p><img alt="Test KPI" src="/media/images/test_kpi.jpg" /></p>
+<p>It's common sense here that all specified / implemented features should have a complete test case coverage to run through (75%). From code perspective, the percentage of code covered through testing (25%) seems to be important as well. Another interesting fact: 59% of all participants look at the test execution rate (number of tests performed for a particular feature) in order to quantify the quality of their software.</p>
+<p>Once the QA testing is underway, there must be a finishing line. This is one of those things every software professional has seen at least once in his career: the deadline beads of sweat. Again, since more than half of todays software industry is testing <em>after</em> software development has completed, the following question (sadly) still remains important:</p>
+<blockquote>
+<p>What are the main criteria to complete testing?</p>
+</blockquote>
+<p><img alt="Test completion criteria" src="/media/images/test_complete.jpg" /></p>
+<p>Again, I'm observing an ambivalency of quality ethics here. Shiny side: 85% of all companies prefer to have <em>all test cases</em> being performed. Even more, 80% think that <em>all features</em> have to be tested in order to complete a QA test run.</p>
+<p>Nonetheless, there's the dark side as well: 59% (yes, it's the majority) state that their QA test is completed when the deadline is reached - <em>regardless</em> of the progress of their testing. Moreover, 37% of all participants just do the bare minimum, which is just to reach a given KPI or otherwise defined metric. Plus, 28% of the software industry have strict budgeting boundaries to software quality and testing.</p>
+<h3 id="quality-assurance-tactics">Quality Assurance Tactics</h3>
+<p>The one and only most used strategy to quality assurance hasn't changed since ages. It's simple and effective at the same time: <em>Reviews</em>. Yes, just Reviews. Espacially professional testers know that a solid review culture is key to stable and sustained quality assurance. Hence, it's good to see that "only" 25% of all seem to ignore this fact.</p>
+<p><img alt="Reviews" src="/media/images/test_review.jpg" /></p>
+<p>From all of those who actually perform reviews in their projects, the subsequent question raises a few interesting aspects:</p>
+<blockquote>
+<p>Which artifacts are regularly being reviewed in your project?</p>
+</blockquote>
+<p><img alt="Review Artifacts" src="/media/images/test_review_stuff.jpg" /></p>
+<p>The interesting notion here in my opinion is: Albeit the most actively reviewed artifacts are the requirements, the least actively reviewed stuff is the <em>source code</em> itself. Second, one can observe that the more it gets 'concrete' in terms of classical phase-oriented engineering, the less it gets 'reviewed'.</p>
+<p>From my point of view, this is quite a sad fact, since it shows that the gap between requirements and implementation both in terms of testing and in terms of domain knowledge seems to be quite large. The ultimate goal from my agile perspective would be that both requirements and code are being treated equal and subject to be reviewed at the same time.</p>
+<p>Another interesting aspect is to focus conscious testing for different component abstraction levels:</p>
+<blockquote>
+<p>On which component level do you regularly perform your tests?</p>
+</blockquote>
+<p><img alt="Test levels" src="/media/images/test_levels.jpg" /></p>
+<p>Obviously the good news here is: All levels are recognized to be tested rigorously. At all levels, the acceptance of <em>required testing</em> is above 60%. Overall, I'm quite happy with the status quo of test level application. Sure, we need more unit testing. But it's a rather unspoken truth that very few developers actually <em>really</em> do TDD and test first. </p>
+<p>Most of the "TDD'ers" I happen to get busy with follow the "kids slide ride" behavior pattern: At start they aim very high and mentally climb up the slide, being enthusiastic and willingly, then their motivation slides down alongside with the duration and progress of the project. In consequence, they learn that both features and thousands of tests need attention, subsequently they happen to do TDD just sparingly when they "feel it's required".</p>
+<p>Now don't get me wrong here. I'm not saying that everything should be TDD'ed. All I want to express is that most people aim too high at start when it comes to TDD. Instead of extensively praticing TDD at start and rarely doing it at end of a project, it's better to just do a fair and well-balanced TDD activity at all time. In consequence, you get more refactorings done, feel better troughout the whole project and even achieve a better test maintenance. That's all what I wanted to say.</p>
+<p>The next relevant set of data to extract information and insights from surely is the degree of test automation for all levels mentioned above. Data has been gathered with the following question:</p>
+<blockquote>
+<p>How much is the percentage of automation on each test level compared to manual testing?</p>
+</blockquote>
+<p><img alt="Test level automation" src="/media/images/test_level_automation.jpg" /></p>
+<p>No big surprises here. Unit Testing is the most automated component (or unit) level, followed by the wider component boundaries. It's not even a surprise to me that the degree of automation is quite low. Only one out of four unit tests (!) are automated. I don't even want to think about all the integration and system tests being performed manually over and over again. </p>
+<p>Automation is both from economical as well as from efficiency perspective a key technology. I think that software companies or teams denying this fact have no bright future nowadays with aspiring competitors using a fast-paced development style.</p>
+<p>Now let's focus on a widely unspectacular perspective of testing: Error reporting. The question asked to all participants of the survey was:</p>
+<blockquote>
+<p>If any failures are discovered during testing, how are they documented?</p>
+</blockquote>
+<p><img alt="Error reporting" src="/media/images/test_error_reporting.jpg" /></p>
+<p>Undoubtedly, mostly errors are being filed in a bug or issue tracking system. What irritates me a little is that it seems that there's no momentum to further analyse or fix the failure. Surely, such activities depend on the severity and priority of the misbehavior observed. Yet, it seems to me that the focus on post-failure-discovery activities is solely on error reporting.</p>
+<h3 id="quality-assurance-methods">Quality Assurance Methods</h3>
+<p>It's a tradition in the testing field to categorize test methods into two main branches. The first, most often polished side of the methods medal is the <em>static checking</em>. Obviously, the flipside of the medal is the <em>runtime checking</em>. The survey covers both areas with a couple of interesting  findings. Let's start with the static part first.</p>
+<blockquote>
+<p>What are the mostly used static test methods in your company / project?</p>
+</blockquote>
+<p><img alt="Static testing methods" src="/media/images/test_static_methods.jpg" /></p>
+<p>The number one method is the most foggy method as well: the infamous "informal" review at the desk (69%). This review can be one of the best and one of the worst methods at the same time. It highly depends on the focus, motivation, skill and professionality of the people involved. </p>
+<p>Actually, the latter holds true for the following methods like Peer Reviews (41%) or "Walkthrough Reading" (45%). It's a little ashaming that formal reviews are not being valued that much. However, I'm personally quite happy that one out of three participants do value formal reviews (35%). I expected a much lower value.</p>
+<p>Additionally, it's interesting to see which methods are actually performed using tools and automation techniques such as source code scanners and continuous integration services:</p>
+<blockquote>
+<p>What methods are being supported by software tools within your project?</p>
+</blockquote>
+<p><img alt="Static toolbased testing" src="/media/images/test_static_with_tools.jpg" /></p>
+<p>Ok, the figures show very clearly that there's close to no innovation and insight within this specific field of testing. While 38% percent don't use any technology at all, 54% of all participants have a coding guideline and/or style checking tool running. At least 25% do collect some code metrics using static analysis tools. That's not completely what static checking is all about for me. It's not only code style and cyclomatic complexity. </p>
+<p>Static analysis is hierarchy and artifact analysis, cohesive components, occurance of domain-related terms and of course <em>data structure analysis</em>. While most of the "usual" applications drive internal or external databases, they really seldomly get reviewed and are being statically checked against. Nonetheless, the results of this particular section are quite ok, me thinks.</p>
+<p>Let's leave the static world and concentrate on the dynamic part of test methods. This part is in particular interesting for developers and testers with a focus on automation. The first question in this section of the survey adresses the strategies of runtime test development.</p>
+<blockquote>
+<p>What categories of dynamic tests are being developed in your company / project?</p>
+</blockquote>
+<p><img alt="Dynamic test categories" src="/media/images/test_dynamic_categories.jpg" /></p>
+<p>Now this is a chart! The vast majority of testing is driven by specifications (88%) and experience (79%). The combination of good specification and long experience on the domain seems to be the foundation of nowadays testing. I'm quite surprised actually that experience-driven runtime testing is that much appreciated. Undoubtedly, domain experience is a factor to be taken into account as well. Nonetheless, it's not that <em>utterly indispensible</em> as the figures might suppose to alarm us.</p>
+<p>I merely expected the structure-driven tests (48%) to be on a more or less on a same level of importance as the spec-driven tests. While specifications drive the <a href="http://en.wikipedia.org/wiki/Black-box_testing">blackbox</a> tests, the structure mostly drives the <a href="http://en.wikipedia.org/wiki/White-box_testing">whitebox</a> category of tests.</p>
+<blockquote>
+<p>What specification-driven test types do you perform regularly?</p>
+</blockquote>
+<p><img alt="Blackbox test types" src="/media/images/test_blackbox.jpg" /></p>
+<p>Again, I'm feeling quite fine with the response to this question. We have functional tests with 82%, use case tests with 77% and boundary checks with 67% on the top, immediately followed by <a href="http://en.wikipedia.org/wiki/Equivalence_partitioning">equivalence partitioning</a> with 60%. To me, this is one of the best charts of the whole survey. The single notion of bitterness actually is that <a href="http://en.wikipedia.org/wiki/All-pairs_testing">pairwise testing</a> is not being used much (15%), although it actually can be a very efficient approach, especially when it comes to large combined sets or other combinatorial challenges.</p>
+<p>That's from the blackbox side, now on to the whitebox side:</p>
+<blockquote>
+<p>What structure-driven test types do you perfom regularly?</p>
+</blockquote>
+<p><img alt="Whitebox test types" src="/media/images/test_whitebox.jpg" /></p>
+<p>Well, most of the mentioned whitebox test types are most probably very familiar to those practicing <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a>, <a href="http://en.wikipedia.org/wiki/Behavior_Driven_Development">BDD</a> or do some intensive unit testing in whatsoever manner. I just want to comment on two things here. Let's start with the scary thing first this time. Almost 40% of all participants <em>don't do any whitebox testing at all</em>. </p>
+<p>Now let this sink for a minute. Got it? Yes, 40%! Almost <em>every second</em> of the professional software engineering companies don't care how their software works. They do care about the fact that the software works as intended, but don't seem to have a lot of interest in how this actually is being accomplished. This freaking scares me.</p>
+<p>The second notable thing here is that if there's whitebox testing, call and branch checking are well established approaches. For TDD'ers this is as usual as breathing air, but for those <em>majority of non TDD'ers</em> it's sort of a speciality. Hence, it's a very positive thing that whitebox tests are being performed with well-known practices. </p>
+<p>The key to successful whitebox testing is isolation and interchange of components. That's what makes structural testing sometimes hard. However, if I were to be asked, I'd surely would emphasize the importance of structural testing as a means to establish <em>flexible design</em> and <em>extensibility</em> of a program.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Well, I don't want to dive into an in-depth analysis of the figures provided by the survey. Yet, let me just wrap up some facts and share some of my thoughts I had while reading the study.</p>
+<p>First of all, it's noteworthy that <em>testing</em> nowadays is an overstressed word. <em>Testing</em> has so many meanings in software engineering - dependent on context and know-how. I think it's both necessary and useful to split the meaning of testing into two separate intentional areas.</p>
+<p>The first area obviously is testing by means of <em>quality assurance</em>. This activity mainly focusses on <em>verification</em> of functionality. On the other hand, there's the wide area of testing by means of <em>requirements engineering</em>. This activity mainly focusses on the <em>specification</em> of functionality.</p>
+<p>With regard to the <em>verification</em> activities, I perceive the current state of testing to be quite mature - both from a strategic and operational point of view. Although one can find areas of improvement, the entire view looks good to me. If I were to tell the most important areas of development, I'd bring the <em>insufficient degree of automation</em> as well as <em>rarely structured test cases</em> onto the table.</p>
+<p>Sadly, the testing picture gets a lot darker when it comes to the <em>specification</em> side. My conclusion from the figures above is that testing as an equal partner of <em>requirements engineering</em> is not being widely recognized. That's not much of a surprise to me, since I even know a lot of self-proclaimed agilists who don't even know how testing fits into the requirements gathering view. The agile movement surely helps the whole industry to further develop this important aspect of testing. Yet, as of today very few professionals seem to follow that path.</p>
+<p>This actually brings me to my next observation. Throughout the whole study, it seems to me as if <em>agility</em> finally got a serious recognition in software industry. However, I also get the impression that a lot of <em>agile methods</em> and <em>agility as a holistic approach</em> are not settled down to a level of well-known best practice. Instead a few methods seem to be practiced rather half-hearted. Even more, <em>agility</em> as a <em>methodology</em> influencing all testing activities seems to be close to non-existent. Keep in mind: the survey is from <em>last year</em> (2011), and we're talking about countries being on the top of the <em>information technology society</em>.</p>
+<p>I want close my brief conclusion with my perception that testing seems to be still undervalued in nowadays projects. Undervalued in terms of importance to the overall project success, for sure. Plus, undervalued with respect to the activities from all project members. Regardless wether it's a testing professional, the product manager, the user interface designer or the software engineer. Testing should be recognized, valued and performed as a <em>cross-functional concern</em>. The sad truth is: it isn't.</p>
+<p>Finally, I want to thank the <a href="http://www.german-testing-board.de">german</a> and <a href="http://www.software-tester.ch/stb.html">swiss</a> testing boards as well as <a href="http://www.hs-bremerhaven.de/Karin_Vosseberg.html">involved</a> <a href="http://www.informatik.hs-bremen.de/spillner/">university</a> <a href="http://www.gm.fh-koeln.de/~winter/">forces</a> for their valuable and very insightful work. Please continue your amazing work! The complete study results can be found at <a href="http://softwaretest-umfrage.de">http://softwaretest-umfrage.de</a> - it's surely worth diving into the detailed results of the study if you want to know more about the current state of affairs in software testing.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>30 June 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/state-of-affairs-in-software-testing.html&title=State Of Affairs In Software Testing">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

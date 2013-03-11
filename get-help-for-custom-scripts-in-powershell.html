@@ -1,0 +1,137 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Get-Help for Custom Scripts in Powershell </title>
+    <meta name="description" content="A short explanation on how to document powershell scripts using inline documentation features.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="get-help-for-custom-scripts-in-powershell">
+    <a href="get-help-for-custom-scripts-in-powershell"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Get-Help for Custom Scripts in Powershell </h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Recently, I coded some Powershell scripts for common tasks. No sophisticated stuff, just the typical automation you do when repetition starts to hurt you. I'm just a lazy <code>Consolero</code>, by the way.</p>
+<p>After having finished my most needed commands within a brand new Posh2-style custom module, I decided to donate my commands support for the built-in <a href="http://technet.microsoft.com/en-us/library/ee176848.aspx"><code>Get-Help</code></a> command. It turned out to be extremely easy. The key success factor here is a nice little feature called <a href="http://technet.microsoft.com/en-us/library/dd819489.aspx">Comment-Based-Help</a> (aka. "AutoHelp").</p>
+<p>With this feature, you can document your commands inline within your script files. The syntax is easy and it helps you to always have an up-to-date documentation of your custom scripts. You may consult built-in documentation by invoking</p>
+<div class="codehilite"><pre><span class="go">PS&gt; get-help about_comment_based_help</span>
+</pre></div>
+
+
+<p>Besides, <a href="http://tfl09.blogspot.com/2008/12/powershell-ctp3-autohelp.html">this blog</a> describes the autohelp feature quite well, too.</p>
+<div class="codehilite"><pre><span class="go">&lt;#</span>
+<span class="go">One side note: while researching about autohelp, </span>
+<span class="go">I just learned that the syntax for Powershell 2.0 </span>
+<span class="go">[block (or multiline) comments][ps_blockcomments].</span>
+
+<span class="go">Nice, isn&#39;t it?</span>
+<span class="gp">#</span>&gt;
+</pre></div>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>24 January 2011</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/get-help-for-custom-scripts-in-powershell.html&title=Get-Help for Custom Scripts in Powershell ">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

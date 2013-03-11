@@ -1,0 +1,227 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Lerne &amp; Lehre: Ilker&#39;s .NET Coding Dojo</title>
+    <meta name="description" content="Meine Auffassung und Werte zu einem Coding Dojo.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="lerne-lehre-ilker-net-coding-dojo-latifa-stil">
+    <a href="lerne-lehre-ilker-net-coding-dojo-latifa-stil"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Lerne &amp; Lehre: Ilker&#39;s .NET Coding Dojo</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Das letzte Münchener Coding-Dojo war schon ein ganz besonderes. Wir, die Münchener Dojo-Crew waren zu Gast beim dotnetpro.powerday und waren überrascht, dass uns der Veranstalter vor dem Coding Dojo sogar noch Snacks &amp; Getränke gestellt hat. Einfach nur Toll! Meinen herzlichen Dank an <a href="https://www.xing.com/profile/Florian_Bender2">Florian Bender</a> und den <a href="http://www.dotnetpro-powerday.de/">dotnetpro.powerday</a>!</p>
+<p>Doch nicht nur die Location war ganz besonders, sondern auch <a href="http://twitter.com/sforkmann/status/16759769373">das "Line-up" der Teilnehmer</a>. Es hatten sich mehr als <a href="https://www.xing.com/events/net-coding-dojo-empowered-508914">20 Teilnehmer für das Dojo auf der Xing-Gruppe angemeldet</a> – und es gab „on top“ noch ein gutes Dutzend Interessierter, die nach einem ganzen Tag geballter C#-Wissensvermittlung noch „Power“ genug hatten, beim Dojo dabei zu sein.</p>
+<p>19:00 Uhr – es geht los, das Dojo wurde von mir mit einleitenden Worten eröffnet. Ich habe für die Neulinge in der Runde noch kurz die „Rahmenbedingungen“ abgesteckt: Lösen eines Code Kata per TDD, aktiv und gemeinsam. Alle coden, einer tippt (wir waren wieder im <a href="http://en.wiktionary.org/wiki/prepari">Prepari</a>-Modus). Es gibt kein Falsch und kein Richtig, es gibt keine dummen Fragen und keine dummen Antworten. So einfach ist das.</p>
+<p>Ich habe dann auf Grund der großen Teilnehmerzahl den Vorschlag der Gruppenbildung unterbreitet und zur Abstimmung vorgelegt. Wir haben uns gemeinsam für eine große Gruppe statt zwei kleiner Gruppen entschieden.</p>
+<p>Danach ging es auch schon zur Vorstellung der Kata’s: Ich hatte mit Pete gemeinsam eine Vorschlagsliste erarbeitet: KataTennis, KataRomanCalculator und KataBankOCR. Ein seltenes, aber schönes Erlebnis waren diesmal die Alternativ-Vorschläge der Teilnehmer, darunter Sudoku oder FizzBuzz. Nach einer kurzen Abstimmungsrunde war es soweit: <a href="http://codingdojo.org/cgi-bin/wiki.pl?KataBankOCR">KataBankOCR</a> wurde gewählt.</p>
+<h3 id="wie-wird-morgen-das-wetter">Wie wird morgen das Wetter?</h3>
+<p>Die übliche „Anforderungsrunde“ wurde damit eingeleutet. Ich habe das Kata näher vorgestellt und nach offenen Fragen abgefragt. In dieser Phase haben wir uns auf besondere Dinge wie z.B. Zeilenhöhe und Ziffernabstand geeinigt und die Anforderungen klarer umrissen. Nach ca. 15 Minuten war es dann soweit, auf meine Frage „Noch offene Fragen?“ gab es nur noch die Gegenfrage „Wie wird morgen das Wetter?“. Damit war die Anforderungsrunde abgeschlossen.</p>
+<p>Es konnte also losgehen. Aber wie legt man jetzt denn los? Das war die nächste Frage. Pete hatte Visual Studio schon offen, das Projekt war angelegt, das Test-Framework eingebunden. Die Tools waren bereit. Doch waren es die Teilnehmer auch? Eine geteilte Stimmung machte sich breit. Während die einen am Grübeln über den ersten Test waren, waren die anderen mit der Vorgehensweise nicht einverstanden und wollten erst mal „generell eine Architektur herausarbeiten“. Auch hier half die Abstimmung weiter. Mit äußerst knapper Mehrheit ließ man sich auf die Erarbeitung des ersten Tests ein, ohne eine „Lösungsanalyse“ im klassischen Sinne gemacht zu haben.</p>
+<h3 id="test-schreiben-heisst-nachdenken">Test schreiben heisst nachdenken</h3>
+<p>Das herausarbeiten des ersten Tests war garnicht so einfach wie es viele vielleicht vermutet hatten. Es gab Diskussionen über die Datenstruktur (<code>string</code> vs. <code>List&lt;string&gt;</code> vs. <code>IEnumerable&lt;string&gt;</code>) und wir taten uns schwer, einen richtigen Namen für unseren Test zu finden. Doch nach knapp 10 Min. hatten wir endlich den ersten Test, der das „Digit 0“ testet, rot. Und schon ging es an die Implementierung: „return 0;“! Ach, wie schön, das erste Erfolgserlebnis ist da!</p>
+<p>Das motiviert schon gleich zum nächsten Test, der Erkennung von „Digit 1“. Schnell wurde der Test geschrieben und dann ging es wieder an die Implementierung. Diesmal war es natürlich schon schwerer, denn schließlich musste jetzt erkannt werden. Aber jetzt fingen auch die Neulinge an, aktiv an der Lösung zu arbeiten und brachten Vorschläge und Kommandos in die Runde ein. Es dauerte nicht lange, und man hatte mit einem einfachen String-Vergleich die Implementierung fertig.</p>
+<h3 id="red-green-maybewzxhzdk0">Red-Green-Maybe<Refactor> ?</h3>
+<p>Doch irgendwie war man nicht ganz mit dem Ergebnis zufrieden, denn der Ruf nach Refactoring wurde lauter. <a href="http://www.des-eisbaeren-blog.de/">Golo</a> mahnte an: „Es heisst Red-Green-Refactor und nicht Red-Green-Vielleicht-Refactor“. Sein Standpunkt: wenn man Refactoring nicht „im Kleinen“ und von Anfang an betreiben würde, dann würde der Aufschub noch mehr Probleme schaffen.</p>
+<p>Andere wiederum sahen das nicht „so steif“, sondern beriefen sich auf den berühmten „Smell“. D.h. wenn eine Implementierung offensichtlich „Bereinigung verlangt“ um die Funktionalität weiter vorantreiben zu können, dann werde refaktorisiert. Auch hier die Abstimmung. Auch hier ein ganz knappes Ergebnis für den Aufschub des Refactorings.</p>
+<h3 id="gibt-es-ein-abs-beim-tdd">Gibt es ein ABS beim TDD ?</h3>
+<p>Also ging es weiter zum nächsten Test, der im Übrigen wieder von einem Neuling angeregt wurde. Was tun mit „Leerstellen“? Also wie kann man überprüfen, dass <em>keine</em> Ziffer an einer Stelle des „virtuellen Displays“ dargestellt wird. Raunen machte sich breit beim erarbeiten des Tests. Einige Stimmen waren für „einfach 0 zurückliefern“ („Vollgas“ weiter machen), andere wiederum wollten den Test nicht machen stellten den derzeitigen Lösungsansatz in Frage („Vollbremsung“).</p>
+<p>Eine kleine Randgruppe wollte den Test durchführen, aber den Target (also die zu testende Methode) wechseln ( „Ausweichen“). An dieser Stelle gingen die Meinungen und Ansichten wieder auseinander. Eine etwas heftigere Diskussion wurde entfacht, doch leider konnte Sie nicht weitergeführt werden, denn unsere „Dojo-Zeit“, die wir uns als Timebox festgelegt hatten, war abgelaufen. Doch die Frage war im Raum und verlangt natürlich auch nach einer Antwort: Gibt es ein "ABS" (Anti-Blockier-System) beim TDD?</p>
+<h3 id="die-moral-von-der-geschichte">Die Moral von der Geschichte...</h3>
+<p>Die abschließende Retrospektive war wie immer sehr aufschlußreich und gab einen bunten Mix an Feedback zurück. Unter anderem wurde die TDD Vorgehensweise gelobt und kritisiert, die Gruppengröße bemängelt, das Ergebnis sowohl als „sehr gut“ und „sehr schlecht“ attributisiert, die „Planlosigkeit“ kritisch betrachtet, das vernachlässigte Refactoring angemahnt. Alles in allem jedoch, war es für jeden erkenntnisreich, denke ich.</p>
+<p>Doch ganz besonders war dieses Dojo eine Lehre für mich. Ich konnte in diesem Dojo wieder vieles Lernen. Ich lernte z.B. dass „Neulinge“ sehr wertvoll für eine Gemeinschaft sein können, weil sie unvoreingenommen, ja man mag fast sogar sagen „positiv naiv“ auf Dinge blicken. Das ist nicht nur frisch, sondern auch konstruktiv. Dazu gab es noch eine Reihe weiterer Erkenntnisse, die mich zum Nachdenken gebracht haben. Ich will hier auch auf diese Erkenntnisse und die Konsequenzen daraus eingehen.</p>
+<h3 id="die-einfachste-losung-gewinnt">Die einfachste Lösung gewinnt</h3>
+<p>Da wäre zum Beispiel die immer wieder aufkeimende Diskussion in Coding Dojo’s, ob man nun nach der Anforderungsanalyse über einen generellen Lösungsweg nachdenken sollte (Knobler) oder „einfach“ sich auf den Code stürzen sollte (Coder). Ich habe zu diesem Thema einen besonderen persönlichen Standpunkt, den ich noch in einem gesonderten Artikel im Detail niederschreiben werde – hier würde solch ein Exkurs den Rahmen deutlich sprengen.</p>
+<p>Fakt ist, dass wenn eine <a href="http://twitter.com/sforkmann/status/16834230537">solche Diskussion im Dojo auftaucht</a>, diese Diskussion auch geführt werden muss. Hier zählt der Erfahrungsaustausch, hier zählt der Lernwille, der das führen der Diskussion bedingend macht. Generell ist es natürlich so, dass beim Coding Dojo „Test-First“ entwickelt wird. Ob das per TDD, BDD oder ATDD geschieht, sei erstmal dahingestellt. „Test-First“ ist im Sinne der agilen Methoden, besonders aber im engeren Sinne XP wörtlich zu verstehen. Um den TDD-Neulingen oder TDD-Zweiflern das etwas näher zu bringen, zitiere ich <a href="http://www.amazon.de/Software-Development-Principles-Patterns-Practices/dp/0135974445">Uncle Bob</a>:</p>
+<blockquote>
+<p>"The act of writing a unit test is more an act of design than of verification. It is also more an act of documentation than of verification. The act of writing a unit test closes a remarkable number of feedback loops, the least of which is the one pertaining to verification of function."</p>
+</blockquote>
+<p>Also ganz klar: Nein, es soll beim Coding Dojo keine „gesamte Lösung“ erarbeitet werden, bevor man das programmieren anfängt. Sondern: Ja, beim Coding Dojo wird nach klarer Anforderungsanalyse sofort der erste Test in Angriff genommen. Dazu muss man natürlich auch nachdenken. Keiner wird daran gehindert, sich für diesen Test (und manchmal sogar den nächsten) eine Strategie zu überlegen. Es ist eher so, dass man sich gegenseitig zu einer klaren Testdefinition motiviert.</p>
+<h3 id="chief-operating-development-engineer-lead-executive-senior-sensei">Chief Operating Development Engineer Lead Executive Senior Sensei</h3>
+<p>Darüber hinaus gab es in diesem (sowie auch in den vorangegangenen) Dojo vermehrt Stimmen, die eine “Führungsrolle”, eine “bewertende und entscheidende Instanz“, einen „Chefentwickler“ oder ähnliches eingefordert haben. Auch hierzu gibt es für das Coding Dojo eine klare Vorgabe. So gibt es beim Coding Dojo z.B. verschiedene Formate, wie das Prepari oder Randori oder andere. Ich möchte hier nur kurz anmerken, dass ich in einem separaten Artikel auch auf diese <a href="http://www.altnetberlin.de/Termine/coding-dojo">verschiedenen Verfahren und Modi</a> in Dojo’s eingehen werde. Für's erste soll es reichen, dass es verschiedene Arten gibt.</p>
+<p>Je nach Format gibt es auch verschiedene Rollen. In den Münchener Dojo’s haben wir oft – wie auch dieses Mal - das einfachste Format gewählt: Prepari. In diesem Format gibt es 3 Rollen: den „Hacker“ (von mir öfter flapsig als „CodeMonkey“ bezeichnet), den „Operator“ (der Organisator und Moderator, manchmal etwas irreführend auch „Leiter“ des Dojo’s) und natürlich die „Contributor“, die aktiven Teilnehmer des Dojo’s.</p>
+<p>Im Prepari-Format (sowie auch in allen anderen) gibt es keine CODELESS-Rolle. Es gibt also beim Coding-Dojo niemanden, der die Rolle des „CODELESS“ einnimmt. Das Gegenteil ist der Fall: es wird explizit beim Coding Dojo eine CODELESS-Rolle vermieden. Und für diejenigen, die die Rolle nicht kennen:</p>
+<blockquote>
+<p>Definition: <strong>CODELESS</strong> = “<strong>C</strong>hief <strong>O</strong>perating <strong>D</strong>evelopment <strong>E</strong>ngineer <strong>L</strong>ead <strong>E</strong>xecutive <strong>S</strong>enior <strong>S</strong>ensei”</p>
+</blockquote>
+<p>Im Coding-Dojo die “Anti-Rolle” der führenden, leitenden, entscheidenen Person(en). Kann von einer oder mehreren Personen erfüllt werden. Sobald die Gefahr für so eine Rolleneinnahme besteht (ein „Smell“ sozusagen), darf (und soll) jeder zur Vermeidung der Rolle folgenden Satz sagen:</p>
+<p>„We don’t want (to) CODELESS, we want (to) code more !“</p>
+<p>Sobald also die Rolle eingenommen wird, sind alle anderen dazu verpflichtet, die Rolle der oder den Personen wieder zu entziehen. Im Coding Dojo gilt das Prinzip der Gleichstellung. Alle Meinungen haben per se den gleichen Wert. Die Auswertung der Meinungen geschieht gemeinsam. Entscheidungen werden gemeinsam getroffen. Diskussionen werden gemeinsam gestartet und gemeinsam beendet. Keiner darf sich besser stellen, keiner soll sich schlechter stellen.</p>
+<h3 id="rei">Rei</h3>
+<p>Jeder ist in dieser „Coding Dojo“-Gemeinschaft nun gleichgestellt – ein schönes Recht. Doch gibt es auch Pflichten für die Teilnehmer? Oft werde ich nach „Voraussetzungen“ für die Teilnahme des Dojo’s gefragt. Ich antwortete auf diese Frage meist mit folgenden Sätzen:</p>
+<p>„Nicht viel. Interesse, Wissbegierde, Neugier für .NET und moderne, professionelle Software-Entwicklungs-Methoden. Aktive Teilnahme &amp; Beitrag zur Lösung der gestellten Programmieraufgabe.“</p>
+<p>Das hat den meisten Fragestellern ausgereicht, um sich ein Bild machen zu können. Aber dennoch haben wir immer wieder Probleme mit dem Selbstverständnis der Teilnahme am Dojo. Ich denke, dass es dafür mehrere Gründe gibt. Manche denken, ein Dojo sei so „informell“, dass es keine Regeln gäbe. Andere wiederum vergleichen es mit anderen Formaten, wie z.B. einem Workshop, Vortrag oder Fishbowl. Um diesen „Interpretationen“ etwas mehr Linie und Substanz zu geben, stelle ich die Teilnahme-Voraussetzungen auf eine etwas formalere Ebene. Die folgenden Regeln sind Grundregeln (<a href="http://de.wikipedia.org/wiki/Rei">Rei</a> bzw. <a href="http://de.wikipedia.org/wiki/Reishiki">Reishiki</a>), die für die Teilnahme an einem Coding Dojo bedingend sind:</p>
+<blockquote>
+<p><strong>§1 - Aktivität</strong> 
+Der ehrliche Wille, einen aktiven, fokussierten Beitrag zum „Lernen &amp; Lehren“ zu leisten.</p>
+</blockquote>
+<p>Es gibt beim Coding Dojo niemanden, der sich nicht einbringen darf. Das hört sich ein wenig nach „zur Aktivität gezwungen sein“ an. Und ganz offen: Ja, so ist es auch. Mitdenken, Mitwirken, Mitreden – das ist eine Pflicht für den Teilnehmer im Coding Dojo. Dennoch gibt es natürlich „Interessierte“, die sich „das Mal anschauen“ möchten. Das war bisher immer möglich und das wird es auch weiterhin. Aber: es darf nicht zur Gewohnheit werden. Deswegen folgende Regelzusätze:</p>
+<ul>
+<li>Falls jemand „Spectator“ sein möchte, muss er es bei Dojo-Beginn allen mitteilen. Zuschauer haben keine Pflichten, aber auch keine Rechte. Im Gegensatz zu den Teilnehmern dürfen sie keinen Beitrag leisten, sondern nur „beobachten“. Sie werden auch vom Abstimmungs- und Feedback-Recht befreit.</li>
+<li>Eine Person darf nur einige Male – sagen wir mal bis zu dreimal – „Spectator“ sein. Spätestens beim 4. Dojo-Besuch muss er aktiv werden. Sollte er es weiterhin nicht wollen, muss er alle Teilnehmer um Beobachtungserlaubnis bitten. Bei Erlaubnis bleibt er „Spectator“, bei Verweigerung muss er das Dojo verlassen.</li>
+</ul>
+<blockquote>
+<p><strong>§2 - Respekt</strong> 
+Der ehrliche Wille, sein Gegenüber anzunehmen wie er ist.</p>
+</blockquote>
+<p>Sie oder ihn, seine Haltung, seine Meinung und sein Wissen zu würdigen um damit das „Lernen &amp; Lehren“ zu stärken. Einher geht dabei auch Höflichkeit bei Kommunikation und Kollaboration. Adequate Wortwahl, konstruktive Beiträge und kultivierte Gemeinsamkeit sind die Pflicht jedes Dojo-Teilnehmers. Um dies zu Gewährleisten, gelten folgende Regelzusätze:</p>
+<ul>
+<li>Jeder einzelne Teilnehmer ist verpflichtet, andere auf mögliche Respektsverletzungen hinzuweisen. Er kann sich jederzeit dem „Operator“ zuwenden. Es obliegt dann der gesamten Dojo-Gruppe, sich gemeinsam zu besinnen. Das kann durch auflockernde Übungen, eine kurze Pause oder andere Besinnungstechniken geschehen.</li>
+<li>Bei einer offensichtlichen Respektsverletzung, ob willentlich oder nicht, wird das Dojo sofort abgebrochen. Es gibt keine Retrospektive, keine Diskussion. Die Beteiligten an der Respektsverletzung werden durch die anderen Teilnehmer oder den Operator auf Ihr Fehlverhalten höflich und respektvoll hingewiesen und dazu aufgefordert, Ihr Verhalten zu reflektieren und eine Lösung zu erarbeiten. Das Dojo wird nach Abbruch nicht wieder begonnen. Alle Teilnehmer verlassen das Dojo.</li>
+</ul>
+<blockquote>
+<p><strong>§3 - Optimismus</strong>
+Der ehrliche Wille, mit Freude und positiver Einstellung zum „Lernen &amp; Lehren“ beizutragen.</p>
+</blockquote>
+<p>Die positive, offene Grundhaltung eines jeden Teilnehmers ist bedingend für eine gute Unterstützung des „Lernen &amp; Lehren“. So ist es für jeden Dojo-Teilnehmer eine Freude, dabei zu sein und die anderen bei sich zu haben. Sollte „mal einer einen schlechten Tag haben“ ist es nicht so schlimm. Aber man sollte auch im Sinne des Dojo’s offen zu sich selbst sein. Ist die Laune im Keller, so macht es für einen selbst nicht viel Sinn – und damit für die Gemeinschaft auch nicht. Niemand im Dojo nimmt es Übel, wenn man mal „keine Lust“ hat, dabei zu sein. Um die positive Einstellung im Dojo zu unterstützen, gelten folgende Regelzusätze:</p>
+<ul>
+<li>Ein Lächeln ist der Botschafter der Optimismus. Jeder Teilnehmer ist dazu aufgefordert, seine positive Grundhaltung auszudrücken. Manche Lächeln, manche machen kleine Witze, manche suchen Nähe und das Zwischengespräch. Trotz aller Aktivität und Fokus, die man beim Dojo hat (siehe „Regel 1“), ist Optimismus eine Voraussetzung, der man auch als Teilnehmer nachkommen soll.</li>
+<li>Stellt ein Teilnehmer für sich fest, nicht mehr positiv Beitragen zu können, sollte er aus freien Zügen – auch ohne Angaben jedweglicher Gründe, wenn nötig – das Dojo verlassen dürfen. Denken andere Teilnehmer, dass jemand in der Gemeinschaft keine positive Grundhaltung mitbringt, sind sie dazu aufgefordert, demjenigen mit ermutigenden und positiven Worten ihre Wahrnehmung mitzuteilen. Das kann persönlich in der Pause geschehen, oder aber indirekt durch Beteiligung des Operators.</li>
+</ul>
+<blockquote>
+<p><strong>§4 - Zwanglos</strong>
+Der ehrliche Wille, freiwillig, ohne Druck, Wettbewerb oder Leistungsziel das „Lernen &amp; Lehren“ zu verfolgen.</p>
+</blockquote>
+<p>Diese Regel ist besonders wichtig, denn sie nimmt jeglichen Druck von allen. Keiner ist dazu verpflichtet, eine Sache „richtig“ oder „fertig“ zu machen. Niemand zwingt die Teilnehmer, sich an eine bestimmte Technologie, Meinung oder Vorgehensweise zu richten. Wenn überhaupt, dann sind es die Teilnehmer, die selbstbestimmt, freiwillig und gemeinsam sich selbst Verbindlichkeiten zusprechen. Um dies im adequaten Rahmen zu gewährleisten, gelten folgende Regelzusätze:</p>
+<ul>
+<li>Es gibt keine Leistungsziele und keine Leistungsmessung. Weder von Einzelnen, noch von der Gemeinschaft. Ausschließlich Bewertung im Sinne des Feedbacks und des Meinungsaustausches sind für die Teilnehmer möglich. Teilnehmer mit Leistungsanspruch sind von den anderen Teilnehmern von diesem Anspruch freizustellen.</li>
+<li>Selbstbestimmt heisst nicht selbstautoritär. Trotz der Zwanglosigkeit gelten für jeden Teilnehmer die Grundsatzregeln, die Grundsatzvorgehensweise sowie die Regel des kollektiven Entscheids. So ist es verpflichtend und selbstverständlich, wenn ein Teilnehmer einer anderen Auffasung ist die Mehrheit der Teilnehmer, dass dieser sich der kollektiven Meinung beugt bzw. nach dem gemeinsamen Entschluß zu richten hat. Ist die eigenee Meinung mit der gemeinschaftlichen Meinung fundamental nicht vereinbar, so bleibt es jedem frei, das Dojo zu verlassen.</li>
+</ul>
+<p>Diese oben genannten vier Grundregeln sind für mich essentielle Voraussetzungen für die Teilnahme an einem Dojo. Oftmals ist es garnicht so schwer, diesen Bedingungen gerecht zu werden, doch wir durften in der Vergangenheit auch erleben, wie sich der eine oder andere Teilnehmer mit diesen Werten schwer tat.</p>
+<h3 id="make-it-simple">Make it simple</h3>
+<p>Es gibt noch vieles mehr, das ich über das Coding Dojo, die Regeln und Werte des Coding Dojo und auch die Dynamik und Magie des Coding Dojo schreiben könnte, und ich werde es wohl nach und nach auch tun. Doch bei all diesen Hintergrundinformationen und den eben etwas formaler beschriebenen Regeln gilt es den Grundsatz der Einfachheit zu wahren. Solange es nicht wirklich notwendig ist, wird es keinen weiteren „Ballast“ oder „Verkomplizierung“ der Sache geben. Weder mit weiteren Formalismen oder irgendwelchen Hierarchien, unnötigen Gedankenwindungen oder theoretischen Methodenspielchen. Das gilt für Software, das gilt für TDD, das gilt für gemeinschaftliches Arbeiten, also gilt es auch für das Coding Dojo. Frei nach Albert Einstein:</p>
+<blockquote>
+<p>„<strong>Make it simple, but not simpler</strong>“.</p>
+</blockquote>
+<p>Für die Interessierten sei noch das <a href="http://en.wikiquote.org/wiki/Albert_Einstein">Original-Zitat</a> erwähnt:
+"It can scarcely be denied that the supreme goal of all theory is to make the irreducible basic elements as simple and as few as possible without having to surrender the adequate representation of a single datum of experience."</p>
+<h3 id="ich-der-ilker">Ich, der Ilker</h3>
+<p>Nach diesem regelrechten Aufsatz an Regeln und Bestimmungen gibt es einen weiteren wichtigen Punkt, der unbedingt erwähnt werden muss. Alle die o.g. Regeln beziehen sich auf meinen Eindruck, meine Meinung und meine Anschauung. Es ist also „Ilker’s Coding Dojo“, welches sich diesen Rechten und Pflichten unterwirft.</p>
+<p>Warum erwähne ich das? Ganz einfach, weil jeder auf dieser Welt das gute Recht hat, Coding Dojo’s zu machen. Jeder hat so gar das gute Recht, Coding Dojo’s so zu machen, wie er sich das vorstellt. Das ist auch gut so, denn Diversität ist ein wichtiger Faktor für Fortschritt. Aber es birgt auch Potenzial für Missverständnis und Verkennung. Der eine macht Coding Dojo’s mit dem Streben nach Kampf und Perfektion. Ein weiterer macht Coding Dojo’s um neue Sprachen zu erleben und zu erforschen. Ein anderer macht Coding Dojo’s, um anderen zu zeigen, wie man was macht und die Richtung vorzugeben. Aber ich mache Coding Dojo’s nicht (nur) deswegen. Meine Motivation ist das Motto, welches ich immer wieder versuche zu transportieren: „<strong>Lerne &amp; Lehre</strong>“.</p>
+<p>Bei „meinem“ Coding Dojo steht der lockere Erfahrungsaustausch im Vordergrund, gebunden durch eine konkrete, kleine, realisierbare Aufgabe. Doch es geht nicht um einen netten Plausch oder Brainstorming, sondern um <a href="http://de.wikipedia.org/wiki/Lernen">Lernen</a> und <a href="http://de.wikipedia.org/wiki/Lehren">Lehren</a>. Wer nicht genau weiß, wie herausfordernd und anspruchsvoll diese beiden Disziplinen sind, dem rate ich, sich damit ein wenig auseinanderzusetzen.</p>
+<p>Weiterhin mache ich Coding Dojo’s aus freien Stücken, weil es mir Spaß macht und ich weiter Spaß damit haben möchte. Ich mache es, weil ich eine tiefe, feste Überzeugung habe, dass jeder von anderen lernen kann und jeder den anderen lehren kann.</p>
+<p>Ich respektiere diejenigen, die Coding Dojo’s „anders“ sehen, die etwas anderes darunter verstehen oder es anders kennen. Wie gesagt, jedem steht es frei, selbst Coding Dojo’s zu machen und sie so zu machen, wie er es für richtig hält. Ich habe die „Coding Dojo’s“ nicht erfunden, ich bin nicht der Coding-Dojo-Oberlehrer, ich bin kein Kata-Mönch und auch kein Dojo-Messias. Ich bin der Ilker, der Coding Dojo’s macht. Punkt.</p>
+<h3 id="latifa-dojo">Latifa-Dojo</h3>
+<p>So, und als genau dieser Ilker, der diese <a href="mucnetdojo-bericht-vom-ersten-net-coding-dojo.html">Coding Dojo-Bewegung in die .NET-Welt getragen hat</a>, als der Ilker, der Erfahrung mit Coding Dojo’s verschiedener Formate hat, als der Ilker, der das <a href="uber-das-ziel-von-coding-dojos.html">„Lernen &amp; Lehren“ mit Code Kata’s</a> und TDD/BDD &amp; Design Patterns sowie Best Practices in den Vordergrund stellt, als genau dieser Ilker stelle ich die oben genannten Regeln für die Art der Coding Dojo’s auf, die ich mir vorstelle.</p>
+<p>Diejenigen, die sich für Coding Dojo’s interessieren, schon mal bei dem einen oder anderen dabei waren, sogar den Weg mit mir „mitgegangen“ sind oder einfach mal gerne dabei sein möchten – ja euch alle – bitte ich um Vertrauen. <strong>Bitte, vertraut mir</strong> und geht den Weg, den ich hier beschreibe, wenn ihr Coding Dojo’s macht und mitmacht. Verlangt Aktivität, Respekt, Optimismus und Zwanglosigkeit. Verfolgt das Ziel des Lernen &amp; Lehrens. Fordert genau diese Art von Coding Dojo’s, denn diese Coding Dojo’s sind es, die uns alle weiter bringen. Fordert von Coding Dojo’s diese Werte und diese Ziele – von Veranstaltern, von Operatoren, von Teilnehmern, von euch selbst. Ich werde es tun.</p>
+<p>Im Sinnbild der asiatischen Kampfkünste, welches unschwer erkennbar auch mit dem Coding Dojo transportiert wird, möchte ich hiermit das oben geschilderte „Format“ als einen „Dojo-Stil“ etablieren. Es widerspricht natürlich dem gemeinschaftlichen Denken, nun von „Ilker’s Dojo-Stil“ zu sprechen oder es so zu kommunizieren. Personifizierung ist nicht zielführend. Wie gesagt, keiner ist besser gestellt als die anderen, keiner ist schlechter gestellt als die anderen.</p>
+<p>Dennoch ist es ein stückweit meine Handschrift und meine Vorstellung eines Coding Dojo’s. Deswegen möchte ich bei der Schaffung dieses „Dojo-Stils“ noch eine kleine persönliche Note einbringen. Ich mache das jetzt mal einfach und gebe „meinem“ Dojo-Stil einen Namen: <strong>Latifa</strong>.</p>
+<p>Latifa kommt vom arabischen latif, welches frei übersetzt "höflich, freundlich, sanft" bedeutet. Ich habe es gewählt, weil es im türkischen (latife) für „zuvorkommend, manierlich“ und manchmal sogar „gentlemen-like“ angewendet wird. Es spiegelt für mich die Grundvoraussetzung für gemeinsames Tun &amp; Wirken wider, die auch für ein erfolgreiches Lernen &amp; Lehren notwendig ist.</p>
+<p>Es gibt so vieles, welches wir von anderen, unseren Ahnen und anderen Kulturen lernen können. Doch eine Sache ist allen gemeinsam, der Respekt und die Höflichkeit. Wer sich intensiver mit dieser Werte-Einstellung auseinandersetzen möchte, dem Rate ich das Studium (das meine ich wörtlich, also „<a href="http://de.wikipedia.org/wiki/Studium">studere</a>“) des <a href="http://de.wikipedia.org/wiki/Funakoshi_Gichin#Shoto-Niju-Kun">Shoto-Niju-Kun</a>, der 20 Verhaltensregeln von Funakoshi für das Karate-Do.</p>
+<h3 id="feedback-im-mittelpunkt">Feedback im Mittelpunkt</h3>
+<p>Ein zentrales Element des fortschreitens und verbesserns ist das Feedback. Nach geleisteter Arbeit ist Feedback wichtig, um daraus Erkenntnisse zu gewinnen und damit sein Handeln zu adaptieren. Das ist eigentlich ein Naturgesetz.</p>
+<p>Ich möchte diesem Naturgesetz auch hier folgen und möchte abschließend um euer Feedback bitten. Bringt euch ein, macht mit und gestaltet mit. Schreibt mir, was ihr denkt und was ihr machen würdet. Ich freue mich über jedes Feedback.</p>
+<p>Doch bei all dem Wirken &amp; Tun rund um das Coding Dojo stelle ich klar und und kommuniziere es mit deutlichen Worten: Ich werde weiter Coding Dojo’s machen, genauer gesagt Coding-Dojo’s im Latifa-Stil. Ich werde das Lernen &amp; Lehren verfolgen und stärken. Das werde ich mit Freude und Spass machen, denn nur so ist es wertbringend und nachhaltig. Für den Latifa-Stil gelten die Voraussetzungen der Gleichheit, der Aktivität, des Respekts, des Optimismus und der Zwanglosigkeit. Die Modi im Latifa-Stil sind frei wählbar, solange sie keinen Kampfcharakter haben. Im Dojo wird gemeinsam an dem Kata gearbeitet und geübt. Es steht die Übung mit dem Code im Vordergrund, deswegen heisst es Coding Dojo.</p>
+<h3 id="wege-sind-zum-gehen-da">Wege sind zum gehen da</h3>
+<p>Es soll klar sein: Für alle, die sich mit diesem, dem Latifa-Stil des Coding Dojo auseinandersetzen möchten und diesen Stil in den Coding Dojo’s erleben möchten, gibt es die wunderbare Möglichkeit sich in der <a href="https://www.xing.com/net/netdojo/">Xing-Gruppe zu melden</a> oder auf die <a href="http://www.facebook.com/pages/NET-Coding-Dojo/10150113747745398">Facebook-Seite</a> zu schauen, um so auch die nächsten Event-Termine mitzubekommen. Ihr seid herzlich eingeladen, mit uns gemeinsam zu lernen &amp; zu lehren.</p>
+<p>Weiterhin soll klar sein: Für alle, die sich mit dem Latifa-Stil nicht anfreunden können oder unter Coding Dojo’s etwas anderes verstehen, kann ich folgendes entgegenbringen: Ich werde euch nicht in einem Latifa-Dojo akzeptieren. Ich werde euch nicht für die Werte des Latifa-Dojo ermutigen. Ich werde euch nicht vom Latifa-Dojo überzeugen. Ihr müsst das alles selbst tun. Ihr könnt jederzeit zu Coding Dojo’s im Latifa-Stil kommen, solange Ihr euch an die Regeln und Werte des Dojo’s richtet.</p>
+<p>Und wenn sich im Ergebnis keiner für den Latifa-Stil interessiert, dann ist das gut, denn dann habe ich immer noch meine Überzeugung. Und wenn sich im Ergebnis einige für den Latifa-Stil interessieren, dann ist das gut, denn dann habe ich immer noch meine Überzeugung. Und wenn sich im Ergebnis alle für den Latifa-Stil interessieren, dann ist das gut, denn dann habe ich immer noch meine Überzeugung.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>25 June 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/lerne-lehre-ilker-net-coding-dojo-latifa-stil.html&title=Lerne &amp; Lehre: Ilker&#39;s .NET Coding Dojo">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

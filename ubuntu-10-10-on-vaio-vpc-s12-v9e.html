@@ -1,0 +1,155 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ubuntu 10.10 on Vaio VPC S12 V9E</title>
+    <meta name="description" content="A log of my installation session of Ubuntu 10.10 on my Vaio Notebook.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="ubuntu-10-10-on-vaio-vpc-s12-v9e">
+    <a href="ubuntu-10-10-on-vaio-vpc-s12-v9e"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Ubuntu 10.10 on Vaio VPC S12 V9E</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>A few weeks ago I decided to completely opt for Linux and no longer have a dual boot system. </p>
+<p>I'm no longer using Windows 7 on native chips for quite some time now. Instead, I'm booting into VM to get my coding tasks done. Second, I need (and want) to have my beloved Visual Studio 2010 when it comes to .NET development. However, despite .NET 3.5/4.0 development, I don't use Windows 7 much at home. Consequently, I moved completely to Ubuntu 10.10 Maverick Merkaat. This post summarizes my installation experience and serves as an installation log.</p>
+<h3 id="installation">Installation</h3>
+<p>Installation of "Perfect 10" is a no-brainer. <a href="http://www.ubuntu.com/desktop/get-ubuntu/download">Download</a> the ISO image, burn it to disc (or install to <a href="http://www.pendrivelinux.com/">USB</a>), boot. Follow the installation guidelines. Basically it is as easy as NYNF ("Next -&gt; Yes -&gt; Next -&gt; Finish"). Reboot. That's it. </p>
+<p>Wait. Really that easy? No, not really. Here the adventure begins...</p>
+<p>First of all, after rebooting I have been greeted by a pleasant and polite black screen. It says nothing, it does nothing. A gentle boot. I don't even had the chance to switch to TTY. From that time on, I knew I'll have fun with my video settings. To at least get some visual feedback on what Linux is doing, you need to temporarily modify the boot options in GRUB boot loader.</p>
+<h3 id="update-grub-boot-options">Update GRUB boot options</h3>
+<p>To get GRUB menu displayed, you may need to hold the <code>[SHIFT]</code> key pressed while booting. Once you're in menu, you need to edit boot settings for the Ubuntu entry by pressing <code>[e]</code>. For kernel options, append <code>nomodeset</code> and <code>i8042.nopnp</code> to the existing ones (most often prior to "quiet splash" or "no-splash" options). </p>
+<p><code>nomodeset</code> enables your graphics card, <code>i8042.nopnp</code> brings back touchpad. Once done, press <code>[CTRL-x]</code> to boot. Wait a few seconds and... tadaa! Here it is, the shiny new Maverick Merkaat.</p>
+<h3 id="sony-is-linux-friendly-somehow">Sony is Linux-friendly... somehow...</h3>
+<p>Positivity: Once booting with <code>nomodeset</code>, one can experience that all major devices are being detected automatically and fully supported. Indeed, Sony is Linux-friendly. Well, at least to the extent that WiFi, Ethernet and Display is working.</p>
+<p>After setting up WLAN connection, the first thing is to get package updates and install <a href="http://www.vim.org/">Vim</a>. I wonder why it's not included by default. Anyway. Vim is just a tool in order to get my primary purpose done: persist GRUB boot loader changes. Since Merkaat is based on new GRUB2, changing <code>/etc/default/grub</code> (and a quick <code>sudo update-grub</code>) does the job.</p>
+<p>However, after success comes failure. I quickly realized that Ubuntu seems to run with VESA drivers only (sluggish and slow UI updates, smeary display). A quick check revealed it: NVidia drivers are missing. My S12V9E has 310M model built-in, the Sony display is 1366x786 (aka. "Sort-Of-HD-Cineastic-16-9-Size"). The first thing to do is surely to look up on the internet for fellow sufferers. So let's just fire up Firefox. And, open another door to the room of hurdles.</p>
+<h3 id="firefox-is-so-slow-on-linux-x64">Firefox is so slow on Linux x64</h3>
+<p>It took Firefox about a minute to display <a href="http://google.com">google.com</a>! All subsequent requests were awfully slow! What's happening here? I decided to have a comparison with other browsers and chose <a href="http://projects.gnome.org/epiphany/">Epiphany</a> (<code>sudo apt-get install epiphany-browser</code>). What a surprise! It's lightning-fast! This was evidence enough: Firefox was the culprit.</p>
+<p>Getting Firefox to run at reasonable speed took just a few minutes of analysis and research. The cause: <a href="http://www.techairlines.com/2010/10/03/disable-ipv6-on-ubuntu-to-speed-up-browsing/">DNS resolving and IPv6 settings</a>. I personally decided to go for the "quick fix" since only Firefox was affected (at least I only experienced Firefox as being affected only). The fix is rather simple:</p>
+<p>Type <code>about:config</code> in Firefox' address bar, confirm to be cautious. Then, just switch <code>network.dns.disableIPv6</code> to <code>true</code> ("toggle value"). Fasten seatbelt and restart Firefox. After getting my internet browsing experience back to normal, I could refocus on my original issue: The graphics driver and video display.</p>
+<h3 id="the-restricted-drivers-game-with-nvidia">The restricted drivers game with NVIDIA</h3>
+<p>After some halfbaked internet education on Linux and nVidia 310M / Sony pair, I decided <em>to not install</em> the latest driver but the version reported to be working safe: <a href="http://www.nvidia.com/object/linux-display-amd64-256.53-driver.htm">nVidia Linux display driver 256.53</a>. Installation procedure: <code>[CTRL+ALT+F1]</code> for TTY1, <code>sudo service gdm stop</code> to shutdown Xserver, run the driver installation package, answer a few questions and <code>sudo service gdm start</code>.</p>
+<p><strong>Attention:</strong> The last question of nVidia driver installation is something like: "Would you like to run nvidia-xconfig and write a new xorg.conf?". Please, make sure that you answer this question with <em>No!</em>.</p>
+<p>If you let the installation generate the new <code>xorg.conf</code> and start gdm, you'll most likely enjoy a blank black screen again. The reason for this is a little bug in nVidia's display drivers which needs to be <a href="http://ubuntuforums.org/archive/index.php/t-1578004.html">worked around by explicitly setting the EDID file</a> (through <code>CustomEDID</code> option).</p>
+<p>Lucky me that I previously stumbled upon the <a href="http://code.google.com/p/vaio-f11-linux/">Vaio-F11-Linux-Project</a>. The smart guys over there made a nice <a href="http://code.google.com/p/vaio-f11-linux/wiki/NVIDIASetup">nVidia setup wiki page</a> explaining the custom configuration as well as where to find the EDID file. Basically, the same applies for the VPCS12V9E, except that my EDID file was located at <code>/proc/acpi/video/IGPU/LCD0/</code>. As a result, the important parts of my <code>xorg.conf</code> (located at <code>/etc/X11/</code>) looks like this:</p>
+<div class="codehilite"><pre>Section &quot;Device&quot;
+    Identifier     &quot;Configured Video Device&quot;
+    Driver         &quot;nvidia&quot;
+    Option         &quot;ConnectedMonitor&quot; &quot;DFP-0&quot;
+    Option         &quot;CustomEDID&quot; &quot;DFP-0:/proc/acpi/video/IGPU/LCD0/EDID&quot;
+EndSection
+</pre></div>
+
+
+<p>Reboot and finally enjoy a nice and crisp display!</p>
+<h3 id="enjoyable-yet-improvable">Enjoyable, yet improvable.</h3>
+<p>At this stage, I decided for myself to continue with my setup on application level rather than continuing with hardware support on system level. Although some obvious things like brightness control (and all the other <code>[FN]</code> keys), fingerprint reader and most likely some other things (like external monitors / HDMI) won't work. However, since I'm not really using the devices (yet), it's more of a secondary priority to get them working. Conclusion: Enjoyable, yet improvable.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>26 December 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/ubuntu-10-10-on-vaio-vpc-s12-v9e.html&title=Ubuntu 10.10 on Vaio VPC S12 V9E">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

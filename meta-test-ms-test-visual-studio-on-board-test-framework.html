@@ -1,0 +1,187 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Meta-Test: MS Test – Visual Studio On Board Test-Framework</title>
+    <meta name="description" content="Vorstellung des Standard-Unit-Test Frameworks von Microsoft, MS-Test.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="meta-test-ms-test-visual-studio-on-board-test-framework">
+    <a href="meta-test-ms-test-visual-studio-on-board-test-framework"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Meta-Test: MS Test – Visual Studio On Board Test-Framework</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Heute nehme ich mir den "Platzhirsch" für Unit Testing im Microsoft-Umfeld zur Brust, nämlich das On Board Visual Studio Test-Framework MS-Test. Genau zur richtigen Zeit des <a href="http://www.microsoft.com/visualstudio/en-us/products">Launches von Visual Studio 2010</a> wird hier das dazugeörige Test-Framework unter die Lupe genommen. MS-Test ist seit VS2005 integrierter Bestandteil der professionellen Versionen von Visual Studio - womit der erste Nachteil schon zwischen den Zeilen hindurchschimmert. Leider ist MS-Test bis zum heutigen Tag nicht in den <a href="http://www.microsoft.com/express/Downloads/">Visual Studio Express-Versionen</a> verankert - also quasi nicht "frei verfügbar". Wieso das so ist, ist mir immer noch ein Rätsel.</p>
+<h3 id="los-gehts-mit-projekten">Los geht's mit Projekten</h3>
+<p>Aber zurück zur Sache. Es muss ja schließlich das mittlerweile mehr als bekannte FizzBuzz-Kata als Fingerübung implementiert werden.</p>
+<p><img alt="" class="alignright" src="/media/images/mstest_createproject_vs-300x171.png" />
+Da tut sich schon interessantes am Anfang auf: Durch die nahtlose Integration in Visual Studio fügt man keine Referenz auf irgendeine Framework-DLL hinzu, sondern startet die Tests mit der Erstellung eines Testprojektes. Für mich persönlich ein wenig gewöhnungsbedürftig - ich schreibe man Tests und Code für gewöhnlich in der selben Assembly und lagere es nur auf ausdrücklichen Wunsch aus.</p>
+<p>Nach Abschluß der durch den (eigentlich um die Arbeit zu beschleunigen konzipierten) Projekt-Wizard durchgeführten Vorbereitungen und der manuellen Abschlussvorbereitungen kann es nun endlich losgehen.</p>
+<h3 id="straight-forward-mit-attributen-und-asserts">Straight-Forward mit Attributen und Asserts</h3>
+<p>Die Test-Methoden gehen schnell von der Hand, man braucht nur das <code>[TestMethod]</code> Attribut hinzufügen. Die <code>Assert</code>-Klasse deckt alle notwendigen Prüfungen ab, bietet aber im Vergleich zu anderen Frameworks wie z.B. NUnit wesentlich weniger "methodische Expressivität". In unserem Fall brauchen wir nur die <code>AreEqual</code>-Methode. Schon nach dem ersten Test fällt allerdings die lange Testdauer des Testrunners ein wenig negativ auf. Das kann auch wesentlich schneller gehen.</p>
+<p>Das Test-Ergebnis sieht relativ unspektakulär aus:</p>
+<div class="codehilite"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.VisualStudio.TestTools.UnitTesting</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">FizzBuzzMSTest</span> <span class="p">{</span>
+<span class="na">  [TestClass]</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">FizzBuzzTest</span> <span class="p">{</span>
+<span class="na">    [TestMethod]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Multiples_Of_Three_Returns_Fizz</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">FizzBuzz</span> <span class="n">target</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzz</span><span class="p">();</span>
+      <span class="kt">string</span> <span class="n">translation</span> <span class="p">=</span> <span class="n">target</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="m">6</span><span class="p">);</span>
+      <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="s">&quot;Fizz&quot;</span><span class="p">,</span> <span class="n">translation</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="na">    [TestMethod]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Multiples_Of_Five_Returns_Buzz</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">FizzBuzz</span> <span class="n">target</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzz</span><span class="p">();</span>
+      <span class="kt">string</span> <span class="n">translation</span> <span class="p">=</span> <span class="n">target</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+      <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="s">&quot;Buzz&quot;</span><span class="p">,</span> <span class="n">translation</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="na">    [TestMethod]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Multiples_Of_Three_And_Five_Returns_FizzBuzz</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">FizzBuzz</span> <span class="n">target</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzz</span><span class="p">();</span>
+      <span class="kt">string</span> <span class="n">translation</span> <span class="p">=</span> <span class="n">target</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="m">15</span><span class="p">);</span>
+      <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="s">&quot;FizzBuzz&quot;</span><span class="p">,</span> <span class="n">translation</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="na">    [TestMethod]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">No_Multiples_Of_Three_Or_Five_Returns_Number</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">FizzBuzz</span> <span class="n">target</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzz</span><span class="p">();</span>
+      <span class="kt">string</span> <span class="n">translation</span> <span class="p">=</span> <span class="n">target</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="m">7</span><span class="p">);</span>
+      <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="s">&quot;7&quot;</span><span class="p">,</span> <span class="n">translation</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="bewertung">Bewertung</h3>
+<ul>
+<li><strong>Dauer</strong><br />
+    Die FizzBuzz-Implementierung ging relativ zügig von der Hand. Ich habe ca. 15 Minuten gebraucht. Der "lahme" Testrunner hat mich etwas gestört. Die meiste Zeit ging für das Projekt, die Referenzverweise und das hin und her zwischen den Projekten drauf.</li>
+<li><strong>Größe</strong><br />
+    Die Testgröße ist überschaubar. Eine kompakte Testklasse mit 4 Testmethoden. Eine klassische Class-Per-Class Struktur. Das Testprojekt ist isoliert vom Code.</li>
+<li><strong>Tooling</strong><br />
+    Ein regelrechtes Heimspiel mit der VS-Integration. Auch Code-Assistenten wie Resharper oder Coderush kennen den MSTest. Alles in Allem eine sehr gute Unterstützung.</li>
+<li><strong>Usability</strong><br />
+    Durch den Projekt-Wizard und die entsprechende Dokumentation komfortabel für allgemeines Testing. Speziell für TDD/BDD allerdings etwas hakelig. Immer gleich die Test/Code-Separation. Die Asserts sind sicherlich ausreichend.</li>
+<li><strong>Support</strong><br />
+    Was soll man hier schreiben, außer MS? Das Framework wird direkt von Microsoft mit Visual Studio ausgeliefert. Die Dokumentation ist gut, Online-Material ist sicherlich vorhanden. MSTest ist in der Community (vor allem für Open Source oder kleinere Projekte) nicht so weit verbreitet wie andere Frameworks.</li>
+</ul>
+<p>MS-Test ist ein solides Framework, mit dem sich sicherlich auch gut TDD betreiben lässt. Man merkt dem Featureset an, dass es nicht nur für Unit-Testing ausgelegt ist. Der integrierte Runner ist schick, das Reporting ein Highlight. Ich sollte nicht unerwähnt lassen, dass vor Allem die Kombination TFS/MSTest ein sehr gutes Reporting/Monitoring-Werkzeug darstellt.</p>
+<p>Zu den Tests selbst gibt das Framework wenig Hilfestellung bzw. Guidance zur Strukturierung und Anwendung der Tests. So wird wohl am meisten die Class-Per-Class Struktur angewendet werden, mit den üblichen TDD Best Practices.</p>
+<h3 id="ms-test-leider-nur-fur-profis">MS-Test leider nur für "Profis"</h3>
+<p>Ein absolutes Manko ist die nicht-freie Verfügbarkeit des Frameworks und damit auch das Fehlen des Features in der Express-Edition. </p>
+<p><img alt="" class="alignleft" src="/media/images/mstest_runner_vs-300x136.png" />
+Einfach mal Tests/Code schreiben und veröffentlichen ist somit unmöglich. Für bekennende TDDler ein No-Go. Mit den 15 Minuten Fizzbuzz ist die Geschwindigkeit der Umsetzung in Ordnung - wobei ich zugegebenermaßen Fizzbuzz auch schon wesentlich zügiger implementiert habe. Das bringt mich dann auch zum nächsten Test-Framework unter meiner Meta-Test-Lupe... stay tuned!</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>14 April 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/meta-test-ms-test-visual-studio-on-board-test-framework.html&title=Meta-Test: MS Test – Visual Studio On Board Test-Framework">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

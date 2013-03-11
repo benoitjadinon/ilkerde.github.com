@@ -1,0 +1,16 @@
+#dotnet-coding-dojo #content li {
+  list-style-type: none;
+  padding-left: 48px;
+  margin-left: 0px;
+  height: 40px;
+}
+#dotnet-coding-dojo #content li a {
+  position: relative;
+  top: 4px;
+}
+#dotnet-coding-dojo #content li.xing {
+  background: url(/media/images/webservices/32/xing.png) no-repeat;
+}
+#dotnet-coding-dojo #content li.facebook {
+  background: url(/media/images/webservices/32/facebook.png) no-repeat;
+}

@@ -1,0 +1,212 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>JS Trickshot: E4X</title>
+    <meta name="description" content="A very short introduction to E4X, the embedded javascript XML processing language.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="javascript-trickshot-e4x">
+    <a href="javascript-trickshot-e4x"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>JS Trickshot: E4X</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Yesterday I wrote about a very specific and widely unknown JavaScript language innovation called <a href="javascript-trickshot-generator-expressions.html">generator expressions</a>. Today I'm going to quickly introduce you to another JavaScript language feature called <a href="http://en.wikipedia.org/wiki/ECMAScript_for_XML">E4X</a>. It's not any longer an 'innovation' actually, since it's more than 5 years old. However, it's not a very familiar feature either.</p>
+<h4 id="e4x-embedded-xml-language">E4X: Embedded XML Language</h4>
+<p><em>E4X</em> is short for <em>ECMAScript for XML</em> and is a very nice JS embedded XML processing language. I used it for my data processing and visualization project a few years ago with XULRunner and it turned out to be an indispensible tool for XML/XHTML processing.</p>
+<p>Let's see how E4X looks like:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">customers</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">customer</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;ACME Corp.&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;3&quot;</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;Supplier&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">contact</span><span class="o">&gt;</span><span class="nx">Mr</span><span class="p">.</span> <span class="nx">Doe</span><span class="o">&lt;</span><span class="err">/contact&gt;</span>
+    <span class="o">&lt;</span><span class="nx">offer</span> <span class="nx">count</span><span class="o">=</span><span class="s2">&quot;5&quot;</span> <span class="nx">amount</span><span class="o">=</span><span class="s2">&quot;60000&quot;</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="err">/customer&gt;</span>
+  <span class="o">&lt;</span><span class="nx">customer</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;YooRoo Ltd.&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;7&quot;</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;Engineer&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">contact</span><span class="o">&gt;</span><span class="nx">Senor</span> <span class="nx">DeLa</span> <span class="nx">Soul</span><span class="o">&lt;</span><span class="err">/contact&gt;</span>
+    <span class="o">&lt;</span><span class="nx">offer</span> <span class="nx">count</span><span class="o">=</span><span class="s2">&quot;6&quot;</span> <span class="nx">amount</span><span class="o">=</span><span class="s2">&quot;120000&quot;</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="err">/customer&gt;</span>
+  <span class="o">&lt;</span><span class="nx">customer</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;Rock-A-Fella&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;21&quot;</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;Supplier&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">contact</span><span class="o">&gt;</span><span class="nx">Mr</span><span class="p">.</span> <span class="nx">DeLa</span> <span class="nx">Rocka</span><span class="o">&lt;</span><span class="err">/contact&gt;</span>
+    <span class="o">&lt;</span><span class="nx">offer</span> <span class="nx">count</span><span class="o">=</span><span class="s2">&quot;7&quot;</span> <span class="nx">amount</span><span class="o">=</span><span class="s2">&quot;110000&quot;</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="err">/customer&gt;</span>
+<span class="o">&lt;</span><span class="err">/customers&gt;;</span>
+</pre></div>
+
+
+<p>Yes, it's <em>that easy</em>. <code>customers</code> now is a full XML object. No big string play is involved, just start typing your XML and you're fine. But wait, there's a lot more to come. Let's see how we can access all <code>&lt;contact&gt;</code> nodes of our <code>&lt;customer&gt;</code>s:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">contacts</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">customer</span><span class="p">.</span><span class="nx">contact</span><span class="p">;</span>
+</pre></div>
+
+
+<p>And if you were to select the names of our customers instead we can use the attribute accessor syntax:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">names</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">customer</span><span class="p">.</span><span class="err">@</span><span class="nx">name</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Isn't this incredibly simple? It is. Now let's get to the interesting features. One of the features I used most is the great and easy to apply <em>filters</em> feature. A filter is an expression enclosed in braces <code>()</code>. Say you only want the <code>&lt;contact&gt;</code>s of customers of type <em>Supplier</em>:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">supps</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">customer</span><span class="p">.(</span><span class="err">@</span><span class="nx">type</span><span class="o">==</span><span class="s2">&quot;Supplier&quot;</span><span class="p">).</span><span class="nx">contact</span><span class="p">;</span>
+</pre></div>
+
+
+<p>We could even dive into a subtree, filter on any data and return some attribute on the higher tree nodes. You want to know the name of the customers whose offer amount is below 100000? Nothing easier than that:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">loperfs</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">customer</span><span class="p">.(</span><span class="nx">offer</span><span class="p">.</span><span class="err">@</span><span class="nx">amount</span><span class="o">&lt;</span><span class="mi">100000</span><span class="p">).</span><span class="err">@</span><span class="nx">name</span><span class="p">;</span>
+</pre></div>
+
+
+<p>But wait! The filter feature <em>I used at most</em> is yet to come. The great thing about E4X filters actually is that you can effectively use <em>any JS function</em> to perform your filtering:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">onlyvip</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">x</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/dela/i</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">vips</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">customer</span><span class="p">.(</span><span class="nx">onlyvip</span><span class="p">(</span><span class="nx">contact</span><span class="p">)).</span><span class="err">@</span><span class="nx">name</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Voilà. For me, the ability to filter with arbitrary JS expressions and embed them right into my XML node selection turned out to be a <em>very powerful and useful</em> feature.</p>
+<p>There's a lot more useful things on <a href="http://en.wikipedia.org/wiki/ECMAScript_for_XML">E4X</a> to explore, but I finally want to introduce you to another cool feature I (sadly) discovered very late. If you quickly want to build up an XML from data, you can use the powerful <em>interpolation</em> feature. Just enclose your variable or expression into curly braces <code>{}</code> within the XML literal. Sounds nice? Just judge for yourself:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">watches</span> <span class="o">=</span> <span class="p">[{</span>
+  <span class="nx">name</span><span class="o">:</span><span class="s2">&quot;longines&quot;</span><span class="p">,</span> 
+  <span class="nx">price</span><span class="o">:</span><span class="mi">15000</span>
+<span class="p">},{</span>
+  <span class="nx">name</span><span class="o">:</span><span class="s2">&quot;icw&quot;</span><span class="p">,</span>
+  <span class="nx">price</span><span class="o">:</span><span class="mi">20000</span>
+<span class="p">},{</span>
+  <span class="nx">name</span><span class="o">:</span><span class="s2">&quot;rolex&quot;</span><span class="p">,</span>
+  <span class="nx">price</span><span class="o">:</span><span class="mi">25000</span>
+<span class="p">}];</span>
+
+<span class="kd">var</span> <span class="nx">to_euro</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">x</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">xml</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">watches</span><span class="o">/&gt;</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="nx">each</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">w</span> <span class="k">in</span> <span class="nx">watches</span><span class="p">){</span>
+  <span class="nx">xml</span><span class="p">.</span><span class="nx">watch</span> <span class="o">+=</span> <span class="o">&lt;</span><span class="nx">watch</span> 
+    <span class="nx">name</span><span class="o">=</span><span class="p">{</span><span class="nx">w</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span> 
+    <span class="nx">price</span><span class="o">=</span><span class="p">{</span><span class="nx">to_euro</span><span class="p">(</span><span class="nx">w</span><span class="p">.</span><span class="nx">price</span><span class="p">)}</span>
+  <span class="o">/&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">xml</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="cm">/* Output:</span>
+
+<span class="cm">  &lt;watches&gt;</span>
+<span class="cm">    &lt;watch name=&quot;longines&quot; price=&quot;7500&quot;/&gt;</span>
+<span class="cm">    &lt;watch name=&quot;icw&quot; price=&quot;10000&quot;/&gt;</span>
+<span class="cm">    &lt;watch name=&quot;rolex&quot; price=&quot;12500&quot;/&gt;</span>
+<span class="cm">  &lt;/watches&gt;</span>
+
+<span class="cm">  E4X FTW! </span>
+<span class="cm">*/</span>
+</pre></div>
+
+
+<p><em>PS: You might already guessed from my official <a href="javascript-trickshot-generator-expressions.html">dislike of Googles V8 JS engine</a> that E4X is not implemented in V8 (and thus doesn't exist for node.js). Apart from SpiderMonkey (of course), <a href="http://en.wikipedia.org/wiki/Rhino_%28JavaScript_engine%29">Rhino</a> and <a href="http://en.wikipedia.org/wiki/ActionScript">AS3</a> have E4X suppport. Oh, E4X is an official <a href="http://www.ecma-international.org/publications/standards/Ecma-357.htm">ECMA Standard</a>, by the way.</em></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>22 March 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/javascript-trickshot-e4x.html&title=JS Trickshot: E4X">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

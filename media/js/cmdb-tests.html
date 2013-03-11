@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="extras/qunit.css">
+  </head>
+  <body>
+    <script type="text/javascript" src="extras/qunit.js"></script>
+    <script type="text/javascript" src="extras/coffee-script.js"></script>
+    <script type="text/javascript" src="extras/require.js"></script>
+    <script type="text/coffeescript">
+      QUnit.config.autostart = false
+      require.config {
+        paths: {
+          'cs': 'extras/cs',
+          'coffee-script': 'extras/coffee-script',
+        }
+      }
+
+      require ['cs!cmdb-tests'], ->
+        QUnit.start()
+    </script>
+
+    <h1 id="qunit-header"></h1>
+    <h2 id="qunit-banner"></h2>
+    <ol id="qunit-tests"></ol>
+
+    <div id="qunit-fixture">
+      <div class="listing">
+        <ol id="list">
+          <li id="some" class="item"><h3><a href="#">some</a></h3></li>
+          <li id="anything" class="item"><h3><a href="#">anything</a></h3></li>
+          <li id="other" class="item"><h3><a href="#">Other</a></h3></li>
+          <li id="another" class="item"><h3><a href="#">Another</a></h3></li>
+          <li id="stuff" class="item"><h3><a href="#">STUFF</a></h3></li>
+        </ol>
+      </div>
+
+      <div id="meta"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+@import "assets/colors";
+
+#code-kata-scoreboard #content {
+  #matchresults + table {
+    thead {
+      display:none;
+    }
+
+    td {
+      padding:4px;
+      border-bottom:1px solid @palette_border;
+    }
+
+    tr > td:first-child {
+      width:120px;
+      text-align:right;
+    }
+
+    tr > td:first-child + td {
+      padding-right:16px;
+    }
+
+    tr > td:first-child + td + td {
+      padding-left:16px;
+    }
+
+    tr > td:first-child + td + td + td {
+      width:120px;
+    }
+  }
+
+  #scoreboard_1 + table {
+    th {
+      font-weight:normal;
+      text-align:left;
+      padding:4px;
+      border-bottom:1px solid @palette_border;
+      width:80px;
+    }
+
+    td {
+      padding:4px;
+      border-bottom:1px solid @palette_border;
+      width:80px;
+    }
+
+    th:first-child, td:first-child {
+      width:120px;
+    }
+  }
+}

@@ -1,0 +1,153 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Technical Summit 08: Teil 1</title>
+    <meta name="description" content="Eine Zusammenfassung der Geschehnisse des ersten Tages bei meinem Besuch der Technical Summit 2008-Konferenz.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="technical-summit-08-teil-1">
+    <a href="technical-summit-08-teil-1"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Technical Summit 08: Teil 1</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Yep, der erste Tag ist geschafft. Anbei mein Log der Sessions:</p>
+<h3 id="session-1-steve-teixeira-uber-multi-core-software-entwicklung">Session 1: Steve Teixeira über Multi-Core Software-Entwicklung</h3>
+<p><a href="http://blogs.msdn.com/texblog/">Steve Teixeira</a> ist Program Manager beim Parallel Developler Tools / Visual Studio Team in Redmond und hatte in seiner Session neben der grundlegenden Einführung der neuen API für Multithreading auch einige Neuigkeiten über die nächste Visual Studio Version zu berichten. Doch alles der Reihe nach. Zunächst einmal schilderte Steve, wieso man sich eigentlich Gedanken über Parallele Ausführung von Code machen sollte. Der Grund ist natürlich bei der Hardware-Entwicklung vergraben, denn mittlerweile gelangt man an die Leistungsgrenzen im CPU-Design mit einem Kern. Der Hauptgrund ist die inzwischen fast unkontrollierbare Wärmeleistung, die die Chips von sich geben. Der Trend ist zu Multi-Core-CPU's ist eindeutig auch im Alltag angekommen.</p>
+<p>Das wiederum macht es erforderlich, die Software auf die neuen Gegebenheiten anzupassen. Steve zeigte ein schönes Beispiel mit Hilfe von <a href="http://en.wikipedia.org/wiki/Linq">LINQ</a> und <a href="http://en.wikipedia.org/wiki/Parallel_FX_Library">PLINQ</a> um die Unterschiede zwischen sequentiellem und parallelisiertem Code deutlich zu machen. Was heißt das für den "Alltags-Entwickler", wie ich es z.B. bin? Nun, zunächst einmal bedeutet es eine Schärfung der Coder-Sinne auf das Thema Performance. Ich fühle mich zwar in diesem Thema schon heute gut aufgehoben, aber es dürfen ruhig noch ein wenig mehr Details sein.</p>
+<p>Unterstützt wird dies im Besonderen durch das neue <a href="http://msdn.microsoft.com/en-us/vs2008/products/cc948977.aspx">Visual Studio 2010</a>. Es kommt mit neuen Tools wie Performance und Concurrency Profilern, die deutlich, graphisch anschaulich zeigen, wieviel Zeit die Software für bestimmte Aktionen verbraucht und mit welchen Ressourcen diese Leistung erreicht wurde. Auffällig dabei sind auch die Optionen, die das neue Performance-Tool bietet: CPU-basiertes Sampling, komplette Instrumentation, also Analyse aller Zeiten und Zyklen von Methodenaufrufen und das schon eben erwähnte Concurrency Profiling, mit dem man in der Lage ist zu erkennen, wie die Threads mit den Aufgaben ausgelastet sind.</p>
+<p>Eine "Performance Debugging Suite" also, die im neuen Visual Studio verankert sein wird. Voraussetzung ist jedoch die Installation auf Windows Vista oder Windows 2008, da die Monitoring-Tools intern eng mit der seit Vista erweiterten Windows Eventing API (ETW) zusammenarbeiten.</p>
+<p>Für so passionierte .NET-Entwickler wie mich ist die Verwendung der neuen API einfacher als erwartet. So lassen sich z.B. LINQ-Abfragen elegant mit dem "Anhängsel" <code>.AsParallel()</code> parallelisieren. Mindestens genauso einfach lassen sich auch Codebestandteile für die Parallel-Ausführung trimmen. Eine einfache for-Schleife ist mit <code>Parallel.For(</code>) im Nu für die Parallelisierung umgesetzt. Die Nebeneinanderausführung von separaten Codeteilen mit <code>Parallel.Invoke()</code> ist zügig definiert und intuitiv. All diese Dinge sind fest im neuen .NET Framework 4.0 verankert. Interessant in diesem Zusammenhang ist, das Steve explizit auf deutliche Verbesserungen "unter der Haube" hingewiesen hat. So ist z.B. die <code>ThreadPool</code>-Klasse intern mit neuen Strategien wie dem Work Stealing ausgestattet worden, um die Verteilung der Aufgaben in Multi-Core Umgebungen zu optimieren.</p>
+<p>Ein helles Ohr hatte ich auch bei den vielen kleinen Anekdoten und Anmerkungen von Steve. So ging er flüchtig auf die Entwicklung von Visual Studio ein und verriet, das der Visual Studio Code mehrheitlich in C++ und C# geschrieben ist und derzeit mehr als 45 Millionen Codezeilen umfasst. Interessant ist auch die Tatsache, dass das Visual Studio Team bei der Entwicklung von neuen Komponenten und UI verstärkt WPF im Einsatz hat. Steve begründet das mit der schlichten Tatsache, das WPF schnell genug ist und eine wesentlich effizientere UI-Entwicklung ermögliche als mit der klassischen GDI.</p>
+<p>Fazit: Ein absolutes Highlight - Visual Studio 2010 in Aktion und Insider-Wissen. VS10, Parallels &amp; .NET 4.0, ich warte auf euch...</p>
+<h3 id="session-2-holger-schwichtenberg-und-ajax-services">Session 2: Holger Schwichtenberg und AJAX Services</h3>
+<p>AJAX ist nicht nur in aller Munde sondern heutzutage schon fast auf jeder Website in irgendeiner Form im Einsatz. Das man AJAX auch in ASP.NET einsetzen kann, ist spätestens nach dem .NET Framework 3.5 keine besondere Neuigkeit mehr. So auch der Inhalt der Session von Holger. Er machte einen knapp einstündigen Rundflug über die Möglichkeiten des AJAX-Einsatzes in ASP.NET, darunter das berüchtigte UpdatePanel (aka. AJAX für Arme), das AJAX Control Toolkit (aka. Atlas) und die kleinen Tools, die mit den ADO.NET Data Services einhergehen.</p>
+<p>Auf AJAX-Spezifische News für .NET 4.0, den JQuery-Support mit ASP.NET 4.0 oder Visual Studio 2010 ging Holger garnicht oder nur am Rande mit einem Keyword aus einem Slide ein. Schade, aber aus meiner Sicht eine sehr schwache und fachlich "äußerst überschaubare" Session. Besonders die Argumentationen von Holger für so manche Technologie sind in meinen Augen etwas zu oberflächlich. So geschehen bei einer Frage eines Zuhörers:</p>
+<blockquote>
+<p><em>Zuhörer</em>: Bei den ADO.NET Data Services verzichten Sie auf eine gewohnte 3 bzw. N-Tier Architektur. Dies wurde lange als "Best Practice" vermittelt und nun wird das mißachtet. Was meinen Sie?</p>
+</blockquote>
+<p><em>Schwichtenberg</em>: "Nun, ich sage Ihnen ja nicht, das eine N-Tier Architektur nicht empfehlenswert ist. Aber - mit ADO.NET Data Services ist der Betrachtungswinkel ein anderer. Während "klassische" Web Services nur die Daten und Funktionen herausgeben, die wirklich benötigt werden - also praktisch die Daten schon serverseitig Filtern - wird bei den ADO.NET Data Services zunächst der gesamte Datenbestand im Web Service angeboten. Der Client kann nun über die REST-Query entscheiden, was er konkret benötigt. Aus meiner Sicht ist diese Herangehensweise ein Produktivitätsgewinn".</p>
+<p>Na, das ist ja eine feine Aussage! Sicherheitsbedenken scheint Holger nicht zu haben, wenn er alle Daten frei verfügbar macht. Des Weiteren ist die Konstellation AJAX + ADO.NET Data Services + Entity Framework sehr wohl eine "Tiered Architecture", Das Entity Framework löst den klassischen Data Layer ab. Die Data Servies können als "Business Layer" durchgehen (man kann ja selbst noch einiges dazu entwickeln und der Zweck eines "Data Providers" kann in meinen Augen auch als "Business" definiert werden). Zu guter letzt ist AJAX bzw. die Website die UI bzw. das Frontend. Naja, vielleicht habe ich es auch nicht richtig kapiert, was Holger damit gemeint hat.</p>
+<p>Fazit: Eine der schwächeren Sessions, die fachliche Tiefe und vor Allem Neuigkeiten bzw. Best Practices vermissen ließ.</p>
+<h3 id="session-3-dariusz-quatscht-hessisch-und-zwar-windoos-aschar">Session 3: Dariusz quatscht hessisch, und zwar "Windoos Äschär"</h3>
+<p>Der Name ist Programm: Dariusz wagt sich in die neue blaue Windows-Welt: "<a href="http://www.microsoft.com/azure/services.mspx">Windoos Äschär</a>" - so meint er könnte man es zumindest versuchen, die neue Service-Familie auszusprechen. In wohl bekannter Manier stieg er fröhlich in die Thematik mit einem Überblick ein.</p>
+<p>Da wären zunächst die .NET Services "Access Control", "Service Bus" und "Workflow". Der Access Control Dienst so etwas vergleichbares wie ein etwas besserer, Claims-basierter Single-Sign-On Service mit Authorisierungsmanagement. Über eine Claims-Challenge können sich Nutzer und Dienste gleichermaßen authentifizieren. Dabei kann man aus der gewohnten Variabilität der Authentifizierungsart wählen - ob nun UserNamePassword, Zertifikate, Windows Live ID - Claims bleibt Claims. Der Service Bus ist der aus größeren Unternehmen bekannte ESB portiert auf die "Cloud". Mittelfristig soll mit dem Service Bus eine "orchestrierte" Gemeinde von Diensten zur Verfügung gestellt werden. Das Pattern ist jedenfalls nicht neu. Der dritte im Bunde ist der Workflow Dienst. Basierend auf der WF kann er als "Schaltzentrale" verwendet werden. Momentan ist dieser Baustein noch sehr rudimentär, soll aber weiter ausgebaut werden.</p>
+<p>Eine weitere Service-Gruppe ist die "SDS" - die SQL Data Services. Gleich zu Beginn klärt Dariusz hier den Unterschied zwischen "Azure Storage" und den "echten" SQL Diensten. Während die Storage eher eine "einfache, sqlfähige Datenablage" ist, sollen die SDS mittel- bis langfristig wesentlich mehr Features anbieten wie z.B. Reporting, Data Mining oder ETL Dienste. Gewöhnungsbedürftig bei den SDS ist die Organisation der Daten: Man hat nicht mehr die klassischen, relationalen SCHEMA TABLE ROW Strukturen. Statt dessen befinden sich die Daten in sog. "Containern" (vergleichbar mit Datenbanken oder Schemata). Die Daten wiederum sind als "Entities" strukturiert. Eine Entity hat mindestens einen Typ (also den Entity-Namen), eine EntityID und den EntityKind, welche Aussage über die Art oder Klasse der Datenstruktur geben soll. Weitere Felder sind frei definierbar. Die Feldtypen beschränken sich derzeit nur auf einfache Datentypen.</p>
+<p>Auf weitere Dienst-Gruppen ist Dariusz nicht eingegangen - wie sollte er auch - er hatte während der Session mit anderen Problemen zu kämpfen. Jede zweite Demo ging nicht oder brach mit irgendwelchen Exceptions ab. Tja, er musste selbst zugeben, das "Äschär" noch nicht ganz fertig ist und an der einen oder anderen Stelle die notwendige Reife für den produktiven Einsatz vermissen ließ.</p>
+<p>Der erste Eindruck den Windows Azure und die "SOA-Diensten" hinterlassen ist das Interesse an Neuem mit einer großen Portion Skepsis. Auch wenn irgendwann einmal Azure stabil und schnell wird bleibt abzuwarten, ob die Plattform attraktiv und intuitiv genug ist, um echte Anwendungen darauf laufen zu lassen.</p>
+<p>Fazit: Mal sehen was daraus wird!</p>
+<h3 id="session-4-dirk-primbs-schreibt-effizienten-code-in-c-30">Session 4: Dirk Primbs schreibt effizienten Code in C# 3.0</h3>
+<p>Dirk ist eines der bekanntesten Gesichter auf Konferenzen - kein Wunder, schließlich ist er seines Zeichens Developer Evangelist bei Microsoft. Die heutige Session hatte die Überschrift "Effizienter Code in C# 3.0" - das hörte sich vielversprechend an. Also dachte ich mir, wenn ich schon nicht in die Session von Berndt gehen kann (er war leider nicht anwesend und wurde durch Dariusz vertreten), dann höre ich mir mal an, was Dirk mir über Effizienz mit C# 3.0 zu erzählen hat.</p>
+<p>Leider war nicht ganz in dem Paket drin was draufstand. Dirk verbrachte über die Hälfte der Zeit damit, die Geschichte von .NET und C# zu erzählen. Angefangen bei C# 1.0, über C# 2.0 bis zum aktuellen C# 3.0. Die aktuelle 3.0-Version kam dabei für meine Begriffe viel zu kurz. Dirk vermittelte in seiner Retrospektive über C# 2.0 sehr gut, was Generics, Anonymous Methods und Discrete Property Accessors sind. Doch besonders prickelnd war es nicht gerade, mittlerweile gängige Konstrukte nochmals vorgekaut zu bekommen. Mit C# 3.0 hatte das wenig zu tun, und mit effizientem Code auch nicht.</p>
+<p>Wahrscheinlich habe ich mir unter dem Titel "Effizienz" etwas anderes vorgestellt als Dirk. Er ging auf Syntax und "eleganten" Code ein, wo ich eher Effizienz-Vergleiche zwischen konkrekten und anonymen Typen erwartet hätte. Dennoch war es nicht langweilig - wer Dirk schon öfter erleben durfte, der weiß warum.</p>
+<p>Es blieb am Ende doch noch eine gute Viertelstunde übrig, um auf neue Sprachkonstrukte und Features von C# 3.0 einzugehen. Type Inference und das <code>var</code> Keyword, Object Initializer und Automatic Properties. Wie zu erwarten war, wurde die Verwendung des <code>var</code> Keywords "angeregt" diskutiert. Ich hatte mich in einem Post ja schon über den <a href="var-keyword-in-c-30-segen-oder-fluch.html">Sinn und Zweck von var</a> geäußert. Äußerst bedauernswert fand ich allerdings, das kein Sterbenswörtchen über C# 4.0, die DLR, das <code>dynamic</code> keyword oder Duck Typing verloren wurde. Zumindest ein Ausblick und ein kurzer Rundflug wäre schön gewesen.</p>
+<p>Fazit: Eine Mischung aus "Basics Workshop", Human FxCop und OpenSpace Talk - locker, bekömmlich, bekannt.</p>
+<p>Soviel zum ersten Tag. Mal sehen, was der zweite bringt... :-)</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>20 November 2008</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/technical-summit-08-teil-1.html&title=Technical Summit 08: Teil 1">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

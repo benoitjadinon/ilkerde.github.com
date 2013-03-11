@@ -1,0 +1,169 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Release Process Revisited</title>
+    <meta name="description" content="Überlegungen zu agilen Build- und Releaseverfahren im Webumfeld.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="release-process-revisited">
+    <a href="release-process-revisited"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Release Process Revisited</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Es gibt manchmal Momente, in denen man die eigenen Prozesse hinterfragt und sich darüber Gedanken macht, wie man Aufgaben besser erledigen kann. So ist es kürzlich auch mir ergangen.</p>
+<p>Konkret ging es dabei um den Release-Prozess einer Software-Komponente. Zunächst sollte ich eventuell klarstellen, was ich mit dem schon beinahe überladenen Wort Release-Prozess meine. Der Release-Prozess umfasst aus meiner Sicht all jene Aufgaben, die ein Entwickler oder ein Unternehmen durchführen muss, um Software in dessen Anwendungsgebiet einsatzbereit zu machen. Insofern beinhaltet ein Release also im Kern das Erstellen des Kompilats der Anwendung, die Paketierung aller notwendigen Dateien zum Betrieb der Anwendung, den Transport des Installationspaketes auf die Einsatzumgebung und schlussendlich die Installation und Konfiguration der Anwendung auf dem Zielsystem. Ich möchte meine Ideen und Vorstellungen zu einem besseren Release-Prozess festigen, indem ich einzeln die Schritte eines Releases beschreibe.</p>
+<p>Natürlich beinhaltet ein Release einer Software auch einige weitere Maßnahmen als die oben genannten, wie z. B. die Erstellung oder Aktualisierung von Dokumentationen oder Benachrichtigungen über die Verfügbarkeit der neuen Anwendungsversion bei der jetzigen Anwendern bzw. potentiellen Zielgruppen. Ich möchte hier allerdings nur auf den Kern des Release-Prozesses eingehen.</p>
+<h4 id="erstellen-des-release-builds">Erstellen des Release-Builds</h4>
+<p>Der wichtigste und aus meiner Sicht kritischste Punkt im Release-Prozess erfolgt gleich zu Beginn: Das Erstellen des Release-Builds. Hier ist es für ein sauberes Release entscheidend, dass von vornherein Richtlinien zu diesem Schritt vorhanden sind und beachtet werden. Die wichtigsten Regelungen sind meiner Meinung nach:</p>
+<ul>
+<li>Der Build ist automatisch. <br />
+    Folglich erfolgt er komplett automatisch, es ist keine Interaktion zum Bauen des Builds erforderlich.</li>
+<li>Der Build ist integer. <br />
+    Er beinhaltet alle Dateien, die zum Kompilieren der Software notwendig sind. Darüber hinaus enthält der Build alle Dateien, die zum reibungslosen Einsatz der Software auf dem Zielsystem erforderlich sind.</li>
+<li>Der Build ist atomar. <br />
+    Der Build wird demnach an einem festgelegten Zeitpunkt erstellt und wird während sowie nach dem Release-Prozess nicht mehr modifiziert.</li>
+<li>Der Build ist final. <br />
+    Er wird während des Release-Prozesses nur ein einziges Mal erstellt.</li>
+</ul>
+<h4 id="paketierung-der-software">Paketierung der Software</h4>
+<p>Nach erfolgreicher Erstellung des Builds ist der nächste Schritt die Paketierung. Mit der Paketierung werden neben dem Kompilat alle weiteren Dateien wie zum Beispiel Release Notes, Benutzerdokumentation, Anwendungsbeispiele und ähnliches zu einem Gesamtpaket zusammengeschnürt. Hier ist vor allem die Art der Paketierung entscheidend. Im Allgemeinen sollte das Gesamtpaket mit einer Installation und Installationsanweisungen ausgeliefert werden. Leider kommt es in einigen Unternehmen noch viel zu oft vor, dass das Paket ein einfaches ZIP-Archiv ist. Wie beim Build-Schritt auch, sollten bei der Paketierung einige Grundregeln beachtet werden:</p>
+<ul>
+<li>Die Paketierung erfolgt automatisch. <br />
+    Es sind keine manuellen Schritte bis auf das Anstoßen der Paketierung erforderlich.</li>
+<li>Die Paketierung erfolgt erst nach erfolgreicher Abnahme des Release-Builds. <br />
+    Dies wird im Allgemeinen durch automatisierte Tests und manuelle Verifikation auf Testsystemen gewährleistet.
+    Wie beim Build selbst wird das Auslieferungspaket nur einmal erstellt und während des Paketierungs-Prozesses nicht mehr modifiziert.</li>
+<li>Das Auslieferungspaket ist unabhängig. <br />
+    Unabhängig bedeutet in diesem Fall, dass das Paket keine weiteren Komponenten oder Informationen mehr benötigt, um auf dem Zielssystem installiert werden zu können.</li>
+</ul>
+<p>Der letzte Punkt bedeutet natürlich nicht, dass man keine Komponenten auf dem Zielsystem voraussetzen sollte. Jede Software hat bestimmte System Requirements. Es soll vielmehr verdeutlichen, dass die Systemvoraussetzungen klar definiert werden sollten und außerhalb dessen keine weiteren Komponenten mehr erforderlich sind. Besonderen Wert auf Betonung lege ich beim letzten Punkt auf „Informationen“. Damit möchte ich zum Ausdruck bringen, das dass Installationspaket (außer den mitgegebenen Informationen) idealerweise keinerlei weiteres Wissen erfordert um es auf dem Zielsystem zu installieren und die Software in Betrieb zu nehmen.</p>
+<h4 id="deployment">Deployment</h4>
+<p>Der dritte elementare Schritt im Release-Prozess ist der Transport des Software-Paketes auf die Anwendungsumgebung. Je nach Art und Quantität der Software kann dieser Verteilungs- bzw. Distributionsprozess viele verschiedenartige Formen und Schritte beinhalten. Dennoch lassen sich bei aller Varianz einige allgemeine Aussagen treffen:</p>
+<ul>
+<li>Die Funktionalität der Distribution muss vor der eigentlichen Verteilung verifiziert sein. <br />
+    Konkretisiert ist hier der Test und die Abnahme des gesamten Verteilungsverfahrens gemeint, undzwar noch bevor es zum offiziellen Deployment der Pakete kommt.</li>
+<li>Das Ziel - also alle bekannten Betriebsumgebungen - muss noch vor der Verteilung klar definiert und anvisiert sein. <br />
+    Dies kann auf vielfältige Art und Weise erfolgen, zum Beispiel mit einer automatischen Update-Funktion auf den Zielsystemen. Klar muss hier jedoch die Menge, Arten und idealerweise auch die Positionen der Zielumgebungen sein.</li>
+<li>Das Deployment muss beweisbar sein. <br />
+    Damit wird sichergestellt, dass das Installationspaket die Zielumgebung auch definitiv erreicht hat. Schlussendlich ist damit die Sicherstellung der Bedienung des Kunden der Software gemeint.</li>
+</ul>
+<h4 id="installation-inbetriebnahme">Installation &amp; Inbetriebnahme</h4>
+<p>Der finale Schritt im Release-Prozess ist die Inbetriebnahme der Software auf dem Zielsystem. Auch hier sind abhängig von der Art und dem Einsatzgebiet der Software viele unterschiedliche Maßnahmen möglich. Doch wie auch im Deploymentschritt können über diesen letzten Schritt auch generelle Punkte zur Beachtung aufgeführt werden:</p>
+<ul>
+<li>Die Installation und Konfiguration muss nachvollziehbar sein. <br />
+    Im Detail heißt das: Die Installationsroutine sowie auch die gesamte Grundkonfiguration der Software muss protokolliert werden. Bei der Installation ist dies bei Verwendung geeigneter Installationssoftware nicht sonderlich aufwendig. Etwas komplizierter wird es beim Konfigurieren der Software. Es kann sich hier als einen ausgesprochenen Vorteil erweisen, einen guten Konfigurationsassistenten für die Software anzubieten.</li>
+<li>Die Installation und Konfiguration muss reversibel sein. <br />
+    Man mag vielleicht im ersten Augenblick denken, das sei selbstverständlich. Der Alltag beweist leider oftmals das Gegenteil. Vor allem bei Installationen von neuen Versionen einer Software, welches im Unternehmensumfeld wesentlich öfter vorkommt als im privaten Bereich, sind bei manchen Softwareherstellern deutliche Defizite erkennbar.</li>
+<li>Die korrekte Durchführung aller Schritte zur Inbetriebnahme muss überprüfbar sein. <br />
+    Konkret: hat man alles richtig gemacht, sollte im Idealfall der Kunde als auch der Hersteller darüber informiert sein. Es versteht sich fast von selbst, dass hiermit auch die Rückmeldung an den Hersteller gemeint ist, wenn es nicht gut gelaufen ist.</li>
+</ul>
+<p>Abschließend bleibt mir eigentlich nur festzustellen, dass meine hier aufgezeigte, allgemeine Vorstellung eines Release-Prozesses doch noch in manchen Punkten von der Realität abweicht. Ergo: Es ist höchste Zeit, Änderungen in Gang zu bringen :-) .</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>13 August 2007</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/release-process-revisited.html&title=Release Process Revisited">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

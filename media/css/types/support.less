@@ -1,0 +1,32 @@
+/*
+support.less
+============
+
+styles for 'supportive' pages, that is comments, imprint, policy
+pages and the like.
+*/
+
+.support {
+  div.mailr {
+    margin:12px 0px;
+
+    a {
+      .is_command;
+      .colors(@color_graphite, @color_snow);
+      display:block;
+      width:160px;
+      margin:auto;
+      text-align:center;
+    }
+
+    a+span {
+      font:12px @type_black;
+      .colors(@palette_info_fg, @palette_info_bg);
+
+      display:block;
+      width:176px;
+      margin:auto;
+      text-align:right;
+    }
+  }
+}

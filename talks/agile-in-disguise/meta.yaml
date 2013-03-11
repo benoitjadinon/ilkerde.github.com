@@ -1,0 +1,8 @@
+extends: slide.j2
+default_block: manuscript
+listable: false
+title: "Agile In Disguise"
+created: !!timestamp 2012-07-09 20:00:00
+slidecount: 9
+manuscript: true
+

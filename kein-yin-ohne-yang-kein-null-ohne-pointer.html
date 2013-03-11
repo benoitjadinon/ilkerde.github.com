@@ -1,0 +1,164 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Kein Yin ohne Yang, kein Null ohne Pointer</title>
+    <meta name="description" content="Eine (etwas längere) Beschreibung meiner pragmatisch-kritischen Haltung zu Null-Referenzen und deren Umgang in der Praxis. Obgleich ich ein starker Vertreter der Null-Kritiker-Fraktion bin, ist ein pragmatischer Umgang mit Null zuweilen hilfreich.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="kein-yin-ohne-yang-kein-null-ohne-pointer">
+    <a href="kein-yin-ohne-yang-kein-null-ohne-pointer"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Kein Yin ohne Yang, kein Null ohne Pointer</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Es ist eine schwierige Zeit heutzutage. Besonders für Software-Entwickler. Denn heutzutage gibt es für einen Software-Entwickler viele Dinge, die er lernen, können und beachten muss. Da gibt es die Tools, die Programmiersprachen, die Methoden, die Anforderungen, die Domäne, die Kollegen und noch vieles mehr. Da gibt es schon einmal Momente, in denen man sich unsicher ist. „Mache ich das richtig?“, „gibt es bessere Lösungen?“ oder „hoffentlich passt das...“. Zumindest geht es mir manchmal so, z.B. bei neuen Dingen oder besonders komplexen Problemstellungen. Ich bin dann froh, wenn ich um mich herum jemanden habe oder finde, der mich und mein Problem versteht und mir helfen kann. Helfen mit seiner Einschätzung, seiner Meinung und seinen Erfahrungen.</p>
+<h3 id="helfen-ist-schon-geholfen-werden-ist-schoner">Helfen ist schön, geholfen werden ist schöner!</h3>
+<p>Ich weiß es nicht genau, aber ich vermute es ein wenig, dass <a href="http://blog.thomasbandt.de/39/de/blog.html">Thomas</a> auch froh ist, wenn er durch Meinungsaustausch seine eigenen Herausforderungen besser einzuschätzen vermag. Ich persönlich empfinde diese „Kalibrierung“ als wichtigen Baustein zur Festigung der eigenen Meinung.</p>
+<p>Thomas hat mit <a href="http://blog.thomasbandt.de/39/2333/de/blog/null-verstaendnis.html">Null Verständnis</a> gefragt, wie die Handhabung von NULL als Rückgabe von Methoden bei anderen Entwicklern umgesetzt und eingeschätzt wird. Viele haben kommentiert, einige haben auch Blog-Post-Antworten geschrieben. Ich habe das mit Kommentaren und dem <a href="null-toleranz.html">Null Toleranz-Beitrag</a> auch getan, der <a href="http://ralfw.blogspot.com/2010/05/null-oder-nicht-null-das-ist-hier-die.html">unermüdliche Ralf hat auch kräftig in die Tasten gehauen</a>. Überraschenderweise mit mehreren Aussagen.</p>
+<p>Ralf geht in seinem „<a href="http://ralfw.blogspot.com/2010/05/es-hilft-nichts-dass-es-darauf-ankommt.html">Plädoyer für Regeln</a>“ auch auf einige Punkte ein, die ich über die Handhabung von NULL in Anwendungsszenarien bemerkt hatte. Ralf hat so vieles geschrieben, dass es mir schwer fällt, wirklich alle Themen in einem oder mehreren Blog-Posts zu erwidern. Einen Überblick über meine Perspektive möchte ich dennoch geben.</p>
+<h3 id="mind-the-null">Mind the Null!</h3>
+<p>Ralf stellt im Namen der Community die erste Null-Regel auf:</p>
+<blockquote>
+<p>"Man darf Null benutzen und auch als Wert zurückgeben – aber Vorsicht! Erst prüfen, ob es nicht auch anders geht"</p>
+</blockquote>
+<p>D’accord! Das hatte ich ja auch schon in Kommentaren und <a href="http://twitter.com/ilkerde/status/13197888337">per Twitter</a> erwähnt. Doch wann kann man Null verwenden, wann nicht? Gibt es dafür eine „kontextarme“ Regel? Kann man pauschal sagen: „<a href="http://twitter.com/DerAlbert/status/13246967481">Verwende es nicht!</a>“. Meiner Meinung nach ist das nicht so einfach. Klar kann ich auch sagen, dass man Null einfach nicht anwenden soll, aber ich mache es mir nicht so einfach.</p>
+<p>Wenn ich nämlich obige Regel einem Embedded-Entwickler entgegenbringe, dann lacht der mich mal gepflegt vor seinen Kollegen aus. In der Embedded-Entwicklung, wie auch bei sehr ressourcenintensiven Geschäftsanwendungen ist es nämlich durchaus erstrebenswert, oft NULL zurückzugeben, um damit z.B. eine leere Liste oder leere Suche zu signalisieren. Es mögen sich wenige daran erinnern, aber NIL (als Synonym für NULL) ist die Abkürzung für „<a href="http://www.mirrorservice.org/sites/www.gnu-pascal.de/gpc/nil.html">Not-In-List</a>“.</p>
+<h3 id="null-fur-hacker">Null für Hacker</h3>
+<p>Ich selbst durfte schon mehrere serverseitige Komponenten von „Exception-Flut“ befreien, in dem ich sie in einigen Stellen durch NULL ersetzt habe. Danach lief der Service doppelt so schnell bei 25% weniger Ressourcenverbrauch. Bin ich jetzt ein Aussetziger, weil ich die Regel nicht befolgt habe?</p>
+<p>Ich denke nein. Denn: In einigen Anwendungsszenarien ist es gang und gäbe NULL als Mittel einzusetzen. Mehr noch, es ist „normal“, soz. "die Regel". Deswegen sage ich nach wie vor: Die Regel ist richtig, man sollte vorsichtig mit NULL umgehen und es mit bedacht einsetzen. Doch eine „Faustregel“ ist es für mich noch nicht, denn man kann es (noch) in bestimmten Anwendungsfällen vorteilhaft und stringent einsetzen.</p>
+<h3 id="catastrophicfailureexception-null">CatastrophicFailureException ?? Null</h3>
+<p>Ralf schreibt:</p>
+<blockquote>
+<p>„Null-Regel #2 (von Ilker; noch zu diskutieren): In Katastophenfällen darf Null zurückgegeben werden.“</p>
+</blockquote>
+<p>Das ist keine Regel. Den Regelbedarf und die Kreativität zum Design eines Regelwerks wie Ralf habe ich (noch) nicht. Ich habe dafür aber Programme, die Probleme lösen. Bei einigen, wenigen Programmen habe ich NULL als Rückgabe für „katastrophale Fehler“ zurückgegeben.</p>
+<p>Das hat mir bei der <a href="http://de.wikipedia.org/wiki/Defensives_Programmieren">defensiven Programmierung</a> geholfen, denn es ging um eine etwas kritischere Komponente, die an Schnittstellen sog. „Guards“ hatte, die alle möglichen Exceptions abgefangen haben. Im Nachhinein betrachtet hätte ich es wohl auch mit einer „CatastrophicFailureException“ oder mehreren, spezifischeren Exceptions lösen können. C'est ca!</p>
+<h3 id="null-nur-bei-gleicher-kategorie">Null nur bei „gleicher Kategorie“</h3>
+<p>Die dritte Regel von Ralf: </p>
+<blockquote>
+<p>"Null darf nur Rückgabewert sein, wenn Null zur selben Kategorie gehört wie ein Nicht-Null Rückgabewert".</p>
+</blockquote>
+<p>Naja, streng genommen ist NULL ja nichts, und damit kann man es auch nicht kategorisieren. Antizipieren kann ich da nur, dass es um das <a href="http://blog.thomasbandt.de/39/2331/de/blog/kleiner-helper-fuer-linq-to-sql-tolistordefault-update.html">Beispiel von Thomas mit der Liste</a> gehen kann. Dem kann ich nur zustimmen. Hier ist ein Ausnahmefall zwar auch möglich, aber doch eher selten.</p>
+<h3 id="dein-pflock-ist-mein-maibaum">Dein Pflock ist mein Maibaum!</h3>
+<p>Ralf hatte mir zu viel "Rumgeeiere" in meinen Aussagen über <code>NULL</code> attestiert. Das will ich doch gerne versuchen besser zu machen und Ralf‘s „Pflock in Boden“ in meine triviale niederbayrische Welt übertragen und damit mal den „Maibaum ins Dorf“ stellen. Also, auf geht’s, Maderl &amp; Buam – mein Maibaum im Dorf „Nullinger“!</p>
+<p>Ilker's Statement zu Null als Rückgabe von Methoden:</p>
+<blockquote>
+<p>NULL ist gefährlich, meide NULL, außer es gibt triftige Gründe. Triftige Gründe können Performance, Speicher oder dynamische Datenstrukturen sein. Solltest Du NULL als „Indikator“ für etwas verwenden (z.B. „Nicht gefundener Benutzer“), ziehe eine Vermeidungsstrategie mit Exceptions oder ReturnCodes in Erwägung. Sei auf der Hut, NULL ist überall. Prüfe, ob deine Parameter oder deine Methoden NULL zurückgeben. Prüfe besonders, wenn Du parallelisierst oder wichtige Schnittstellen bedienst. Solltest Du ein NULL finden, versuche zunächst damit umzugehen. Geht das nicht mehr, signalisiere die Ausnahme. Achte darauf, dass ein NULL die Methode nicht verlässt.</p>
+</blockquote>
+<p>So, ich hoffe das war <a href="http://de.wikipedia.org/wiki/Kanak_Sprak_%E2%80%93_24_Mi%C3%9Ft%C3%B6ne_vom_Rande_der_Gesellschaft">konkret krass korrekt</a> genug!</p>
+<h3 id="immer-diese-abhangigkeiten">Immer diese Abhängigkeiten</h3>
+<p>Nachdem nun der Maibaum in Django Asül-Manier aufgestellt ist, möchte ich neben dem Ausgangsthema mich noch ein wenig den neuen Themen widmen, die Ralf in seinem <a href="http://ralfw.blogspot.com/2010/05/es-hilft-nichts-dass-es-darauf-ankommt.html">Rules of Null-Post</a> erwähnt hat. Ralf regt sich dabei ganz besonders über die „It depends“-Phrase auf. Ja, „It depends“, die allmächtige und einzige Antwort auf alles, was so im Leben an Fragen auf einen zukommen kann. Die Antwort „It depends“ ist kurz, erfüllt die Aufgabe und ist hochgradig flexibel bei gleichzeitig maximaler Wiederverwendbarkeit. Geradezu traumhafte Eigenschaften aus der „Nerd-Software-Entwickler“-Perspektive, oder nicht? Vielleicht ist es deshalb auch so beliebt in unserer Banche?</p>
+<p>Spaß beiseite. „It depends“ ist eine Phrase, die mehr oder minder Inhalt liefern kann. Ich stimme Ralf zu, wenn er sagt, dass dieses „Es kommt drauf an“-Getue mit der Zeit nicht mehr auszuhalten ist. Deswegen kann ich die Reaktion von Ralf auch gut verstehen. Ich selbst finde es teilweise immer wieder erschreckend, wie oft auf diese Floskel zurückgegriffen wird, ohne darüber nachzudenken. Dennoch verwende ich es - ab und an zumindest, wenn ich es für erwähnenswert erachte.</p>
+<h3 id="niemals-ist-niemals-niemals">Niemals ist niemals niemals</h3>
+<p>Fakt ist auch, dass „It depends“ nicht nur eine Bierdeckelweisheit ist, sondern auch als Abkürzung verwendet wird. Im Stile „ich erspare mir und Dir jetzt nähere Details“. Das kann gut und schlecht interpretiert werden. So oder so, es kommt darauf an :-) Genauer gesagt, auf den, der es interpretiert.</p>
+<p>Womit wir bei der <a href="http://de.wikipedia.org/wiki/Quadratur_des_Kreises">Quadratur des Kreises</a> angelangt wären: Es ist nunmal so, dass wir Systeme vereinfachen und Abstraktionen schaffen, um es zu verstehen. Dabei geht auch Genauigkeit und Wahrheit verloren. Manchmal sogar so sehr, dass die aus der Vereinfachung abgeleitete Erkenntnis nicht mehr adequat bzw. erwartungsgerecht ist. Insofern ist „It depends“ nicht nur eine Fassade oder Ausrede, sondern eine zuweilen notwendige Mahnung, den Kontext und die Erkenntnis zu hinterfragen, sich bewußt mit der Lösung und Problemstellung auseinanderzusetzen. Für die Agilisten unter uns: „It depends“ ist ein auch ein Aufruf zum „Inspect &amp; Adapt“.</p>
+<p>Ich kann mich guten Gewissens Ralf anschließen, wenn es darum geht, Leitfäden und Empfehlungen über die Anwendung von <code>NULL</code> mit der Community zu erarbeiten. Meinungsaustausch ist Katalysator für Lernen, Entdecken, Erfahren und Bestätigen. Doch ein Regelwerk will ich nicht erstellen. Ich gebe meine Meinung und meinen Standpunkt gerne wieder. So wie ich es erfahren habe und so, wie ich es für gut empfinde.</p>
+<p>Regeln habe ich auch. Ich habe meine eigenen Regeln, ich habe Teamregeln und ich habe noch eine Reihe weiterer Regeln, die ich für mich beachte und schätze. Regeln sind für mich wichtig. Ich möchte damit sagen, dass ich durchaus Ralfs Motivation nachvollziehen kann. Doch ich habe meine Beiträge nicht mit dieser Motivation mit der Community geteilt. Mein Ziel ist die Kommunikation und der Erfahrungsaustausch. Das wird auch so bleiben.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>02 May 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/kein-yin-ohne-yang-kein-null-ohne-pointer.html&title=Kein Yin ohne Yang, kein Null ohne Pointer">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+extends: slide.j2
+pagetype: slide
+default_block: manuscript
+manuscript: true
+listable: false
+title: Netzwerk - Autonomie - Emergenz
+slidecount: 20
+created: !!timestamp 2010-03-15 22:00:00

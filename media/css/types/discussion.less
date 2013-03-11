@@ -1,0 +1,56 @@
+/*
+discussion.less
+===============
+
+styles for page mode 'discussion', a chronologically ordered 
+listing of comments for a single article.
+
+*/
+
+#content.discussion {
+  margin-bottom:80px;
+
+  ul {
+    list-style-type:none;
+    list-style-position:inside;
+
+    li.item {
+      margin-left:0px;
+      margin-bottom:40px;
+    }
+  }
+
+  .order {
+    .colors(@palette_label_fg, transparent);
+
+    font-family:@type_black;
+    text-align:right;
+    float:right;
+  }
+
+  .source {
+    .colors(@palette_label_fg, transparent);
+    
+    font-family:@type_black;
+    text-align:left;
+    float:left;
+  }
+
+  .text {
+    .colors(@palette_text_fg, transparent);
+    border-left:2px solid @palette_border;
+
+    padding-left:14px;
+    padding-top:12px;
+
+    font-size:14px;
+    line-height:20px;
+    display:block;
+    clear:both;
+
+    * {
+      .colors(@palette_text_fg, transparent);
+    }
+  }
+}
+

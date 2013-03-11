@@ -1,0 +1,303 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Introduction</title>
+    <meta name="description" content="">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="index">
+    <a href="index"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Introduction</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Thank you for your interest in the inner what-and-why of this website. This page will give you a short introduction to the currently available documentation.</p>
+<p><em>Table Of Contents</em></p>
+<div class="toc">
+<ul>
+<li><a href="#purpose">Purpose</a></li>
+<li><a href="#overview">Overview</a><ul>
+<li><a href="#topics">Topics</a></li>
+<li><a href="#types-of-content">Types of content</a></li>
+<li><a href="#site-structure">Site structure</a></li>
+<li><a href="#technology">Technology</a></li>
+<li><a href="#source">Source</a></li>
+<li><a href="#hosting">Hosting</a></li>
+</ul>
+</li>
+<li><a href="#concepts">Concepts</a><ul>
+<li><a href="#organisation">Organisation</a></li>
+<li><a href="#device-types">Device Types</a></li>
+<li><a href="#page-types">Page Types</a><ul>
+<li><a href="#article-page-type">Article Page Type</a></li>
+<li><a href="#home-page-type">Home Page Type</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#realisation">Realisation</a><ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#hyde">Hyde</a><ul>
+<li><a href="#layouts">Layouts</a></li>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#macros">Macros</a></li>
+</ul>
+</li>
+<li><a href="#document-markup">Document Markup</a></li>
+<li><a href="#style-sheets">Style Sheets</a></li>
+<li><a href="#client-scripts">Client Scripts</a></li>
+<li><a href="#server-scripts">Server Scripts</a></li>
+<li><a href="#source-code">Source Code</a></li>
+</ul>
+</li>
+<li><a href="#specialities">Specialities</a><ul>
+<li><a href="#commenting">Commenting</a></li>
+<li><a href="#news-feeds">News Feeds</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h3 id="purpose">Purpose</h3>
+<p>The purpose of the website actually is twofold. First, it serves as a <em>digital personal identity</em> or reference. Simply speaking, it's a private homepage. Additionally, it serves as a content publication and distribution platform. It contains my blog, further documents and papers, slides and downloads. Well, that's all about it.</p>
+<p>This documentation mainly takes care of the website implementation. Although there's some strategic / design documentation as well, the vast amount of the documentation will be about the technical concepts and aspects of the website.</p>
+<h3 id="overview">Overview</h3>
+<h4 id="topics">Topics</h4>
+<p>The website will mainly be about my personal interests - no more no less. However, the main topics of this website will be about my professional life and experience. More precisely, computing, organisational development, team leadership and software engineering will be the main areas.</p>
+<h4 id="types-of-content">Types of content</h4>
+<p>The website will mainly serve three different types of content. The first type is just plain document-centric pages with individual topics and length. Generally speaking, this type of content is called <em>article</em>.</p>
+<p>The second category of content is a typical index-oriented page. Its purpose is to provide a list of references to other pages, typically meaningfully grouped and sorted. The index class of pages is called <em>index</em>.</p>
+<p>The third class of content actually is a presentational page. Typically, this type of page has much more visual weight. Even different types of media, such as videos or animations are possible. This third page category's name is <em>slide</em>.</p>
+<h4 id="site-structure">Site structure</h4>
+<p>Conceptually, the site is divided into separate <em>areas</em>. The current implementation hosts the following areas:</p>
+<ul>
+<li>Main<br />
+  This is the main area where the master index (home page) and the articles reside. Despite supportive pages such as about, imprint and others, this area hosts all blog posts.</li>
+<li>Talks<br />
+  Obviously, this area is about public speaking and presentation. Here presentations, slides and other material (maybe sample code) are provided.</li>
+<li>Meta<br />
+  This area hosts self-descriptive content only. It contains this documentation, technical pages (such as reference pages and test pages) as well as reports.</li>
+</ul>
+<h4 id="technology">Technology</h4>
+<p>There's nothing really special to this website, actually. The basic content types being used are:</p>
+<ul>
+<li><code>HTML</code>: For template layouts. This is obvious. It's a website after all.</li>
+<li><code>LESS</code>: For stylesheet definitions.</li>
+<li><code>COFFEE</code>: For javascripts.</li>
+<li><code>MARKDOWN</code>: For all textual content and documentation.</li>
+</ul>
+<p>As for the toolchain, it's mostly noteworthy that large parts of the website are basically made up by <em>static</em> pages and resources. The static pages are generated from the source content using <a href="http://github.com/hyde/hyde">hyde</a>, a so called <em>static website generator</em> written in <a href="#">python</a>. That being said, it's clear that the overall development has <a href="#">python</a> as preferred language and platform. </p>
+<p>In the context of <a href="http://github.com/hyde/hyde">hyde</a>, the page templates are created using the powerful <a href="#">jinja2</a> template engine. The stylesheet files are compiled using <a href="#">less.js</a>, the javascript files obviously compiled through <a href="#">coffeescript</a> compiler. Both less and coffee require a javascript runtime, for which <a href="#">node.js</a> is being used.</p>
+<h4 id="source">Source</h4>
+<p>About the source.</p>
+<h4 id="hosting">Hosting</h4>
+<p>About the hosting.</p>
+<h3 id="concepts">Concepts</h3>
+<h4 id="organisation">Organisation</h4>
+<h4 id="device-types">Device Types</h4>
+<p>The layout concept basically will support 3 layouts depending on the
+target device. Those are:</p>
+<ul>
+<li>Screen: The default screen layout, known as the "classic" desktop view.</li>
+<li>Mobile: The layout for small screen devices, such as smartphones.</li>
+<li>Print: The layout for printers.</li>
+</ul>
+<p>Device targetting is done <em>solely</em> via CSS stylesheets. At the moment,
+the implementation strategy <em>does not</em> use media queries. Instead, a
+typical query on <code>user-agent</code> HTTP request header is performed to recognize
+device type. For all devices, the markup remains stable while styles
+and javascripts may differ.</p>
+<p>Currently, only the <code>screen</code> and <code>mobile</code> device types (views) are implemented. The <code>print</code> view will eventually added in future.</p>
+<h4 id="page-types">Page Types</h4>
+<p>The [layout reference] deals with a number of so called <em>"page types"</em>, which essentially categorize content into separate frequently used representations. The page types discussed and supported herein are:</p>
+<ul>
+<li><em>Article</em>: A typical, textual article / blog page.</li>
+<li><em>Listing</em>: A typical, mostly textual listing page.</li>
+<li><em>Home</em>: The primary index overview page (home page).</li>
+</ul>
+<p>Apart from these core page types, several other page types are being recognized. However, their representation is not yet documented. Some of the (yet only informally existing) page types are:</p>
+<ul>
+<li><em>Slides</em>: Typical slide presentations within the site.</li>
+<li><em>Talks</em>: An overview for the abovementioned slide presentations.</li>
+<li><em>Bio</em>: A strong visual presentation of personal experience and capabilities.</li>
+<li><em>History</em>: A typical archive / timeline / journal presentation of content.</li>
+</ul>
+<h5 id="article-page-type">Article Page Type</h5>
+<p>This [page type] is most probably the most important page type of the entire website. It's used for any textual content which can be classified as <em>blog post</em> or <em>standalone article</em>.</p>
+<blockquote>
+<p>Example: The article layout reference at <a href="/meta/refs/article.html">refs/article.html</a></p>
+</blockquote>
+<p>It mostly takes all features provided by the master layout, plus some minor additions like a <em>related articles</em> footer.</p>
+<h5 id="home-page-type">Home Page Type</h5>
+<p>The home page is te first page to be displayed to the user in desktop mode. It should contain a very easy and quick understandable navigation and provide a fast overview of what ilker.de has to offer.</p>
+<blockquote>
+<p>Example: <a href="/meta/refs/home.html">refs/home.html</a></p>
+</blockquote>
+<p>Second, the home page actually should transport the primary purpose of the site - the "digital identity" of me. That actually means that information about me as a person or public individual should be available at first sight - or just a single click away.</p>
+<p>Hence, the splash page will contain:</p>
+<ul>
+<li>The main navigation (index, articles, talks, about)</li>
+<li>The latest article (as title)</li>
+<li>An "editors pick" of an article (should differ from latest article, updated quarterly)</li>
+<li>Information about me as a person and the services I can deliver (portfolio, cv)</li>
+<li>Contact Info (email, twitter, xing, linkedin)</li>
+</ul>
+<h3 id="realisation">Realisation</h3>
+<h4 id="requirements">Requirements</h4>
+<h4 id="hyde">Hyde</h4>
+<h5 id="layouts">Layouts</h5>
+<p>Adhering to the original <code>hyde</code> directory structure, all layout templates can be found in the <code>layouts</code> folder. Templates are written with <code>jinja</code>, of course.</p>
+<p>The general concept of the templates is quite straight-forward. All templates correspond to a general [Page Type], except one single template called the <em>Master</em>. The master template (file: <code>master.j2</code>) is the common style and layout definition of the website, as translated from the [Master Website]. All other templates inherit from master, but never from themselves. More strictly speaking: there's only a single hierarchy - no more.</p>
+<p>All templates may use visualization helpers, which are called <em>macros</em>. They are organized within the <code>macro</code> folder and contain commonly used functionality, such as translations or navigation.</p>
+<h5 id="variables">Variables</h5>
+<p>Templates make heavy use of the hyde ecosystem, especially the <code>resource</code> element. For commonly used stuff, such as <code>meta</code> or the [Translation Macro], the master template defines single-letter top-level variables.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td>resource.meta</td>
+</tr>
+<tr>
+<td>t</td>
+<td>translate</td>
+</tr>
+</tbody>
+</table>
+<h5 id="macros">Macros</h5>
+<h4 id="document-markup">Document Markup</h4>
+<h4 id="style-sheets">Style Sheets</h4>
+<h4 id="client-scripts">Client Scripts</h4>
+<h4 id="server-scripts">Server Scripts</h4>
+<h4 id="source-code">Source Code</h4>
+<p>The repository for this website has a very specific branching model. The branches used are:</p>
+<ul>
+<li><strong>default</strong>: The main branch. The mainline represents <em>release</em> status. It typically is in sync with the below mentioned <code>publish</code> branch.</li>
+<li><strong>content</strong>: A branch holding the content of the website, alonside with the code. Used for writing articles and other content. Represents <em>draft</em> status.</li>
+<li><strong>dev</strong>: The development branch, without real content. That's the bare website 'application'. Represents <em>dev</em> status.</li>
+<li><strong>publish</strong>: A fork of the development branch. Used to publish the code part of the website to public bitbucket / github repositories.</li>
+</ul>
+<h3 id="specialities">Specialities</h3>
+<h4 id="commenting">Commenting</h4>
+<p>Since <a href="/no-more-blog-comments.html">turning off website comments completely</a>, a number of responses through various other channels were made regarding this topic. While a few responses were positive, others think a little different. It seems as if the motivation to comment and discuss a specific topic on the website went down significantly. This case addresses this issue with appropiate counter-measurements without actually providing on-site commenting feature.</p>
+<p>The preferred solution is to provide a 'write comment' button which actually links to a separate, descriptive comments page. On that particular page, the user can find a short notice about the 'comments policy' of the website, links to further explanations regarding the 'no on-site comments policy' and at least a <em>very prominent</em> area with further options.</p>
+<p>The aforementioned options are</p>
+<ul>
+<li>a link launching the users MUA with prefilled mail and subject fields,</li>
+<li>a link enabling to share the page url in question with twitter,</li>
+<li>a link enabling to share the page url in question with google plus,</li>
+</ul>
+<p>whereas the <code>mailto:</code> link is required to be provided. The social sharing links are optional only.</p>
+<p>The comments page will be a single page for all pages motivating to write comments. In plain english, there's only one comments page for all other pages. To customize the comments page visualization and content towards the specific page in question, the comments page can receive parameters within its URL, such as <code>subject</code> or <code>referrer</code>.</p>
+<p>The provided data ideally  should be processed on the client-side using <em>Javascript</em>. In consequence, at least the 'write comment' button on the comments page can't be used if JS is disabled. That's fair enough since nowadays mostly only crawlers don't execute JS. Despite that, it's obvious that no server resources are consumed for this client-specific operation.</p>
+<h4 id="news-feeds">News Feeds</h4>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>01 January 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/meta/index.html">Meta</a>
+                            / <a href="/meta/docs/index.html">Docs</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                  </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

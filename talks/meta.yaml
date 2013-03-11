@@ -1,0 +1,4 @@
+extends: slide.j2
+default_block: slide
+section: Talks
+searchindex: false

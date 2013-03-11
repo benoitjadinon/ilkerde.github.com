@@ -1,0 +1,55 @@
+@import "assets/colors";
+@import "assets/fonts";
+@import "assets/images";
+@import "assets/mixins";
+
+.do_display_lists_as_tiles {
+  ul, ol {
+    padding:0px;
+    list-style-position:none;
+    list-style-type:none;
+  }
+
+  ul + * {
+    clear:both;
+    padding-top:16px;
+  }
+
+  li {
+    .is_panel;
+    .size(150px, 150px);
+
+    margin:5px;
+    float:left;
+  }
+
+  li a {
+    .is_panel;
+    .size(150px, 150px);
+    .colors(@palette_menu_fg, @palette_menu_bg);
+
+    display:block;
+    float:left;
+
+    font:12pt @type_black;
+
+    text-decoration:none;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  li a:hover {
+    .colors(@palette_menu_fg_over, @palette_menu_bg_over);
+  }
+
+  li a:before {
+    .is_panel;
+    .size(100px, 100px);
+    content:"";
+    position:absolute;
+    left:50px;
+    top:50px;
+    opacity:0.5;
+  }
+}

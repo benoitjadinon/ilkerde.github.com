@@ -1,0 +1,150 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Stateful vs. Stateless Web Services</title>
+    <meta name="description" content="Meine Auffassung zu der Entwicklung von stabilen und skalierbaren Web Service an Hand der Diskussion um statusbehaftete Dienste versus statuslose Dienste.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="stateful-vs-stateless-web-services">
+    <a href="stateful-vs-stateless-web-services"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Stateful vs. Stateless Web Services</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Es ist schon ein paar Tage her, als ich Zeuge einer kleinen Debatte unter Entwicklern wurde. Es ging um die Entwicklung eines Web Services, welches eine große Menge an Daten beliefern sollte. Während des Brainstormings über Spezifikationen und Parameter wurde auch darüber diskutiert, ob der Web Service stateful - also mit einer Session - oder stateless konzipiert werden soll.</p>
+<p>Völlig parteilos - ich kenne beide Entwickler :-) - möchte ich diese zwei Design-Konzepte ein wenig aus meiner eigenen Betrachtungsweise durchleuchten. Auf gut englisch - my 2c...</p>
+<p>Zunächst sollte man sich meiner Meinung nach der Natur des Web Services im Klaren sein. Konkret ist ein Web Service eine öffentliche Schnittstelle zum Aufruf einer entfernten Operation. Nun ist soetwas ja nicht das 8. Weltwunder - will heissen dass es viele weitere, zum Teil deutlich ältere Technologien gibt, die das gleiche bezwecken wollen - es seien hier nur RPC und CGI als prominente Beispiele erwähnt. Das Problem "stateful" vs. "stateless" stellt sich also nicht erst seit dem es Web Services gibt.</p>
+<p>Einen entfernten Aufruf - den berüchtigten "Remote Call" durchzuführen ist mit der Web Services-Technologie mittlerweile kinderleicht. Remote operations zur Verfügung zu stellen ist mit dem .NET Framework zum Beispiel fast genauso kinderleicht. Umso mehr sind Entwickler dazu geneigt, diese Leichtigkeit der Verwendung mit "Leichtsinnigkeit" zu verwechseln. Denn die Tragweite der Entscheidungen über ein Web Service Design kann manchmal ungeahnte Züge annehmen.</p>
+<p>Doch zurück zum Thema: Grundsätzlich wurden Web Services für den automatisierten (also maschinellen) Informationsaustausch geschaffen. Per Definition des W3C ist ein Web Service nämlich folgendes:</p>
+<blockquote>
+<p>A Web service is a software system designed to support interoperable machine-to-machine interaction over a network. It has an interface described in a machine-processable format (specifically WSDL). Other systems interact with the Web service in a manner prescribed by its description using SOAPmessages, typically conveyed using HTTP with an XML serialization in conjunction with other Web-related standards.</p>
+</blockquote>
+<p>So. Eine klare Ansage. Aber beim zweiten durchlesen wird auch schon deutlich, wo der eigentliche Knackpunkt liegt. Es geht um das Teilstück "...interoperable machine-to-machine interaction...". De facto lässt sich daraus ableiten, dass in der Idealform jeder Rechner innerhalb eines Netzwerkes jeden Dienst und dessen Operationen ansprechen und verarbeiten kann. Das kann auch komplexere Szenarien unterstützen; z.B dass Rechner, die Dienste zur Verfügung stellen, ihrerseits zur Erfüllung ihres eigenen Dienstes einen oder mehrere andere Dienste in Anspruch nehmen. Weiterhin ist per Definition auch die Multiplizität eines Dienstes freigestellt - d.h. es kann einen oder mehrere gleichartige, oder sogar equivalent operierende Dienste geben, die auf einer oder mehreren Rechnern zur Verfügung gestellt werden.</p>
+<p>Bevor es nun zu theoretisch wird, kann man die Gedankenspiele abkürzend auf einen Nenner bringen: Bei Web Services geht es um flexible Kommunikation. Die Operation wird demjenigen zur Verfügung gestellt, der Sie braucht und ist idealerweise jederzeit ersetzbar. Des Weiteren ist die Operation idealerweise kontextunabhängig - lässt sich also ohne weiteres im Verbund mit anderen Operationen aufrufen, um daraus eine neue, sog. "orchestrierte" Operation zu formen.</p>
+<p>Ich laufe hier natürlich sehr in Gefahr, in das SOA-Thema auszuschweifen - also gleich weiter mit der Ableitung der Definition des Web Services zu Entscheidungshilfen beim Design von Web Services.</p>
+<p>Jetzt, da man die "Natur" eines Web Services sich genauer vor Augen hält, lässt sich eindeutig sagen, dass Web Services per se kontextunabhängig sind - im Resultat also "stateless". Der Begriff "stateless" ist hier sehr leicht mit "statisch" ersetzbar - soll es aber nicht sein. Ein Web Service ist nicht zwingend statisch, weil es keinen Zustand hat. Der Gedanke der Kontextunabhängigkeit manifestiert sich bei Web Services nahezu überall: Die SOAP-Spezifikation enthält z.B. zahlreiche Möglichkeiten, Meta-Daten mit den Daten zu einer Operation zu übertragen. Im .NET Framework wird standardmäßig bei jedem Web-Service-Methoden-Aufruf die Web-Service-Klasse selbst instanziiert - eindeutige Zeichen dafür, dass Web Services für kontextunabhängige Verwendung ausgelegt worden sind.</p>
+<p>Ergo: Web Services sind erst mal von Haus aus "stateless". Aber wieso spielen nun viele Entwickler mit dem Gedanken, einen Web Service "stateful" werden zu lassen? Das kann viele Unterschiedliche Gründe haben - in dem von mir geschilderten Fall war die Datenmenge der Vater des Gedanken. Es sei hier nur kurz in groben Zügen der Werdegang der Idee zum "stateful" Web Service beschrieben:</p>
+<p>Zur Implementierung einer Suche frägt der Client mit variablen Parametern ein Satz von Daten an - die resultierende Datenmenge ist unglaublich groß (sagen wir mal mehrere tausend Datensätze mit einer großen Menge an Daten, sagen wir mal 1MB pro Datensatz). Die Abfrage und Beschaffung der Daten auf der Datenbank kostet sehr viel Zeit (sagen wir mal mehrere Minuten) und kostet unglaublich viel Ressourcen (sagen wir mal es ist eine alte, gebrechliche Datenbank mit wenig Skalierbarkeit). <em>(Merkt man, dass ich nicht gut im Erfinden von Anforderungen bin?)</em></p>
+<p>Um nun Ressourcen zu schonen und die Geschwindigkeit zu erhöhen, kann man eine Session einführen, die bei der initialen Such-Abfrage erstellt wird. Die Abfrage wird gegen die Datenbank ausgeführt, das Ergebnis in der Session gespeichert und nur ein Teil der Daten (sagen wir mal, die ersten hundert) an den Client zurückgeliefert. Sollte der Client in einem zweiten Aufruf mehr Datensätze verlangen, werden die in der Session gespeicherten Daten zurückgeliefert, anstelle eine neue Abfrage gegen die Datenbank abzusetzen.</p>
+<p>Ich möchte an dieser Stelle den aufmerksamen Leser bitten, über die Sinnhaftigkeit dieser Idee - wie ich es getan habe - hinwegzusehen und sich nur auf die Thematik der Kontextbezogenheit zu konzentrieren - Danke.</p>
+<p>Nun, in Konsequenz würde die Einführung einer Session folgende Auswirkungen haben:
+Die Session müsste erstellt werden, ein Session-State-Service müsste die Sessions verwalten. Wie es mit Sessions so ist, wäre die Session nur begrenzt gültig - und damit auch der gewünschte Effekt in begrenztem Maße erreicht. Weiterhin müsste die Session-ID in jedem Aufruf mit übergeben werden - das Interface würde also mit noch mehr Meta-Daten beladen werden. Im Übrigen wäre der Aufruf der zweiten Operation ("gebe mir noch mehr Datensätze") nur möglich, wenn zuvor die erste aufgerufen wurde.</p>
+<p>All diese meiner Meinung nach unvorteilhafen Konsequenzen müsste man in Kauf nehmen, um das gewünschte Ziel zu erreichen. Ein ziemlich teurer Preis wie ich finde.</p>
+<p>Mit zustandsbehafteten Web Services schafft man sich aus meiner Sicht den Flaschenhals "Session-Manager" an, erhöht u.U. die "Chattiness" der Kommunikation zwischen Client und Server und schreibt dem Client auch noch Regeln vor, wie er welche Operationen aufzurufen hat, damit er an das gewünschte Ergebnis kommt. Stellt man sich dieses Szenario auch noch in einer Umgebung vor, die für hohe Performance und Verfügbarkeit ausgelegt ist (z.B. im Cluster), kommen noch kleinere Hürden wie Persistierung der Sessions und Web Service Paralellität hinzu.</p>
+<p>Alles in allem ist meiner Meinung nach - zumindest für das oben genannte Szenario - ein zustandsbehafteter Web Service</p>
+<ol>
+<li>schwieriger zu implementieren</li>
+<li>keine signifikante Alternative zur Steigerung des Datendurchsatzes</li>
+<li>mit vielen Hürden bespickt (Session-Manager, Multi-Threading)</li>
+<li>wesentlich schwerer skalierbar</li>
+<li>für Clients um ein vielfaches komplexer in der Verwendung</li>
+</ol>
+<p>Sofern es also nicht wirklich sehr gute Gründe für die Kontextbezogenheit bestimmter Web Service-Methoden gibt, gilt beim Design von Web Services für mein Dafürhalten die grundlegende Orientierung nach der eigentlichen technologischen Ausrichtung des Web Services - <strong>stateless</strong>.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>09 July 2007</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/stateful-vs-stateless-web-services.html&title=Stateful vs. Stateless Web Services">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+/*
+home.less
+=========
+
+the "home" page (front cover page)
+*/
+
+.home-page {
+  #bar h2 {
+    color:@color_sketch;
+  }
+
+  #breadcrumb, #published, #related {
+    display:none;
+  }
+}
+
+#content.home {
+  position:relative;
+  top:0px;
+
+  p.greeting {
+    font-size:16px;
+    line-height:24px;
+  }
+
+  p {
+    font-size:14px;
+    line-height:20px;
+    margin-bottom:20px;
+  }
+
+  .editorpick, .mostwanted, .mostrecent {
+    .is_info_list;
+
+    .order {
+      width:160px;
+    }
+  }
+}
+
+

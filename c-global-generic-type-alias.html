@@ -1,0 +1,198 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>C# Global &amp; Generic Type Alias</title>
+    <meta name="description" content="A quick summary on why I really would like to have global type aliases in C# as a feature.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="c-global-generic-type-alias">
+    <a href="c-global-generic-type-alias"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>C# Global &amp; Generic Type Alias</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>I want better aliases in C#. To be honest I miss this feature since .NET 2.0. I mean, it's not a problem of .NET, but merely a problem of the C# language itself. To me, aliasing is a very important language feature. In my opinion, it's one of the three most undervalued language features: macros, aliases and comments.</p>
+<h3 id="global-type-alias">Global Type Alias</h3>
+<p>First off, let me define what a global alias is for me. A global type alias is best described with the current aliasing feature in C#:</p>
+<div class="codehilite"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Dump</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="n">Debug</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Writer</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="nf">Writer</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Dump</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Writer!&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The second line is a <a href="http://msdn.microsoft.com/en-us/library/sf0df423.aspx">using alias</a>. It's quite handy to avoid name clashes in your source file. And that's the downside (for me) as well. In C#, it's only possible to define type <a href="http://stackoverflow.com/questions/2590643/namespace-scoped-aliases-for-generic-types-in-c-sharp">aliases on source code file level</a>. While it's perfectly ok for resolving name clashes, it's yet not enough for me in terms of sensible alias usage.</p>
+<p>From my perspective, a broader - even declarable - scope of a type alias would be very helpful. As a starting point, I'll define a "global" type alias as an alias valid on assembly level.</p>
+<p>Global type aliasing can be very helpful. I miss it most for generic types, since they're not only tend to be verbose but can be misleading as well. I mean, how often did you ask your inner self the famous three letters (WTF?) when seeing something like <code>ServiceResponse&lt;Dictionary&lt;long, List&lt;string&gt;&gt;&gt;</code>? Yes, sure you can alias it with <code>using RoadServiceResponse = ServiceResponse&lt;Dictionary&lt;long, List&lt;string&gt;&gt;&gt;</code>. </p>
+<p>Now would you want to define this alias in <em>every single file</em> where you process this mighty response object? Surely not. Redundancy is boring. However, if you're using C#, you just have to. A widely scoped type alias is surely possible if you were using <a href="http://stackoverflow.com/questions/2480290/global-import-using-aliasing-in-net">VB.NET with its Imports feature</a>.</p>
+<h3 id="alias-open-types">Alias Open Types</h3>
+<p>Lengthy and complicated naming is one reason. A second, even more demanding reason for global type aliases are the use of generic implementations or generic interface definitions. It may sound weird in first instance, so let's see an example here:</p>
+<div class="codehilite"><pre><span class="cm">/* Assembly A: My &#39;cool&#39; API :-) */</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">interface</span> <span class="n">IMetaData</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="n">Id</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">T</span> <span class="n">Data</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">interface</span> <span class="n">IRelationMap</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">TKey</span><span class="p">,</span> <span class="n">TValue</span><span class="p">&gt;</span> 
+  <span class="p">:</span> <span class="n">IDictionary</span><span class="p">&lt;</span><span class="n">TKey</span><span class="p">,</span> <span class="n">TValue</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="n">TValue</span> <span class="nf">GetRelated</span><span class="p">(</span><span class="n">T</span> <span class="n">obj</span><span class="p">,</span> <span class="n">TKey</span> <span class="n">key</span><span class="p">);</span>
+  <span class="n">T</span> <span class="n">RelateTo</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">TKey</span> <span class="n">key</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">interface</span> <span class="n">IMetaInfo</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">,</span> <span class="n">TData</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="n">IRelationMap</span><span class="p">&lt;</span><span class="n">TSource</span><span class="p">,</span> <span class="kt">string</span><span class="p">,</span> <span class="n">IMetaData</span><span class="p">&lt;</span><span class="n">TData</span><span class="p">&gt;&gt;</span> <span class="n">Properties</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">TSource</span> <span class="n">Object</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">ChannelId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>A little unreadable for the generic types, but quite straight forward so far. Let's implement <code>IMetaInfo</code>:</p>
+<div class="codehilite"><pre><span class="cm">/* Assembly B: My &#39;cool&#39; Service :-) */</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">TextMetaInfo</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> 
+  <span class="p">:</span> <span class="n">IMetaInfo</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="n">IRelationMap</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">string</span><span class="p">,</span> <span class="n">IMetaData</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;</span> <span class="n">Properties</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="n">T</span> <span class="n">Object</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">ChannelId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Doesn't this look weird? Wouldn't this one be a little more readable:</p>
+<div class="codehilite"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">using</span> <span class="nn">IMetaMap</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">IRelationMap</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="n">IMetaData</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">TextMetaInfo</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> 
+  <span class="p">:</span> <span class="n">IMetaInfo</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="n">IMetaMap</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">Properties</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="n">T</span> <span class="n">Object</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">ChannelId</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Sad enough that above code won't compile. C# only accepts <a href="http://stackoverflow.com/questions/4936941/using-a-using-alias-class-with-generic-types">aliases for closed types</a>.</p>
+<p>Yeah, you might think now that this is just nitpicking, since you surely might just derive to have naming done right:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">interface</span> <span class="n">IMetaMap</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">IRelationMap</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">IDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="n">IMetaData</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;</span> <span class="p">{}</span>
+</pre></div>
+
+
+<p>Sorry to disappoint you here. "Fixing naming" by subclassing is just wrong. Despite of the bad smell you simply made it even worse since you now made it a lot harder to implement <code>IMetaInfo&lt;T, string&gt;</code>. If you were the consumer of <em>Assembly A</em> without any source code access, you lost anyway. If you actually have access to the sources of <em>Assembly A</em>, you end up in deciding whether to change the type signature of <code>IMetaInfo&lt;TSource, TData&gt;</code> just for naming. In consequence, other implementors need to change their implementations. Even callers need to recompile. For the sake of readability?</p>
+<p>Sorry, C#. You are doing a good job being a multi-paradigm (yet OO-colored) language. However, when it comes to aliasing, you could do better.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>03 January 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/c-global-generic-type-alias.html&title=C# Global &amp; Generic Type Alias">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

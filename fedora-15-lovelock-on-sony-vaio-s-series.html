@@ -1,0 +1,168 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fedora 15 &#34;Lovelock&#34; on Sony Vaio S Series</title>
+    <meta name="description" content="An experience report on my installation session of Fedora 15 &#34;Lovelock&#34; on a Sony Vaio S Notebook.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="fedora-15-lovelock-on-sony-vaio-s-series">
+    <a href="fedora-15-lovelock-on-sony-vaio-s-series"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Fedora 15 &#34;Lovelock&#34; on Sony Vaio S Series</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>This is a quick dump of my <em>Fedora</em> installation session.
+Installing Fedora is easy. I won't cover everything in detail but quickly want to point out the essentials. First and foremost, look and see what Fedora is and can do at the official <a href="http://fedoraproject.org">Fedora website</a>. Linux and Fedora are great pieces of software. Maybe they're a good fit for you as well.</p>
+<p>Second, if you're willing to give Fedora a spin (or even install it), then I'd strongly recommend you to create a <a href="http://fedoraproject.org/wiki/FedoraLiveCD/USBHowTo">Fedora Live-USB</a>. In my opinion it's so much easier to boot and install from USB compared to CD. Naturally, your system needs to support booting from USB.</p>
+<h3 id="gain-sudo-powers">Gain Sudo Powers</h3>
+<p>I'm a fan of <code>sudo</code>. I like it because it explicitly reminds me that I'm crossing the barrier from user to sysop, with all the implications it has. I've been using <code>sudo</code> since SuSE 4/5. Needless to say that obtaining sudo powers is the first thing I do on a fresh system.</p>
+<p>In order to gain sudo powers, you simply need to add yourself to <code>wheel</code> group (as root, of course): <code>usermod -G wheel -a [user]</code>, whereas [user] is your user name. To immediately apply group membership just fire off <code>grpconv</code> and voilà. Remember: With great power comes great responsibility.</p>
+<h3 id="disable-ipv6">Disable IPv6</h3>
+<p><a href="http://en.wikipedia.org/wiki/IPv6">IPv6 is cool</a>. However, it's a sad fact that using IPv6 is often a pain. On some networks, it's just fine, on others it terrificly slows down NS lookups and connection speed. Causes range from dual stack issues up to poorly configured routers. In case of a "slow internet connection" you might consider to disable IPv6 support. In order to disable IPv6 on Fedora, perform a few easy steps:</p>
+<ul>
+<li>Add the ipv6 module to the list of blacklisted modules, so that it won't be loaded on system boot. Open the file <code>/etc/modprobe.d/blacklist.conf</code> and append the following line:<br />
+<code>blacklist ipv6</code></li>
+<li>Make sure the network settings exclude IPv6 support by adding the following line to <code>/etc/sysconfig/network</code>:<br />
+<code>NETWORKING_IPV6=no</code></li>
+<li>Disable the (now useless) IPv6 firewall by typing<br />
+<code>sudo chkconfig ip6tables off</code></li>
+<li>If you already have network connections established (either wired or wireless), you disable IPv6 network initialization for those as well. You might do this via Network Manager UI or just change the following line:<br />
+<code>IPV6INIT=yes</code> to <code>IPV6INIT=no</code> in any of your desired connection configuration file, which typically follows the naming convention <code>ifcfg-[ConnectionName]</code> whereas [ConnectionName] is the name of your (wired or wireless) connection configuration. The connection configuration files are located in <code>/etc/sysconfig/network-scripts</code>.</li>
+</ul>
+<p>Reboot the machine (just enter <code>reboot</code>) and ensure that everything went fine by typing <code>lsmod | grep ipv6</code> which should just return nothing.</p>
+<h3 id="stay-up-2-date">Stay Up-2-Date</h3>
+<p>Once internet connection is fast and seamless, the next important thing is to update the system. There's too many reasons why updating the fresh F15 install is a good idea, so just do it.</p>
+<p>With <code>yum</code> there's nothing easier than a system update. You can check and review all pending updates with <code>sudo yum check-update</code>. Naturally, installing updates is as easy as <code>sudo yum update</code>.</p>
+<p>To finish the essential package housekeeping, adding the <a href="http://rpmfusion.org/">RPM Fusion</a> repositories is highly recommended. It'll make life much easier with some crucial installs, like enabling MP3 support.</p>
+<p>Adding RPM Fusion package repositories is a one-liner:</p>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">yum</span> <span class="n">localinstall</span> <span class="o">--</span><span class="n">nogpgcheck</span> <span class="n">http:</span><span class="sr">//</span><span class="n">download1</span><span class="o">.</span><span class="n">rpmfusion</span><span class="o">.</span><span class="n">org</span><span class="sr">/free/</span><span class="n">fedora</span><span class="sr">/rpmfusion-free-release-stable.noarch.rpm http://download1.rpmfusion.org/</span><span class="n">nonfree</span><span class="sr">/fedora/</span><span class="n">rpmfusion</span><span class="o">-</span><span class="n">nonfree</span><span class="o">-</span><span class="n">release</span><span class="o">-</span><span class="n">stable</span><span class="o">.</span><span class="n">noarch</span><span class="o">.</span><span class="n">rpm</span>
+</pre></div>
+
+
+<p>For me at least, above three steps are the foundation for a stable and frictionless installation and user experience. Next, I'll cover a few Vaio specific topics. It's not very much to talk about, since out-of-the-box support for Vaio S-Series on Fedora 15 is very good. Nearby, my Vaio is a VPCS12V9E.</p>
+<h3 id="gcc-ftw">GCC FTW</h3>
+<p>What's at least equally important as an up-to-date system? It's <a href="http://gcc.gnu.org/">GCC, the Gnu C Compiler</a>. You don't need to be a C/C++ coder in order to need and use it. There's software out there which might not be bundled with Fedora yet. I personally use it quite often to compile software from bleeding edge sources. Hence <code>sudo yum install gcc</code> is indeed a good idea.</p>
+<h3 id="qualcomm-gobi-2000-wwan-support">Qualcomm Gobi 2000 WWAN Support</h3>
+<p>Fedora has very good networking support. With qcserial, it <em>basically</em> supports connecting through Qualcomm WWAN devices by default. On other distros, I had to compile qcserial and use gobi_loader to load the Sony Qualcomm firmware files. With Fedora 15, it just got a major step simpler, at least for my special case with Sony Qualcomm Gobi 2000 WWAN module.</p>
+<p>As far as I have figured out, Network-Manager on Fedora 15 proactively looks for firmware files on <code>/lib/firmware</code>. The device recognition is triggered by udev rules, residing in <code>/lib/udev/rules.d</code>. After hours on fiddling around how the device recognition and initialization process works, the solution was quite simple at the end.</p>
+<p>All I needed to do was to copy the firmware files (<code>UQCN.mbn</code>, <code>amss.mbn</code> and <code>apps.mbn</code>) to <code>/lib/firmware</code>, reboot the system and enjoy wireless mobile networking.</p>
+<p>In case you wonder: The 3 abovementioned files are propietary firmware files. You can't download them. Even Sony / Qualcomm as vendors don't provide a download of firmware files. The easiest way to obtain the files is to install the <a href="http://support.vaio.sony.eu/computing/vaio/downloads/info/info.aspx?l=en_GB&amp;url;=VAIO/Original/Gobi2000_WWAN_Driver_2.0.7.0.zip&amp;m;=VPCS12V9E_B&amp;ip;=Gobi2000_WWAN_Driver_2.0.7.0.htm">WWAN driver for Windows provided by Sony</a> and pick the necessary files from Windows installation.</p>
+<p>Typically, firmware files are located at <code>%ProgramFiles%\QUALCOMM\Sony</code>. You'll find a bunch of numbered folders there alongside with an <code>UMTS</code> folder. You can find <code>amss.mbn</code> and <code>apps.mbn</code> files there. The numbered folders contain mobile tepephony provider specific versions of <code>UQCN.mbn</code>. The version in folder <code>6</code> seems to be a generic firmware driver info and works quite well with my provider.</p>
+<h3 id="avi-mp3-mpeg4-and-more">AVI, MP3, MPEG4 and more</h3>
+<p>Let's face it. You need codecs. Easiest way to support most of the propietary codecs is to install gstreamer ugliness using </p>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">gstreamer</span><span class="o">-</span><span class="n">plugins</span><span class="o">-</span><span class="n">ugly</span> <span class="n">gstreamer</span><span class="o">-</span><span class="n">ffmpeg</span> <span class="n">xvidcore</span>
+</pre></div>
+
+
+<p>Note that previous line only works if RPM Fusion repositories are available.</p>
+<h3 id="fedora-on-a-vaio">Fedora on a Vaio</h3>
+<p>After all, installing and using Fedora on a Vaio Notebook is a great experience. Almost everything is working out of the box. The nouveau driver for NVIDIA works seamless, all internal devices are being recognized and taken care of by Fedora. Touchpad, camera, fingerprint sensor, and even the sony-specific FN-Keys.</p>
+<p><strong>Fedora on a Vaio is great.</strong></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>14 June 2011</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/fedora-15-lovelock-on-sony-vaio-s-series.html&title=Fedora 15 &#34;Lovelock&#34; on Sony Vaio S Series">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

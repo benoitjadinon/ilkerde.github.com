@@ -1,0 +1,6 @@
+extends: slide.j2
+pagetype: slide
+default_block: slide
+listable: false
+title: "Continuous Integration Secrets"
+created: !!timestamp 2012-05-03 16:00:00

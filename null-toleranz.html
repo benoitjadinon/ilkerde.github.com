@@ -1,0 +1,182 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Null Toleranz</title>
+    <meta name="description" content="Ein Artikel über die Verwendung und Vermeidung von Null als Rückgabewert einer Methode in C# bei objekt-orientierter Programmierung.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="null-toleranz">
+    <a href="null-toleranz"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Null Toleranz</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Eine angeregte Diskussion ist gestern "ent-Bandt" :-) mit den Blog-Posts über den kleinen <a href="http://blog.thomasbandt.de/39/2331/de/blog/kleiner-helper-fuer-linq-to-sql-tolistordefault-update.html">ToListOrDefault()-Helper</a> und die dadurch entstandende <a href="http://blog.thomasbandt.de/39/2333/de/blog/null-verstaendnis.html">Null-Verständnis-Thematik</a> sowie <a href="http://ralfw.blogspot.com/2010/05/null-oder-nicht-null-das-ist-hier-die.html">der philosophischen Ausführung über das Null oder nicht Null</a> in Anwendungen. Man kann in den Posts wunderbar nachlesen, worum es geht - deswegen hier nur eine kleine Rekapitulation.</p>
+<p>Thomas stellt zur Debatte, ob man aus Repository-Methoden ab und zu auch mal null zurückgeben darf/kann/soll. So z.B. bei so einer Methode:</p>
+<div class="codehilite"><pre><span class="n">User</span> <span class="nf">GetUserByName</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">);</span>
+</pre></div>
+
+
+<h3 id="mache-das-unmogliche-moglich">Mache das Unmögliche möglich?!?</h3>
+<p>Einige Leute finden das garnicht besonders gut. Sie bevorzugen lieber soetwas wie einen "nicht-existenten" User zurückzugeben. Also eine Instanz einer Klasse, die eigentlich garnicht möglich wäre (weil sie ja die nicht exsistierende Instanz darstellt). Programmtechnisch ist das sicherlich recht einfach lösbar - oftmals mit einer statischen Property, die sich wiederum eines privaten Konstruktors bedient. In dem obigen Beispiel könnte eine derartige Implementierung ungefähr so aussehen:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="n">User</span> <span class="nf">GetUserByName</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(!</span><span class="n">repository</span><span class="p">.</span><span class="n">UserExists</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">User</span><span class="p">.</span><span class="n">NotExistent</span><span class="p">;</span>
+
+  <span class="c1">//user laden und zurückgeben</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Eine zweite, nicht minder bevorzugte Alternative zur Rückgabe von NULL ist die beliebte Exception. Falls also kein Benutzer unter dem angefragten Namen existieren sollte, dann soll eine Ausnahme signalisiert werden. Ganz einfach implementiert:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="n">User</span> <span class="nf">GetUserByName</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(!</span><span class="n">repository</span><span class="p">.</span><span class="n">UserExists</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">UserNotFoundException</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+
+  <span class="c1">// user laden und zurückgeben</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Beides sind sicherlich mögliche und sogar gute Alternativen zu der Implementierungsvariante, die Thomas zur Diskussion gestellt hat:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="n">User</span> <span class="nf">GetUserByName</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(!</span><span class="n">repository</span><span class="p">.</span><span class="n">UserExists</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+
+  <span class="c1">// user laden und zurückgeben</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Um es kurz zu fassen: Alle drei Varianten sind möglich, alle drei Varianten sind gut, alle drei Varianten sind schlecht. Es kommt auf den Anwendungsfall an. Die beliebte "It-Depends"-Weisheit streckt das Thema mit geballter Kraft nieder. Dennoch ist es eine Untersuchung wert, denn ungewöhnlicherweise wird die NULL-Variante kategorisch als falsch und "böse" bewertet.</p>
+<h3 id="nullbivalenz">Nullbivalenz</h3>
+<p>NULL ist ein besonderer Wert. Er ist der Wert, der eigentlich nicht zugewiesen werden kann. Genauer genommen ist er kein Wert, sondern nichts anderes als die knapp in vier Buchstaben formulierte Aussage "Ein für eine bestimmte Werteklasse belegter Ort wurde mit keinem Wert belegt". Ergo: Null ist kein Wert. Ja, aber ist das denn nicht genau das, was <code>GetUserByName</code> ausdrücken und zurückgeben muss, wenn es keinen Benutzer für den gegebenen Namen findet?</p>
+<p>Schaut man sich die erste Alternative zu NULL an (also das <code>User.NonExistent</code>-Konstrukt), dann kann man sagen: Joa, ok - ist aber das Gleiche. User.NonExistent ist sicherlich expliziter als NULL. NULL ist aber schon da und genau für solche Dinge gedacht. Die Aufgabe von NULL ist ja genau die, keinen Wert darzustellen.</p>
+<p>Und wie sieht es mit Alternative Zwei - der <code>UserNotFoundException</code> aus? Die Excpetion ist auch explizit. Mehr noch, die Exception ist flexibel und rigoros gleichermaßen. Flexibel, weil sie jederzeit aus dem Nichts auftauchen kann. Rigoros, weil sie eine Fülle von Informationen über den Kontext sammeln und mitgeben kann. Die Exception sagt hier klar und deutlich: "Es gibt keinen Wert, weil der Benutzer {name} nicht gefunden wurde.". Scheinbar ein Vorteil gegenüber den anderen Varianten. Im Ergebnis ist es jedoch nicht wesentlich von den anderen Herangehensweisen unterscheidbar.</p>
+<h3 id="null-sicherheit">Null Sicherheit</h3>
+<p>Nun, offensichtlich ist die sprechendere Variante der Exception vorteilhaft und damit dem NULL vorzuziehen. Doch beim zweiten Blick entpuppt sich der Vorteil als nicht so deutlich als zunächst vermutet. Denn in der Praxis kann sich die "unklare" und "unexplizite" Art von NULL wieder als erwünscht erweisen.</p>
+<p>So muss man bei Exceptions, um den Mehrwert zu kennen, auch deren Typ genau kennen. Man muss also Wissen, das es sich um eine <code>UserNotFoundException</code> handelt. Erst dann kann man auch erfahren, welcher ominöse Benutzer unauffindbar ist. Das kann durchaus problematisch werden, wenn man also im höheren Callstack wissen muss, um welche Exception es geht, denn schliesslich schafft man sich dadurch eine Abhängigkeit auf den niedrigeren Code.</p>
+<p>Null ist also eine unsichere, uninformative, aber immer verfügbare und unabhängige Variante, dem Aufrufer zu sagen: "Es gibt keinen Wert für das, was Du von mir verlangst". Wenn man sich mit der Anwendung von NULL jahrelang auseinandergetzt hat und auch ein wenig die ungeliebten Interna von Speichermanagement &amp; Datenstrukturen hineinblickt, dann wird NULL schnell zu einer praktikablen Lösung für schwierige Situationen.</p>
+<p>Doch vor Allem bei NULL stellt man immer wieder fest: praktikabel und elegant sind zwei verschiedene paar Schuhe. Denn NULL ist genauso nichtssagend wie vielseitig. NULL zwingt den Aufrufer zum Abwägen: Soll ich das Ergebnis gleich auswerten oder lieber überprüfen? Ein wunderbares Beispiel dafür ist sicherlich der "if (x != null)"-Check - die Null-Prüfung. Das wird vor Allem dann zum Problem, wenn man mit (gewollt oder ungewollt) unbekannten Komponenten arbeitet. Im Interface oder in der Typsignatur steht es jedenfalls sehr selten erkennbar drin, ob nun in Einzelfällen NULL zurückgeliefert wird oder nicht.</p>
+<h3 id="null-ist-nicht-gleich-null">Null ist nicht gleich Null</h3>
+<p>Für mich gibt es beim Umgang und bei der Anwendung von Null keine Faustregel. Ich gebe in einigen Methoden NULL zurück. Meistens genau dann, wenn ich wirklich damit ausdrücken möchte, dass etwas katastrophales passiert ist. Ich finde es sehr schwerwiegend, NULL als Zuweisung oder Rückgabe stehen zu lassen - aber ich mache es manchmal ganz bewusst. In einer Anwendung, in der ich z.B. Benutzer über einen Authentifizierungsdienst identifizieren muss, bevor ich überhaupt etwas anderes machen kann, kann die folgende Signatur NULL zurückliefern:</p>
+<div class="codehilite"><pre><span class="k">interface</span> <span class="n">IAuthenticationService</span> <span class="p">{</span>
+  <span class="n">Account</span> <span class="nf">SignIn</span><span class="p">(</span><span class="kt">string</span> <span class="n">user</span><span class="p">,</span> <span class="kt">string</span> <span class="n">password</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Es kann alles mögliche passiert sein  - keine Verbindung zum Server, falscher Server, Verbindungsfehler, Connection Timouts, Benutzer nicht gefunden, Benutzer gesperrt, Passwort abgelaufen, falsches Passwort - all dies würde ich versuchen über Exceptions oder Return-Codes zu erledigen. Die meisten der Exceptions gibt es ja schon frei Haus vom Framework. Aber für das mich Unbekannte und Unerwartete gibt es immer noch eine Rückgabe, und die heisst NULL.</p>
+<h3 id="null-summen-spiel">Null-Summen-Spiel</h3>
+<p>Generell kann ich für mich nur sagen, dass ich gelernt habe mit NULL sehr vorsichtig umzugehen. Ich vermeide es so gut wie möglich. Exceptions sind ein gutes Mittel - allerdings setze ich sie auch nicht sehr oft ein. Die Bürde der Abhängigkeit ist schon da - obwohl es natürlich in der Contract-Assembly definiert ist. Bei Repositories habe ich (fast) immer Ergebnisse die nicht NULL liefern. Andererseits setze ich NULL als Rückgabe auch öfter ein, wenn ich nur eine "schwere" Ausnahme in meinem Code feststelle.</p>
+<p>Im obigen Beispiel hätte ich wohl NULL als Rückgabe toleriert, vor Allem, wenn ich davon ausgehen kann, dass es oft - oder sehr oft - dazu kommen kann und diese Tatsache ein schwerwiegendes Problem darstellt. Ein schönes Beispiel sind immer wieder die Brute-Force und DOS-Attacken auf Webportale.</p>
+<p>Ich hätte wahrscheinlich nicht NULL zurückgegeben, sondern eine Exception ausgelöst, wenn ich das Ganze als wiederverwendbare, allgemeine Kompontente entwickeln würde.</p>
+<p>So oder so - beides ist machbar und beides hat seine Berechtigung. Klar und deutlich soll aber abschließend erwähnt sein: NULL zu vermeiden ist eine gute Sache. Es macht den Code expliziter, offensichtlicher und lesbarer.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>02 May 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/null-toleranz.html&title=Null Toleranz">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

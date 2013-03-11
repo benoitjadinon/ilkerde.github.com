@@ -1,0 +1,176 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Jede Codezeile zählt beim .NET Coding Dojo</title>
+    <meta name="description" content="Ein Bericht vom .NET Coding Dojo München in dem es die Code Kata &#34;Line Counter&#34; als Aufgabe zu lösen galt.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="jede-codezeile-zaehlt-beim-net-coding-dojo">
+    <a href="jede-codezeile-zaehlt-beim-net-coding-dojo"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Jede Codezeile zählt beim .NET Coding Dojo</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Gestern Abend war es wieder einmal soweit. Das .NET Coding Dojo in München öffnete die Tore für alle .NET Enthusiasten, TDD Interessierte, CCD Jünger und neugierige Software-Entwickler.</p>
+<p>Und das erste Münchener .NET Coding Dojo des Jahres startete wahrhaftig mit einem Paukenschlag! Erstmals überstieg die Teilnehmerzahl den Rahmen einer Dojo Session, so dass wir zwei Teams machen mussten (und wollten), die gegeneinander in einem "Dojo-Battle" antreten und ein Code Kata lösen sollten.</p>
+<p>Nach einer kurzen Willkommens-Einwärm-Phase ging es auch schon zur Wahl des Code Kata's für den Abend. Zur Auswahl standen <a href="http://codingdojo.org/cgi-bin/wiki.pl?KataBowling">KataBowling</a>, <a href="http://codingdojo.org/cgi-bin/wiki.pl?KataMinesweeper">KataMinesweeper</a> und der <a href="http://codekata.pragprog.com/2007/01/kata_thirteen_c.html">KataLocCounter</a> in der C# Variante. Nach der kurzen Vorstellung der Code Kata's entschied sich die Dojo-Gemeinde für den <a href="http://codekata.pragprog.com/2007/01/kata_thirteen_c.html">KataLocCounter</a>. Eine besonders erfrischende und spaßbringende Wahl, wie sich im Laufe des Abends herausstellen sollte.</p>
+<h3 id="starke-teams-denken-testen-zahlen">Starke Teams denken, testen, zählen</h3>
+<p>Das Code Kata ist gewählt, die Aufgabe und Rahmenbedingungen erklärt, nun konnte es schon losgehen. Fast. Die Teams mußten noch formiert werden. Die wurden im Zählverfahren (wie denn sonst ;-)) aufgeteilt. Wie es der Zufall will, waren die Teamstärken gut verteilt.</p>
+<p><strong>Team 1</strong> war stark besetzt mit der analytischen Expertise von <a href="http://www.cotago.de/">Andre</a>, den CCD- und .NET Guru's <a href="http://ralfw.blogspot.com/">Ralf</a> und <a href="http://www.lieser-online.de/blog/">Stefan</a>. Hinzu kamen erfahrene Dojojaner wie <a href="http://blog.aztec-project.org/">Thomas und Christina</a>, gestärkt mit einem Dutzend weiterer .NET-Entwickler.</p>
+<p>Doch wer nun dachte, <strong>Team 2</strong> wäre schwächer aufgestellt, der irrte sich gewaltig. <a href="http://www.deger-it.de/">Christian</a>, ein Dojo-Gänger der ersten Stunde und kraftvoll vorandesignender C# Architekt, der durch zahlreiche Dojo's durchtrainierte <a href="http://www.stefankoelle.de/">Stefan</a>, die geballte TDD/BDD-Erfahrung von <a href="http://www.bjro.de/">Björn</a> und ein starkes Dutzend .NET-Coder waren ein anspruchsvolles Lineup.</p>
+<p>Die Teams waren aufgeteilt, das gedankliche Stretching und Warmup getan. Es konnte losgehen!</p>
+<h3 id="jede-codezeile-zahlt">Jede Codezeile zählt</h3>
+<p>In einer ersten Phase wollten die Teams sich ein wenig detaillierter mit den Anforderungen an den Line-Counter auseinandersetzen, um eine "Design-Strategie" auszuarbeiten.</p>
+<div class="codehilite"><pre><span class="kt">string</span> <span class="n">code</span><span class="p">=</span><span class="s">&quot;Diese Zeile zählt!&quot;</span><span class="p">;</span>
+<span class="c1">// Einzeilige Kommentare zählen nicht</span>
+
+<span class="c1">// Dieser Kommentar und die leere Zeile davor zählen auch nicht</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// Diese Zeile zählt natürlich!</span>
+<span class="kt">bool</span> <span class="n">countComments</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span> <span class="cm">/* Diese Zeile zählt auch */</span>
+
+<span class="cm">/* So ein Kommentar</span>
+<span class="cm">über mehrere Zeilen hinweg</span>
+<span class="cm">zählt natürlich nicht als Code! */</span>
+</pre></div>
+
+
+<p><em>Ein paar Kommentarbeispiele :-)</em></p>
+<p>Interessante Erkenntnis hierbei: Man hat sich zwar mit den fachlichen Anforderungen und den daraus ergebenden Features bzw. Rahmenbedingungen auseinandergesetzt, dabei aber die Analyse und eine gemeinsame Implementierungsstrategie nicht wirklich erarbeitet. Geklärt war zumindest, dass es galt, Kommentare im Code zu erkennen und nicht mitzuzählen. Das <strong>Wie</strong> und eine gemeinsame Übereinkunft über die Strategie fiel bei beiden Teams "unter den Tisch".</p>
+<p>Doch das war offensichtlich zunächst nicht weiter schlimm, denn es schien erstmal wichtiger, das die Teams in den TDD-Rythmus kommen. Die ersten Tests gingen traditionell etwas schwerer vom Kopf in die Tastatur über, doch nachdem man sich auf den Happy-Pfad im Testing und eine inkrementelle Auslieferung des Programmes geeinigt hat ging es dann flotter.</p>
+<p>Das Ergebnis innerhalb der Count-Methode des Team 1 war bis dato recht überschaubar:</p>
+<div class="codehilite"><pre><span class="n">var</span> <span class="n">lines</span> <span class="p">=</span> <span class="n">source</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="k">new</span> <span class="kt">string</span><span class="p">[]</span> <span class="p">{</span> <span class="n">Environment</span><span class="p">.</span><span class="n">NewLine</span> <span class="p">},</span> <span class="n">StringSplitOptions</span><span class="p">.</span><span class="n">RemoveEmptyEntries</span><span class="p">);</span>
+
+<span class="k">return</span> <span class="n">lines</span>
+    <span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Trim</span><span class="p">())</span>
+    <span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">!</span><span class="n">String</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">!</span><span class="n">x</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s">&quot;//&quot;</span><span class="p">))</span>
+    <span class="p">.</span><span class="n">Count</span><span class="p">();</span>
+</pre></div>
+
+
+<p>Soweit so gut.</p>
+<h3 id="stolperstein-block-kommentare">Stolperstein Block-Kommentare</h3>
+<p>Nach den einfacheren Fällen trafen beide Teams mit den mehrzeiligen Block-Kommentaren auf eine etwas härtere Nuss, die es zu knacken galt.
+Wie sollte man denn die mehrzeiligen Kommentare erkennen? Vor Allem, wie sollte man dann mit besonders "außergewöhlichen" Kommentierungen umgehen?</p>
+<div class="codehilite"><pre><span class="kt">int</span> <span class="n">count</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="cm">/* mehrzeilige</span>
+<span class="cm">kommentare können */</span> <span class="n">count</span><span class="p">++</span> <span class="cm">/* herausfordernd sein */</span> <span class="p">;</span>
+</pre></div>
+
+
+<p><em>Außergewöhnliche Kommentare</em></p>
+<p>An dieser Stelle holte die Teilnehmer die "zu kurze Analyse" zu Beginn wieder ein. Welche Strategie sollte man wählen? Die zeilenbasierte Verarbeitung aufgeben und zeichenbasiert arbeiten? Umschwenken auf schweißtreibende, aber mächtige Regular Expressions? Oder sogar eine Kombination von allem?</p>
+<p>Das besondere und mich nicht überraschende: beide Teams wählten unterschiedliche Strategien. Während Team 1 die Eleganz des "Flows" der LINQ-Expression nicht aufgeben wollte und es mit Regular Expressions angereichtert hat, entschloss sich Team 2 für eine kleine Status-Maschine und einen Mix aus zeilen- und zeichenbasierter Verarbeitung.</p>
+<h3 id="showdown">Showdown</h3>
+<p>Nach knapp 3 Stunden war es dann soweit. Die Teams klopften die letzten Tests und Codezeilen ein, um sich dann im Schlußvoting dem gegnerischen Team zu stellen. Gespannt warteten die Teams auf den Code und die Resultate des Gegners.</p>
+<p>Team 1 präsentierte zunächst das lauffähige Programm, danach das gute Dutzend Tests und den damit getriebenen Code. Auffällig: Der Code erschien dem Gegner auf den ersten Blick als kompakt und elegant.</p>
+<p>Team 2 konterte prompt. Eine äußerst saubere Test-Suite, ein durch die differierende Implementierung etwas längerer Code und die Besonderheit, dass die Implementierung sogar (teilweise) Kommentar-Tokens innerhalb von Strings ignorieren konnte.</p>
+<p>Ergebnis: Beide Lösungen waren unvollständig - aber gut vorangetrieben. Während Team 1 stärkeren Wert auf Auslieferbarkeit &amp; Effizienz gelegt hatte, engagierte sich Team 2 mehr in den Bereichen saubere Tests &amp; Funktionalität. Ausnahmsweise gab es beim ersten Dojo-Battle keinen Verlierer - beide Teams waren gleich stark. </p>
+<p>Fazit: Ein wirklich gelungener Abend mit engagierten Teams, die trotz der Herausforderungen und Schwierigkeiten eine gute Leistung abgeliefert haben! Danke an alle Teilnehmer! <strong>Chapeau!</strong></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>21 January 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/jede-codezeile-zaehlt-beim-net-coding-dojo.html&title=Jede Codezeile zählt beim .NET Coding Dojo">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

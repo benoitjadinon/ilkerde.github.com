@@ -1,0 +1,198 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Autonome Software-Entwicklungs-Teams</title>
+    <meta name="description" content="Eine Einführung in autonome Software-Entwicklungs-Teams mit einer Gegenüberstellung zu den klassischen führungsorientierten Teams, einer Abhandlung der Vor- und Nachteile sowie der Gefahren und Potenziale.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="autonome-software-entwicklungs-teams">
+    <a href="autonome-software-entwicklungs-teams"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Autonome Software-Entwicklungs-Teams</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Dieses Thema brennt mir derzeit richtig unter den Fingernägeln. Es ist ein Ansatz, der in den letzten Jahren durch die Katalysatoren Open-Source, Agile Engineering, eXtreme Programming immer mehr Verbreitung und Nachahmer findet.</p>
+<p>Klassische Entwickler-Teams, die eingebettet in reglementierte Prozesse sind, im Bestfall einen Team- oder Abteilungsleiter haben, der teamorientierte Führung praktiziert und hierarchische sowie fachgebundende Strukturen aufweisen verkommen zu einer altbackenen und "muffig"-konservativen Arbeitsweise.</p>
+<p>Das ist in meinen Augen auch gut so, denn die Erfahrung mit den klassischen Team-Strukturen hat gezeigt, dass es viele Probleme amit sich bringt, die vor Allem in der Software-Entwicklung Risikofaktoren nach sich ziehen, die nur sehr schwer in den Griff zu bekommen sind. Doch bevor ich detailliert auf diesen alternativen Ansatz der selbstreflektierenden Autonomie von Software-Teams eingehe, lohnt es sich, die allgemeinen Charakteristika von "klassischen" führungsgesteuerten Software-Teams mit den "alternativen" autonomen Software-Teams gegenüberzustellen:</p>
+<p><strong>Führungsorientierte Teams</strong>  </p>
+<ul>
+<li>Haben einen Team-Leiter, der Gesamt-Verantwortung trägt, Kommunikation im Team fördert und reglementiert, Prozesse etabliert und kontrolliert, Informationen zu anderen Teams / Abteilungen transportiert</li>
+<li>Sind durch Architekten, Senior Entwickler, Backend- / Frontend-Entwickler und sog. "Code-Maintainer" hierarchisch und fachgebunden organisiert</li>
+<li>Haben meist ein organisatorisch abgestuftes, nach Arbeitsbereichen strukturiertes, komplexes "Regelwerk" zur teaminternen und teamübergreifenden Arbeitsgestaltung (Coding Guidelines, Issue Tracking Prozesse, Project Roundtables, Jour-Fixe, Monatliche Reports, Lessons Learned)</li>
+</ul>
+<p><strong>Autonome Teams</strong>  </p>
+<ul>
+<li>Sind ohne Führung, tragen als Team die Gesamt-Verantwortung, kommunizieren und reglementieren selbstbestimmt</li>
+<li>Haben meist keine Hierarchie, tauschen und rotieren frequentiv ihre Rollen im Team</li>
+<li>Haben für Prozesse keine Regeln sondern lediglich einen Satz von "Empfehlungen", etablieren Kontrolle und Qualität durch Rückkopplungen, einigen sich selbstständig auf eine gemeinsame Arbeitsplattform durch "Manifeste"</li>
+<li>Binden geschäftsorientierte Prozesse (Budgeting, Reporting) mit Hilfe von "Schlusspunkten" (Milestones) und kurzen Bearbeitungszeiten (Interationen, Sprints) ein</li>
+</ul>
+<p>Das ähnelt im ersten Blick eher nach einer Gegenüberstellung der Software-Entwicklungs-Paradigmen, wie z.B. <a href="http://de.wikipedia.org/wiki/Wasserfallmodell">Wasserfall</a> vs. <a href="http://de.wikipedia.org/wiki/Agile_Software-Entwicklung">Agile</a>. Doch es steckt noch mehr dahinter.</p>
+<h3 id="probleme-fuhrungsorientierter-software-teams">Probleme führungsorientierter Software-Teams</h3>
+<p>Die Überlegung, neue Wege in der Strukturierung von Software-Teams zu gehen, resultiert nämlich nicht nur aus der Weiterentwicklung von Entwicklungs-Methoden, sondern einer Vielzahl weiterer Faktoren. "Von oben herab" geführte Teams unterliegen starken psychologischen und <a href="http://de.wikipedia.org/wiki/Psychodynamik">psychodynamischen</a> Kräften, die in letzter Konsequenz die Arbeit und damit das Produkt beeinflussen. Dies ist zwar für jede Art von Team generalisierbar, hat jedoch spezifisch für die Software-Entwicklung eine besonders starke Ausprägung.</p>
+<p>So ist es z.B. immer wieder der Fall, das man als Software-Entwickler "die Management-Fehler" oder "unqualifizierte Management-Entscheidungen" seines Teamleiters oder dessen Vorgesetzten "ausbaden" muss. Der Effekt entsteht durch eine allzu starke Abstraktion der Geschehnisse innerhalb kürzester Hierarchie-Ebenen. Des Weiteren kommt es immer wieder vor, dass fachfremde Kompetenzen in Transport- und Führungspositionen stärker ausgeprägt sind als die für die Software-Entwicklung so wichtigen fachbezogenen Wissensbereiche.</p>
+<p>Die Kluft zwischen Führung und Team ist jedoch nicht nur die auf o.g. personenbezogenen Defizite zurückzuführen. Noch häufiger tritt der Fall ein, dass es zu unterschwelligen Konflikten kommt, obwohl das Team inklusive Führung eine objektiv "harmonische Homogenität" aufweist. Dies resultiert meist auf mangelnde Informationsgüte innerhalb der Hierarchiekette, in der unbewußt, bewußt oder egozentral wichtige Feedbackmechanismen ausgehöhlt oder blockiert werden. In Folge dessen werden auf höheren Ebenen Entscheidungen getroffen, die durch die dünne Entscheidungsgrundlage fehlgeleitet sind und die Quelle der Informationen (also das Software-Team) z.T. gänzlich verfehlen.</p>
+<p>Konsequenterweise wird das Team durch Maßnahmen und Doktrien zu bestimmten Aufgaben oder Arbeitstechniken gezwungen. Defizitäre Entscheidungsgrundlagen werden nämlich in halbwegs funktionierenden Unternehmen relativ schnell entdeckt, welches wiederum zur Behebungsmaßnahmen über verschiedene Prozesskanäle führt. Aus Team-Sicht entwickelt sich ein sog. "Insel-Gefühl", die zumeist auf die Team-Führung negativ projeziert wird.</p>
+<p>Diese latente Quelle der Miss- bzw. Unverstandenheit innerhalb der Team-Hierarchie führt zu weiteren negativen Effekten. So ist es nur allzu natürlich, dass Team-Mitglieder mit zunehmender subjektiver Erkenntnis des eigenen beschränkten Wirkungsgrades in ein <a href="http://de.wikipedia.org/wiki/Reaktanz_(Psychologie)">reaktantes Verhalten</a> übergehen. Dies kann in Folge lapidarer Reglementierungen wie z.B. "Einhaltung der Gesprächszeiten im Team-Meeting" geschehen, oder durchaus auch auf Durchbruch sozialer Beziehungsmuster (Aufteilung in mehrere Teams, Kommunikationsbündelung) basieren.</p>
+<p>Bei stetigem Druck oder längerfristiger Dauer dieser Dissonanz zwischen Team und Führung reflektieren sich durch unterschwellige Passivität und Motivationsarmut weitere negative Effekte innerhalb des Teams, die die Homogenität und Produktivität des Teams merklich reduzieren. So wird z.b. die o.g. Reaktanz einzelner Mitglieder meistens mit einer <a href="http://de.wikipedia.org/wiki/Erlernte_Hilflosigkeit">erlernten Hilflosigkeit</a> begleitet, die in letzer Konsequenz bis zur <a href="http://de.wikipedia.org/wiki/Innere_K%C3%BCndigung">inneren Kündigung</a> führen kann.</p>
+<p>Es gibt mittlerweile einige Empfehlungen (im HR-Deutsch auch "aktivierende Führung" genannt), um diesem - vor Allem in der Software-Entwicklung hochkritischen - Team-Effekt entgegenzuwirken. Besonders bekannt sind die Einführung von Bildungsmaßnahmen (z.B. Zertifikate oder Messebesuche), materieller Würdigung (Geschäfts-Laptop, Firmenwagen), verkappte Entwicklungspfade (z.B. Kompetenzmodelle) oder aber Bonussysteme.</p>
+<p>All das sind aus Team-Sicht zumeist abstrakte Modelle, die dem einzelnen Software-Entwickler sowie dem Software-Team nur kurzsichtige oder "konzernisierte" Perspekiven bieten. Wenn diese Maßnahmen auch noch (zugegeben berechtigterweise) in Prozessuale Systeme und Management-Verfahren wie <a href="http://de.wikipedia.org/wiki/Kontinuierlicher_Verbesserungsprozess">KVP</a> oder <a href="http://de.wikipedia.org/wiki/ITIL">ITIL</a> eingebettet sind, oder aber sogar kontrakreative, produktionsabgeleitete Unternehmens-Philosophien wie <a href="http://de.wikipedia.org/wiki/Schlankes_Management">Lean Management</a> und <a href="http://de.wikipedia.org/wiki/B%C3%BCro-Kaizen">Kaizen</a> etabliert werden, entsteht oft der gegenteilige Effekt, dass Software-Teams (als "Schutzreaktion") noch tiefer in Software-Spezifika sinken, Intransparenz durch exorbitantes "Fach-Chinesisch" geradezu heraufbeschwören und geschäftsprozessuale Fachkenntnisse für sich behalten um damit subjektiv ihre "Unersetzlichkeit" im Software-Unternehmen zu stärken.</p>
+<p>Diese für mittlere und hohe Führungskräfte oft unverständliche Reaktion ist vor Allem bei Software-Entwicklern besonders stark ausgeprägt. Hintergrund dessen ist die implizit normierte Subkultur und Community des Entwicklers, der sich selbst (berechtigterweise) als hochqualifizierten, intellektuellen und naturwissenschaftlich fundierten Menschen sieht, im Gegenzug aber keinen allgemeinen Anspruch auf Normierung oder gesellschaftlichen Status stellt.</p>
+<p>Als <a href="http://de.wikipedia.org/wiki/Geek">Geek</a> oder <a href="http://de.wikipedia.org/wiki/Nerd">Nerd</a> stellt man sich o.g. ganzheitlichen Formalisierungen schon aus Prinzip entgegen. Besonders deutlich wird diese - sagen wir mal opportunistische - Haltung im alltäglichen Arbeitsumfeld gelebt, wenn man sich z.B. dediziert von <a href="http://www.youtube.com/watch?v=zzUR27Cg-Ck">Business-Kaspern</a> distanziert und in Meetings das berühmte <a href="http://de.wikipedia.org/wiki/Bullshit-Bingo">Bullshit-Bingo</a> spielt. Es ist die gesamte Arbeitsumgebung, das Unverständnis der Führung, die Normierungsversuche der Personalabteilung und nicht zuletzt das innere Team-Feedback, die den Entwickler in ein subjektives Selbstbild des <a href="http://en.wikipedia.org/wiki/Code_monkey">Code Monkeys</a> verfallen lassen.</p>
+<p>In den meisten Fällen erkennt der Software-Entwickler allerdings schnell seine Machtlosigkeit gegenüber dem bürokratisierten System sowie seine eigene wirtschaftliche Abhängigkeit gegenüber diesem, "spielt das Spiel" teilnahmslos mit und verstärkt sein ohnehin schon durch die Subkultur angeeignetes <a href="http://www.4managers.de/themen/cocooning/">Cocooning</a>.</p>
+<h3 id="alternative-autonome-software-teams">Alternative: Autonome Software-Teams</h3>
+<p>Es gibt mehrere alternative Team-Strukturen zu den klassischen führungsorientierten Teams, eine davon ist das autonome Software-Entwicklungs-Team. Die Idee ist denkbar einfach: Es gibt keinen Team- oder Abteilungsleiter mehr, das Team ist "ohne Kopf" und völlig auf sich alleine gestellt.</p>
+<p>Konsequenterweise liegt faktisch die gesamte Arbeit und Organisation im Team selbst. Das Team wird automatisch zur <a href="http://de.wikipedia.org/wiki/Selbstorganisation">Selbstorganisation</a> gezwungen, was in erster Instanz vorteilige Effekte verspricht, denn sich selbst organisierende Teams sind in der Lage</p>
+<ul>
+<li>Ihre eigene Gruppenkomplexität sowie die Arbeitskomplexität zu beherrschen,</li>
+<li>sich gegenseitig und selbstständig zu "homogenisieren", d.h. die Team-Einheit zu bewahren und Geschlossenheit zu zeigen,</li>
+<li>redundant Aufgaben wahrzunehmen, also innerhalb des Teams eine Aufgabe wechselseitig oder parallel an mehrere Mitglieder zu übertragen, und</li>
+<li>im Idealfall völlig autonom zu agieren - also absolut unabhängig von äußeren Einflüssen zu sein.</li>
+</ul>
+<p>Dabei gibt es innerhalb des Teams keine Hierarchie, jeder ist gleichwertig. Diese "alle sind gleich" oder besser "jeder ist jemand" Mentalität ist im praktischen Wirken des Teams schwer umzusetzen, zielt aber primär darauf ab, dem Einzelnen die für ihn und das Team notwendige <a href="http://de.wikipedia.org/wiki/Anerkennung">Anerkennung</a> zu geben. Dadurch erhofft man sich, die inhaltlichen Perspektiven des Team-Mitglieds zu stärken und verhindert gleichzeitig das Abspalten einzelner vom Team.</p>
+<p>Überhaupt ist die Übertragung der operativen Verantwortung auf das gesamte Team eine Maßnahme, die indirekt die negativen Effekte führungsgetriebener Teams ausschalten soll. So ist durch den Verantwortungsübergang sowie den dadurch erlangten gestalterischen Spielraum eine stärkere Motivation zum aktiven, konstruktiven Mitwirken gegeben. Der Entwickler spürt, das er als Team-Mitlglied in der Lage ist, seine eigenen Interessen zumindest offen zu vertreten und versucht schneller mit den anderen in einen teamgestützten Konsens überzugehen.</p>
+<p>Des Weiteren erhofft man sich durch die Selbstorganisation Steigerungen in adaptiver Flexibilität, aktivem Mitdenken und effizienterem (weil selbstbestimmtem) Arbeiten.</p>
+<p>In letzter Konsequenz wird also durch die Autonomie des Software-Teams versucht, die sog. <a href="http://de.wikipedia.org/wiki/Intrinsische_Motivation">intrinsische Motivation</a> der Mitglieder und damit des gesamten Teams zu stärken. Man möchte also - ganz im Gegenteil zu den "aktivierenden Führungsmaßnahmen" - nicht auf materielle oder statusorientierte Belohnung aufbauen, sondern vielmehr den inneren Coder aus jedem Entwickler ansprechen. Durch die Selbstorganisation werden z.B. Aufgaben "gerechter" verteilt.</p>
+<p>So kann sich z.B. durch das Rotationsprinzip jeder Entwickler an hochanspruchsvollen Aufgaben beteiligen, erkennt aber im Gegenzug auch an, dass dies nicht immer der Fall sein kann, weil die anderen Entwickler im Team auch diesen Anspruch erheben dürfen. Die Annahme lässt sich auf einen Satz reduzieren: Als glücklich empfindet sich stets ein Mensch, der eine Vielzahl von Handlungs- und Gestaltungsmöglichkeiten hat.</p>
+<p>Doch das ist noch nicht alles, was ein autonomes Software-Team leisten kann und leisten soll. Die Stärkung der Motivation und der eigenen Handlungsräume des Teams sind soz. "nur" eine Vorstufe dessen, was erreicht werden soll. Denn aus geschäftsorientierter Sicht lohnt sich die Autonomie des Teams erst, wenn es merklich dem führungsgetriebenen Team in Effizienz und Produktivität überlegen ist.</p>
+<p>Das ist auch durchaus denkbar, wenn es nicht bei der "simplen" Bewältigung des eigenverantwortlichen Handelns im Team bleibt, sondern noch darüber hinausgeht. Dazu werden im zweiten Schritt zur "effektiven Autonomie" methodische Grundsätze etabliert, die die gesamte Software-Entwicklung "an einem roten Faden" in einer Bahn halten soll. Hier kommen die Methoden der neueren Software-Entwicklung ins Spiel, wie z.B. <a href="http://de.wikipedia.org/wiki/Agile_Software-Entwicklung">Agile Engineering</a>, <a href="http://de.wikipedia.org/wiki/Extreme_Programming">XP</a> oder <a href="http://de.wikipedia.org/wiki/Scrum">Scrum</a>.</p>
+<p>Sie bieten mit einfachen Grundregeln (z.B. dem <a href="http://www.agilemanifesto.org/">agile Manifesto</a>) eine "lose Verankerung" des Entwicklungs-Prozesses, ohne den neu erlangten selbstbestimmten Handlungsspielraum des autonomen Teams zu beeinträchtigen.</p>
+<p>Ziel ist es, durch die Beigabe eines "haltbaren", aber dennoch flexiblen Entwicklungsprozesses sowie notwendiger Automatismen wie z.B. Continious Integration eine Team-Struktur zu erlangen, die in der Lage ist, sich selbst adaptiv zu optimieren. Der Selbstverbesserungseffekt soll aber nicht formalisiert sein oder ähnlich dem KVP bürokratisiert eingerahmt werden, sondern soll lediglich das Software-Team als Ganzes von der Leistungsorientierung wegbringen, denn aus Geschäftssicht ist ein Team wesentlich produktiver, wenn es wirkungsorientiert arbeitet statt leistungsorientiert zu agieren.</p>
+<p>Letzten Endes erhofft man sich dadurch den Effekt der <a href="http://de.wikipedia.org/wiki/Emergenz">Emergenz</a>, der das Software-Team als Einheit von Software-Entwicklern wesentlich effektiver macht, als das sture zusammenfassen von Entwicklern zu einem Team. Oder in einem Satz: Das Ganze ist mehr als die Summe seiner Teile.</p>
+<h3 id="strategien-gefahren-bei-der-autonomie-von-software-teams">Strategien &amp; Gefahren bei der Autonomie von Software-Teams</h3>
+<p>Es ist nicht alles Gold was glänzt. Wie bei jedem Team-Ansatz gibt es auch bei autonomen Software-Teams Nachteile und Risiken. Anders als bei den anderen Team-Strukturen sind die Gefahren, die eine Etablierung autonomer Teams mit sich bringt, implizit, versteckt und schwer erkennbar. Es gibt sogar Risiken, die unvermeidbar oder sogar gewollt sind. Es lohnt sich hierbei, die "Strategien" und Gefahren aus Sicht des Unternehmens sowie aus Sicht des Software-Entwicklers zu betrachten.</p>
+<h4 id="gefahren-aus-sicht-des-unternehmens">Gefahren aus Sicht des Unternehmens</h4>
+<ul>
+<li><strong>Überforderung.</strong> Das Team ist mit der Selbstorganisation und -verantwortung überfordert, es lässt sich keine autonome Struktur einführen. Dem kann man durch einführendes "Begleiten" entgegenwirken, d.h. eine ausgewiesene Person mit Führungserfahrung kann - gleichberechtigt - dem Team zur Seite stehen. Das geht allerdings nur bis zu einer bestimmten Grenze. Ist die Team-Kompetenz für eine Autonomie längerfristig nicht ausreichend, kann der gesamte Ansatz scheitern.</li>
+<li><strong>Konflikte.</strong> Das Team ist nicht zur Konfliktbewältigung fähig. Dies ist auch eine Art der Überforderung, allerdings spezifisch auf das Kommunikations- und Verhandlungsgefüge im Team selbst. Hier hilft oft der Einsatz sog. "öffentlicher Moderation". Das Team stellt ihre Konflikte öffentlich anderen Teams, der gesamten Abteilung oder der Führungsebene vor. Es wird ein Konsens ausgehandelt. Mit der Zeit wird das Team versuchen, diese "Schlichtungsinstanz" zu vermeiden und selbstständig Kompromisse auszuhandeln.</li>
+<li><strong>Anarchie.</strong> Das Team bewegt und arbeitet nicht zielgerichtet, eine gemeinsame Meinungs- und Entscheidungsbasis fehlt.  Auch hier greift man zur Intervention zu einem bewährten Mittel, indem man das Team mit einer "Besucher-Rolle" ausstattet. Es wird ein Team-Mitglied regelmäßig durch eine abteilungsferne Person ausgetauscht. Diese "öffentlichen Besuche" zwingen das Team, mit dem Besucher an Ihrer eigenen Gestaltungs- und Handlungsfähigkeit zu arbeiten.</li>
+</ul>
+<h4 id="gefahren-aus-sicht-des-entwicklers">Gefahren aus Sicht des Entwicklers</h4>
+<ul>
+<li><strong>Joker-Coder.</strong> Man verkommt durch ständiges rotieren im Team zu einer impliziten Joker-Rolle. Ist man z.B. im Datenbank-Segment Experte, wird man im Team nur für diese Aufgaben innerhalb der Rotation eingesetzt. Das Resultat ist die Isolation aus dem allgemeinen Projekt-Gefüge. Verhindern lässt sich das einfach dadurch, indem man von vornherein keine "Wissensprofile" für Entwickler hat und annimmt.</li>
+<li><strong>Austauschbarkeit.</strong> Im funktionierenden autonomen Team ist jeder Entwickler entbehrlich. Daraus resultiert eine Reduktion der eigenen Sicherheit im Arbeiten sowie generell für die Sicherheit des Arbeitsplatzes. Der Sicherheitsverlust lässt sich nur durch stetiges aktives Mitwirken und kritischer Gegenüberstellung der Entwickler untereinander aufwiegen.</li>
+<li><strong>Noobing.</strong> Innerhalb des Teams kommt es zu sehr geringem Erfahrungsaustausch obwohl von jedem erwartet wird, sich mit allem auszukennen. Das Resultat ist, das man durch frequentive Projekt- und Rollenänderung nicht in der Lage ist, tiefer in bestimmte Entwicklungsmaterien einzusteigen und das Thema zur Gänze zu verstehen. Als Konsequenz "noobt" man sich durch die Arbeit; erkennt also, dass ein umfassendes Verständnis der zu entwickelnden Software unmöglich ist und reduziert sich auf oberflächliche oder kosmetische Arbeiten. Diesem Effekt kann man durch längere Iterationszeiten, Pair Programming und anderen "Gruppentätigkeiten" entgegenwirken.</li>
+</ul>
+<h4 id="wichtige-unternehmerische-strategien-beim-einsatz-autonomer-software-teams">Wichtige unternehmerische Strategien beim Einsatz autonomer Software-Teams</h4>
+<ul>
+<li><strong>Good Will.</strong> Das Unternehmen ist ernsthaft daran interessiert, sein Software-Team und dessen Produktivität zu verbessern. Das ultimative Geschäftsziel ist die Kostensenkung der Software-Entwicklung bei gleichzeitiger Steigerung der Software-Qualität. Es besteht ein gegenseitiges Vertrauen zwischen Unternehmen und Mitarbeiter. Das Unterhehmen koppelt die Autonomie des Software-Teams mit klassischen Motivatoren ("Autonomie-Bonus", Unternehmensbeteiligung), das Software-Team erkennt Ihre Aufgabe der stetigen Weiterentwicklung im Sinne des Unternehmens an. Die Führung etabliert "Visiten" des Teams, das Team selbst wird als "unternehmerisches Produkt" bewertet und weiterentwickelt (auch in Finanzierung und Investition). Im Gegenzug stellt das Team - gestärkt durch die Autonomie - geschäftliche Markt- und Produktforderungen an das Unternehmen auf. Es entsteht eine gegenseitige "Aufsicht" der resultierenden Unternehmenspolitik und -produktivität. Der <a href="http://de.wikipedia.org/wiki/Emergenz">Emergenz-Effekt</a> des Teams weitet sich aus.</li>
+<li><strong>Konsolidierung &amp; Flexibilisierung.</strong> Das Unternehmen möchte die Kapazitäten konsolidieren und flexibler auf Auftragsspitzen und -täler reagieren können. Durch die Einführung autonomer Teams ist das Know-How im Team verteilt, die Abhängigkeit zu einzelnen Personen wesentlich geringer, negative Fluktuationseffekte werden gut abgepolstert. Reduktion &amp; Aufstockung von Kapazitäten im autonomen Software-Team ist wesentlich einfacher, z.B. durch Freelancer- oder Offsite-Member-Integration. Das Unternehmen verzichtet bewußt auf Emergenz-Effekte, möchte aber die "gedrosselte" Produktivität durch funktionierende Selbstorganisation und maximale Kapazitäts-Flexibilität amortisieren. Das Team wird durch "Key-Player", also durch eine geschäftserfahrene und kompetente "Entwickler-Elite" operabel gehalten.</li>
+<li><strong>Outsourcing.</strong> Das Unternehmen ist nicht daran interessiert, sein eigenes Software-Team zu behalten. Im Gegenteil, Ziel des Unternehmens ist es, durch die Etablierung (funktionierender) autonomer Software-Teams einen weichen Übergang zu externer Software-Dienstleistung sanft zu ermöglichen. Durch die Autonomie des Software-Teams werden tangierende Abteilungen auf "prozessfremdes" Verhalten der Software-Abteilung eingestimmt, die Führung stellt sich selbst der "beschränkten" Kontrollierbarkeit der Software-Entwicklung. Ist das Unternehmen auf die Autonomie getrimmt, wird durch Einführung stark reglementierter Prozesse oder Führungshierarchien das existierende autonome Software-Team absichtlich überfordert und zum Scheitern gezwungen. Während dessen werden die Outsourcing-Tätigkeiten etabliert. Das Team wird entlassen.</li>
+</ul>
+<h3 id="fazit">Fazit</h3>
+<p>Aus der Betrachtung all der Vor- und Nachteile autonomer Software-Entwicklungs-Teams lässt sich nur sehr schwer ein allgemeines Fazit ableiten. Ich persönlich empfinde autonome Team-Strukturen in der Software-Entwicklung als hilfreich und durchaus fördernd für Unternehmen und Team gleichermaßen.</p>
+<p>Dazu müssen allerdings viele Umgebungsfaktoren stimmen und die Führung muss ernsthaft erkennen und wollen, dass ein autonomes Software-Team die Effizienz der Software-Entwicklung steigert. Besonderen Wert sollte das Unternehmen dabei auf Kerntreiber der Autonomie legen. Auswahl der geeigneten Personen ist neben der offensiven - z.T. sogar aggressiven - Kommunikation und Vermittlung der Werte und Ziele des Vorhabens entscheidend. Auch die stringente Kopplung des Verantwortungsübergangs mit dem Entscheidungsübergang ist essentiell. Nur dadurch ist ein gegenseitiges Vertrauen möglich, welches der Ausgangspunkt für zielgerichtete Arbeit und effiziente, ökonomisch wertvolle Produktion ist.</p>
+<p>Im Gegenzug müssen die Software-Entwickler im Team realisieren, dass gutes "Programmieren" und "Designen" von Software nicht ausreicht, um wirklich gute Software für kommerzielle Zwecke zu entwickeln. Der Software-Entwickler muss zur fundamentalen Erkenntnis gelangen, das Gestaltungs- und Entscheidungsfreiheit nur durch diszipliniertes und starkes Verantwortungsbewußtsein möglich sein kann. Das fachliche und soziale Handeln des Entwicklers soll dabei auf die grundlegenden Unternehmensinteressen ausgerichtet sein. Jeder Software-Entwickler sollte für sich sowie andere das Verständnis und die Anwendung der <a href="http://www.acm.org/about/se-code">Software-Engineering Ethik</a> fordern und fördern.</p>
+<p>Das alles ist ein guter Vorsatz, die Realität ist jedoch wesentlich nüchterner und härter.</p>
+<h4 id="software-entwickler-sind-nach-wie-vor-die-grote-hurde-ihres-eigenen-erfolges">Software-Entwickler sind nach wie vor die größte Hürde ihres eigenen Erfolges</h4>
+<p>Das beschränkt sich nicht nur auf ihren "wirtschaftlichen" Erfolg, sondern umfasst gleichermaßen auch das so hochstilisierten "Ich code gute Software"-Prinzip. Sie verfallen in ihrem <a href="http://de.wikipedia.org/wiki/Cubicle">Cubicle</a> (z.T. verständlich) in eigene Arbeitsmechanismen, kapseln sich aus der unternehmerischen Gruppe oder dem eigenen Team heraus und betrachten das Unternehmen als stotterndes, konzerngeleitetes, kapitalmaximierendes, sozialarmes Vehikel, das es nun mal unweigerlich zu verwenden gilt.</p>
+<p>Doch auch das Unternehmen, oder besser dessen Führung ist nicht besser. Die meisten Unternehmen, die autonome Teams einführen, sind bei Gott nicht bereit, Kontrolle, operative oder sogar geschäftskritische Verantwortung an untere Ebenen zu verteilen. Im Gegenteil. Es werden implizite Kontrollmechanismen wie Jour-Fixe eingebaut. Die eigentlich so wichtigen Rückkopplungen zu Schnittstellen und Führung (Feedbacks, Meilensteine, Iterationen) werden durch autoritäres oder subversiv kontrollierendes Personal zu Steuerungsmechanismen umgewandelt. Autonome Teamstrukturen sind mittlerweile ein nützliches und gangbares Mittel, um das eigene Unternehmen zu konsolidieren.</p>
+<p>Es bleibt mir nur die Hoffnung, das es Entwickler und Unternehmen gibt, die das Potenzial autonomer Software-Teams erkennen und leben. Eine schlechte Idee ist es jedenfalls nicht.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>25 November 2007</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/autonome-software-entwicklungs-teams.html&title=Autonome Software-Entwicklungs-Teams">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

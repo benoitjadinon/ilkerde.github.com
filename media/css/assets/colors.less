@@ -1,0 +1,124 @@
+/*
+### colors.less
+
+Definition of colors used throughout the entire website.
+
+The color system divides into two sections. The first section
+defines the colors itself (similar to a palette definition).
+
+The second section actually semantically defines which color
+is used for whatever component on the website. By convention,
+three color types exist:
+
+- Foreground color, suffixed "_fg"
+  This is the (primary) stroke color, used for text
+
+- Background color, suffixed "_bg"
+  This is the fill color, i.e. used for filled boxes
+
+- Line color, suffixed "_line"
+  The (secondary) hairline stroke color, used for borders
+
+Apart from the color type, colors can be defined
+for several object states as well. The default state
+is the "idle" (or passive) state. It's the only state
+which is not explicitly weaved into the color name.
+In addition to the default state there's:
+
+- over: user focuses object with mouse (mouseover/hover)
+- active: highlighted, active object, important in context
+- inactive: dimmed, inactive object, commonly unusable
+- error: strong highlight, object is errornous
+
+*/
+
+/*
+The main color set only contains greys, light whites
+and the theme blue color called "ease".
+*/
+@color_white:#ffffff;
+@color_black:#000000;
+@color_graphite:#443a3a;
+@color_granit:#94989c;
+@color_fog:#c2c3c4;
+@color_sketch:#dddddd;
+@color_chalk:#f7f7f7;
+@color_ease:#336699;
+@color_snow:#f0f0f0;
+@color_wine:#9b050c;
+
+/* > standard text colors */
+@palette_text_bg:@color_white; 
+@palette_text_fg:@color_graphite; 
+
+/* > colors for links */
+@palette_text_fg_over:@color_black;
+@palette_text_fg_active:@color_ease; 
+@palette_text_fg_inactive:@color_granit;
+
+/* > code sections / fragments */
+@palette_code_bg:@color_chalk;
+@palette_code_fg:@color_graphite;
+
+/* > quotes / citations */
+@palette_quote_bg:@color_white;
+@palette_quote_fg:@color_ease;
+
+/* > image captions / subtitles */
+@palette_caption_bg:@color_graphite;
+@palette_caption_fg:@color_white;
+
+/* > icons (usually imagery only) */
+@palette_icon_bg:@color_white; 
+@palette_icon_fg:@color_fog; 
+
+/* > informational, contextually lower important text elements */
+@palette_info_bg:@color_white; 
+@palette_info_fg:@color_fog; 
+
+/* > presentational canvas (slide) colors */
+@palette_slide_bg:@color_white; 
+@palette_slide_fg:@color_graphite; 
+
+/* > headings and titles */
+@palette_head_bg:@color_white; 
+@palette_head_fg:@color_graphite; 
+@palette_head_fg_inactive:@color_granit;
+
+/* > main menu */
+@palette_menu_bg:@color_chalk;
+@palette_menu_fg:@color_granit;
+@palette_menu_bg_active:@color_fog;
+@palette_menu_fg_active:@color_graphite;
+@palette_menu_bg_over:@color_ease;
+@palette_menu_fg_over:@color_chalk;
+
+/* > form labels */
+@palette_label_bg:@color_snow;
+@palette_label_fg:@color_granit;
+
+/* > input elements */
+@palette_input_bg:@color_white;
+@palette_input_fg:@color_graphite;
+@palette_input_bg_active:@color_white;
+@palette_input_fg_active:@color_black;
+@palette_input_bg_error:@color_white;
+@palette_input_fg_error:@color_black;
+
+/* > command button */
+@palette_command_bg:@color_fog;
+@palette_command_fg:@color_graphite;
+
+@palette_command_bg_over:@color_ease;
+@palette_command_fg_over:@color_chalk;
+
+@palette_command_bg_action:@color_graphite;
+@palette_command_fg_action:@color_fog;
+
+@palette_command_bg_relax:@color_white;
+@palette_command_fg_relax:@color_granit;
+
+/* > border colors */
+@palette_border:@color_fog; 
+@palette_border_active:@color_graphite; 
+@palette_border_error:@color_wine; 

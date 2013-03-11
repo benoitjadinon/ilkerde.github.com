@@ -1,0 +1,142 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PHP Trickshot: Lambda Functions</title>
+    <meta name="description" content="Another little &#34;trickshot&#34; in PHP: Using the new anonymous functions feature since PHP 5.3.0.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="php-trickshot-lambda-functions">
+    <a href="php-trickshot-lambda-functions"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>PHP Trickshot: Lambda Functions</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>It's time for another short instalment of my <em>"trickshot"</em> blog post series. The "trick" I'm going to show today with PHP literally is no trick at all. It's just a language feature which sadly isn't used that frequently. That might be reasoned by the fact that the feature is only available since 2009, when PHP version 5.3 was released along with the first implementation of it. The feature I'm talking about <em>obviously</em> is <strong>anonymous functions</strong> aka <strong>lambda functions</strong>.</p>
+<p>The syntax of the PHP lambda will be very familiar to JavaScript developers, actually:</p>
+<div class="codehilite"><pre><span class="nv">$plus</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span> <span class="p">};</span>
+</pre></div>
+
+
+<p>That's pretty straight forward. However, PHP's syntax is still unique. This mainly is reasoned by the fact how <em>closures</em> are implemented in PHP. Let's look at a function with a closure:</p>
+<div class="codehilite"><pre><span class="nv">$canprint</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$x</span> <span class="nv">%</span> <span class="nv">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="p">};</span>
+<span class="nv">$printseq</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$z</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$canprint</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$z</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">echo</span> <span class="nv">$canprint</span><span class="p">(</span><span class="nv">$i</span><span class="p">)</span> <span class="p">?</span> <span class="nv">$i</span> <span class="p">:</span> <span class="s">&#39;-&#39;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nv">$printseq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Developers coming from other languages (such as JavaScript) may scratch their had a little on the explicit <code>function($x) use ($y) {}</code> syntax. However, it's quite interesting that you pretty easily can get used to it.</p>
+<p>The reason why I post this (nearly 3 years old) language feature of PHP is not only that I find it to be used rarely. I for one think that anonymous functions are very important to any language and enable the developer to build a whole new class of elegant solutions. Let me illustrate this with a classic example showing you that anonymous functions can be called recursively as well:</p>
+<div class="codehilite"><pre><span class="nv">$fib</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="o">&amp;</span><span class="nv">$fib</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$x</span><span class="o">&gt;</span><span class="mi">1</span> <span class="p">?</span> <span class="nv">$fib</span><span class="p">(</span><span class="nv">$x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="nv">$fib</span><span class="p">(</span><span class="nv">$x</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span> <span class="nv">$x</span><span class="p">;</span> <span class="p">};</span>
+</pre></div>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>14 March 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/php-trickshot-lambda-functions.html&title=PHP Trickshot: Lambda Functions">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

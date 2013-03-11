@@ -1,0 +1,7 @@
+extends: slide.j2
+pagetype: slide
+default_block: text
+listable: false
+slidecount: 34
+title: "Agile Software Design"
+created: !!timestamp 2012-10-01 20:00:00

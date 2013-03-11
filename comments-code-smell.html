@@ -1,0 +1,187 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Comments != Code Smell</title>
+    <meta name="description" content="Kommentare sind entgegen der landläufig modernen Meinung kein Anzeichen für schlechte Codequalität. Dieser Artikel erklärt meine Hintergründe und Perspektive.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="comments-code-smell">
+    <a href="comments-code-smell"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Comments != Code Smell</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Erst kürzlich machte mich ein Kollege von mir per Email auf einen Post von Neal Ford aufmerksam. Neal bahauptet und begründet das <a href="http://memeagora.blogspot.com/2008/11/comments-code-smell.html">Kommentare angeblich ein Code Smell</a> seien. Dieser Aussage stelle ich mich strikt dagegen und behaupte, das <strong>Kommentare im Code im Allgemeinen kein Code Smell</strong> sind.</p>
+<h3 id="sind-inline-kommentare-schlecht">Sind Inline-Kommentare schlecht ?</h3>
+<p>Neal behauptet, Kommentare wären ein Bruch des <a href="http://de.wikipedia.org/wiki/DRY">DRY-Prinzips</a>, denn schließlich hätte man das essentielle ja schon im Code. Diesen nochmals zu kommentieren wäre eine Wiederholung dessen, was man ohnehin schon programmiert hätte.</p>
+<p>Ganz so einfach ist das leider nicht. Es gibt viele Situationen, in denen Kommentare in gut geschriebenem Code hilfreich sind. Die pauschale Aussage, Kommentare würden gegen DRY verstoßen, ist schlichtweg naiv. Wichtig bei Inline-Kommentaren ist es, darüber zu schreiben, wieso man den Code in der gegebenen Form aufgebaut hat. Eine "stupide" Wiederholung der Statements wie z.B.</p>
+<div class="codehilite"><pre><span class="cm">/* create new account */</span>
+<span class="n">IAccount</span> <span class="n">account</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Account</span><span class="p">();</span>
+</pre></div>
+
+
+<p>ist sicherlich eine unnötige Wiederholung. Aber ist dadurch der Code (also <code>IAccount account = new Account();</code>) automatisch schlecht? Ich würde sagen: Nein.</p>
+<p>Das Inline-Kommentare auch besonders wertwoll sein können, verschweigen die meisten. Zumindest diejenigen, die behaupten Kommentare seien ein Code Smell. Nehmen wir z.B. folgendes Code-Fragment aus einem <code>HttpModule</code>:</p>
+<div class="codehilite"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">ResetSessionCookieDomain</span><span class="p">(</span><span class="n">HttpApplication</span> <span class="n">application</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="n">host</span> <span class="p">=</span> <span class="n">application</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Url</span><span class="p">.</span><span class="n">Host</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">application</span><span class="p">.</span><span class="n">Session</span><span class="p">.</span><span class="n">IsNewSession</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">application</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Url</span><span class="p">.</span><span class="n">IsLoopback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">HttpCookie</span> <span class="n">appCookie</span> <span class="p">=</span> <span class="n">application</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Cookies</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="n">GetApplicationCookieName</span><span class="p">()];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">appCookie</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+      <span class="n">appCookie</span><span class="p">.</span><span class="n">Domain</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">GetCookieDomain</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Auf den ersten Blick sieht das ja schon ziemlich aufgeräumt und verständlich aus. Aber der erste Blick trügt. Denn diese Methode wird mindestens drei mal unterschiedlich interpretiert werden.</p>
+<p>Derjenige Entwickler, der wenig oder keine Erfahrung mit ASP.NET hat, wird den Code so hinnehmen wie er ist und ihn falsch verstehen. Er wird annehmen, das man in ASP.NET Cookies ausschließlich über das <code>HttpRequest</code>-Objekt zugreift und dort ändern, erstellen oder löschen kann.</p>
+<p>Derjenige Entwickler, der sehr große Erfahrung in ASP.NET hat, wird den Code auch so hinnehmen wie er ist und ihn richtig interpretieren (dazu später mehr).</p>
+<p>Derjenige Entwickler, der einige Erfahrungen in ASP.NET gesammelt hat, wird sich über den Code wundern und sich selbst die Frage stellen, wieso der Entwickler der den Code geschrieben hat gerade über <code>HttpRequest</code> das Cookie verändert. Schließlich gibt es ja den <code>HttpResponse</code>, der auch eine Cookies-Eigenschaft hat (<code>HttpCookieCollection</code>).</p>
+<p>Im Ergebnis hat es die obige "saubere", unkommentierte Methode geschafft, in drei verschiedenen Köpfen verschiedene Ausrufe- und Fragezeichen zu hinterlassen. Dabei wäre es ziemlich einfach, diese Mehrfachinterpretation durch einen kurzen Kommentar zu vermeiden:</p>
+<div class="codehilite"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">ResetSessionCookieDomain</span><span class="p">(</span><span class="n">HttpApplication</span> <span class="n">application</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">string</span> <span class="n">host</span> <span class="p">=</span> <span class="n">application</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Url</span><span class="p">.</span><span class="n">Host</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">application</span><span class="p">.</span><span class="n">Session</span><span class="p">.</span><span class="n">IsNewSession</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">application</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Url</span><span class="p">.</span><span class="n">IsLoopback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* Careful: when handling cookies using the response object new cookies are set.</span>
+<span class="cm">     * The cookie collections in the Request and Response objects are always synchronized in .Net.</span>
+<span class="cm">     * The request object is used to reset the domain and avoid generating a new cookie accidentally. */</span>
+    <span class="n">HttpCookie</span> <span class="n">appCookie</span> <span class="p">=</span> <span class="n">application</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">Cookies</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="n">GetApplicationCookieName</span><span class="p">()];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">appCookie</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+      <span class="n">appCookie</span><span class="p">.</span><span class="n">Domain</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">GetCookieDomain</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Ist das jetzt ein Code Smell? Neal behauptet ja, denn für Ihn ist die einzige Rechtfertigung für Inline-Kommentare ein komplexer Algorithmus. Ich behaupte: Nein, das ist kein Code Smell, sondern vielmehr eine Bereicherung des Codes. Ich bin mir fast sicher, das auch er den Kommentar schätzen würde, wenn er mit dem Code konfrontiert wird.</p>
+<h3 id="kommentare-storfaktor-oder-dokumentationsbasis">Kommentare: Störfaktor oder Dokumentationsbasis ?</h3>
+<p>Ein weiteres Argument von Neal gegen Kommentare - genauer gesagt gegen kommentierte Methoden im JavaDoc oder NDoc (<code>&lt;summary/&gt;</code>) Stil - ist der Störfaktor, der von Kommentaren ausgeht, wenn man refaktorisiert. Als ich das gelesen habe, konnte ich mir ein Schmunzeln nicht verkneifen. "Was ist denn das für eine fadenscheinige Ausrede" habe ich mir gedacht. Natürlich sind Kommentare, aus denen Dokumentationen generiert werden ein zweischneidiges Schwert. Auf der einen Seite sind sie ein weiteres, zu erstellendes und pflegendes "Code-Fragment", auf der anderen Seite blähen sie den Sourcecode um etliche Zeilen auf und lenken von dem eigentlichen Code ab.</p>
+<p>Ich persönlich habe bis Dato keinen Entwickler getroffen, der beim Entwickeln von Code gleichzeitig dokumentationsbasierte Kommentare erstellt hat. Es macht ja auch faktisch keinen Sinn, wenn man als Entwickler davon ausgeht, das man den Code sowieso noch mit großer Wahrscheinlichkeit ändern oder umstrukturieren muss. In einigen Fällen macht es sogar gar keinen Sinn, z.B. wenn man Prototypen entwickelt oder kleine, temporär verwendete Tools.</p>
+<p>In einem professionellen Umfeld jedoch, wo Sourcecode ein oder sogar das einzig große Kapital eines Unternehmens ist, sind Dokumentationen allgemein ein hohes Gut. Dazu gehören nun mal auch die dokumentationsbasierten Code-Kommentare. Als Entwickler oder Entwicklungs-Team muss man sich natürlich die Frage stellen, wann und wo solche Kommentare einen effektiven Mehrwert liefern. Zumeist sind es in allererster Instanz hochgradig wiederverwendete Komponenten und Klassen, z.B. in Frameworks oder aber auch Schnittstellen. Ist der Sourcecode auch noch Teil eines Produktes, wie z.B. bei einer API, so muss dieser auf jeden Fall gut und ausreichend ausführlich kommentiert werden.</p>
+<p>Hat man nun z.B. ein solches, gut kommentiertes Framework vor sich und muss es erweitern oder verändern, so ist es keinesfalls ein Grund, eine notwendige Refaktorisierung nicht oder nur unvollständig durchzuführen, weil die Kommentare existieren. Jeder, der sich selbst bei so einer Situation ertappt, das er nur den Code refaktorisiert oder garnicht refaktorisiert, weil er die "lästigen" Kommentare auch noch überarbeiten muss, sollte sich die Frage stellen, ob er den Ansprüchen in professionellen Umgebungen gerecht werden kann.</p>
+<h3 id="unit-tests-vs-kommentare">Unit Tests vs. Kommentare</h3>
+<p>Eine interessante Argumentation von Neal ist, das Tests den Code wesentlich besser dokumentieren als Kommentare. Dabei stelle mir die Frage, was denn Tests und Kommentare eigentlich gemeinsam haben. Verifizieren Kommentare die Funktionstüchtigkeit einer Methode? Dokumentieren Tests wieso ein Entwickler die Klasse oder Methode implementiert hat? Ich jedenfalls habe keines von beiden in der Art und Form durchführen können.</p>
+<p>Neal stützt sich bei der "Unbrauchbarkeitsrechtfertigung" von Kommentaren nicht nur auf klassische Unit Tests, sondern auch auf den Einsatz von <a href="http://en.wikipedia.org/wiki/Behavior_Driven_Development">BDD-Frameworks</a> wie z.B. <a href="http://code.google.com/p/nbehave/">NBehave</a> oder <a href="http://www.codeplex.com/storyq">StoryQ</a>. Diese "ausführbaren" und damit auch testbaren Spezifikationen sind eine gute und besonders hilfreiche Bereicherung für die Software-Entwicklung. Ich habe NBehave schon eingesetzt und bin positiv angetan von den neuen Möglichkeiten, die solche Frameworks für die Software-Entwicklung eröffnen.</p>
+<h3 id="kommentare-im-kontext">Kommentare im Kontext</h3>
+<p>Jedoch ist es keinesfalls sinnvoll, Unit Tests oder BDD mit Code-Kommentaren zu vergleichen. Der gemeinsame Nenner, den alle drei Dokumentationsformen haben, ist schlichtweg die Intention, den Code zu dokumentieren.</p>
+<p>Dabei konzentrieren sich BDD-Stories auf die funktionale Spezifikation der zu erstellenden Software. Unit-Tests dokumentieren die funktionale und/oder technische Verifikation von Software. Code-Kommentare dienen der Beschreibung und Vermittlung essentieller technischer Implementierungsdetails von Software. Zusammengefasst also drei verschiedene Dokumentationsformen, die alle ein anderes Ziel verfolgen. Aus meiner Sicht sind sie nicht miteinander vergleichbar.</p>
+<h3 id="aber-uberall-wird-behauptet-kommentare-seien-smelly">Aber überall wird behauptet, Kommentare seien "smelly"...</h3>
+<p>...jedoch ist das nicht ganz richtig. Denn "überall" wird das sicher nicht behauptet - ein Gegenbeispiel liest Du gerade. Aber es ist richtig, das es neben Neal noch weitere, z.T. hoch angesehene Quellen gibt, die behaupten, Kommentare seien ein Code Smell. Ein sehr prominentes Beispiel ist Jeff Atwood; in seiner <a href="http://www.codinghorror.com/blog/archives/000589.html">Code Smells Liste</a> sind Kommentare ganz oben.</p>
+<p>Es lohnt sich hier jedoch, die Aussage genau zu lesen und auch kritisch zu hinterfragen. Denn in den meisten Fällen werden Kommentare nur als "Code Smell" deklariert, weil man entweder schlechte Erfahrungen mit Kommentaren gemacht hat oder selbst keine guten Kommentare schreiben kann. Und schon wird aus einem für mein Dafürhalten wichtiges Artefakt wie den Kommentaren ein Warnsignal für schlechten Code gemacht. Auch hier gibt es wieder einen feinen Unterschied, denn ein Code Smell ist für mich ein echtes Warnsignal, das etwas schief läuft. Die Argumentationen vieler, die Kommentare als Code Smell sehen, berufen sind jedoch kaum auf schlechten Code-Stil als auf allgemeine "Probleme" mit Kommentaren.</p>
+<p>So wird oft zitiert, das Kommentare falsch geschrieben werden, wenn Sie nicht das "Warum?" erklären, sondern einfach nur beschreiben was gerade passiert. Es wird behauptet, Kommentare würden einen in die Irre führen, weil sie falsch oder nicht gepflegt sind. All das sind allerdings generelle Probleme des kommentierens, weniger ein Problem des kommentierten Codes.</p>
+<p>Im Übrigen gibt es genügend Entwickler, Artikel und Bücher, die sich mit der Thematik Inline- und Code-Kommentare auseinandersetzen. Zum Beispiel gehen Andrew Hunt und David Thomas in ihrem legendären Buch <a href="http://www.pragprog.com/titles/tpp/the-pragmatic-programmer">The Pragmatic Programmer</a> auf Kommentare und Dokumentationen in Punkt 44 "It's all Writing" ein und erklären verständlich, das gutes kommentieren von Source Code unerläßlich für gute Qualität und die weitere Entwicklung ist.</p>
+<p>Ich möchte natürlich auch Martin Fowler und sein Buch <a href="http://martinfowler.com/books.html#refactoring">Refactoring</a> nicht unerwähnt lassen. Fowler deklariert dort Kommentare als Code Smell - liest man jedoch seine Argumentation, warum Kommentare ein Code Smell sein können, landet man schnell wieder bei der Erkenntnis, das es hier um falsche Kommentare geht, und nicht um schlechten Code. Er gibt im Buch dennoch die folgende konrekte Handlungsanweisung:</p>
+<blockquote>
+<p>When you feel the need to write a comment, first try to refactor the code so that any comment becomes superfluous.</p>
+</blockquote>
+<p>Entscheidend für mich ist der Anfang des Satzes: "When you feel the need to write a comment...". Es geht ihm also nicht darum, Kommentare zu eliminieren oder aber den Sinn von Kommentaren zu hinterfragen, sondern vielmehr um die Tatsache, das man versuchen sollte, den Code so gut wie möglich selbsterklärend zu schreiben. Das dies nicht immer der Fall sein kann oder in manchen Situationen nicht adequat ist, ist für Fowler selbstverständlich. Aus meiner Sicht ist die obige "best practice" eine gute - aber keine schlüssige Argumentation für einen Code Smell.</p>
+<h3 id="kommentare-sind-gut-und-wichtig">Kommentare sind gut und wichtig</h3>
+<p>Aus all den Betrachtungen heraus kann ich für mich nur den Schluß ziehen, das Kommentare gut und wichtig für qualitativ hochwertige und wartbare Software sind. Natürlich sollte - wie bei so vielen Dingen in der Programmierung - auf den richtigen Einsatz und die richtige Dosierung von Kommentaren geachtet werden. Wie auch für den Code selbst gilt für Kommentare, das sie erstellt und gepflegt werden müssen. Manchmal muss man sie auch löschen oder verbessern - genauso wie beim Code selbst. Entscheidend für mich beim Kommentieren ist, das ich es mindestens so durchführe, wie ich es beim ersten Lesen meines eigenen Codes erwarten würde, damit ich den Code schnell und gänzlich verstehe.</p>
+<p>Fazit: <strong>Comments are a good thing</strong> (if you know how to use them).</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>18 November 2008</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/comments-code-smell.html&title=Comments != Code Smell">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

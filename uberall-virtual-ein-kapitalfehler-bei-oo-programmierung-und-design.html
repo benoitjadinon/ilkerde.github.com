@@ -1,0 +1,185 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Überall &#34;virtual&#34;</title>
+    <meta name="description" content="Eine Artikel über meine gefestige Auffassung, dass der inflationäre und unbedachte Einsatz von &#34;virtual&#34; in der C#/OO-Programmierung ein leichtsinniger Fehler sein kann.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="uberall-virtual-ein-kapitalfehler-bei-oo-programmierung-und-design">
+    <a href="uberall-virtual-ein-kapitalfehler-bei-oo-programmierung-und-design"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Überall &#34;virtual&#34;</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <h4 id="ein-kapitalfehler-bei-oo-programmierung-und-design">Ein Kapitalfehler bei OO-Programmierung und Design</h4>
+<p>Jetzt wird's schwierig. Ich möchte mich heute ein wenig detaillierter mit einem essentiellen Konzept der Objekt-orientierten Programmierung und dessen OO-Design beschäftigen: Dem Einsatz von virtuellen Methoden.</p>
+<p><a href="http://en.wikipedia.org/wiki/Virtual_function">Virtuelle Methoden</a> sind eines der Kernkonzepte in der Objekt-orientierung, um <a href="http://en.wikipedia.org/wiki/Polymorphism_%28computer_science%29">Polymorphie</a> zu ermöglichen. Das interessante an virtuellen Methoden ist ihre grundlegende Charakter-Eigenschaft, eine gewisse Aufruf- und Kontext-Konvention zu definieren, ohne das der Aufrufer der Methode die konkrete Implementierung oder besser das Verhalten der Methode hervorsehen kann.</p>
+<p>Dieses Konzept in der Objektorientierung wurde im Laufe der Zeit stetig erweitert und verfeinert. So sind z.B. die abstrakten Methoden/Klassen sowie Interfaces eine Weiterentwicklung des Polymorphie-Gedankens von virtuellen Methoden. In C++ ist z.B. die Definition einer "puren" virtuellen Klasse (eine Klasse mit ausschließlich pur virtuellen Methoden) vergleichbar mit einem Interface in neueren Sprachen, wie z.B. C# oder Java.</p>
+<p>Es ist folglich völlig nachvollziehbar, das der Einsatz von virtuellen Methoden in der objekt-orientierten Programmierung quasi unerläßlich ist, um bestimmte Konzepte umzusetzen. Nun ist es aber auch öfters der Fall, das die Zweckmäßigkeit des Einsatzes von virtuellen Methoden mißverstanden oder sogar mißbraucht wird. Des Öfteren begegne ich z.B. folgendem (oder ähnlichem) C#-Code:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">AnimalBase</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="n">Position</span> <span class="n">pos</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">virtual</span> <span class="n">Position</span> <span class="nf">GetPosition</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">pos</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">Eat</span><span class="p">()</span> <span class="p">{}</span>
+
+  <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">Run</span><span class="p">(</span><span class="n">Position</span> <span class="n">newPos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">pos</span> <span class="p">=</span> <span class="n">newPos</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Solche und ähnliche Klassen bekomme ich ab und an auf meinem Screen zu sehen, wenn ich durch Quellcodes von Software durchgehe. Manchmal sieht man sogar wahre "Orgien" von <code>protected virtual</code>, <code>protected internal virtual</code> oder sogar <code>public virtual</code>.</p>
+<p>Es ist meiner Meinung nach offensichtlich, das der Programmierer der obigen Klasse die Zweckmäßigkeit einer virtuellen Methode nicht oder nur teilweise verstanden hat. Alle Methoden sind virtuell. Stellt man den Entwicklern solcher Klassen die Frage, warum alle Methoden virtualisiert wurden, bekommt man meistens folgende Antwort: "Die Klasse soll erweiterbar und spezialisierbar bleiben".</p>
+<p>Tatsächlich war es vor allem in den Anfangsjahren der Objekt-orientierung gang und gäbe, wirklich alle Methoden zu virtualisieren, um der Idealvorstellung der guten Erweiterbarkeit und Spezialisierung näher zu kommen. Vor allem "OO-Theoretiker" hatten in den Gründungsjahren gepredigt, das Konzept der virtuellen Methoden genügend auszuschöpfen. Vor dem Hintergrund dessen ist es z.B. auch nicht mehr so verwunderlich, das im <a href="http://www.25hoursaday.com/CsharpVsJava.html#virtualfinal">Gegensatz zu C# bei Java alle Methoden standardmäßig virtuell sind</a>.</p>
+<p>Wenn dem so ist, das viele den massiven Einsatz von virtuellen Methoden bevorzugen, was ist dann daran so verkeht?</p>
+<h3 id="virtual-insanity">Virtual Insanity</h3>
+<p>Das Problem von übereifrigem Einsatz virtueller Methoden versteckt sich gut, dementsprechend sind sie auch nicht so offensichtlich, jedoch nicht minder schwerwiegend: Das Verhalten - oder besser die "Stabilität" der Implementierung einer Klassenhierarchie ist nicht gewährleistet. </p>
+<p>Ergo: stellt man eine Basisklasse mit sehr vielen virtuellen Methoden zur Verfügung, so kann das eigentlich gewünschte Verhalten der Basisklasse sowie deren Kindklassen nicht mehr vollends und sicher gewährleistet werden. Angewendet auf das obige Beispiel wird die Problemstellung etwas deutlicher:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Snake</span> <span class="p">:</span> <span class="n">AnimalBase</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="n">Position</span> <span class="n">pos</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Run</span><span class="p">(</span><span class="n">Position</span> <span class="n">newPos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">Creep</span><span class="p">(</span><span class="n">newPos</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">Creep</span><span class="p">(</span><span class="n">Position</span> <span class="n">newPos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">newPos</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">X</span> <span class="p">+=</span> <span class="n">Math</span><span class="p">.</span><span class="n">Sign</span><span class="p">(</span><span class="n">newPos</span><span class="p">.</span><span class="n">X</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">Y</span> <span class="p">+=</span> <span class="n">Math</span><span class="p">.</span><span class="n">Sign</span><span class="p">(</span><span class="n">newPos</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">Z</span> <span class="p">+=</span> <span class="n">Math</span><span class="p">.</span><span class="n">Sign</span><span class="p">(</span><span class="n">newPos</span><span class="p">.</span><span class="n">Z</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="n">UpdateCreepState</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">protected</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">UpdateCreepState</span><span class="p">()</span> <span class="p">{</span>
+    <span class="cm">/* some code */</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Auf den ersten Blick wirkt die Implementierung der <code>Snake</code>-Klasse plausibel. Dennoch führt die Implementierung zu einem massiven Fehler. Die "Standard-Implementierung" der <code>GetPosition()</code>-Methode von AnimalBase ist bei der Snake-Klasse nicht mehr operabel.</p>
+<p>Bei einem so einfachen Beispiel mit wenigen Methoden ist das relativ offensichtlich - wäre aber die <code>AnimalBase</code>-Klasse eine komplexe Klasse (oder Klassen-Hierarchie) mit vielen virtuellen Methoden, so ist es selbst für geübte OO-Hasen nicht mehr überschaubar, welchen Einfluß man auf die Implementierung der Basisklassen ausübt, wenn man eine oder mehrere virtuelle Methoden überschreibt.</p>
+<p>Für <a href="http://blogs.msdn.com/ericgu/">Eric Gunnerson</a>, einer der C#-Gurus und C#-Program Manager (Microsoft), ist das oben gezeigte Problem das Hauptproblem exzessiver Verwendung virtueller Methoden. Für ihn ist <a href="http://blogs.msdn.com/ericgu/archive/2006/07/18/670278.aspx">der massive Einsatz von virtuellen Methoden einer der 7 Todsünden in der OO-Programmierung</a>.</p>
+<p>Mittlerweile sind sogar einige "OO-Theoretiker" davon überzeugt, dass der massive bzw. ausschließliche Einsatz von virtuellen Methoden wirklich keine gute Idee ist. Das liegt vor allem daran, das sich in der Praxis herausgestellt hat, das vor allem bei großen Software-Projekten durch die "Freiheit des Überschreibens von virtuellen Methoden" das <a href="http://en.wikipedia.org/wiki/Liskov_substitution_principle">Liskov-Substitutions-Prinzip</a> stark gefährdet bzw. zum Teil durchbrochen wird.</p>
+<h3 id="careful-virtual">Careful Virtual</h3>
+<p>Zu dieser Problemstellung drückt sich auch <a href="http://en.wikipedia.org/wiki/Anders_Hejlsberg">Anders Hejlsberg</a>, leitender Architekt und Miterfinder der Programmiersprache von C# (Microsoft), besonders deutlich aus. In einem <a href="http://www.artima.com/intv/nonvirtual.html">Interview über die C#-Design-Konzepte</a> geht er indirekt auf die Probleme der Stabilität, der Gefährung des vereinbarten Verhaltens <em>("Incoming and outgoing contracts")</em> und Versionierungsproblemen durch virtuelle Methoden ein. Seiner Meinung nach ist durch generellen oder exzessiven Einsatz virtueller Methoden (wie z.B. in Java) die Gefahr wesentlich größer, das o.g. Probleme auftreten.</p>
+<p>Ein Zitat von Anders Hejlsberg trifft meiner Meinung nach den Nagel auf den Kopf:</p>
+<blockquote>
+<p>There are two schools of thought about virtual methods. The academic school of thought says, "Everything should be virtual, because I might want to override it someday." The pragmatic school of thought, which comes from building real applications that run in the real world, says, "We've got to be real careful about what we make virtual."</p>
+</blockquote>
+<p>Ich persönlich schließe mich der Schule des "Lasst uns virtual nur dann verwenden, wenn es wirklich notwendig ist" an. Es ist vollkommen klar, das eine virtuelle Methode ein wichtiges Werkzeug für gutes OO-Design ist. Das wird alleine schon dadurch deutlich, das sie öfter zum Einsatz kommt, wenn man essentielle Design Patterns wie z.B. <a href="http://en.wikipedia.org/wiki/Template_method_pattern">Template Method</a>, <a href="http://en.wikipedia.org/wiki/Composite_pattern">Composite</a>, <a href="http://en.wikipedia.org/wiki/Decorator_pattern">Decorator</a> oder <a href="http://en.wikipedia.org/wiki/Visitor_pattern">Visitor</a> (um nur einige zu nennen) implementiert.</p>
+<p>Jedoch ist es meiner Meinung nach besonders wichtig zu erkennen, dass man virtuelle Methoden wirklich nur dann einsetzt, wenn es notwendig bzw. sinnvoll ist. Eine pauschale Deklaration einer virtuellen Methode mit der Begründung der Erweiterbarkeit ist unüberlegt und in den meisten Fällen nicht sinnvoll. Folgerichtig ist in meinen Augen jeder Entwickler mit Sicherheit gut beraten, die <a href="http://msdn.microsoft.com/en-us/library/ms229044.aspx">Microsoft Guidelines zum Einsatz virtueller Methoden</a> zu beachten.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>22 May 2008</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/uberall-virtual-ein-kapitalfehler-bei-oo-programmierung-und-design.html&title=Überall &#34;virtual&#34;">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

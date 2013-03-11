@@ -1,0 +1,154 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Technical Summit 08: Teil 2</title>
+    <meta name="description" content="Ein Bericht meiner Eindrücke der Sessions des 2. Tages des Technical Summit 2008.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="technical-summit-08-teil-2">
+    <a href="technical-summit-08-teil-2"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Technical Summit 08: Teil 2</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Yep, die Summit habe ich nun hinter mir. Mein Log:</p>
+<h3 id="session-1-dariusz-zu-besuch-in-oslo">Session 1: Dariusz zu Besuch in Oslo</h3>
+<p>Abstrakte Kost zum Wachwerden für müde Entwickler-Hirne präsentierte Dariusz mit der ersten Session des zweiten TS-Tages: Oslo - Modellgetriebene Entwicklung. Was ist denn Oslo?</p>
+<p>Zunächst einmal wäre da die grundsätzliche Definition einer Entwicklungs-Umgebung und entsprechenden Tools, die eine modellgetriebene Software-Entwicklung ermöglichen sollen. Microsoft verfolgt hier den Ansatz des "neu erfindens". Mit Oslo wird eine komplett neue Landschaft angeboten, statt bestehende Systeme zu erweitern.</p>
+<p>Zum einen wäre da die "textuelle Modellierungssprache" M - M wie Modell. M ist natürlich keine klassische Programmiersprache, sondern dient der Beschreibung von DSL's. Im Fokus ist nicht die Objektorientierung, sondern Daten- und Strukturorientierung. M hat eine Reihe von eigenen DSL's (also Untertypen zu M), darunter MGrammar, um Grammatiken und Syntax für die eigene Textsprache zu definieren, MEntity um verhaltens- und modellbezogene Objekte zu modellieren, sowie MSchema, eine Sprache zur Definition von (relationalen) Datenstrukturen. Dariusz zeigte ein paar Beispiele mit dem neuen "Intellipad" (dem M-Editor), der schon seit einiger Zeit im Netz als das "Emacs.NET"-Gerücht verbreitet wurde.</p>
+<p>Modellierung geht natürlich auch - oder besser primär - visuell. Dafür hat Microsoft einiges an Entwicklungsarbeit investiert und die neue Anwendung "Quadrant". Quadrant ist so etwas ähnliches wie ein flexibler Diagramm-Designer. Die Flexibilität erreicht es zum einen über M selbst sowie auch über eigene "Meta-DSL's". Quadrant hat im wesentlichen eine Office-Style-Ribbon-Bar und eine "Workspace" genannte Zeichenfläche. Je nach definierten Modell oder DSL kann man verschiedene Entitäten und Objekte erstellen, auch neue Menü's und der Kontext ist änderbar. Auf den ersten Blick sieht das Tool ganz nett aus - die Power, die in Quadrant stecken soll, konnte mir Dariusz in den 5 Minuten leider nicht ganz vermitteln.</p>
+<p>Ein wesentlicher Teil von Oslo ist "Dublin". Dublin soll eine Hosting Runtime für Oslo MDA's werden. Realisiert als Erweiterung für den IIS ist es ein Quasi-Application-Server. Intern werkeln WCF &amp; WF kräftig auf dem Metadaten-Modell und sollen die mit den Oslo-Tools entworfenen Anwendungen ohne weiteres Zutun ausgeführt und zur Verfügung gestellt werden können. Dublin selbst ist noch in der Entwicklung - mal abwarten, wie es am Ende aussehen wird.</p>
+<p>Am Rande erwähnt wurde auch, das die gezeigten Oslo-Komponenten (also M und Quadrant) wohl auch irgendwie mit Visual Studio gekoppelt werden - natürlich noch nicht zum VS10er-Release, aber eine Integration sei in Planung.</p>
+<p>Fazit: Oslo ist in einer noch sehr frühen Phase, deutet aber schon an, wie MDD in Zukunft aussehen kann. Danke Dariusz.</p>
+<h3 id="session-2-christian-mit-rosario">Session 2: Christian mit Rosario</h3>
+<p>"Rosario" ist der Codename der neuen Version von Visual Studio Team System / TFS. Wer schon heute mit VSTS mit TFS verwendet, der weiß, das da noch einiges an Platz für Verbesserung vorhanden ist. Das scheint auch Microsoft erkannt zu haben, wenn man den Worten von Christian glauben darf. Bei den Worten wollte er es natürlich nicht belassen und zeigte ein paar Slides und Demos zu den Verbesserungen.</p>
+<p>Zunächst einmal werden Kernelelemente wie Skalierungsfähigkeit, Maintenance und das Build- bzw. SCCS-Management verbessert. Wie hinlänglich bekannt, ist Installation und Administration von TFS / VSTS ja keine besondere Meisterleistung von Microsoft. Mit Rosario soll laut Chrisitan TFS innerhalb einer halben Stunde installiert und konfiguriert werden können - da lehnt er sich meiner Meinung nach ziemlich weit aus dem Fenster - aber ich will nicht von vornherein darüber urteilen.</p>
+<p>Für den Continuous Build wird Build Agent Pooling und das "Gated Check-In" integriert. Das "Gated Check-In" erlaubt einen serverseitigen Buildrun mit den Änderungen, die eingecheckt werden sollen. Das neue "Branch Management" ist eigentlich nichts anderes als ein Backtracking und eine Visualisierung der Branches auf dem SCCS. Diese Features sind bei der Konkurrenz (siehe z.B. TeamCity) z.T. schon lange Standard - wenigstens schließt hier Microsoft ein wenig auf.</p>
+<p>Im Project Management Bereich soll das Reporting und Templating besser ausgebaut werden. Interessant ist die Integration der Kernelemente von Scrum, wie z.B. das Dashboard und Excel Listen für Product Backlog, Sprint Backlog, Sprint Planung, Burndown Charts oder die User Story Work Items. Die Beziehungen der Work Items zueinander wird in Rosarion weiter verbessert. Man kann eine komplette Hierarchie aufbauen, aber auch andere "Link Relations" setzen, wie z.B. Predecessor (Vorgänger) oder Dependency (Abhängigkeit). Auch die Organisation der einzelnen Projekte wird überarbeitet. Über die schon existierenden Team Projects sollen nun organisatorisch mit "Team Project Collections" ganze Anwendungsfamilien verwaltet werden können.</p>
+<p>Für das Qualitätsmanagement sollen die Tools für das Unit Testing weiter verbessert werden. Interessant ist, das ein komplett neues "Test Quality Center" aufgebaut wird (Codename: Camano). Neue Features wie Test Impact Analyse, Test Suites und ein neuer "Test Plan Manager" sollen den Testalltag vereinfachen. Auch die Test Cases sind als Work Items gespeichert und können mit Changesets, Tasks und Requirements verbunden werden. Gut gelungen finde ich die Verwaltung der Test Cases mit Test Runs und Test Settings. Ziel dieser feinen Testorganisation soll die Eliminierung der "No Repro Bugs" sein.</p>
+<p>Dieses Ziel wird vor Allem durch den neuen "Manual Test Runner" unterstützt, mit dem manuelle oder explorative Tests durchgeführt werden können. Besonders prickelnd: Die Tests können mit einem Test Recorder aufgenommen und automatisiert werden. Weitere Test Tracking Features sind die Videoaufnahme, Log Sampling und Umgebungsanalyse. Übrigens, der Test Recorder soll eine Reihe von UI-Typen unterstützen können, wie z.B. Windows Forms, WPF, die IE Engine und sogar die Firefox Gecko Engine. Ein Highlight beim Qualitätsmanangement ist das "Environment Provisioning", mit dem eine virtuelle Testumgebung angeboten werden kann. Wie das eben so ist mit virtuellen Maschinen, sind Checkpoints und Flashbacks auf ältere Stände möglich.</p>
+<p>Abschließend ging Christian noch auf die neuen Diagramme und Analyse-Möglichkeiten von VSTS 2010 ein. Standard UML die Use Case, Activitiy, Sequence und das bekannte Class Diagram sind nun in VS direkt umsetzbar. Es wird zusätzlich noch das "Laer Diagram" und ein "Architecture Explorer" angeboten. Das Layer Diagram soll eine Tiered Architecture widerspiegeln. Durh Verknüpfung der einzelnen Elemente mit Namespaces ist sogar eine automatische Validierung zur Einhaltung der Layer-Regeln möglich. Der Architecture Explorer ist die visualisierte Fortführung des Object Explorers. Ausgehend von einem "Bird-Eye View" kann man in die einzelnen Namespaces, Klassen und Methoden navigieren und sich besondere Konstallationen näher ansehen. Ein NDepend-Ersatz ist es bei weitem nicht, aber ermöglicht  zumindest eine nette und schnelle Analyse.</p>
+<p>Fazit: Die neuen Quality-, Test- und Diagramm-Features sind wirklich beeindruckend. Die Verbesserung von TFS ist längst überfällig. Vielversprechend!</p>
+<h3 id="session-3-nochmal-dariusz-mit-wcf-wf-in-net-40">Session 3: Nochmal Dariusz mit WCF &amp; WF in .NET 4.0</h3>
+<p>Da bin ich nun wieder in einer Session mit Dariusz gelandet. Diesmal: WF &amp; WCF in .NET 4.0. Wie immer zu Beginn ein Abriß der Themen. Generell wurde bei der Weiterentwicklung von WF und WCF an der Performance geschraubt. die Workflow Foundation Engine soll eine mindestens 10-fache Geschwindigkeitssteigerung erfahren haben. Doch nicht nur unter der Haube der WF wurde gewerkelt. Die API wurde verbessert, um noch einfacher mächtigere Activities entwickeln zu können. So werden mit 4.0 auch "Variablen" (besser: State Parameter) im Workflow unterstützt, die man relativ elegant mit den Klassen <code>InParameter&lt;T&gt;</code> und  <code>OutParameter&lt;T&gt;</code> ansprechen kann.</p>
+<p>Besonders hob Dariusz den komplett neu aufgebauten Designer von WF hervor. Er wird nun komplett in WPF umgesetzt, bietet dementsprechend eine ansprechende UI und ist vor Allem besonders gut anpassbar. Auch die Verwendung des Designers in eigenen Programmen (das sog. Rehosting) wird deutlich verbessert und vereinfacht.</p>
+<p>Auf der WCF-Seite werden die QoS-Merkmale Konfiguration, Monitoring und Deployment weiter verbessert. Das eigentlich Neue ist aber die engere Verzahnung mit der Workflow Foundation. Zwar ist es schon jetzt möglich, eine WF-Anwendung per WCF in wenigen Schritten zur Verfügung zu stellen - doch ein weiterer Ausbau sei geplant. Diese "Vereinigung" hat auch einen höheren Sinn, nämlich die Entwicklung von Dublin (siehe auch Session 1: Oslo).</p>
+<p>Fazit: Kurz &amp; Knackig. Das Zusammenspiel von WCF &amp; WF war hervorzusehen, die Neuigkeiten über WF hören sich gut an.</p>
+<h3 id="session-4-oliver-scheer-uber-die-zukunft-von-aspnet">Session 4: Oliver Scheer über die Zukunft von ASP.NET</h3>
+<p>Die Zukunft von ASP.NET - das interessiert mich. Also auf zur letzten Session der Technical Summit mit Oliver Scheer. Nach 5 Minuten dachte ich mir: Ups - schon wieder eine Themaverfehlung? Denn Oliver gab ein Überblick über das, was er in einer Stunde zeigen möchte: ADO.NET Data Services, Dynamic Data Sites, ASP.NET MVC, ASP.NET AJAX und AJAX Control Toolkit. Toll - Wo ist JQuery, wo sind die neuen HttpHandler und -Modules, wo sind die MVC-Controls? Anscheinend nicht auf der Technical Summit. Naja - vielleicht zeigt Oliver ein paar Minuten noch neue Features für ASP.NET MVC.</p>
+<p>Zunächst zeigte Oliver eine Demo von ADO.NET Data Services. Schön einfach über das Entity Framework die Tabellen zusammenklicken, den Data Service erstellen und die Configzeilen reinschreiben. Fertig. Nix Neues. Punkt.</p>
+<p>So - jetzt mal endlich etwas neues für ASP.NET - ASP.NET MVC. Oliver beschreibt die Grundlagen und zeigt die bekannten Getting-Started-Samples. Er geht flüchtig auf die Konventionen ein und beschreibt sehr oberflächlich die Idee des MVC. So, noch kurz das Routing gezeigt und ein wenig erklärt. Ok. Nix Neues. Punkt.</p>
+<p>Oh - Oliver holt aus zum nächsten Thema - ASP.NET Dynamic Data Websites. Ich wundere mich jedes Mal, wenn ich das sehe, wer zum Teufel im Alltag den Anwendungsfall für so eine Art Website hat. Es scheint wohl einige zu geben, sonst hätte man nicht so eine Art von Website-Projekt wohl nicht realisiert. Egal - ich jedenfalls kenne niemanden der sowas brauchen kann. Nix Neues. Punkt.</p>
+<p>Zu guter Letzt noch ein Ausflug in ASP.NET AJAX und ein Verweis auf das AJAX Control Toolkit. Oliver zeigt wieder mal die gewohnte Extender-Demo. Ok. Nix Neues. Halt! Zu guter Letzt doch noch JQuery! Zu schade - nur ein Hinweis auf die Integration und die Auslieferung mit ASP.NET 4.0. Als Entschädigung dafür zeigt Oliver in seiner letzten Demo, das die neuen, von Microsoft geschriebenen JS-Klassen einen Aufruf von WCF Diensten ohne jegliches serverseitiges Zutun durchführen können. Ok. Wenigstens ein wenig Neu. Punkt.</p>
+<p>Fazit: Nahezu Nix Neues. Punkt.</p>
+<p>Eine Anmerkung noch: ich finde es wirklich sehr Schade, das gerade die zwei Sessions über ASP.NET für mein Dafürhalten so schwach ausgefallen sind. Man kann ASP.NET mögen oder nicht - aber auf einer Konferenz wie der Technical Summit ASP.NET derart zu vernachlässigen ist spricht nicht gerade für technologische Überzeugung.</p>
+<h3 id="thats-it">That's it</h3>
+<p>So, das war also die Technical Summit 08, so wie ich sie erlebt und verstanden habe. Ich denke jetzt muss ich erstmal die Infos und die ganze Veranstaltung noch auf mich wirken lassen und verarbeiten. Im Großen und Ganzen war es eine gute und z.T. sehr aufschlußreiche Konferenz. Das absolute Highlight war für mich die Parallels-Session mit Steve, dicht gefolgt von den beeindruckenden VSTS-Demos von Christian und der hochinteressanten Microsoft-MDD-Interpretation Oslo mit Dariusz.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>21 November 2008</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/technical-summit-08-teil-2.html&title=Technical Summit 08: Teil 2">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

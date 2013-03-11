@@ -1,0 +1,165 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PHP Trickshot: Meta Variables</title>
+    <meta name="description" content="A short introduction to the rarely used meta-variables (or variable-variables) PHP feature.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="php-trickshot-meta-variables">
+    <a href="php-trickshot-meta-variables"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>PHP Trickshot: Meta Variables</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Last week I blogged about two little <em>"tricks"</em> in everyday C# coding. This week I want to switch language and show you a little gimmick in PHP which - to my own surprise - seems to be rarely used. The feature I'm talking about is <em>meta-variables</em>, also known as <em>variable-variables</em>. It's a feature which has been around in PHP for quite a long time and it's main purpose is to support meta-programming scenarios.</p>
+<p>Suppose you have a file with some configuration settings:</p>
+<div class="codehilite"><pre><span class="nv">$admin_active</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="nv">$admin_startpage</span> <span class="o">=</span> <span class="s">&quot;dashboard&quot;</span><span class="p">;</span>
+<span class="nv">$admin_usemru</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="nv">$admin_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span> <span class="o">|</span> <span class="n">F_CHANGED</span><span class="p">;</span>
+
+<span class="nv">$user_active</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="nv">$user_startpage</span> <span class="o">=</span> <span class="s">&quot;listissues&quot;</span><span class="p">;</span>
+<span class="nv">$user_usemru</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+<span class="nv">$user_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span><span class="p">;</span>
+
+<span class="nv">$dashboard_layout</span> <span class="o">=</span> <span class="s">&quot;simple&quot;</span><span class="p">;</span>
+<span class="nv">$listissues_layout</span> <span class="o">=</span> <span class="s">&quot;self&quot;</span><span class="p">;</span>
+<span class="nv">$markissue_layout</span> <span class="o">=</span> <span class="s">&quot;detail&quot;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Let's further on suppose that you should write a small snippet to administer and configure these settings from above. It's pretty obvious that settings are grouped by role in the settings file (see <code>$admin_startpage</code> and <code>$user_startpage</code>). If you were to build up a configuration panel where the current role would be able to change his own dashboard layout, how would you solve that? Assume that you have variable with the current role in action, something like </p>
+<div class="codehilite"><pre><span class="nv">$active_role</span> <span class="o">=</span> <span class="s">&quot;admin&quot;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>How to read and change the page layout of the startpage of the currently logged on role?</p>
+<p>With meta-variables, the solution is almost a one-liner:</p>
+<div class="codehilite"><pre><span class="nv">$active_startpage</span> = &quot;<span class="cp">${</span><span class="n">active_role</span><span class="cp">}</span>_startpage&quot;;
+<span class="nv">$page</span> = <span class="cp">${</span><span class="err">$</span><span class="n">active_startpage</span><span class="cp">}</span>; # &quot;dashboard&quot; if role is &quot;admin&quot;
+<span class="nv">$active_layout</span> = &quot;<span class="cp">${</span><span class="n">page</span><span class="cp">}</span>_layout&quot;;
+<span class="nv">$layout</span> = $$active_layout
+</pre></div>
+
+
+<p>The second line is the "trick" called meta-variable. The line actually reads: "Take the value of <code>$active_startpage</code> as the name (or symbol) of the variable I want to access the value of". The same applies to the 4th line, but this time with the more lightweight <code>$$</code>-syntax. Let's look at an even simpler example to get meta-variables illustrated:</p>
+<div class="codehilite"><pre><span class="nv">$mode</span> <span class="o">=</span> <span class="s">&quot;effect&quot;</span><span class="p">;</span>
+<span class="nv">$menu</span> <span class="o">=</span> <span class="s">&quot;mode&quot;</span><span class="p">;</span>
+
+<span class="n">echo</span> <span class="nv">$$menu</span><span class="p">;</span>  <span class="c1"># prints &quot;effect&quot;</span>
+<span class="n">echo</span> <span class="nv">$$mode</span><span class="p">;</span>  <span class="c1"># prints &quot;shade&quot;</span>
+<span class="n">echo</span> <span class="vg">$$</span><span class="nv">$menu</span><span class="p">;</span> <span class="c1"># prints &quot;shade&quot;</span>
+</pre></div>
+
+
+<p>The above example shows the power of meta-variables quite nicely. Despite the lightweight <code>$$</code>-syntax (which is more commonly used than the complex curly syntax), the example shows that the level of nesting is not limited to a simple meta-lookup. In fact, meta-variables (in theory) can be nested arbitrarily. I for one haven't ever used a deeper nesting than 3, though.</p>
+<p>Meta-variables can be very useful for code/variable introspection and simple metaprogramming tasks. However, it should be kept in mind as well that the power of meta-variables can be very dangerous as well, especially when it is combined with user input. That being said, meta-variables should be used with great caution.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>13 March 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/php-trickshot-meta-variables.html&title=PHP Trickshot: Meta Variables">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

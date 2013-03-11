@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="extras/qunit.css">
+  </head>
+  <body>
+    <script type="text/javascript" src="extras/qunit.js"></script>
+    <script type="text/javascript" src="extras/coffee-script.js"></script>
+    <script type="text/javascript" src="extras/require.js"></script>
+    <script type="text/coffeescript">
+      QUnit.config.autostart = false
+      require.config {
+        paths: {
+          'cs': 'extras/cs',
+          'coffee-script': 'extras/coffee-script',
+        }
+      }
+
+      require ['cs!mailr-tests'], ->
+        QUnit.start()
+    </script>
+
+    <h1 id="qunit-header"></h1>
+    <h2 id="qunit-banner"></h2>
+    <ol id="qunit-tests"></ol>
+
+    <div id="qunit-fixture">
+      <!-- simple parameter substitution -->
+      <h5 class='mailr-subject'>Test</h5>
+      <p class='mailr-note'>Note<p>
+
+      <!-- substitute full mailto: link in href of a.mailr -->
+      <a href='#' class='mailr'>This is a Link</a>
+
+      <!-- substitute a full 'mail now' button in div.mailr -->
+      <div class='mailr'></div>
+
+      <!-- substitute a referrer link within span.mailr -->
+      <span class='mailr'>Anything</span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Unit Tests, TDD und Testbarkeit: Ja!</title>
+    <meta name="description" content="Ein Plädoyer für die tägliche und kontinuierliche Anwendung von Unit Testing und TDD.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="unit-tests-tdd-und-testbarkeit-ja">
+    <a href="unit-tests-tdd-und-testbarkeit-ja"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Unit Tests, TDD und Testbarkeit: Ja!</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Vor ein paar Tagen stellte <a href="http://www.des-eisbaeren-blog.de/post/2009/11/01/Wie-viel-Sinn-machen-Unittests.aspx">Golo die Frage "Wieviel Sinn machen Unit Tests?"</a> in seinem Blog. Dieser Frage stellten sich schon <a href="http://www.aspnetzone.de/blogs/peterbucher/archive/2009/11/01/wieviel-sinn-machen-unittests.aspx">Peter</a> sowie <a href="http://blog.thomasbandt.de/39/2291/de/blog/unit-tests-sind-gut.html">Thomas</a> in ihren Blogs. Ich habe die Fragestellung schon vor einiger Zeit mit dem Artikel "<a href="wozu-unit-tests.html">Wozu Unit Tests?</a>" aufgegriffen und beantwortet, möchte aus aktuellem Anlass meine bescheidene Meinung noch ein wenig mehr ausformulieren.</p>
+<h3 id="unit-tests-tdd-machen-sinn">Unit Tests &amp; TDD machen Sinn!</h3>
+<p>Ganz ehrlich, <em>Unit Tests &amp; TDD machen sogar richtig viel Sinn</em>. Unit Testing selbst macht schon sehr viel Sinn, weil eine Verifikation von Anforderungen (fachlicher und technischer Natur) ein wichtiger Bestandteil in der Beurteilung von Leistungsanforderungen an eine Software sind. Ha! Komischer Satz irgendwie, aber im Endeffekt einfach abkürzbar: Wer will ein Auto ohne getestete Bremsen fahren? Übrigens auch ein ziemlich netter Vergleich, denn "bremsen" ist das Feature, welches von verschiedensten Komponenten und Faktoren abgedeckt wird (Bremsflüssigkeit, ABS, Bremsscheiben, Bremsbacken, Bremsblöcke usw usf.). Naja, ich glaube da gibt es nicht viel mehr darüber zu sagen.</p>
+<p>Darüber hinaus geht es beim Testing &amp; Test-Driven-Development um die Entwicklung von stabiler Software. Stabil ist in diesem Sinne nicht nur die Verifikation der Funktionalität ("Im Werk wurde einmal auf die Bremse getreten, der Wagen blieb stehen - Passt."), sondern um die Haltbarkeit der Funktionalität als Subsystem (die gesamte Bremsanlage) und innerhalb des Gesamtsystems (Auto). Kurz und bündig: Wer heutzutage stabile, wartbare und erweiterbare Software entwickeln möchte wird ernsthaft TDD einsetzen wollen.</p>
+<h3 id="tdd-ist-ein-machtiges-entwicklungswerkzeug">TDD ist ein mächtiges Entwicklungswerkzeug</h3>
+<p>Wie Ralf es schon in <a href="http://ralfw.blogspot.com/2009/10/tdd-wofur-oop-2010-endlich-cleannet.html">seinem Post über TDD</a> erklärt und in vielen Kommentaren wiederholt, darf man TDD nicht als das "Allheilmittel" ansehen, sondern als dediziertes, mächtiges Werkzeug. Mit TDD als Tool kann man viele Dinge sicherer und schneller gestalten. Mittlerweile kann ich behaupten, dass ich TDD in keinem Projekt außer acht lassen will und werde, weil es ein essentielles Werkzeug in meinem "Software-Entwicklungs-Baukasten" ist - wie z.B. eine gute IDE oder Patterns oder SCM oder CI... TDD ist einfach mit dabei.</p>
+<p>Manch einer macht hierbei noch eine feine Unterscheidung. Es heisst: "Bei neuen Projekten  TDD, ok. Aber bei den alten Dingern? Boa, nee". Ehrlich gesagt habe ich das am Anfang auch so gesehen. Aber Mittlerweile sehe ich das ganz anders. Egal ob Green- oder Brownfield - TDD ist immer gut. Bei schon existierenden Projekten (die evtl. sogar wenig Tests haben) treibt TDD die Testbarkeit und die lose Kopplung voran, fördert die Effektivität der Arbeit an Erweiterungen und erleichtert vehement die Umstrukturierung und Wartung des Codes. Dort wo es machbar ist, sollte TDD auch gemacht werden, denke ich.</p>
+<p>Jaaa, aber wo ist denn TDD nicht machbar? Klare Antwort: I/O und Parallelität / Multithreading. Alles was mit Ein- und Ausgabegeräten zu tun hat, eine Ressource für Ein- oder Ausgabe darstellt oder in einem asynchronen Verarbeitungskontext liegt. In der Praxis: Joystick, Komplexe Eingaben, User Interfaces, Datenbank. Das sind kritische Punkte, ja. Und gerade dort wünscht man sich TDD, obwohl genau dort die Grenzen früher oder später erreicht werden, weil man einfach keinen Einfluss mehr auf den Status, die Eingabe, die Ausgabe oder die Erwartung derer hat.</p>
+<h3 id="tdd-im-grenzbereich">TDD im Grenzbereich</h3>
+<p>Dennoch darf man sich nicht durch diese "Schwierigkeiten" abschrecken lassen. Ich habe gerade bei diesen Situationen festgestellt, dass es enorm hilfreich sein kann, am "Grenzbereich" von TDD sprichwörtlich "bis zum geht nicht mehr" umzusetzen. Man stellt schnell fest, dass man an diesen "Nahtstellen" der Anwendung sauberer und klarer strukturiert, Verantwortlichkeiten besser aufteilt. Danach betrachtet man das Ergebnis mit anderen Augen. Man stellt fest, dass die UI wirklich nur noch das nötigste macht, absolut schlank ist und dass viele Dinge, die in der UI hilfreich sind (wie z.B. "Pagination") auch komplett ohne UI wunderbar anwendbar werden. Da ist TDD ein wenig wie beim Autorennen: Im Grenzbereich ist es anstrengend, ist aber hocheffektiv und macht obendrein noch Spass.</p>
+<p>Für die TDD-Stirnrunzler, die wirklich mal wissen wollen, wie sich das dann im Endeffekt anfühlen kann, denen lege ich wärmstens ein paar Code Kata's an's Herz. Zum Beispiel ist das populäre <a href="http://codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz">KataFizzBuzz</a> im letzten Einsteiger-Dojo als <a href="test-driven-dojo-das-einmaleins-von-tdd.html">Windows-Forms-Kata</a> implementiert worden. Dort gab es viele, die sich gefragt haben, wie man überhaupt die UI testen kann. Doch statt sich mit der "Untestbarkeit" der GUI zufrieden zu geben, hat man konsequent das TDD ausgereizt und dadurch ein einfaches MVP-Pattern umgesetzt.</p>
+<p>Für TDD-Neulinge empfehle ich auch das <a href="http://sites.google.com/site/tddproblems/all-problems-1/Blog">KataBlog</a>. Es ist eine wunderbar einfache Programmieraufgabe, die sehr subtil zeigt, wie man über TDD Design &amp; Entkopplung der Verantwortlichkeiten treibt und welche (anfangs ungeahnten) Vorteile man sich dadurch schaffen kann. Jedoch warne ich die Interessierten schon vor: KataBlog zeigt die Erkenntnisse subtil, zwischen den Zeilen.</p>
+<p><em>Fazit: TDD &amp; Unit Testing ist ein absolutes Muss in der modernen Software-Entwicklung!</em></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>03 November 2009</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/unit-tests-tdd-und-testbarkeit-ja.html&title=Unit Tests, TDD und Testbarkeit: Ja!">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

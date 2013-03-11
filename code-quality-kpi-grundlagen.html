@@ -1,0 +1,361 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Code Quality KPI Grundlagen</title>
+    <meta name="description" content="Eine Abschrift eines Beratungskonzeptes zur Messung von Code-Qualität mit Hilfe von Metriken. Emotional, Subjektiv, Professionell. Veröffentlicht in der Hoffnung auf Nachahmung.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="code-quality-kpi-grundlagen">
+    <a href="code-quality-kpi-grundlagen"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Code Quality KPI Grundlagen</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Code-Qualität. Metriken. Messung. Bewertung. Ein immer wieder kehrendes Thema bei der IT- und Software-Entwicklungs-Beratung. Als mittlerweile langjähriger Berater für agile Software-Entwicklungs-Methodik ist es schon manchmal mühsam, immer wieder die gleichen grundlegenden Weichenstellungen zum Thema "Messung von Code Qualität" zu geben. </p>
+<p><img alt="" src="/media/images/a_measure_meter.jpg" /></p>
+<p>Alleine in den letzten 2 Jahren habe ich locker ein halbes dutzend Mal Kunden und Teams zu diesem Thema beraten.</p>
+<p>Das frappierende dabei: fast jedes mal mussten die <em>absoluten Grundlagen</em> vermittelt und durchgearbeitet werden. Ich erwarte ja nicht, dass alles schon picobello umgesetzt ist. Aber es ist heutzutage gar nicht mehr so schwer, die fundamentalen Grundlagen in die richtige Richtung zu lenken. Es scheint wohl doch nicht immer zu gelingen, wie mehrfach meine Erfahrung mich belehrte.</p>
+<h3 id="prolog">Prolog</h3>
+<p>So. Um nun nicht immer wieder von Null anfangen zu müssen, veröffentliche ich hier ein original Statement-Papier zum Thema "Code Quality KPI's". Es wurde von mir für einen Kunden als erste Antwort auf seine bisherige "KPI-Strategie" verfasst. Der folgende Text ist O-Ton aus einer Antwort-Mail. </p>
+<h4 id="nomenklatur">Nomenklatur</h4>
+<p>Die "Strategie-Aussagen" des Kunden habe ich als Zitate angeführt. </p>
+<p><strong>Beispiel:</strong></p>
+<blockquote>
+<p>Aussage: Code-Qualität ist wichtig für den Projekterfolg.</p>
+</blockquote>
+<p>Die eben zitierte Aussage stellt ein "Strategie-Aspekt" dar, den ich hier - im Freitext - behandle bzw. erwidere.</p>
+<h4 id="motivation">Motivation</h4>
+<p>Das ganze mache ich in der - wohl eher idealistischeren - Hoffnung, dass sich einige Software-Projekt-Manager oder Entwicklungsleiter hierher verirren und sich mit den Grundlagen der Messung von Codequalität zumindest auseinandersetzen. </p>
+<p>Denn wenn die Grundlagen schon mal sitzen, dann kann man auch wesentlich entspannter und effektiver an der eigentlichen Qualitätserhebung arbeiten.</p>
+<h4 id="abgrenzung">Abgrenzung</h4>
+<p>Der gleich folgende Abzug meiner Antwort auf ein KPI-Strategie-Papier ist mit nichten als eine vollständige "Code Quality Metrics"-Strategie zu bewerten. Im Gegenteil. Meiner Meinung nach fehlen gerade im folgend gezeigten Diskurs wesentliche Elemente einer Qualitätserhaltung, -messung und -bewertung im agilen Sinne.</p>
+<p>Nichtsdestotrotz belasse ich es bei meiner Antwort auf die u.g. KPI-Ideen. Der Blog-Artikel ist so schon lang genug. Darüber hinaus ist mein Ziel ja auch nicht das Aufzeigen aller Grundlagen zur Qualitätsmessung, sondern eben nur derjenigen, die sich immer wieder als "die üblichen Verdächtigen" hervortun.  </p>
+<p>In diesem Sinne, jetzt und hier: </p>
+<p><em>"What you as a Developer, Tester, Manager or Leader should absolutely know about code quality measurement, indicators and their impact."</em></p>
+<p>Viel Spaß.</p>
+<hr />
+<h3 id="quality-values">Quality Values</h3>
+<h4 id="1-code-base-maturity">1. Code Base Maturity</h4>
+<blockquote>
+<p>Ein stetig grüner CI-Build ist Indikator für die Stabilität der Software.
+Wir werden alle Buildergebnisse des CI nach Erfolg und Mißerfolg bewerten, um einen
+stabilen CI-Build als Grundlage zu gewährleisten.</p>
+</blockquote>
+<p><em>Zu 1)</em> Ich gehe davon aus, dass hier jeder rote Build mit einer Qualitätsminderung assoziiert wird.
+Im Gegenzug soll wohl hier ein stetiger Build-Erfolg ein Qualitätsmerkmal abbilden.</p>
+<p>Es ist für das Ziel einer "Mature Code Base" für mich nicht direkt erschließbar, warum
+gerade ein stetig grüner Build von einer "erwachsenen Codebasis" Zeugnis tragen soll.</p>
+<p>Vielmehr ist ein grüner CI ein Abbild der Sorgfaltskultur des Teams. Das allerdings auch nur,
+wenn eine rege Check-In-Kultur herrscht (in Kombination mit anderen Faktoren, selbstverständlich).</p>
+<p>Eine strikte "Stay-Green"-Politik des Builds kann Gefahren mit sich bringen. Einerseits kann
+das Team zur Erhaltung der KPI auf Branches oder Shelves ausweichen. Andererseits ist auch
+eine "Check-In-Angst" in Folge des KPI-Drucks denkbar. </p>
+<p>Das würde dem Qualitätsbestreben entgegenstehen, zumal eine lange "Vorhaltezeit" von Code-Änderungen zu größeren Commits, schwierigeren Merges und schlechterer Integration führen. </p>
+<p>Es kann durchaus zur Folge haben, dass Commits auf die lange Bank geschoben werden, welches dann typischerweise am Ende der Iteration zu potenziellem "Commit-Stau" und Irritationen beim Merge führen kann.</p>
+<p>Ich sehe diesem KPI mit äußerst kritischem Blick entgegen.</p>
+<h4 id="2-architecture-conformance">2. Architecture Conformance</h4>
+<blockquote>
+<p>Eine automatisierte Prüfung der Abhängigkeitsbeziehungen der System- und Softwarekomponenten
+wird stetig mit den architektonischen Vorgaben korreliert. Somit lassen sich Abweichungen gegenüber
+der Systemarchitektur feststellen und beheben.</p>
+</blockquote>
+<p><em>Zu 2)</em> Die Annahme hier ist: geringere "Abhängigkeitsverletzungen" der Zielarchitektur können einen
+höheren Qualitätsspiegel darstellen.</p>
+<p>Meines Erachtens ist das durchaus ein guter Indikator für Stringenz und Konventionstreue gegenüber der
+Zielarchitektur. Besonders beachtenswert ist es hier meiner Meinung nach, dass Architekturen durchaus
+einer "stetigen Bewegung" ausgesetzt sind - sich ergo im Laufe der Zeit verändern.</p>
+<p>Unter dem Vorbehalt der individuellen Betrachtung der einzelnen Architekturbestandteile
+kann hier ein Messwert ein Indiz für ganzheitliche Systemkonzeption
+und -umsetzung sein. </p>
+<p>Ich kann aus meiner Perspektive noch die Messung der Änderungs- bzw. Ergänzungsfrequenz der Architekturrichtlinien zweifelsfrei empfehlen. Es gibt Aufschluss über den "Architektur-Puls" - also der Beschäftigung mit der Gesamtkomplexität des Systems.</p>
+<h4 id="3-standards-and-best-practices">3. Standards and Best Practices</h4>
+<blockquote>
+<p>Der gesamte Quellcode wird nach den üblichen Standards und Best-Practices wie Methodenlänge, Dateilänge sowie Code-Duplikate bemessen und bewertet werden.</p>
+</blockquote>
+<p><em>Zu 3)</em> Der Überbegriff ist hier für meine Begriffe mit zu viel Interpretationspotenzial behaftet.
+Mein Verständnis ist hier, dass die Pflege von Source Code nach "etablierten" Qualitätsmerkmalen
+wie z.B. Dateigröße oder Methoden-Länge eine allgemeine Verbesserung der Produkt-Qualität
+nach sich zieht.</p>
+<p>Ich finde, eine Messung solcher "Best Practices" kann durchaus hilfreich sein und auch
+ableitbare Informationen über die Entwicklungs-Qualität geben. </p>
+<p>Wichtig ist für mein Dafürhalten hier, dass die Werte für sich alleine zumeist kaum Aussagekraft mitbringen.</p>
+<p>Vielmehr ist es so, dass zumindest Volumen-Indikatoren wie z.B. Anzahl der Code-Zeilen (LoC)
+oder Anzahl der Typdefinitionen (Class Count) in Korrelation gestellt werden müssen, um
+aus den einzelnen Metriken ein grobes Bild über das Pflegepflichtbedürfnis des Teams zu
+zeichnen.</p>
+<h4 id="4-unit-testing">4. Unit Testing</h4>
+<blockquote>
+<p>Die Anzahl und Abdeckungsdichte von Unit-Tests ist ein weiteres, wesentliches Merkmal für die Messung der Software-Qualität.</p>
+</blockquote>
+<p><em>Zu 4</em>) Zweifelsohne sind lauffähige, positive Testprogramme für das Produkt ein Qualitätsmerkmal.
+Ich kann das Bestreben nach "Unit Testing" nur vollends unterstützen. Dennoch gibt es schon
+einige Punkte, die meiner Meinung nach einer genaueren Betrachtung bedürfen.</p>
+<p>"Unit Test" ist ein weitläufiger, technisch geprägter Begriff, der auch einem breiten
+Spektrum von Test-Konzepten genügen kann. </p>
+<p>Das ist meiner Meinung nach als Schwachpunkt zu deuten - ganz besonders, wenn es um die Erhebung von Metriken geht, bei der von Natur aus präzisere Messmöglichkeiten wünschenswert sind.</p>
+<p>Ich rege zumindest eine weitere technische Unterscheidung zwischen Integrationstest und
+komponenten-orientiertem Funktionstest an. Während der Integrationstest (auf verschiedenen
+Ebenen) das reibungslose Zusammenspiel der Komponenten adressiert, ist der Funktionstest
+auf das korrekte funktionale Verhalten einer einzelnen Komponente - sprich: Klasse - konzentriert.</p>
+<p>Im englischsprachigen Raum wird im Übrigen genau der Funktionstest oftmals als "Unit Test"
+bezeichnet, was sicherlich nicht zu einer klaren Abgrenzung der Test-Ansätze beiträgt.</p>
+<p>Abgesehen von diesem - sehr weiten - Themenbereich kann ich den KPI mit einem freudigen, als
+auch einem kritischen Auge betrachten. Einerseits ist es wichtig und richtig, die Stabilität
+des Unit Tests im CI-Build zu beobachten. Andererseits ist eine ausschließliche Betrachtung
+der "Green-Rate" von Tests aus meiner Sicht mit schweren Deutungsvarianzen und einer
+latenten Abbildungsschwäche behaftet.</p>
+<p>Es hilft aus meiner Sicht vielmehr, die Anzahl der Tests in Relation zum Code-Volumen zu
+beobachten. Daraus lässt sich tendenziell die Aktivität des Teams hin zu Testbarkeit und "Test-Awareness" beobachten.</p>
+<p>Darüber hinaus ist vor Allem bei der "Stabilität" von Tests nicht nur deren Erfolgsrate wichtig, 
+sondern auch deren "Anschlagsrate". Ein Unit Test, der in Folge
+einer Regression fehl schlägt, ist für das Team als auch für das Produkt als Erfolg zu
+werten, weil er seinen Dienst der Überprüfung und Warnung verrichtet hat.</p>
+<p>Ein weiterhin erwägenswertes Merkmal ist sicherlich die Dauer der roten Warnphase, in der
+ein Test fehlgeschlagen ist. Sie ist ein Zeichen für das verantwortungsbewusste 
+Qualitätsempfinden des Teams. Eine kurze "Red-Response" ist ein hohes Gut für eine qualitätsorientierte,
+stetige Software-Entwicklungsmethodik.</p>
+<p>Die zweite vorgeschlagene Metrik der "Code Coverage" ist - wie auch das Unit Testing selbst -
+eine Medaille mit zwei Seiten. Die Theorie der Testabdeckung besagt nämlich lediglich, dass
+der betroffene Code unter eine Testbedingung gestellt wurde. Das kann für eine strengere
+Qualitätsbetrachtung zuweilen schon nicht mehr hinreichend sein. Ich persönlich schätze
+die Aussagekraft einer Testabdeckung in Relation zum gesamten Code-Volumen als schwach und unpräzise ein.</p>
+<p>Nichtsdestotrotz kann mit einigen Ergänzungen eine Testabdeckungsmessung nicht nur eine
+(begrenzte) Aussage über die Test- und Produkt-Qualität geben, sondern auch als anregender
+Katalysator hin zu einer manifestierten Testkultur betrachtet werden.</p>
+<p>Eine hilfreiche Ergänzung ist die Definition und das Festhalten der Testabdeckungs-Ratio
+in Relation zu technischen und fachlichen Komponenten. Auf Grund einer technischen Architekturbetrachtung ließe sich eine technische Risiko- und Lebenszyklusbewertung vornehmen, die
+man in die Abdeckungsgewichtung einfliessen lassen kann. </p>
+<p>Viel wichtiger ist aus meiner Sicht jedoch die Wertbetrachtung der fachlichen bzw. 
+funktionalen Komponenten und deren Einbeziehung in die Testabdeckungszielsetzungen. </p>
+<p>Eine tragende fachliche Kernkomponente kann durchaus mit intensiven Testbemühungen begleitet 
+werden, um das Risiko einer Fehlfunktion sowie eines fachlichen Fehlverhaltens zu mitigieren. </p>
+<p>Hier kann eine Testabdeckungs-Ratio von 98% oder mehr eine realistische als auch notwendige 
+Zielbindung darstellen. Bei einer fachlichen Funktionalität geringerer Tragweite sowie 
+technisch minder komplexen Szenarien wie zum Beispiel der Darstellung von Ergebniswerten 
+kann eine (deutlich) mindere Testabdeckung vertetbar, ja sogar zweckgemäß sein.</p>
+<p>Alles in Allem ist meine Perspektive zu diesem "KPI-Paket" eher positiv. Nicht zuletzt,
+weil es eine (kurzfristige) Anregung hin zu einer soliden, eigeninitiatorischen Testkultur
+darstellen kann. </p>
+<p>Ich will dabei jedoch auf keinen Fall meine Bedenken in den Hintergrund rücken,
+sondern eher zur Erweiterung und stetigen Verbesserung im Bereich "Unit Testing KPI" ermutigen.</p>
+<h3 id="quality-metrics-and-impact">Quality Metrics And Impact</h3>
+<h4 id="1-impact-of-architecture-dependency-analysis">1. Impact Of Architecture Dependency Analysis</h4>
+<blockquote>
+<p>Eine Einhaltung der Architektur-Vorgaben wirkt sich positiv auf die Erweiterbarkeit, Testbarkeit und Skalierbarkeit des Systems aus.</p>
+</blockquote>
+<p><em>Zu 1)</em> Alle drei nicht-fachlichen Werte können durch eine stringente Umsetzung von Architektur
+im komponenten-orientierten Sinne gestärkt werden. Bei der Testbarkeit kommt es sicherlich
+auch auf die Granularität der Verantwortungsteilung im OO-Design an. </p>
+<p>Die Wirksamkeit zu verbesserter Skalierbarkeit hängt hierbei jedoch aus meiner Sicht in
+großem Masse von der Zielarchitektur ab, als ausschließlich von der Umsetzungstreue von
+Architekturvorgaben.</p>
+<p>Eine meiner Meinung nach wichtige, jedoch unerwähnte Auswirkung ist die Bewältigung 
+von fachlicher Komplexität sowie der daraus sich ergebenden verbesserten Wartbarkeit. </p>
+<p>Bekannte und konventionalisierte Architekturmuster helfen, sich in komplexeren Interaktionen 
+und Konstruktionen schnell wiederzufinden und zu orientieren.</p>
+<h4 id="2-impact-of-unit-test-coverage">2. Impact Of Unit Test Coverage</h4>
+<blockquote>
+<p>Eine höhere Testabdeckung des produktiven Quellcodes gewährleistet Erweiterbarkeit und Testbarkeit des Systems.</p>
+</blockquote>
+<p><em>Zu 2)</em> Die Metrik der Testabdeckung stellt streng genommen wohl kaum eine Auswirkung auf
+Erweiterbarkeit dar. Auch Testbarkeit kann nur in geringem Maße ein direkter Wirkungsmechanismus
+von Testabdeckung sein. </p>
+<p>Oft können mit wenigen Integrationstests viele Codebereiche abgedeckt
+werden, die keiner effektiven Erweiterbarkeits- oder Testbarkeitsbetrachtung genügen würden.</p>
+<p>Im Sinne der nicht-fachlichen Qualitätsmerkmale ist meiner Meinung nach eine Testabdeckungs-Metrik ein äußerst schwacher Wirkhebel für Testbarkeit, Sicherheit und Stabilität.</p>
+<h4 id="3-impact-of-compiler-warnings">3. Impact Of Compiler Warnings</h4>
+<blockquote>
+<p>Durch eine konsequente Vermeidung von Compiler-Warnungen wird eine deutliche Senkung der allgemeinen Fehlerrate gewährleistet.</p>
+</blockquote>
+<p><em>Zu 3)</em> Unter der Berücksichtigung der vorgegebenen Einstellung <em>"Treat Warnings as Errors"</em> in C#-Projekten
+kann ich die Wirksamkeit auf verminderte Fehlerrate kaum einschätzen. </p>
+<p>Da sie allerdings nur in besonderen Konstellationen (wie dem bekannten <code>[Obsolete]</code>-Warning) als hinderlich betrachtet werden kann, ist aus meiner Sicht eine besondere Beachtung der "Compiler Warnings" zumindest nicht
+von Schaden.</p>
+<p>Indirekt kann man sogar durch einen strikteren Umgang mit Compile- und Buildergebnissen die
+Wachsamkeit und Wartungsverantwortung des Entwickler-Teams unterstützen. Insofern ließe sich zwar
+eine verbesserte Wartbarkeit ableiten, die jedoch weder direkt noch mit entscheidender Wirkungskraft
+einzustufen wäre.</p>
+<h4 id="4-impact-of-duplicates">4. Impact Of Duplicates</h4>
+<blockquote>
+<p>Durch gezielte Vermeidung von Code-Duplikaten wird die allgemeine Fehlerrate gesenkt und die Wartbarkeit des Systems deutlich gesteigert.</p>
+</blockquote>
+<p><em>Zu 4)</em> Das Thema der Code-Duplikate ist im Entwicklungsumfeld sehr weit verbreitet und bekannt.
+Der gemeine Konsens ist hier, nach einer Vermeidung von Duplikaten zu streben, zumal sich
+dadurch Funktionalität dupliziert. Als Konsequenz steigt die Wartbarkeit, Stabilität und Sicherheit.</p>
+<p>Ich kann im Allgemeinen eine Beobachtung der Code-Duplikate empfehlen. Die Metrik sollte in
+Relation zum Gesamtvolumen betrachtet werden. </p>
+<p>Darüber hinaus ist es besonders empfehlenswert, eine "Abstandsmessung" von Duplikaten vorzunehmen. Hieraus kann in vielen Fällen auch der tendenzielle Verminderungswiderstand erkannt werden.</p>
+<h4 id="5-impact-of-file-size">5. Impact Of File Size</h4>
+<blockquote>
+<p>Durch die konsequente Begrenzung der Dateigröße einer Quelldatei kann die Komplexität des Systems begrenzt werden und die Wartbarkeit gesteigert werden.</p>
+</blockquote>
+<p><em>Zu 5)</em> Der direkte Bezug von Dateigröße zu fachlicher oder technischer Komplexität - wie sie
+hier erwähnt wird - erschließt sich mir auf den ersten Blick nicht verständniswirksam.</p>
+<p>Vielmehr ist mein Eindruck, dass die Dateigröße als Volumen-Merkmal von Organisationseinheiten
+im Besonderen zur Wartbarkeit des Systems beitragen. Die Folge einer "überschaubaren"
+Organisationseinheit ist sicherlich der erleichterte Umgang mit dieser.</p>
+<p>Eine Verringerung der Komplexität dieser Einheit - also der Klasse - ist bei distanzierter
+Betrachtung auch in vielen Fällen ersichtlich - jedoch nicht kausal auf einen restriktiven
+Umgang mit Dateigröße zurückzuführen.</p>
+<p>Dennoch können kürzere Dateilängen sich indirekt auf die Komplexität vorteilhaft auswirken,
+zumal durch den "Organisationszwang" auch bedingt ein Aufbruch der Komplexität in einzelne
+Teilprobleme gefördert wird. </p>
+<p>Insofern kann ich die Dateilänge als Qualitätsmerkmal schon nachvollziehen. Bezüglich der Aussagekraft der Metrik ist allerdings meiner Meinung nach Vorsicht und Augenmaß geboten.</p>
+<h4 id="6-impact-of-length-of-method">6. Impact Of Length Of Method</h4>
+<blockquote>
+<p>Eine strikte Begrenzung der Methodenlänge wirkt sich komplexitätsmindernd und damit qualitätssteigernd aus. </p>
+</blockquote>
+<p><em>Zu 6)</em> Die Länge einer Methode hat aus meiner Sicht eher einen indirekten - ja sogar schwachen - Bezug
+zur Komplexität. Im Allgemeinen sind "längere" bzw. "ausführlichere" Methoden weniger
+Komplex, sofern sie sich um eine Verantwortlichkeit kümmern. </p>
+<p>Es ist schlußfolgernd eher das Single Responsibility Principle und die Separation of Concerns für die Minderung von
+Komplexität im Methodenbereich hilfreich.</p>
+<p>Einen direkten Bezug bei der Methodenlänge sehe ich persönlich in der Wartbarkeit.
+Durch knappe und aussagekräftige Methoden lassen sich Aktivitäten schnell in fachliche
+Einzelkomponenten einteilen. Das wiederum fördert das Verständnis gegenüber der Fachlichkeit.</p>
+<p>Eine Beobachtung der Methodenlänge als Qualitätsmerkmal ist sicher sinnvoll, wenn auch nicht
+so stark in der Aussagekraft wie z.B. die Verschachtelungstiefe.</p>
+<h4 id="7-impact-of-nesting-depth">7. Impact Of Nesting Depth</h4>
+<blockquote>
+<p>Durch konsequente Eingrenzung der erlaubten Verschachtelungstiefe (Nesting Depth) wird eine deutliche Komplexitätsminderung erreicht.</p>
+</blockquote>
+<p><em>Zu 7)</em> Die Verschachtelungstiefe ist in meinen Augen ein starker Indikator für Komplexität struktureller, imperativer Programme.</p>
+<p>Die sog. "Branches" und "Loops" sind essentielle Programmsteuerungs- und -verarbeitungselemente,
+die ein Indiz fuer gesteigerte Komplexität des gesamten Aktivitätsablaufes darstellen.</p>
+<p>Je eher und treffender es dem Programmierer gelingt, fachlich aussagekräftige Abstraktionen
+anzuwenden, um so geringer fällt im Allgemeinen auch die Verschachtelungstiefe innerhalb
+einzelner Aktivitäten aus.</p>
+<p>Die Metrik ist für mein Dafürhalten ein starker und relativ zuverlässiger Indikator für
+fachliche und methodische Komplexität.</p>
+<h3 id="code-review">Code Review</h3>
+<blockquote>
+<p>Jede Code-Erstellung oder -Änderung soll durch ein Code-Review von einem weiteren Entwickler beurteilt und für gut befunden werden.</p>
+</blockquote>
+<p>Dieser letzte Punkt der Strategie-Eckpfeiler ist aus meiner Perspektive eines der effektivsten
+Qualitätssicherungsmaßnahmen. Mit Sicherheit sind auch die o.g. KPI-Metriken
+für eine Qualitätsaussage relevant. </p>
+<p>Jedoch ist in vielen Fällen eine individuelle und eingehende Betrachtung der Quellen für die allgemeine Qualitätsverantwortung deutlich förderlicher.</p>
+<p>Alleine durch die Aktivität des "Reviews" wird so meiner Meinung nach der
+Qualitätsanspruch als allgegenwärtige Zielsetzung in die Teamkultur integriert.</p>
+<p>Dadurch wird das gemeinsame Qualitätsbild (und die daraus abzuleitenden Ziele)
+geschärft. Ein weiterer positiver Effekt ist die implizite Verantwortungsverteilung
+zu Code-Quellen. Sowohl der Verfasser als auch der Rezensent tragen Verantwortung
+für die Qualität und Konventionstreue des Codes.</p>
+<p>Ein etwas schwächerer, aber dennoch zuweilen merkbarer Effekt ist in diesem Zuge
+auch der fachliche und technische Wissenstransfer, der mit der Rezension des Codes
+einhergeht.</p>
+<p>In Summe ist meiner Meinung nach die Etablierung von Code Reviews ein sehr nützliches
+Mittel für den Erhalt von Qualitätsstandards.</p>
+<h3 id="epilog">Epilog</h3>
+<p>So. Hoch lebe die "Messbarkeit" von Code-Qualität. Wer es in diesem Blog-Artikel bis hierher geschafft hat, hat es auch verdient, eine kleine grundlegende Abschlußbemerkung zu lesen. Ich erlaube mir ein wenig "aus dem Nähkästchen" zu plaudern.</p>
+<p>Es ist meiner Meinung nach besonders wichtig zu erkennen, dass die Code-Qualität nicht beim Code, sondern bei den Entwicklern des Codes beginnt. Gerade deswegen ist es bei einer Strategie zur Erhebung eines Qualitätsniveaus wichtig, auch individuelle Betrachtung der Fähigkeiten und Prinzipien der Entwicklungsmannschaft mit einzubeziehen.</p>
+<p>Die hier gezeigte Diskussion über automatisierte Code-Metriken können allemals als Hilfswerkzeug oder Indiz für eine Qualitätsaussage dienen. Einem Anspruch der effektiven Qualitätsmessung werden automatisierte Code-Metriken mit Sicherheit ungenügend gerecht.</p>
+<p><strong>If you care about quality, care about your people.</strong></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>19 December 2011</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/code-quality-kpi-grundlagen.html&title=Code Quality KPI Grundlagen">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

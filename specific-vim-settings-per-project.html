@@ -1,0 +1,132 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Specific VIM Settings Per Project</title>
+    <meta name="description" content="How to customize your VIM settings on a per-project (better: per folder) basis.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="specific-vim-settings-per-project">
+    <a href="specific-vim-settings-per-project"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Specific VIM Settings Per Project</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>From time to time, I contribute to several different projects and work with diverse teams. Naturally, every project and every team is different. This applies to code formatting as well - such as braces, tabs and tabstops. It can be a little clumsy to switch different coding styles, especially when working on several projects simultaneously. <a href="http://www.vim.org/">VIM</a> can help you, anyway.</p>
+<h3 id="override-vim-settings-per-folder">Override VIM Settings Per Folder</h3>
+<p>One nice little feature of good old VI is to allow configuration per folder. Everything you need to do is just place <code>.exrc</code> file in the current folder and kick off VI. This feature still exists with VIM, but is disabled by default. To enable it, just <a href="http://vimdoc.sourceforge.net/htmldoc/options.html#%27exrc%27"><code>set exrc</code></a> and VIM will respect custom configurations in current directory as well. VIM recognizes <code>.vimrc</code> files as well, so you're good to go with <code>.vimrc</code> as configuration file name.</p>
+<p><strong>Attention</strong>: Enabling <code>exrc</code> is dangerous. It is disabled by default for good reason. Since you can do pretty much everything within a VIM configuration file - including shell execution - it's <em>highly recommended</em> to use the <code>exrc</code> option only in pair with a second option which disables shell execution and write operations, called <code>secure</code>. Always append <a href="http://vimdoc.sourceforge.net/htmldoc/options.html#%27secure%27"><code>set secure</code></a> when <code>exrc</code> option is enabled!</p>
+<p>Put simply, just append the following lines at the end of your <code>~/.vimrc</code>:</p>
+<div class="codehilite"><pre><span class="go">set exrc</span>
+<span class="go">set secure</span>
+</pre></div>
+
+
+<p>and you're good to go. Now VIM will recognize and apply your custom project/folder settings. Enjoy.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>21 July 2011</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/specific-vim-settings-per-project.html&title=Specific VIM Settings Per Project">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

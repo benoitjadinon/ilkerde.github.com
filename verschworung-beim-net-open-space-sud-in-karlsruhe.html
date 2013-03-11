@@ -1,0 +1,147 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Verschwörung beim .NET Open Space Süd</title>
+    <meta name="description" content="Ein Erfahrungsbericht vom .NET Open Space Süd in Karlsruhe, meinem ersten .NET Open Space.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="verschworung-beim-net-open-space-sud-in-karlsruhe">
+    <a href="verschworung-beim-net-open-space-sud-in-karlsruhe"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Verschwörung beim .NET Open Space Süd</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Dieses Wochenende war ich zum ersten Mal bei einem .NET Open Space, dem <a href="http://karlsruhe.netopenspace.de/2010/">.NET Open Space Süd in Karlsruhe</a>.</p>
+<p>Gleich vorneweg: Es war super! Nein, noch mehr, es war richtig super! Eine mehr als gelungene Veranstaltung. In diesem Wochenende habe ich vieles gelernt und mitgenommen. Die Eindrücke dieser wahnsinnigen .NET-Veranstaltung wirken bei mir noch so immens, dass ich sie hier in einem Blog einfach niederschreiben muss.</p>
+<h3 id="mittendrin-statt-nur-dabei">Mittendrin statt nur dabei!</h3>
+<p>Samstag, 9:45 Uhr, ich gehe durch eine unscheinbare Tür, es gibt nur ein kleines Schild „.NET Openspace Süd 2010, 4. OG“. Ich laufe die Treppen hoch und werde von einem lächelnden Gesicht überrascht: „Na, ganz schön sportlich!“ rief die freundliche Check-In-Lady (neudeutsch für Empfangsdame ?!? ;)) mir entgegen. Wohl eher aus Höflichkeit, schließlich tat ich mir nach geleisteter Stufenarbeit merklich schwerer als sonst, das mir entgegengebrachte Lächeln mit einem Zurücklächeln zu erwidern.</p>
+<p>Nach dem obligatorischen Check-In mit Teilnehmerkarte und Event-Infos finde ich mich mittendrin in der Sessionplanung für den ersten Tag wieder. „Wahnsinn“ dachte ich mir, endlich sehe ich viele, die ich nur per Twitter, Blog oder anderweitig online kenne. Gleichzeitig freute ich mich, wieder in Gesichter zu blicken, die ich schon kannte. Und ich war gespannt, welche neuen Bekanntschaften ich mit dieser „Erfahrungsaustauschplattform“ Open Space machen würde. Doch zunächst galt es, die Sessionplanung konzentriert umzusetzen. Auf geht’s!</p>
+<h3 id="wtf-is-a-monad">WTF is a Monad?</h3>
+<p>Die Antwort auf diese Frage hat mir auf anschauliche Art und Weise <a href="http://www.navision-blog.de/">Steffen</a> gegeben. Er folgte der Aufforderung von <a href="http://www.bjoernrochel.de/">Björn</a>, uns allen mal dieses komische „Monad-Ding“ in verständlicher Form widerzugeben. Ich ertappte mich selbst dabei mich nicht daran erinnern zu können, wie lange es her ist, so gespannt und magnetisiert einem Thema und seinem Vortragenden zuzuhören.</p>
+<p>r erklärte unter Anderem, dass die Uhr ein <a href="http://de.wikipedia.org/wiki/Monoid">Monoid</a> sei und es nur 3 essentielle Kriterien für das in sich geschlossene System eines <a href="http://de.wikipedia.org/wiki/Monade_%28Typkonstruktion%29">Monaden</a> gibt. Das neutrale Element, die <code>SelectMany</code> und <code>Id</code> Methoden (also Bind &amp; Return).</p>
+<p><em>(Anmerkung: Das ist mit großer Wahrscheinlichkeit falsch - Korrektur willkommen.)</em> </p>
+<p>Es ging weiter mit der Vorstellung der Population in der Monaden-Welt: Identity, Maybe, Continuation, State.</p>
+<p>Ich habe es sicherlich noch nicht richtig begriffen und bin selbst erst am Anfang, die funktionale Programmierung wieder in meine tägliche Programmier-Praxis einzuführen. Doch diese Session war für mich wie ein Paukenschlag zum Auftakt! Super.</p>
+<h3 id="3d-in-your-pocket">3D in your Pocket</h3>
+<p>„Hmm, das ist schwer zu toppen“, dachte ich mir, noch gedanklich verworren in Monaden, als ich mich plötzlich in der 2. Session über XNA &amp; Windows Phone 7 von <a href="http://blogs.msdn.com/b/twendel/">Tom</a> wieder langsam aus der Monadenwelt lösen konnte. Doch meine Skepsis erwies sich als unberechtigt. Tom zeigte uns, das XNA keine Abkürzung für Spieleentwicklung ist, sondern eine Abkürzung ist für effektive &amp; professionelle Spieleentwicklung - mit einer für mein Empfinden niedrigen Lernkurve.</p>
+<p>Tom ist ein Verfechter von Fakten, also waren auch keine trockenen Slides angesagt – statt dessen gab es Visual Studio, Source Code und den Windows Phone 7 Emulator zu sehen. Ich durfte lernen, dass es gar nicht so schwer ist, Windows Phose 7 „anzuprogrammieren“ und sich auch kein Hexenwerk hinter „Worlds“, „Matrices“, „Meshes“ und „Shadern“ verbirgt. Macht Laune auf mehr.</p>
+<h3 id="design-drivers">Design Drivers</h3>
+<p>Und schon ging es weiter mit den Erkenntnissen in der von <a href="http://sergeyshishkin.spaces.live.com/">Sergey</a> angetriebenen Session über "TDD vs. BDD vs. ATDD". Es war unerwarteterweise keine trockene Gegenüberstellung von „methodischen Religiösitäten“. Ganz im Gegenteil. Die Session war wohl eine der konstruktivsten Diskussionen über „Erwartungsgetriebene Softwareentwicklung“, bei denen ich dabei sein durfte.</p>
+<p>Der Erfahrungsaustausch fand auf breiter Ebene statt, fast jeder konnte irgendwie dazu beitragen. Highlights waren sicherlich die Vorstellung von Fitnesse als Werkzeug für ATDD sowie die anschauliche Erklärung der <a href="http://lh3.ggpht.com/_X3kaawac_g4/S3VCgzOuyQI/AAAAAAAAAvw/aww4Ui2N7LU/agile-testing-quadrants.JPG?imgmax=800">Agile Testing-Quadranten</a> von Sergey.</p>
+<p>Im Übrigen hatte wohl Sergey noch mehr „feine Info’s“ mitgebracht, denn er war es auch, der die „RX – Reactive Extensions Hands On“-Session kräftig mitgestaltete. Ach, ich könnte womöglich noch stundenlang über die weiteren, hochinteressanten Sessions auf diesem .NET Open Space schreiben.</p>
+<h3 id="know-how-rollercoaster">Know How Rollercoaster</h3>
+<p>Zum Beispiel über die unglaublich erkenntnisreiche Session über „TDD/BDD Do’s and Dont‘s“  – das war geballtes Know-How über testgetriebene Entwicklung. Oder die Session über „verteilte Architekturen“ sowie die Session über „Skalierung &amp; Caching im Web“, die anschaulich die Best Practices dieser Themen an mich, den Teilnehmer transportieren konnten.</p>
+<p>as „Daily Life“ wurde wertwoll angereichert durch die Sessions „Smart Tools for Smart People (Part I + II)“  von <a href="http://www.lennybacon.com/default.aspx">Daniel</a>. Das meistern spielerischer Herausforderungen wurde in der AntMe!-Session von Tom gezeigt, einen Kickstart von 0 auf 100 für ASP.NET MVC2 lieferte <a href="http://www.der-albert.com/Default.aspx">der Albert</a>. Die weise Erkenntnis der vielen Gemeinsamkeiten und wenigen Unterschiede von <a href="http://code.google.com/p/xunitbddextensions">xUnit.BDDExtensions</a> zu <a href="http://github.com/machine/machine.specifications">MSpec</a> zu <a href="http://www.navision-blog.de/2009/02/23/introducing-naturalspec-a-dsl-for-testing-part-i/">NaturalSpec</a> wurde in der „United BDD“-Session deutlich. Unüberhörbar waren auch die Berichte von einer spannenden Session über die Erfahrungen mit und um DDD herum von <a href="http://webenliven-space.de/dotnetblog/">Gregor</a>.</p>
+<p>Ach ja, es gab ja auch noch ein Coding Dojo. Ich als „Session-Host“ möchte nicht viele Worte darüber verlieren. Ich möchte viel mehr, dass jeder, der dabei war, seinen Eindruck mitnimmt und seine Meinung dazu bildet. Ich kann nur sagen: mir hat das Dojo mit so vielen interessierten und erfahrenen Entwicklern sehr viel Spass gemacht und ich konnte wieder einiges dazulernen.</p>
+<h3 id="environmentcool">Environment.Cool();</h3>
+<p>Doch dieses gesamte „Excitement“, der Erfahrungsaustausch, die Bekanntschaften, die wunderbar leichten Unterhaltungen am Mittagstisch, die Diskussionen über Vergangenheit, Gegenwart und Zukunft der Software-Entwicklung am gemütlichen Abend, die Betrachtungen über den eigenen Tellerrand hinaus – all das wäre nicht möglich gewesen, ohne die Motivation &amp; Organisation zum .NET Open Space Süd in Karlsruhe. Vielen Dank an die <a href="http://www.dotnet-ka.de/">DNUG Karlsruhe</a>, Alex, Ralf, Frank, Aydin und alle, die dabei waren! Ich bin beim nächsten Mal sicher wieder dabei!</p>
+<p>Doch eine wichtige Frage bleibt nach dem .NET Open Space Süd immer noch offen: Planen <a href="http://twitter.com/ilkerde/status/16535252984">Steffen</a>, <a href="http://twitter.com/BjoernRochel/status/16575784869">Björn</a>, <a href="http://twitter.com/sshishkin/status/16610614472">Sergey</a>, <a href="http://twitter.com/BjoernRochel/status/16557247504">Alexander</a> eine <a href="http://twitter.com/BjoernRochel/status/16580674588">Verschwörung</a>? Bildet sich ein verschworene Monaden-Mafia? Welche Rolle spielt dabei <em>„Jean Closure“</em> – ist er der neue Pate der testgetriebenen Untergrundgeschäfte? Vielleicht hat <a href="http://twitter.com/cdeger/status/16635635336">Christian</a> auch etwas damit zu tun?</p>
+<p><code>Maybe.Some&lt;IsTrue&gt;</code>, <code>Maybe.None&lt;IsTrue&gt;</code> ... to be <a href="http://blogs.msdn.com/b/wesdyer/archive/2008/01/11/the-marvels-of-monads.aspx">Continuation-Monad</a>! ;-)</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>22 June 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/verschworung-beim-net-open-space-sud-in-karlsruhe.html&title=Verschwörung beim .NET Open Space Süd">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

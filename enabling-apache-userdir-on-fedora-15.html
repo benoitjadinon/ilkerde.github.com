@@ -1,0 +1,161 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Enabling Apache UserDir On Fedora 15</title>
+    <meta name="description" content="This article describes how to configure the classic ~user directories for an apache instance on Fedora 15 or newer.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="enabling-apache-userdir-on-fedora-15">
+    <a href="enabling-apache-userdir-on-fedora-15"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Enabling Apache UserDir On Fedora 15</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>This is just a quick minidump for myself, but may be interesting for other Linux or Fedora newbies as well. Today I wanted to enable the <a href="http://httpd.apache.org/docs/2.0/mod/mod_userdir.html">UserDir</a> feature of my local web server for a quick demo of a small webapp. I already knew the UserDir feature and hence was thinking that it's just a 5 minute "quick sudo" task. Poor me it wasn't the case.</p>
+<h3 id="userdirs-the-fedora-way">UserDirs The Fedora Way</h3>
+<p>First of all, on Fedora 15, you don't edit <code>/etc/httpd/conf/httpd.conf</code>, although you could go for it. Instead, you extend your initial (base) configuration with little configuration snippets located in <code>/etc/httpd/conf.d/</code>. To follow this convention, a simple <code>userdir.conf</code> file in previously mentioned directory should be created with the following content:</p>
+<div class="codehilite"><pre><span class="nt">&lt;IfModule</span> <span class="err">mod_userdir.c</span><span class="nt">&gt;</span>
+    UserDir enabled [user]
+    UserDir public_html
+<span class="nt">&lt;/IfModule&gt;</span>
+
+<span class="nt">&lt;Directory</span> <span class="err">/home/*/public_html</span><span class="nt">&gt;</span>
+    Options Indexes Includes FollowSymLinks
+
+    AllowOverride All
+    Allow from all
+
+    Order deny,allow
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+
+
+<p>Note that in above file <code>[user]</code> is a placeholder for the actual user (you might as well extend/change this for your purposes as well). Assuming that <code>/home/[user]/public_html/</code> exists, one might think that a quick <code>sudo service httpd restart</code> should do it then. No it won't. Navigating to the userdir URI just responds with a cold 403 permission denial. </p>
+<p>"Alright", me thinks. It's time to pay attention to <a href="http://en.wikipedia.org/wiki/Security-Enhanced_Linux">SELinux</a>.</p>
+<h3 id="tweaking-selinux-settings">Tweaking SELinux Settings</h3>
+<p>The security configuration of SELinux on Fedora 15 is enabled by default (set to Enforcing). You might go for the easy way and disable SELinux completely. However, instead of breaking a fly on a wheel, I decided to go for the needle-haystack game and adjust SELinux settings.</p>
+<p>First of all, ensure that the directories have proper permissions:</p>
+<div class="codehilite"><pre><span class="c1">## home directory ##</span>
+<span class="n">sudo</span> <span class="nb">chmod</span> <span class="mi">711</span> <span class="sr">/home/</span><span class="p">[</span><span class="n">user</span><span class="p">]</span>
+
+<span class="c1">## public_html directory ##</span>
+<span class="n">sudo</span> <span class="nb">chown</span> <span class="p">[</span><span class="n">user</span><span class="p">]:[</span><span class="n">user</span><span class="p">]</span> <span class="sr">/home/</span><span class="p">[</span><span class="n">user</span><span class="p">]</span><span class="o">/</span><span class="n">public_html</span>
+<span class="n">sudo</span> <span class="nb">chmod</span> <span class="mi">755</span> <span class="sr">/home/</span><span class="p">[</span><span class="n">user</span><span class="p">]</span><span class="o">/</span><span class="n">public_html</span>
+</pre></div>
+
+
+<p>Then, tweak SELinux settings for user directories and user content:</p>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">setsebool</span> <span class="o">-</span><span class="n">P</span> <span class="n">httpd_enable_homedirs</span> <span class="n">true</span>
+<span class="n">sudo</span> <span class="n">setsebool</span> <span class="o">-</span><span class="n">P</span> <span class="n">httpd_read_user_content</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>Finally restart httpd. Voilà, c'est ça!</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>18 July 2011</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/enabling-apache-userdir-on-fedora-15.html&title=Enabling Apache UserDir On Fedora 15">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

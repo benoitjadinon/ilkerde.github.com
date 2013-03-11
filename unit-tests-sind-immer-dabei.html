@@ -1,0 +1,149 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Unit Tests sind immer dabei</title>
+    <meta name="description" content="Eine etwas ausführlichere Abhandlung meiner Auffassung, dass Tests und Specs so nah wie möglich am SUT mit entwickelt und organisiert werden sollten. Idealerweise side-by-side.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="unit-tests-sind-immer-dabei">
+    <a href="unit-tests-sind-immer-dabei"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Unit Tests sind immer dabei</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Vor knapp einer Woche stellte Stefan die Frage „<a href="http://www.lieser-online.de/blog/?p=235">Wohin mit den Tests</a>?“ gestellt. Er selbst schreibt, er trenne die Implementierung und deren Tests strikt, ließ sich allerdings zu einem Experiment hinreißen, in dem er Implementierung und Tests in einem einzigen Projekt ließ. Alles in einer Assembly also. Motiviert wurde er wohl durch meine Aussage, dass es <a href="auf-dem-eisberg.html">schlichtweg einfach nicht mehr zeitgemäß</a> ist, Tests vom SUT zu trennen.</p>
+<p>Und genau so ist es auch. Zumindest für mich. Ich habe lange Zeit Tests und Implementierung in separaten Projekten entwickelt. Bis ich bemerkt habe, dass es mir nicht hilft, sondern mich eher bei meiner Entwicklung stört. Seitdem halte ich Tests und Implementierung immer ganz nah beieinander, sozusagen „Seite an Seite“. Ich möchte in diesem Post meine Beweggründe &amp; Konsequenzen für Side-by-Side-Specs (oder Near-Specs, wie ich es gerne nenne) schildern, und somit meine Antwort auf Stefan’s Frage geben.</p>
+<p>Nun zunächst einmal beschränke ich mit bei den Near-Specs auf Unit Tests. Ganz klassisch im Sinne des TDD. Integrationstests sind bei mir nach wie vor Far-Specs, also separate Projekte. Doch es soll ja um die Unit Tests gehen, besser gesagt um Tests, die aus dem Test-First-Ansatz heraus entstehen. Das können Tests bei TDD oder aber auch Specs bei BDD sein. Ergo: Tests, mit denen ich meinen Code designe &amp; entwickle, halte ich sehr nah am Code.</p>
+<h3 id="verhalten-greifbar-formen">Verhalten greifbar formen</h3>
+<p>Doch wieso sind bei mir die Tests nun an der Implementierung dran? Es gibt einen ganz einfachen und für mich auch unschlagbar effektiven Grund: Die Tests sind greifbar. Sie sind dort, wo ich sie brauche, nämlich an dem Verhalten, für das ich sie zur Spezifikation gebraucht habe. Seit dem ich die Tests an der Implementierung habe, „forme“ ich auch mehr und öfter. Soll heissen: Ich führe öfter und effizienter Refactorings durch. Nicht nur vom SUT, sondern natürlich auch von den Tests selbst.</p>
+<p>Überhaupt ist es mit den Tests im Implementierungsprojekt ein ganz anderes, viel effizienteres arbeiten. Wenn ich nach einiger Zeit wieder einmal in einem Projekt etwas zu tun habe, schaue ich mir die Tests an. Das Schöne bei den Near-Specs ist jetzt, dass ich sehr schnell zwischen Spezifikations- und Implementierungssicht wechsle und deutlich zügiger navigieren kann. Das fällt mir besonders bei Tests mit mehreren Abhängigkeiten / Mocks auf. Ich komme mit dieser Art von „Code lesen“ viel besser zurecht als vorher mit dem hin- und herspringen zwischen mehreren Projekten.</p>
+<p>Zugegeben, anfangs tat ich mir noch ein wenig schwer, denn schließlich ist die Anzahl der Testklassen - genereller: die Menge an Testcode - für ein SUT meist deutlich mehr. Neben der Umgewöhnung des „nicht mehr über Assembly-Boundaries“ hinweg arbeitens hatte ich das Gefühl, dass mich der Testcode „stört“ oder mir „im Weg steht“. Doch dieses Gefühl war schnell wieder weg, als ich das Prinzip auf größere Projekte angewendet habe und immer wieder die Tests für die Spezifikation und das Codeverständnis gebraucht habe. Spätestens dann war bei mir die Erkenntnis da: Side-By-Side-Specifications Rule!</p>
+<p>Doch mit dieser „Colocation“ der Tests an die Implementierung tauchen neue Fragen auf. Eine ganz besonders oft gestellte Frage ist die der Auslieferung der Tests in Release-Assemblies. Es ist schließlich erstrebenswert, nur das in ein Release einfliessen zu lassen, was auch wirklich vom Benutzer gebraucht wird: die Funktionalität. So stand ich auch vor dieser Aufgabe, welches sich aber sehr schnell und vor allem einfach bewältigen ließ.</p>
+<h3 id="reduce-to-the-max">Reduce to the Max</h3>
+<p>Die Idee ist denkbar einfach: Wenn ich Tests und Implementierung zur Entwicklungszeit nicht trenne, dann trenne ich sie eben später, undzwar zur Auslieferungszeit. In einfachen Worten: der Build muss diese Aufgabe erledigen. Da ich sowieso meinen Code über Build-Skripte bauen lasse, lag es sehr nah, diese Skripte einfach anzupassen. Für meine eigenen Projekte habe ich oft ein kleines Powershell-Skript. Bei größeren Projekten oder CI-Umgebungen ist der Aufruf eines eigenen Post-Clean-Events vor dem Build ein guter Extension-Point.</p>
+<p>Als ich die Menge und den Inhalt der Kommentare bei Stefan’s Post gesehen habe, dachte ich mir nur: warum schreiben so viele darüber und finden es „schwierig“ oder „unsauber“, ohne es offensichtlich einmal probiert zu haben? Ich habe es probiert und ich fand es überhaupt nicht schwierig – ganz im Gegenteil. Jetzt ist das für mich eine viel angenehmere, effizientere und vor allem intuitivere Arbeitsweise. Das Build-Skript zum filtern der Testartefakte ist denkbar einfach, bei mir sind das meistens nur so 10 bis 20 Zeilen. Schließlich ist es ja auch „nur“ ein Release-Build. Ich rufe es nicht die ganze Zeit auf wie ein CI-Build, und CD mache bzw. brauche ich derzeit auch nicht.</p>
+<p>„Soooo lange, wie ich brauche, diese Kommentare überhaupt zu lesen, brauche ich nicht einmal, wenn ich sogar das Build-Skript per TDD erstelle“ war mein Gedanke, als ich mit dem Lesen der Kommentare fertig war. Und da ich ein Freund von <a href="http://twitter.com/ilkerde/status/18264412106">empirischen Erkenntnissen</a> bin, dachte ich mir: „Auf geht’s, das machst Du jetzt!“. Gesagt getan. Das <a href="https://github.com/ilkerde/CodeKatas/tree/master/KataFizzBuzz.SideBySide">Ergebnis</a> kann man sich auf github ansehen. Erkenntnis: Die Entwicklung des Build-Skripts (ohne TDD Framework und mit meinen „bescheidenen“ Powershell-Kenntnissen) hat etwas mehr als eine Stunde gedauert. So lange habe ich in etwa auch zum Lesen der Kommentare gebraucht ;-)</p>
+<h3 id="separation-of-concerns">Separation of Concerns</h3>
+<p>Doch zurück zum Thema. Beim Lesen der Kommentare ist mir auch aufgefallen, dass man öfter das Argument der „Separation of Concerns“ (SoC) gegen die Zusammenführung von Tests und Implementierung anbringt. Es sei im Sinne der SoC, Tests von der Implementierung zu trennen. Auch gute Freunde von mir, wie z.B. <a href="http://twitter.com/tehlike">Tehlike</a> – für den ich im Übrigen diesen Post <a href="to-whom-it-may-concern.html">auch auf Englisch verfasst habe</a> - entgegneten mir das gleiche Argument. Dazu mein Statement:</p>
+<p><strong>Tehlike, yanılıyorsun! ;-)</strong>
+<em>(Auf deutsch: Tehlike, Du irrst Dich!)</em></p>
+<p>Ja, ich denke diejenigen irren sich, die SoC als Argument für eine Trennung von Tests &amp; Implementierung anbringen. Sie irren sich meiner Meinung nach sogar gewaltig. Denn SoC ist in meinen Augen bei genauerer Betrachtung sogar ein Argument für die Zusammenlegung von Tests und Implementierung.</p>
+<p><a href="http://en.wikipedia.org/wiki/Separation_of_concerns">Separation of Concerns</a> besagt nämlich, dass unterschiedliche Zuständigkeiten eines Objekts voneinander getrennt werden sollten. Zuständigkeiten sind im Sinne der Domänenmodellierung und Systemanalyse Aspekte von Verhalten und Funktionalität. Ergo: Unterschiedliche Zuständigkeiten eines Verhaltens sollten voneinander getrennt werden. Ein schönes Beispiel ist der Taschenrechner. Die Funktionalität des Addierens des Taschenrechners gestaltet sich aus dem Tastenfeld, der Recheneinheit, und der Anzeige. All das sind Aspekte der Funktionalität, die in eigenständige Zuständigkeiten münden. Im Sinne der „Separation of Concerns“ sind diese Aspekte zu trennen und damit die Komponentenorientierung und Wiederverwendbarkeit zu stärken.</p>
+<h3 id="completeness-of-concern">Completeness of Concern</h3>
+<p>So weit, so gut. Doch Separation of Concerns bedeutet für mich im Umkehrschluß auch, dass man eine Zuständigkeit einer Funktionalität auch zusammenhalten sollte. Ein einziger „Concern“ sollte in sich geschlossen sein. „Das ist er doch automatisch“ denkt man sich. Naja, ganz so einfach ist es meiner Meinung nach nicht. Denn eine Zuständigkeit einer Funktionalität findet man in der Software-Entwicklung oftmals nicht als „ganze Einheit“ an einem Fleck, sondern überall verteilt.</p>
+<p>So wird z.B. in der klassischen Softwareentwicklung die Zuständigkeit in den Requirements erfasst. Man findet sie in der Use-Case-Dokumentation und in UML-Diagrammen wieder, diesmal mit ein oder zwei Szenarien. Natürlich wird das Verhalten und dessen Aspekt auch in den Tests manifestiert – dazu sind sie ja da. Und – wer hätte das gedacht – die Funktionalität findet man auch im Code wieder. Resultat: Ein einziger Concern, der im Entwicklungsprozess an allen möglichen Stellen auftaucht. In einem solchen Szenario ist es für den Entwickler meistens wie ein Puzzle, bei dem die Puzzlestücke überall sind – nur nicht auf dem Tisch.</p>
+<p>Es ist also für die „Vollständigkeit einer Zuständigkeit“ nicht hilfreich, Tests und Implementierung voneinander zu trennen. Weiterhin hat das Trennen von Tests und Implementierung nichts mit Separation of Concerns zu tun, denn schließlich geht es sowohl bei den Tests als auch bei der Implementierung um einen einzigen Concern – dem Aspekt der Funktionalität, die das SUT eben abbilden soll.</p>
+<p>Es ist gerade die Fraktion der BDD-Anhänger, die genau diesem Umstand mit all Ihren Argumentationen und Prinzipien hervorheben möchten. Sie reden nicht von Tests, sondern von Spezifikationen, sie reden nicht über Verifikation, sondern über Verhalten. Ja, sie gehen sogar soweit und reden im Sinne der Context-Specifications von „Concerns“, also „Zuständigkeiten“. Das alles sind klare Hinweise, das die Spezifikation eines Verhaltens und deren Umsetzung als unzertrennliches Paar zu betrachten sind. Übrigens ist diese „Expressivität“ auch ein Grund, warum „BDD“ so gut geeignet ist für Einsteiger in TDD bzw. Test-First.</p>
+<h3 id="feels-just-like-it-should">Feels just like it should</h3>
+<p>Wenn man mal eine gewisse Zeit per TDD/BDD entwickelt, dann fällt einem oft auf, dass man bei jeder Änderung mindestens zwei Dinge ändert. Man ändert oder erweitert die Tests und man ändert oder erweitert die Implementierung. Ein Verhalten, eine Zuständigkeit, doch zwei Perspektiven, zwei Änderungspunkte.</p>
+<p>Das ist bei Far-Specs, (also getrennten Tests und Implementierung über Assembly-Boundaries) genauso wie auch bei Near-Specs (Tests &amp; Implementierung Seite-An-Seite). Doch bei Near-Specs ist es einfacher, schneller und intuitiver, Änderungen am System durchzuführen. Darüber hinaus wird das Streben nach „Vollständigkeit eines Verhaltens und deren Zuständigkeit“ gestärkt. Das wiederum zahlt auf Lesbarkeit, Wartbarkeit und Flexibilität ein.</p>
+<p>Seit nun seit knapp 3 Monaten entwickle ich Unit Tests, TDD &amp; BDD ausschließlich per „Side-By-Side-Specifications. Diese „andere“ Art der Codeorganisation ist für mich äußerst angenehm und effektiv gleichermaßen. Für mich ist es ein stückweit näher dran am „TDD-Spirit“, dem test- bzw. spezifikationsgetriebenen designen und entwickeln von Software. Mit Tests &amp; Implementierung nebeneinander fühlt es sich so an, wie es eigentlich sein sollte.</p>
+<p>Also: <a href="http://www.youtube.com/watch?v=9LCEsRno1cg">Feels just like it should</a> ;-)</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>12 July 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/unit-tests-sind-immer-dabei.html&title=Unit Tests sind immer dabei">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

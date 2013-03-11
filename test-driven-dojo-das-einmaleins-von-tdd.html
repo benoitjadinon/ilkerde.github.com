@@ -1,0 +1,211 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Test-Driven-Dojo: Das Einmaleins von TDD</title>
+    <meta name="description" content="Ein Bericht von einem .NET Coding Dojo mit Erkenntnissen zu TDD und dessen Anwendbarkeit in verschiedenen Anwendungsteilen.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="test-driven-dojo-das-einmaleins-von-tdd">
+    <a href="test-driven-dojo-das-einmaleins-von-tdd"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Test-Driven-Dojo: Das Einmaleins von TDD</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Vergangenen Mittwoch Abend war es wieder einmal soweit, das zweite .NET Coding Dojo für Einsteiger in München wurde veranstaltet. Erstaunlich: es waren bekannte Gesichter aus dem ersten Dojo wiederzufinden! Doch auch neue Teilnehmer fanden den Weg zum Dojo.</p>
+<p>Dabei hatte das Münchner Dojo viel "Event-Konkurrenz": Der <a href="http://www.microsoft.com/germany/jointlaunch09/Events.aspx">Joint-Launch von Microsoft</a>, der <a href="http://www.twittwoch.de/veranstaltungen/3-Twittwoch-Muenchen-7-Oktober-2009">Twittwoch</a> und das unnachahmliche Herbstwetter mit 25 Grad!. Um so erfreulicher, das sich die Teilnehmer nicht davon abhalten liessen mit mir zur Feierabendzeit noch eine geistige Trainingseinheit im Dojo hinter sich zu bringen. Ich bin als Master kurzfristig für den erkrankten Pete eingesprungen - an dieser Stelle Gute Besserung! Ich hoffe ich konnte einen adequaten Ersatz darstellen.</p>
+<p>Zum Dojo: es gab drei Code Kata's zur Auswahl: <a href="http://codingdojo.org/cgi-bin/wiki.pl?KataMinesweeper">Minesweeper</a>, der im Experten-Dojo gelöste <a href="http://schuchert.wikispaces.com/RPN+Calculator">Taschenrechner</a> und das mittlerweile beliebte <a href="http://codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz">FizzBuzz</a>, jedoch reinkarniert als Windows-Forms-Anwendung.</p>
+<p>Die Teilnehmer entschieden sich für FizzBuzz im Windows-Forms-Gewand. Vorlage für diese Übung war die <a href="http://www.iphoneappindex.com/2009/06/01/fizzbuzz-on-iphoneipodtouch/">iPhone-Implementierung</a>. Eine gute und herausfordernde Wahl, wie sich im Nachhinein herausstellen sollte.</p>
+<p>Zum "Warmwerden" haben wir zunächst das klassische Kata gelöst. Diesmal ging es etwas zügiger von der Hand als beim ersten Mal, was unter Anderem auch an den Wiederkehrern lag. Anschliessend ging es an die UI.</p>
+<h3 id="test-driven-ui-entwicklung-geht-das-uberhaupt">Test-Driven UI-Entwicklung. Geht das überhaupt?</h3>
+<p>Doch Halt! Wie soll denn das jetzt mit purem <a href="http://de.wikipedia.org/wiki/Testgetriebene_Entwicklung">Test-Driven-Development</a> gehen? Die Einsteiger waren ein wenig vor den Kopf gestossen, denn die Frage im Raum war klar: Wie kann ich Test-First eine UI für ein Programm entwickeln? Die Antwort war jedoch alles andere als deutlich.</p>
+<p>Tom - der als einziger Experte im Einsteiger-Dojo mit dabei war, was mich besonders gefreut hat - half den Einsteigern ein wenig, indem er sagte: "Eine UI ist nicht ohne Weiteres testbar." Die Teilnehmer vertrauten der Aussage des Profis und zuckten mit den Schultern, als es darum ging, eine Testklasse für das Windows-Form zu schreiben. Nach der von Tom im Kern korrekten Anspielung auf UI-Tests habe ich versucht, den Fokus etwas zu verschieben.</p>
+<p><img alt="" class="alignright" src="/media/images/fizzbuzziphone-200x300.jpg" />
+Ich stellte folgenden provokanten Satz in den Raum: "Die Benutzeroberfläche ist nicht testbar. Gut. Aber ist denn wirklich nichts testbar? Ich meine, wie ist es z.B. mit der Interaktion? Ist die Interaktion testbar?"</p>
+<p>Dazu habe ich nochmal die Referenz-Anwendung gestartet und gezeigt, mit der Bitte, sich die Interaktionselemente der Anwendung - vielmehr die Interaktion mit der Benutzeroberfläche - nochmals genau anzusehen.</p>
+<p>Im Wesentlichen besteht das "Spiel" aus drei Eingabefeldern (Buttons). In der Mitte wird die Zahl dargestellt, für die es die "FizzBuzz-Frage" zu beantworten gilt. Klickt man auf die Zahl, ist die Zahl die Antwort. Oben drüber und unten drunter werden die Antwortmöglichkeiten "Fizz" und "Buzz" dargestellt. Klickt man darauf, so ist selbiges die Antwort.</p>
+<h3 id="abstraktion-der-benutzeroberflache-zu-interaktionsanforderungen">Abstraktion der Benutzeroberfläche zu Interaktionsanforderungen</h3>
+<p>Am Anfang war deutlich zu spüren, dass es schwer ist, eine konrektes User Interface soweit zu abstrahieren, dass man nur noch in "Interaktionen" zwischen dem Benutzer und dem Programm denkt. Auf die Frage wie denn die erste Testmethode heissen soll, "verirrten" sich einige Male ein paar Teilnehmer wieder in die konrekte UI (z.B. mit Antworten wie "ClickOnFizzButtonWhenThreeIsDisplayed").</p>
+<p>Doch mit ein paar kleinen Hilfen und gemeinschaftlicher Denkleistung konnten die Teilnehmer aus o.g. Interaktionsanforderungen heraus tatsächlich Tests formulieren. Genau diese Momente waren es, der dem Dojo die richtige Würze in Sachen Lerneffekt gab. So schreibten wir ohne die UI oder etwas anderes implementiert zu haben z.B. folgende Tests:</p>
+<div class="codehilite"><pre><span class="na">[Test]</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">IncrementsNumberWhenAnswered</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">FizzBuzzGame</span> <span class="n">fizzBuzzGame</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzzGame</span><span class="p">();</span>
+
+  <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+  <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">Answer</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span>
+
+  <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">CurrentNumber</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="na">[Test]</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">CorrectAnswerReturnsTrue</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">FizzBuzzGame</span> <span class="n">fizzBuzzGame</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzzGame</span><span class="p">();</span>
+
+  <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+  <span class="kt">bool</span> <span class="n">isCorrect</span> <span class="p">=</span> <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">Answer</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span>
+
+  <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="n">isCorrect</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Deutlich erkennbar ist natürlich, dass nach wie vor die UI ansich (also das WinForm, die Buttons etc) natürlich nicht testbar sind. Aber das ist ja auch nicht der Sinn der Sache! Denn das Ziel und der Zweck von Test-Driven-Development ist nicht die Verifikation, sondern die eigentliche Entwicklung des Codes! Schnell fand die Gruppe heraus, dass die Implementierung der <code>FizzBuzzGame</code>-Klasse sich um ganz andere Verantwortlichkeiten kümmert, als die <code>FizzBuzz</code>-Klasse (der eigentliche Algorithmus).</p>
+<p>Die Abstraktion der Interaktionen führte zur Implementierung einer Klasse mit der Eigenschaft <code>CurrentNumber</code> sowie den Methoden <code>Start</code> und <code>Answer</code>. Schnell waren die wichtigen Tests geschrieben und die Klasse implementiert, so dass man sich der Verknüpfung der "Interaktionsklasse" zur eigentlichen UI widmen konnte. Das Verbinden erwies sich als wunderbar einfach:</p>
+<div class="codehilite"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">buttonFizz_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">isCorrect</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">.</span><span class="n">Answer</span><span class="p">(</span><span class="s">&quot;Fizz&quot;</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(!</span><span class="n">isCorrect</span><span class="p">)</span>
+    <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&quot;Wrong answer&quot;</span><span class="p">,</span> <span class="s">&quot;Ooops!&quot;</span><span class="p">,</span> <span class="n">MessageBoxButtons</span><span class="p">.</span><span class="n">OK</span><span class="p">);</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="n">buttonNumber</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">.</span><span class="n">CurrentNumber</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">void</span> <span class="nf">buttonBuzz_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">isCorrect</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">.</span><span class="n">Answer</span><span class="p">(</span><span class="s">&quot;Buzz&quot;</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(!</span><span class="n">isCorrect</span><span class="p">)</span>
+    <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&quot;Wrong answer&quot;</span><span class="p">,</span> <span class="s">&quot;Ooops!&quot;</span><span class="p">,</span> <span class="n">MessageBoxButtons</span><span class="p">.</span><span class="n">OK</span><span class="p">);</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="n">buttonNumber</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">.</span><span class="n">CurrentNumber</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Natürlich kann man hier noch wunderbar refaktorisieren und den überschüssigen doppelten Code eliminieren. Aber für's erste soll das Mal genügen, denn jeder wollte ja sehen, ob das Spiel denn wirklich auf Anhieb spielbar war. Also schnell kompiliert und gestartet.</p>
+<p><img alt="" class="alignleft" src="/media/images/fizzbuzzform.png" />
+Tatsächlich! Es funktioniert! Die Begeisterung der Teilnehmer war förmlich aus den Gesichtern zu lesen, als wir fröhlich das FizzBuzz-Spiel Zahl für Zahl spielten... "Zwölf ist Fizz"... "Dreizehn ist Dreizehn"... "Vierzehn ist Vierzehn"... Oh! Halt. Für die Fünfzehn muss ich ja "FizzBuzz" antworten, wie soll denn das gehen?</p>
+<p>Schnell wurde wieder die IPhone-Referenz-Anwendung gezückt und durchgespielt... "Zwölf ist Fizz"... "Dreizehn ist Dreizehn"... "Vierzehn ist Vierzehn"... und "Fünfzehn ist Fizz und Buzz". Aha! Die "FizzBuzz" Antwort besteht also aus einem Klick auf "Fizz" gefolgt von einem Klick auf "Buzz"! Klar. Doch wie lässt sich das in unserer Anwendung lösen?</p>
+<p>Verwirrung machte sich breit: "Wieso ist uns das beim ersten Mal nicht aufgefallen!?!" fragte man sich. Nun sei's drum, die Beantwortung mit Hilfe von zwei aufeinanderfolgenden Klicks ist das derzeitige Problem das es zu lösen gilt. Unter anderem kam der Vorschlag, man müsse einen Timer im Form einführen, der bei dem Klick auf "Fizz" gestartet wird und auf den nächsten Klick wartet, so dass man die "FizzBuzz"-Antwort abgeben kann. Viele Teilnehmer konzentrierten sich darauf, diese Besonderheit in der UI bzw. im Code-Behind des Forms zu lösen.</p>
+<h3 id="test-driven-development-als-wegweiser">Test-Driven-Development als Wegweiser</h3>
+<p>Nach einigen Minuten angeregter Diskussion kam ein Einwand von Kai: "Wir haben für die ersten Interaktionen doch Tests geschrieben, dann sollten wir das doch für diesen Fall auch können oder?". Der Vorschlag fand sofortige Zustimmung. Also auf in die Testklasse und kräftig überlegt, wie man diese Interaktion testen kann. Das Ergebnis waren eine Reihe von Tests, die sich um den "zweistufigen" Antwort-Prozess kümmerten. Auszug:</p>
+<div class="codehilite"><pre><span class="na">[Test]</span>
+<span class="k">public</span> <span class="k">void</span> <span class="nf">FizzBuzzIsAnsweredInTwoSteps</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">FizzBuzz</span> <span class="n">fizzBuzz</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzz</span><span class="p">();</span>
+  <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">values</span> <span class="p">=</span> <span class="n">fizzBuzz</span><span class="p">.</span><span class="n">Count</span><span class="p">();</span>
+
+  <span class="n">FizzBuzzGame</span> <span class="n">fizzBuzzGame</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzzGame</span><span class="p">();</span>
+  <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;=</span> <span class="m">14</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">Answer</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+  <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">Answer</span><span class="p">(</span><span class="s">&quot;Fizz&quot;</span><span class="p">);</span>
+  <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">Answer</span><span class="p">(</span><span class="s">&quot;Buzz&quot;</span><span class="p">);</span>
+
+  <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="m">16</span><span class="p">,</span> <span class="n">fizzBuzzGame</span><span class="p">.</span><span class="n">CurrentNumber</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Es folgte die Implementierung der Anforderung in der FizzBuzzGame-Klasse - so wie es davor auch der Fall war. Die Lösung der Problemstellung war an und für sich trivial: Es wurde in der Klasse ein Antwort-Status eingeführt, mit dessen Hilfe man erkennen konnte, ob eine zweistufige Antwort notwendig ist und natürlich ob die zweistufige Antwort korrekt gegeben wurde.</p>
+<p>Doch das entscheidende an dieser Herausforderung war nicht die Implementierung selbst, sondern wiederum die Erkenntnis, das uns TDD wieder einmal den Weg in die richtige Richtung gezeigt hat. Statt der ad-hoc Vorschläge, einen Timer im Form zu haben oder irgendwie den Status innerhalb des Codebehinds des Forms zu implementieren, half uns TDD, die Anforderung gekapselt in der FizzBuzzForm-Klasse umzusetzen.</p>
+<p>Das Resultat: Keine einzige Änderung im Codebehind des Forms! Und trotzdem eine Änderung des Interaktions-Verhaltens des Spiels! Ergo: eine rundum saubere Sache: klare Verantwortlichkeiten, eine jederzeit austauschbare View (das Form), ein vollends getesteter Presenter (die FizzBuzzGame-Klasse) sowie das ebenfalls in TDD entwickelte Model (die FizzBuzz-Algorithmus-Klasse). TDD hat es den Einsteigern (wohlgemerkt keine langjährigen Entwicklungsprofis!) ermöglicht, ein gängiges und äußerst hilfreiches Pattern in der Windows-Forms-Entwicklung anzuwenden, ohne jegliche Kenntnis vom Design Pattern zu haben.</p>
+<p>Fazit: <em>Ein Super Dojo!</em> Ich war wirklich begeistert, dass es uns im Einsteiger-Dojo gelungen ist, das Fundament von TDD zu vermitteln: Nicht testen um zu verifizieren, sondern testen um zu entwickeln! Gleichzeitig war das Windows-Forms-Kata ein Paradebeispiel für <a href="http://en.wikipedia.org/wiki/Separation_of_concerns">Seperation of Concerns</a> und der "intuitiven" Entwicklung der Grundzüge des <a href="http://de.wikipedia.org/wiki/Model_View_Presenter">MVP-Patterns</a>. Vielen Dank an alle Teilnehmer, es war Klasse!</p>
+<p>Ich freue mich schon heute auf das nächste <a href="https://www.xing.com/events/net-coding-dojo-munchen-master-401546">.NET Coding Dojo für Experten am 21. Oktober!</a>. Das wird bestimmt wieder ein besonderer Spass. Seid dabei!</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>10 October 2009</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/test-driven-dojo-das-einmaleins-von-tdd.html&title=Test-Driven-Dojo: Das Einmaleins von TDD">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

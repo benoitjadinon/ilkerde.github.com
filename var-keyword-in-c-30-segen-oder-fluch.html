@@ -1,0 +1,153 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>var keyword in C# 3.0: Segen oder Fluch ?</title>
+    <meta name="description" content="Eine etwas ausführlichere Darstellung meiner derzeitigen Meinung zum Nutzen bzw. Schaden des Einsatzes von &#34;var&#34; in C#.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="var-keyword-in-c-30-segen-oder-fluch">
+    <a href="var-keyword-in-c-30-segen-oder-fluch"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>var keyword in C# 3.0: Segen oder Fluch ?</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Tja, ich denke eines der meist umstrittensten Neuerungen von C# 3.0 ist das kleine Wörtchen <a href="http://msdn.microsoft.com/en-us/library/bb383973.aspx"><code>var</code></a>. Schon im Vorfeld der Veröffentlichung von C# 3.0 waren im Internet heisse Diskussionen zu lesen. Jetzt, wo viele Entwickler .NET 3.5 und C# 3.0 im Einsatz haben, ist der Diskussionsbedarf auch nicht besonders gemindert.</p>
+<p>Anfangs war ich vom Einsatz und den Möglichkeiten, die durch <code>var</code> entstehen sehr angetan. Ehrlich gesagt bin ich das heute noch. Aber mein Enthusiasmus ist doch deutlich gedämpft, jetzt wo ich es im Einsatz sehe und selbst einsetze. Mein "Problem" (wenn man das so überhaupt sagen kann) mit <code>var</code> ist nicht die <a href="http://en.wikipedia.org/wiki/Type_inference">Typ-Inferenz</a> die es ermöglicht, sondern eher der zuweilen exzessive Einsatz.</p>
+<p>Besonders betrübt bin ich, wenn ich z.B. in populären Blogs wie dem von Jeff Adwood lesen muss, dass <a href="http://www.codinghorror.com/blog/archives/001136.html">var das Allheilmittel schlechthin ist</a> und so oft wie nur irgendmöglich eingesetzt werden sollte. Bei solchen Aussagen liegt bei mir die Vermutung nahe, das Jeff gerade nicht sehr große Projekte in C# stemmt. Schließlich wurde <code>var</code> nicht erfunden um die Deklarations- bzw. Konstruktionssyntax in C# zu verschönern, sondern dient einem dedizierten Zweck.</p>
+<p>Umso erfreulicher ist es, das ich mich mit meiner Meinung in bester Gesellschaft vorfinde. So erklärt z.B. Richard sehr gut, das es beim <code>var</code> Keyword <a href="http://richarddingwall.name/2008/06/21/csharps-var-keyword-jeff-atwood-gets-it-all-wrong/">nicht um die Verkürzung von Codezeilen</a> geht sondern bei exzessivem Einsatz eher in die Kategorie Programmierfaulheit einzustufen ist. Ich persönlich befürworte vollständig seine Meinung,  wonach <code>var</code> dort eingesetzt werden sollte, wo es benötigt wird, und nicht überall wo es möglich ist.</p>
+<p>Setzt man <code>var</code> überall ein, wo es möglich wäre, kommt solcher Code zustande:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="kt">object</span> <span class="nf">GetMatchingCode</span><span class="p">(</span><span class="kt">object</span><span class="p">[]</span> <span class="n">codes</span><span class="p">,</span> <span class="kt">string</span> <span class="n">matchPattern</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">ignoreInvalid</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">bestMatch</span> <span class="p">=</span> <span class="n">FindBestMatch</span><span class="p">(</span><span class="n">matchPattern</span><span class="p">);</span>
+  <span class="n">var</span> <span class="n">blackList</span> <span class="p">=</span> <span class="n">codelists</span><span class="p">.</span><span class="n">GetBlackList</span><span class="p">(</span><span class="n">codes</span><span class="p">);</span>
+
+  <span class="k">foreach</span><span class="p">(</span><span class="n">var</span> <span class="n">c</span> <span class="p">=</span> <span class="k">in</span> <span class="n">blackList</span><span class="p">.</span><span class="n">GetConfirmedCodes</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">matchPoint</span> <span class="p">=</span> <span class="n">bestMatch</span><span class="p">.</span><span class="n">CompareCode</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ignoreInvalid</span><span class="p">);</span>
+    <span class="n">matchPoint</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">ParentCode</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">matchPoint</span><span class="p">.</span><span class="n">IsUnique</span><span class="p">(</span><span class="n">bestMatch</span><span class="p">))</span> <span class="k">return</span> <span class="n">matchPoint</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Du als Leser dieser Codezeilen hast kein Visual Studio und keine Intellisense. Weißt Du, worum es bei diesen Codezeilen eigentlich geht? Ich wüßte es jedenfalls nicht.</p>
+<p>Zugegeben, das Beispiel mag überspitzt sein. Jedoch übertreibe ich nicht, wenn ich sage, das ich "echten" Code schon lesen (und verstehen) musste, der mindestens den gleichen Grad von "konsequentem var Einsatz" aufwies wie obiges Beispiel.</p>
+<p>Auf der anderen Seite ist <code>var</code> natürlich auch notwendig und äußerst sinnvoll. Die Paradedisziplin dabei ist sicherlich der Einsatz anonymer Typen mit LINQ:</p>
+<div class="codehilite"><pre><span class="n">var</span> <span class="n">persons</span> <span class="p">=</span>
+  <span class="n">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Customers</span>
+  <span class="n">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">State</span> <span class="p">=</span> <span class="m">1</span>
+  <span class="n">select</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Id</span> <span class="p">=</span> <span class="n">customer</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">customer</span><span class="p">.</span><span class="n">Name</span> <span class="p">};</span>
+</pre></div>
+
+
+<p>Ich für meinen Teil finde <code>var</code> und Typ-Inferenz eine gelungene, sogar notwendige Bereicherung in C# - aber nur dort, wo es wirklich gebraucht wird. Obwohl Soren in seinem Blog mit "<a href="http://www.publicvoid.dk/TheCKeywordVar%C4%B0sEvil.aspx">the C# keyword var is evil</a>" sicherlich übertreibt, ist es dennoch empfehlenswert seinem Beispiel zu folgen und die geradezu unsinnige "Benutze immer var"-Funktion im ReSharper einfach abzuschalten.</p>
+<p>Mein Fazit: <code>var</code> ist nur dann cool, wenn ich es wirklich brauche - ansonsten bleibe ich bei expliziter Typdeklaration und lasse mir auch gerne vom mächtigen Visual Studio Intellisense/Autocomplete helfen.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>12 November 2008</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/var-keyword-in-c-30-segen-oder-fluch.html&title=var keyword in C# 3.0: Segen oder Fluch ?">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

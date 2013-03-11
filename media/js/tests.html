@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="extras/qunit.css">
+  </head>
+  <body>
+    <script type="text/javascript" src="extras/qunit.js"></script>
+    <script type="text/javascript" src="extras/coffee-script.js"></script>
+    <script type="text/javascript" src="extras/require.js"></script>
+    <script type="text/coffeescript">
+      QUnit.config.autostart = false
+      require.config {
+        paths: {
+          cs: 'extras/cs',
+          'coffee-script': 'extras/coffee-script'
+        }
+      }
+
+      require [
+        'cs!mailr-tests', 
+        'cs!slidr-tests', 
+        'cs!qsp-tests',
+        'cs!cmdb-tests'
+      ], ->
+        QUnit.start()
+
+    </script>
+
+    <h1 id="qunit-header"></h1>
+    <h2 id="qunit-banner"></h2>
+    <ol id="qunit-tests"></ol>
+
+    <div id="qunit-fixture">
+      <!-- mailr -->
+      <!-- simple parameter substitution -->
+      <h5 class='mailr-subject'>Test</h5>
+      <p class='mailr-note'>Note<p>
+
+      <!-- substitute full mailto: link in href of a.mailr -->
+      <a href='#' class='mailr'>This is a Link</a>
+
+      <!-- substitute a full 'mail now' button in div.mailr -->
+      <div class='mailr'></div>
+
+      <!-- substitute a referrer link within span.mailr -->
+      <span class='mailr'>Anything</span>
+
+
+
+      <!-- slidr -->
+      <a class='slide-cover'>Slide</a>
+      <a class='slide-script'>Script</a>
+      <a class='slide-mode'>Mode</a>
+      <div class='slide'>
+        <div class='slide-content'>
+          <h2>Test</h2>
+        </div>
+      </div>
+      <div class='slide-text'>
+        This is the script text.
+      </div>
+      <div id="page" class="slide-page"></div>
+      <div id="content" class="slide"></div>
+      <div id="disclaimer">Disclaimer</div>
+      <div id="breadcrumb">the / bread / crumb</div>
+      <div id="logo" style="background-image:url('any-image.jpg')"></div>
+
+
+
+      <!-- cmdb -->
+      <div class="listing">
+        <ol id="list">
+          <li id="some" class="item"><h3><a href="#">some</a></h3></li>
+          <li id="anything" class="item"><h3><a href="#">anything</a></h3></li>
+          <li id="other" class="item"><h3><a href="#">Other</a></h3></li>
+          <li id="another" class="item"><h3><a href="#">Another</a></h3></li>
+          <li id="stuff" class="item"><h3><a href="#">STUFF</a></h3></li>
+        </ol>
+      </div>
+
+      <div id="meta"></div>
+    </div>
+  </body>
+</html>

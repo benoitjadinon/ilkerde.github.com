@@ -1,0 +1,176 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Meta-Test: NUnit – All-Time-Hall-Of-Fame-Most-Valuable-Tester</title>
+    <meta name="description" content="Vorstellung des bewährten Unit-Test-Frameworks NUnit an Hand eines kleinen Testbeispiels.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="meta-test-nunit-all-time-hall-of-fame-most-valuable-tester">
+    <a href="meta-test-nunit-all-time-hall-of-fame-most-valuable-tester"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Meta-Test: NUnit – All-Time-Hall-Of-Fame-Most-Valuable-Tester</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Der Titel ist unmißverständlich: <a href="http://nunit.com/">NUnit, der Godfather der Test-Frameworks für .NET</a>, wird heute von mir ein wenig unter die Lupe genommen. Ich hatte schon den <a href="meta-test-ms-test-visual-studio-on-board-test-framework.html">Redmond-Test-Botschafter MS-Test</a> im Visier. Irgendwie ist es komisch. Obwohl Microsoft mit MS-Test ein umfangreiches Framework für Testing der professionellen Entwicklergemeinde zur Verfügung gestellt hat, hört man unter Gleichgesinnten und Kollegen fast immer die gleiche Story: "Tests? Unit Tests? Klar! NUnit!"</p>
+<h3 id="der-pate-unter-den-test-frameworks">Der Pate unter den Test-Frameworks</h3>
+<p>So ist es auch nicht weiter erstaunlich, dass man nahezu überall, wo das Wörtchen "Test" fällt, auch "NUnit" zu sehen bekommt. Sei es nun bei den Codeassistenten, bei Build- oder CI-Tools, Addins und sogar weiteren Test-Frameworks. Die <a href="http://www.google.de/search?q=nunit">Verbreitung und Unterstützung von NUnit</a> ist hier einfach nicht zu toppen. Aber auch die vielen Kontakte und Beziehungen des "Paten der Test-Frameworks" helfen nicht viel beim Meta-Test mit dem FizzBuzz-Kata! Auf geht's!</p>
+<h3 id="der-code">Der Code</h3>
+<p>FizzBuzz ist mit NUnit und den "Standard-TDD-Regeln" schnell implementiert. Referenz hinzufügen, Testklasse inklusive Testmethode aufbauen, noch schnell ein <code>using NUnit.Framework;</code> und die beiden Attribute <code>[TestFixture]</code> (für Klassen) sowie <code>[Test]</code> hinzugefügt - und schon kann man fröhlich testen!</p>
+<p><img alt="" class="alignright" src="/media/images/nunit_guirunner1-300x152.png" />
+Wer jetzt einen Codeassistenten wie <a href="http://www.jetbrains.com/resharper/">Resharper</a> oder <a href="http://www.devexpress.com/Products/Visual_Studio_Add-in/Coding_Assistance/">Coderush</a> hat, ist praktisch nur ein Klick bzw. Tastenschlag von der Testausführung entfernt. Doch auch ohne "Code-Beschleuniger" gehen NUnit-Tests elegant, z.B. mit dem <a href="http://www.testdriven.net/">TestDriven.NET Addin</a>. Mal von diesen "Integrationstüren" abgesehen, bietet NUnit auch eigenständige Runner für die Konsole sowie auch als Windows-Anwendung an. Passt!</p>
+<div class="codehilite"><pre><span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">KataFizzBuzzNUnit</span> <span class="p">{</span>
+<span class="na">  [TestFixture]</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">FizzBuzzTest</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="n">FizzBuzz</span> <span class="n">target</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzz</span><span class="p">();</span>
+
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Multiples_Of_Three_Returns_Fizz</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">target</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="m">6</span><span class="p">),</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="s">&quot;Fizz&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Multiples_Of_Five_Returns_Buzz</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">target</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="m">10</span><span class="p">),</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="s">&quot;Buzz&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Multiples_Of_Three_And_Five_Returns_FizzBuzz</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">target</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="m">15</span><span class="p">),</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="s">&quot;FizzBuzz&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">No_Multiples_Of_Three_Or_Five_Returns_Number</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">target</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="m">7</span><span class="p">),</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="s">&quot;7&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Bei der Implementierung fühlt man sich schon fast wie bei MS-Test, jedoch mit einem ganz gewaltigen Unterschied: Die Assert-Klasse im Allgemeinen sowie die <code>Assert.That()</code> Syntax von NUnit sind mächtig - und mächtig hilfreich. Das mit <a href="http://www.nunit.org/index.php?p=constraintModel&amp;r=2.4">NUnit 2.4 eingeführte Constraint Model</a> ist nicht nur besser lesbar, sondern auch intuitiver. Kennt man mal die wichtigsten Constraints, vergisst man sie auch nicht mehr so schnell. Alles in Allem ist TDD mit NUnit eine runde Sache. In weniger als 5 Minuten strahlten meine 4 Tests und ich uns gegenseitig an.</p>
+<h3 id="bewertung">Bewertung</h3>
+<ul>
+<li><strong>Dauer</strong><br />
+    Zackig, Knackig, ohne Trärä und Tamtam. FizzBuzz-Regeln in 5 Minuten. Mit Codebeschleuniger geht's sogar noch schneller. Passt.</li>
+<li><strong>Größe</strong><br />
+    Ähnlich wie bei MS-Test. Eine kompakte Testklasse mit 4 Testmethoden.</li>
+<li><strong>Tooling</strong><br />
+    MS-Test war schon sehr gut - doch NUnit ist sogar noch besser! Die Verbreitung in der OSS-Gemeinde macht sich hier bemerkbar. Top.</li>
+<li><strong>Usability</strong><br />
+    Sehr gut. Assert's schön mit Constraints. Wenn man möchte sogar noch beschleunigt über das Erben von AssertionHelper. Angenehm.</li>
+<li><strong>Support</strong><br />
+    Unmengen an Material im Internet. Open-Source, stabil, große Gemeinde, aktive Entwicklung. Zufrieden.</li>
+</ul>
+<p>Hmm, es fällt mir schon schwer, etwas "negatives" an NUnit zu finden. Es mag den einen oder anderen stören, wie die Test-Projekt-Struktur von NUnit aufgebaut ist. Auch der GUI-Runner ist jetzt nicht der Augenschmaus schlechthin. Doch die Kernkompetenzen werden von NUnit bravourös gemeistert.</p>
+<h3 id="nunit-die-referenz">NUnit - Die Referenz</h3>
+<p>Als kleines Fazit kann ich für mich schon mal sagen - NUnit hat die Messlatte ganz schön hochgelegt. Effektiv betrachtet ist NUnit als Test-Framework derzeit die Referenz, mit der sich alle anderen messen lassen müssen. Das ist auch gut so, denn NUnit ist durch die jahrelange, stetige Entwicklung viele Schritte gegangen - manchmal auch einige Schritte voraus. Bleibt die Frage offen: Gibt es noch bessere Test-Frameworks für C# und .NET als NUnit? Abwarten, meine Test-Serie geht in Kürze weiter. Stay tuned!</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>15 April 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/meta-test-nunit-all-time-hall-of-fame-most-valuable-tester.html&title=Meta-Test: NUnit – All-Time-Hall-Of-Fame-Most-Valuable-Tester">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Re: Was hast Du vor 10 Jahren programmiert?</title>
+    <meta name="description" content="Ein kurzer Rückblick auf das, was ich vor 10 Jahren vor dem Computer angestellt habe: Programmierung und Entwicklung eines kleinen Directory-Scan-Tools in Visual Basic.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="re-was-hast-du-vor-10-jahren-programmiert">
+    <a href="re-was-hast-du-vor-10-jahren-programmiert"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Re: Was hast Du vor 10 Jahren programmiert?</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Es ist zwar schon ein wenig her, als <a href="http://blogs.msdn.com/dparys/archive/2010/03/05/was-hast-du-vor-ber-zehn-jahren-programmiert.aspx">Dariusz</a>, <a href="http://blog.alexonasp.net/post/2010/03/05/Was-hast-Du-vor-uber-zehn-Jahren-programmiert.aspx">Alex</a>, <a href="http://blog.thomasbandt.de/39/2324/de/blog/re-was-hast-du-vor-ueber-zehn-jahren-programmiert.html">Thomas</a> und <a href="http://thomas.mentzel.name/2010/03/05/was-hast-du-vor-uber-zehn-jahren-programmiert/">Thomas</a> sich selbst diese Frage gestellt und beantwortet haben. Dennoch ist es für mich Anlaß genug, auch mal in den Archiven nachzukramen und zu schauen, was ich denn so vor 10 Jahren an Software "verbrochen" habe.</p>
+<p>Nun, vor genau 10 Jahren (Frühjahr 2000) habe ich erstaunlich vielschichtiges getan. Da bin ich selbst schon überrascht. Ich habe z.B. einen HTML-Editor (versucht) in VB6 zu programmieren. Und habe ich einen PDF-Scanner in C geschrieben (um Bilder bzw. 2D-Polygone aus dem PDF zu "extrahieren"). Doch beides möchte ich hier nicht vorstellen, sondern ein ganz anderes Programm, mit vorerst letztem CVS-Commit am 15.03.2000: <strong>ScanDirNavian</strong>.</p>
+<p>ScanDirNavian ist ein kleines Ameisenprogramm in VB6. Es durchforstet einen gesamten Verzeichnisbaum auf bestimmte Dateien (mit bestimmten Patterns im Dateinamen) und listet diese in einer Logdatei auf. Als Zusatzfeature kann es nicht nur die Dateiinformationen loggen, sondern auch einfache Transformationsaufgaben erledigen. Z.B. "Nehme die ersten 3 Zeichen des Dateinamens, falls es eine Zahl ist, stelle Sie an das Ende des Dateinamens."</p>
+<p><img alt="scandirnavian" src="/media/images/scandirnavian.png" /></p>
+<p>Ich bin mir nicht mehr sicher, welchen Zweck ich damit eigentlich bedient habe. Ich kann mich vage daran erinnern, dass ich tausende von Logdateien (von Linux, Raytracern und diversen anderen Programmen) irgendwie umstrukturieren bzw. in andere Verzeichnisstrukturen überführen wollte. Ein Codeschnipsel gefällig? Bitte gerne:</p>
+<div class="codehilite"><pre><span class="n">Private</span> <span class="n">Sub</span> <span class="n">CommandScan_Click</span><span class="p">()</span>
+    <span class="n">Dim</span> <span class="n">StartDirectory</span> <span class="n">As</span> <span class="n">String</span>
+    <span class="n">Dim</span> <span class="n">ScanTimeString</span> <span class="n">As</span> <span class="n">String</span>
+    <span class="n">AllFileCounter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">AllScanTime</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">StartDirectory</span> <span class="o">=</span> <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span>
+    <span class="n">LabelInfo</span><span class="o">.</span><span class="n">Caption</span> <span class="o">=</span> <span class="s">&quot;Scanning Directory&quot;</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
+        <span class="n">StartDirectory</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
+        <span class="s">&quot;Please wait until scan is complete.&quot;</span>
+    <span class="n">TabLog</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">Selected</span> <span class="o">=</span> <span class="n">True</span>
+    <span class="n">FormMain</span><span class="o">.</span><span class="n">MousePointer</span> <span class="o">=</span> <span class="mi">11</span>
+    <span class="n">TimerScanDuration</span><span class="o">.</span><span class="n">Enabled</span> <span class="o">=</span> <span class="n">True</span>
+
+    <span class="n">DoEvents</span>
+
+    <span class="n">If</span> <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">Then</span>
+        <span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">_</span>
+            <span class="n">Left</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">_</span>
+            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">_</span>
+            <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span> <span class="o">&amp;</span> <span class="n">_</span>
+            <span class="n">Right</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">-</span> <span class="n">_</span>
+            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="n">_</span>
+            <span class="n">Len</span><span class="p">(</span><span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">End</span> <span class="n">If</span>
+    <span class="n">If</span> <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">Then</span>
+        <span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">_</span>
+            <span class="n">Left</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span>
+            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">_</span>
+            <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span> <span class="o">&amp;</span> <span class="n">_</span>
+            <span class="n">Right</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">-</span> <span class="n">_</span>
+            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="n">_</span>
+            <span class="n">Len</span><span class="p">(</span><span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">End</span> <span class="n">If</span>
+
+    <span class="n">If</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextLog</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">And</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">Then</span> <span class="n">_</span>
+        <span class="n">TextLog</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
+        <span class="n">String</span><span class="p">(</span><span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">),</span> <span class="s">&quot;-&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span>
+
+    <span class="n">ScanDirectory</span> <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">TextOutput</span><span class="o">.</span><span class="n">Text</span>
+    <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span> <span class="o">=</span> <span class="n">StartDirectory</span>
+    <span class="n">TimerScanDuration</span><span class="o">.</span><span class="n">Enabled</span> <span class="o">=</span> <span class="n">False</span>
+
+    <span class="n">FormMain</span><span class="o">.</span><span class="n">MousePointer</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ScanTimeString</span> <span class="o">=</span> <span class="n">Trim</span><span class="p">(</span><span class="n">Str</span><span class="p">(</span><span class="n">AllScanTime</span> <span class="o">/</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">If</span> <span class="n">Left</span><span class="p">(</span><span class="n">ScanTimeString</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span> <span class="n">Then</span> <span class="n">ScanTimeString</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span> <span class="o">&amp;</span> <span class="n">ScanTimeString</span>
+    <span class="n">LabelInfo</span><span class="o">.</span><span class="n">Caption</span> <span class="o">=</span> <span class="s">&quot;Scan complete !&quot;</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
+        <span class="s">&quot;Successfully passed through &quot;</span> <span class="o">&amp;</span> <span class="n">Trim</span><span class="p">(</span><span class="n">Str</span><span class="p">(</span><span class="n">AllFileCounter</span><span class="p">))</span> <span class="o">&amp;</span> <span class="s">&quot; files.&quot;</span> <span class="o">&amp;</span> <span class="n">_</span>
+        <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="s">&quot;Elapsed time: &quot;</span> <span class="o">&amp;</span> <span class="n">ScanTimeString</span> <span class="o">&amp;</span> <span class="s">&quot; seconds.&quot;</span>
+<span class="n">End</span> <span class="n">Sub</span>
+</pre></div>
+
+
+<p>Oh je, da habe ich mich nicht gerade mit Ruhm bekleckert :-) Funktioniert hat es - Ja. Aber lange zufrieden war ich auch nicht damit. Immerhin hat es seinen Zweck erfüllt.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>15 March 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/re-was-hast-du-vor-10-jahren-programmiert.html&title=Re: Was hast Du vor 10 Jahren programmiert?">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

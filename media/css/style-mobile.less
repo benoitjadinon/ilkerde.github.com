@@ -1,0 +1,174 @@
+/*
+style-mobile.less
+=================
+
+Mobile stylesheet definition file.
+
+This is the stylesheet for used for mobile / small screen / touch
+devices. It supports all use cases which are covered by the master
+stylesheet. For more information, see `style.less`, the master
+stylesheet definiton.
+
+*/
+
+/* reset only */
+@import "reset";
+
+/* assets */
+@import "assets/fonts";
+@import "assets/colors";
+@import "assets/images";
+@import "assets/mixins";
+@import "assets/code";
+
+/* components */
+@import "types/core-mobile";
+@import "types/home-mobile";
+@import "types/listing-mobile";
+@import "types/portfolio-mobile";
+@import "types/bio-mobile";
+@import "types/talks-mobile";
+@import "types/talksummary-mobile";
+@import "types/commandbox-mobile";
+
+#page {
+  margin:0px;
+}
+
+#header {
+  #pin {
+    a {
+      .size(52px,40px);
+      background:@image_symbol_32;
+      background-position:0px 12px;
+      display:block;
+      float:right;
+    }
+
+    a * {
+      display:none;
+    }
+  }
+
+  #bar {
+    margin-top:20px;
+    margin-left:20px;
+  }
+
+  #bar h2 {
+    padding-top:4px;
+  }
+}
+
+
+
+#content {
+  margin:20px;
+}
+
+
+
+#footer {
+  background-color:@color_white;
+  left:0px;
+  bottom:0px;
+  width:100%;
+  height:44px;
+}
+
+#logo {
+  .size(32px, 40px);
+  background:@image_symbol_32;
+  background-position:0px 14px;
+  margin:0px 0px 0px 20px;
+  float:left;
+}
+
+#menu {
+  margin:0px 20px;
+  float:left;
+
+  li {
+    margin:8px 8px 8px 0px;
+    float:left;
+
+    a {
+      .is_panel;
+      .colors(@color_snow, @color_ease);
+
+      font:12pt @type_black;
+      padding:4px 8px 4px 8px;
+
+      display:block;
+      text-decoration:none;
+      text-align:center;
+    }
+
+    a:hover {
+      .colors(@color_snow, @color_ease);
+
+      text-decoration:none;
+    }
+
+    a:active {
+      .colors(@palette_menu_fg_active, @palette_menu_bg_active);
+
+      text-decoration:none;
+    }
+  }
+}
+
+#published, #breadcrumb, #related, #website {
+  display:none;
+}
+
+#disclaimer {
+  font:0.8em @type_mono;
+  font-weight:normal;
+
+  clear:both;
+  margin-bottom:16pt;
+  text-align:center;
+
+  h6 {
+    border-top:1pt solid @palette_border;
+    padding-top:8pt;
+  }
+
+  * {
+    font:0.8em @type_mono;
+    font-weight:normal;
+  }
+
+  p {
+    display:none;
+  }
+}
+
+#see {
+  position:relative;
+  left:-7px;
+  border-left:3px solid @color_fog;
+  padding:4px 0px 0px 4px;
+  margin:12px 0px;
+
+  h6 {
+    background:none;
+    left:0px;
+    margin-left:0px;
+    padding-left:0px;
+    position:inherit;
+    display:block;
+    font-size:14pt;
+  }
+
+  ul {
+    .is_sub_list;
+    margin:0px;
+    padding-bottom:0px;
+  }
+
+  ul a .order {
+    display:none;
+  }
+}

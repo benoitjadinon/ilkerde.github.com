@@ -1,0 +1,7 @@
+extends: article.j2
+default_block: post
+listable: false
+area: Meta
+section: Development
+searchindex: false
+

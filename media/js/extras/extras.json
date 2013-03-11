@@ -1,0 +1,10 @@
+{ 
+  "requirejs"       : "= 2.1.4",
+  "cs"              : "= 0.4.3",
+  "almond"          : "= 0.2.4",
+  "coffee-script"   : "= 1.4.0",
+  "qunit"           : "= 1.11.0",
+  "specit           : "= 0.0.0",
+  "jquery"          : "= 1.7.2",
+  "jquery-autotype" : "= 0.5.0"
+}

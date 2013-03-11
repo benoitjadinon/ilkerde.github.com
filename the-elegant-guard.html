@@ -1,0 +1,189 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The Elegant Guard</title>
+    <meta name="description" content="A short description of how the power of expressions can be used in an elegant way to check preconditions (aka. code contracts) with C#.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="the-elegant-guard">
+    <a href="the-elegant-guard"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>The Elegant Guard</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>I'm a firm believer and proponent of <a href="/polyglotism.html">Polyglotism</a>. Within the last 2 years, I travelled through various languages like F#, Python and Ruby, to name a few. Nonetheless, I'm still around the C# landscape and happen to find the language as well as parts of the .NET framework yet quite elegant from time to time.</p>
+<p>Recently, I stumbled upon a code fragment from a smart developer who wrote a class to check preconditions a la <a href="http://research.microsoft.com/en-us/projects/contracts/">Code Contracts</a>. I personally like to guard methods to have them express explicitly the context they operate in. As I saw the code and its usage, I thought to myself: "A quite nice piece of C#". Well, be the judge for yourself:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Guard</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ArgumentNotNull</span><span class="p">(</span><span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;&gt;</span> <span class="n">argumentAccessor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ArgumentNotNull</span><span class="p">(</span><span class="n">argumentAccessor</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ArgumentNotNull</span><span class="p">(</span><span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;&gt;</span> <span class="n">argumentAccessor</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">compiledAccessor</span> <span class="p">=</span> <span class="n">argumentAccessor</span><span class="p">.</span><span class="n">Compile</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">compiledAccessor</span><span class="p">()</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentNullException</span><span class="p">(</span>
+        <span class="n">GetMemberName</span><span class="p">(</span><span class="n">argumentAccessor</span><span class="p">.</span><span class="n">Body</span><span class="p">),</span> 
+        <span class="n">message</span> <span class="p">??</span> <span class="kt">string</span><span class="p">.</span><span class="n">Emtpy</span>
+      <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ArgumentsNotNull</span><span class="p">(</span><span class="k">params</span> <span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;&gt;</span> <span class="n">argumentAccessors</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="n">var</span> <span class="n">argumentAccessor</span> <span class="n">argumentAccessors</span><span class="p">)</span>
+      <span class="n">ArgumentNotNull</span><span class="p">(</span><span class="n">argumentAccessor</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">private</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">GetMemberName</span><span class="p">(</span><span class="n">Expression</span> <span class="n">expression</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">expression</span><span class="p">.</span><span class="n">NodeType</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="n">ExpressionType</span><span class="p">.</span><span class="n">MemberAccess</span><span class="p">:</span>
+        <span class="n">var</span> <span class="n">memberExpression</span> <span class="p">=</span> <span class="p">(</span><span class="n">MemberExpression</span><span class="p">)</span><span class="n">expression</span><span class="p">;</span>
+        <span class="n">var</span> <span class="n">supername</span> <span class="p">=</span> <span class="n">GetMemberName</span><span class="p">(</span><span class="n">memberExpression</span><span class="p">.</span><span class="n">Expression</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">supername</span><span class="p">)</span> <span class="p">?</span>
+          <span class="n">memberExpression</span><span class="p">.</span><span class="n">Member</span><span class="p">.</span><span class="n">Name</span> <span class="p">:</span>
+          <span class="n">supername</span> <span class="p">+</span> <span class="sc">&#39;.&#39;</span> <span class="p">+</span> <span class="n">memberExpression</span><span class="p">.</span><span class="n">Member</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+
+      <span class="k">case</span> <span class="n">ExpressionType</span><span class="p">.</span><span class="n">Constant</span><span class="p">:</span>
+      <span class="k">case</span> <span class="n">ExpressionType</span><span class="p">.</span><span class="n">Parameter</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+
+      <span class="k">case</span> <span class="n">ExpressionType</span><span class="p">.</span><span class="n">Convert</span><span class="p">:</span>
+        <span class="n">var</span> <span class="n">unaryExpression</span> <span class="p">=</span> <span class="p">(</span><span class="n">UnaryExpression</span><span class="p">)</span><span class="n">expression</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nf">GetMemberName</span><span class="p">(</span><span class="n">unaryExpression</span><span class="p">.</span><span class="n">Operand</span><span class="p">);</span>
+
+      <span class="k">default</span><span class="p">:</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentException</span><span class="p">(</span><span class="s">&quot;The expression is not a member access or method call expression&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The usage actually reveals the elegance of this little expression tango dance:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="n">DateTime</span><span class="p">[]</span> <span class="nf">GetReferenceDates</span><span class="p">(</span>
+  <span class="kt">string</span> <span class="n">section</span><span class="p">,</span> 
+  <span class="n">DateTime</span><span class="p">?</span> <span class="n">inception</span><span class="p">,</span> 
+  <span class="n">DateTime</span><span class="p">?</span> <span class="n">expiry</span><span class="p">,</span> 
+  <span class="kt">bool</span> <span class="n">requireQuarterlyAlignment</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="n">Guard</span><span class="p">.</span><span class="n">ArgumentsNotNull</span><span class="p">(</span>
+    <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">section</span><span class="p">,</span>
+    <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">inception</span><span class="p">,</span>
+    <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">expiry</span>
+    <span class="p">);</span>
+
+    <span class="cm">/* ... */</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This isn't that bad, is it? I find this type of guarding quite readable and fluent. Plus, it just finds the parameter name in question all by itself for proper a <code>ArgumentNullException</code> message.</p>
+<p><em>Note</em>: I am <em>well aware</em> of the fact that such an approach can cause (serious) performance issues. Especially when you're using the guarded method in loops or recursion. I'm not telling you that this is <em>the way</em> to do guarding, I'm just telling you that I find it to be an elegant approach.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>11 October 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/the-elegant-guard.html&title=The Elegant Guard">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

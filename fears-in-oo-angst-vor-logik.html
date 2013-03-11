@@ -1,0 +1,159 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Fears in OO: Angst vor Logik</title>
+    <meta name="description" content="Eine kurzer - etwas ungewohnter - Einblick in das OO-Design und oftmals vorzufindende &#34;logikarme&#34; Objektmodelle.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="fears-in-oo-angst-vor-logik">
+    <a href="fears-in-oo-angst-vor-logik"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Fears in OO: Angst vor Logik</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Ich möchte mich ein wenig über Dinge unterhalten, über die Entwickler normalerweise nicht unbedingt gerne reden: Über Ängste. Es hört sich vielleicht etwas komisch an, aber auch Entwickler müssen sich in ihrer täglichen Arbeit ihren eigenen Ängsten stellen. Z. B. beim entwickeln und konzipieren von objekt-orientierter Software.</p>
+<p>Es gibt viele verschiedene "Ängste", denen man beim programmieren von OO-Software entgegnen kann. Diese Ängste lassen sich im Übrigen relativ gut aus dem Code "herauslesen".</p>
+<p>Eine der oftgesehendsten Ängste in der OO-Programmierung ist die Angst vor Logik. Im OO-Design spiegelt sich das relativ deutlich wider, wenn man viele verschiedene Klassen und Objekte hat, die sich um eine zusammenhängende Aufgabe, einen bestimmten Datensatz oder ein bestimmtes Objekt kümmern.</p>
+<p>Ein Beispiel soll das Ganze etwas verdeutlichen:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Credentials</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="kt">string</span> <span class="n">username</span><span class="p">;</span>
+  <span class="k">private</span> <span class="kt">string</span> <span class="n">password</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="nf">Credentials</span><span class="p">()</span> <span class="p">{}</span>
+
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">UserName</span> <span class="p">{</span>
+    <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">username</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">set</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="n">username</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">Password</span> <span class="p">{</span>
+    <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">password</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">set</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="n">password</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Auf den ersten Blick mag man annehmen, die Klasse sei ein einfacher Datencontainer (DTO). Dem ist jedoch nicht so. In Wahrheit ist die Klasse eine Business Entity ohne Logik. Die Logik ist einfach in anderen Klassen, wie z.B. in solch einer:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">CredentialsUtility</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">Validate</span><span class="p">(</span><span class="n">Credentials</span> <span class="n">credentials</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">credentials</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+      <span class="k">return</span> <span class="p">!</span><span class="n">String</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">credentials</span><span class="p">.</span><span class="n">UserName</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>An diesen zwei Klassen wird deutlich, das der Entwickler eine höllische Angst gehabt haben muss, das Business Entity mit Logik anzureichern. Denn i.d.R. ist es genau die Aufgabe eines Business Entities, diese Logik (z.B. Validierung) zu kapseln. Meiner Meinung nach ist diese "Angst" völlig unberechtigt und für ein kohärentes OO-Design kontraproduktiv. Fakt ist zudem, das es zur fundamentalen Schule der OO-Programmierung gehört, Klassen mit <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">eindeutigen Verantwortlichkeiten</a> zu schaffen.</p>
+<p>Natürlich muss im Einzelfall geprüft werden, welcher Grad der Kohäsion für die Anwendung und die Architektur geeignet erscheint. Prinzipiell sollte man jedoch ein gutes Mittelmaß zwischen <a href="http://en.wikipedia.org/wiki/Cohesion_%28computer_science%29">Kohäsion</a> und <a href="http://en.wikipedia.org/wiki/Coupling_%28computer_science%29">Kopplung</a> anstreben. Komponentenorientierung und lose Kopplung ist sicherlich wichtig. Auf der Ebene der Anwendungslogik respektive Business Entities sollte man meines Erachtens tunlichst zusammenhängende Logik in die Klasse zu kapseln.</p>
+<p>Mein Fazit: <strong>Keine Angst vor Logik</strong> in der Objekt-Orientierung! Anwendungslogik gehört in die Anwendungsklassen und muss nur dann verteilt werden, wenn es wirklich notwendig ist.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>27 May 2008</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/fears-in-oo-angst-vor-logik.html&title=Fears in OO: Angst vor Logik">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

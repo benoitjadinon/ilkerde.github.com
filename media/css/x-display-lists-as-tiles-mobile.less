@@ -1,0 +1,41 @@
+@import "assets/colors";
+@import "assets/fonts";
+@import "assets/images";
+@import "assets/mixins";
+
+.do_display_lists_as_tiles {
+  ul, ol {
+    padding:0px;
+    list-style-position:none;
+    list-style-type:none;
+  }
+
+  ul + * {
+    clear:both;
+    padding-top:16px;
+  }
+
+  li {
+    .is_panel;
+    .size(80px, 80px);
+
+    margin:5px;
+    float:left;
+  }
+
+  li a {
+    .is_panel;
+    .size(80px, 80px);
+    .colors(@palette_menu_fg_over, @palette_menu_bg_over);
+
+    display:block;
+    float:left;
+
+    font:10pt @type_black;
+
+    text-decoration:none;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+}

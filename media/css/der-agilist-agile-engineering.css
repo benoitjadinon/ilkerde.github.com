@@ -1,0 +1,75 @@
+/*
+### colors.less
+
+Definition of colors used throughout the entire website.
+
+The color system divides into two sections. The first section
+defines the colors itself (similar to a palette definition).
+
+The second section actually semantically defines which color
+is used for whatever component on the website. By convention,
+three color types exist:
+
+- Foreground color, suffixed "_fg"
+  This is the (primary) stroke color, used for text
+
+- Background color, suffixed "_bg"
+  This is the fill color, i.e. used for filled boxes
+
+- Line color, suffixed "_line"
+  The (secondary) hairline stroke color, used for borders
+
+Apart from the color type, colors can be defined
+for several object states as well. The default state
+is the "idle" (or passive) state. It's the only state
+which is not explicitly weaved into the color name.
+In addition to the default state there's:
+
+- over: user focuses object with mouse (mouseover/hover)
+- active: highlighted, active object, important in context
+- inactive: dimmed, inactive object, commonly unusable
+- error: strong highlight, object is errornous
+
+*/
+/*
+The main color set only contains greys, light whites
+and the theme blue color called "ease".
+*/
+/* > standard text colors */
+/* > colors for links */
+/* > code sections / fragments */
+/* > quotes / citations */
+/* > image captions / subtitles */
+/* > icons (usually imagery only) */
+/* > informational, contextually lower important text elements */
+/* > presentational canvas (slide) colors */
+/* > headings and titles */
+/* > main menu */
+/* > form labels */
+/* > input elements */
+/* > command button */
+/* > border colors */
+.x-interview-log .portrait {
+  float: right;
+  margin-left: 12px;
+}
+.x-interview-log blockquote {
+  margin-top: 24px;
+  padding-bottom: 6px;
+  padding-top: 12px;
+  border-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  border-top: 1px solid #c2c3c4;
+}
+#der-agilist-agile-engineering .portrait {
+  float: right;
+  margin-left: 12px;
+}
+#der-agilist-agile-engineering blockquote {
+  margin-top: 24px;
+  padding-bottom: 6px;
+  padding-top: 12px;
+  border-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  border-top: 1px solid #c2c3c4;
+}

@@ -1,0 +1,130 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Pipemania: Die Entstehungsgeschichte</title>
+    <meta name="description" content="Die Hintergründe zu meiner Motivation, ein Spiel mit .NET und C# zu entwickeln.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="pipemania-die-entstehungsgeschichte">
+    <a href="pipemania-die-entstehungsgeschichte"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Pipemania: Die Entstehungsgeschichte</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Einige meiner Leser werden es vermutlich schon wissen, dass ich seit geraumer Zeit an einem kleinen Projekt arbeite: Pipemania. Ein paar Worte zu Pipemania, bevor ich die Ziele des Projektes näher beschreibe:</p>
+<p>Pipemania ist ein <a href="http://en.wikipedia.org/wiki/Pipemania">klassisches, sehr einfaches Strategie- und Puzzlespiel</a>. Ziel des Spieles ist es, zufällig vorgegebene Rohrstücke auf der Spielfläche so zu verlegen, dass eine Pipeline entsteht. Der Witz dabei ist, das die Zeit zum verlegen der Rohrstücke automatisch durch den einsetzenden Wasserfluss begrenzt wird.</p>
+<p>Die Idee zum Schreiben des Spiels entstand einige Monate bevor ich mich zur eigentlichen Entwicklung durchgerungen habe. Ich fand es schlichtweg zu sinnfrei, das Spiel nur um des Spieles willen zu entwickeln. Doch kaum hatte ich mich versehen, schon gab es ein paar Gründe mehr, das Spiel endlich in die Tat umzusetzen:</p>
+<p>Einer meiner Coding-Freunde beschäftigte sich unlängst mit der neuen WPF. Als gestandener Windows-Forms Entwickler staunte er nicht schlecht, als er feststellen musste, dass sich doch viele neue Konzepte vor ihm auftaten. Ganz besonders verwundert war er über die neuen Commanding- und Event-Konzepte von WPF.</p>
+<p>Als wir in einer ruhigen Minute uns darüber unterhielten, fragte er mich, wieso denn überhaupt diese neuen Techniken eingeführt worden sind - Schliesslich hätten Events und Backend-Binding wenig mit Animationen und Vektorgrafiken gemein. Ich entgegnete ihm, dass die in WPF sehr presenten Konzepte sehr wohl nichts Neues seien. Ausserdem behauptete ich dreist, die Konzepte würden endlich weiterhelfen, eine klare Trennung von UI und Logik zu gestalten. Als Antwort darauf erhielt ich ein trockenes 'Beweise es mir, am Besten mit Windows Forms'. Tja, das hat man davon, wenn man sich weit aus dem Fenster lehnt.</p>
+<p>Ein paar Wochen später hatte ich ein kurzes Gespräch mit einem Kollegen über Microkernels. Er verwende derzeit einen einfachen <a href="http://weblogs.asp.net/ralfw/archive/2006/08/02/Dynamic-component-binding-made-easier-_2D00_-An-easy-to-use-Microkernel-to-help-reap-Contract_2D00_First_2D00_Design-benefits-in-.NET-programs.aspx">Microkernel von Westphal</a> und sei damit im Großen und Ganzen ganz zufrieden. Er frage sich warum dieses Konzept nicht von Haus aus im .NET Framework verankert sei. Ich erwiderte ihm, dass das .NET Framework ein im Prinzip gleichwertiges <a href="http://de.wikipedia.org/wiki/Dependency_Injection">Dependency Injection</a> Modell schon seit Version 1.0 an Bord hat. Das sei ihm neu und er wüsste nicht, wie er es einsetzen könne. Noch ein Grund mehr für Pipemania.</p>
+<p>Kurzum finden sich beide Fragestellungen - und deren Antworten - in Pipemania wieder. Neben diesen 'Initialzündungen' habe ich noch einige weitere Designs und Patterns in den Quellcode gepackt, um vielleicht an einem späteren Zeitpunkt ein paar konkrete Beispiele zu haben, wenn es mich dazu hinreißen sollte, darüber zu schreiben.</p>
+<p>Trotz diesem 'tieferen Sinn' des Projektes habe ich so gut wie es mir möglich war versucht, das Spiel so zu entwickeln, dass es auch spielenswert ist oder zumindest ein netter kleiner Zeitvertreib ist.</p>
+<p>Interesse an Pipemania und dem, was dahinter steckt? Falls ja, dann kann ich beruhigend auf die nahe Zukunft hinweisen, denn bald werde ich das Projekt und dessen Konzepte hier näher vorstellen. Stay tuned!</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>16 August 2007</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/pipemania-die-entstehungsgeschichte.html&title=Pipemania: Die Entstehungsgeschichte">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

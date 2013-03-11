@@ -1,0 +1,136 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Distanz ist Widerstand</title>
+    <meta name="description" content="Über die Bedeutung und Wirkung von Distanz am praktischen Beispiel der Artefakt- und Code-Organisation.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="distanz-ist-widerstand">
+    <a href="distanz-ist-widerstand"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Distanz ist Widerstand</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Distanz ist Widerstand. Widerstand gegen Veränderung. Im richtigen Leben wie auch in der Software-Entwicklung. Und das mit dem Widerstand meine ich durchaus im wörtlich-physikalischen Sinne. Ich möchte jetzt keine Formeln ableiten, denn dazu wäre ich bei Weitem nicht im Stande. Aber so aus dem Gefühl heraus ist die Korrelation von Distanz zu Widerstand mindestens linear. In einfachen Worten: Je länger die Distanz, umso höher der Widerstand gegen Veränderung.</p>
+<h3 id="veranderung-ist-ein-katalysator">Veränderung ist ein Katalysator</h3>
+<p>Die Agilisten wissen was ich meine. Ohne Veränderung geht garnichts. Keine Verschlechterung, keine Verbesserung, keine Erkenntnis. Gerade deswegen hört man ja auch in immer mehr Software-Unternehmen im Flur die Selbstmotivationsformel der Agilisten: <strong>"Embrace Change!"</strong></p>
+<p>Toll gesagt. Aber wie soll man denn etwas ändern, wenn man seine Kollegen, den Chef, oder den Kunden nicht in Reichweite hat? Natürlich lässt sich etwas ändern. Emails schreiben, Konzepte entwerfen, den Tischnachbarn mit "neuen Ideen" indoktrinieren.</p>
+<p>Ja, ein enthusiastischer Software-Entwickler würde das alles wohl tun. Doch der Wirkungsgrad seines Tuns ist eben abhängig von Distanz. Ein Beispiel: der <a href="http://manifesto.softwarecraftsmanship.org">Software-Craftsman</a> von eben hat eine Idee: <a href="http://de.wikipedia.org/wiki/Paarprogrammierung">Pair Programming</a>. Er probiert es mit seinem Kollegen und Kumpel aus, den er nach 2-3 Sessions schon durch den Know-How-Austausch überzeugen konnte. Wäre z.B. sein Team-Lead oder Produkt-Manager <em>(Anmerkung: ich sag' jetzt mal absichtlich nicht Product Owner)</em> im gleichen Raum, dann wäre der Wirkungsgrad ein anderer als wenn der Vorschlag dem Team-Lead über die wöchentlichen Email-Reports oder Telefon-Schaltung unterbreitet wird. <a href="/raumliche-nahe-wird-unterschatzt.html">Räumliche Nähe wird leider oft unterschätzt</a>.</p>
+<h3 id="lange-rede-kurze-wege">Lange Rede, Kurze Wege</h3>
+<p>Bevor es jetzt für den einen oder anderen zu philosophisch oder theoriegetrieben wird: Diese methodisch-prozessgetriebene Sichtweise ist nicht alles. Widerstand gegen Veränderung gibt es auch im täglichen, ganz und gar praktischen Sinn. Ein wunderbares Beispiel ist da das Programmieren selbst.</p>
+<p>Bei der Software-Entwicklung geht es ja nicht nur um Code in "Programmiersprache" produzieren. Man kodiert auch andere Dinge. Man entwickelt und designed Modelle, man dokumentiert Anforderungen, Szenarien, Ausnahmefälle und Entscheidungen. Man entwickelt Tests für Anforderung, Verifikation und Design. Das und noch einiges mehr macht man "eben so nebenbei". Doch wo und wie?</p>
+<p>Was ich damit meine ist schlichtweg das Medium, die Mittel und Methoden, mit denen man Artefakte schafft. So z.B. bei Tests. Ich bin (wohl einer der wenigen) Freunde von sog. "Near-Specs", also <a href="/unit-tests-sind-immer-dabei.html">Unit-Tests, die so nah wie möglich am SUT</a> sind. Sei es aus physikalischer, logischer oder virtueller Sicht. Der Grund ist für mich einleuchtend: Je weniger Distanz ich zwischen Test &amp; Implementierung zu überbrücken habe, umso frequentiver ändere ich auch.</p>
+<p>Das ist sowohl beim TDD als auch in der Wartung der Fall. Beim TDD ist meine Erfahrung, dass man "einfach mehr refaktorisiert" - insbesondere die Tests selbst. Beim Revisit ist es oft so, dass man strukturelle Änderungen (z.B. Klasse aufteilen, Vererbung einführen) wesentlich zügiger und "schmerzfreier" durchführen kann. Aus dieser Erfahrung heraus ist für mich die Nähe der Tests ein großer Vorteil.</p>
+<h3 id="aus-den-augen-aus-dem-sinn">Aus den Augen, aus dem Sinn ?!?</h3>
+<p>Schlußendlich dreht sich für mich als Entwickler bei Fragen Rund um den "Ort" von Artefakten um das Thema der "allgemeinen Erwartung" und Erreichbarkeit. Ein schönes Beispiel ist die Design- und Konzeptdokumentation. Ich frage mich dann meist selbst: </p>
+<p>Wo (im Gesamtprojekt) würde ich die Dokumentation zu dem Konzept erwarten? Wo (und unter welchen Szenarien) würde die Dokumentation am meisten angewendet werden (also geändert und gelesen werden)? Wo wäre für mich ein plausibler, einfach zu erkennender Einstiegspunkt für die Dokumentation?</p>
+<p>Oft kommen bei unterschiedlichen Projekten ähnliche Antworten heraus. Eine allgemeingültige Antwort habe ich für mich jedoch nicht gefunden. Doch bei allen Antworten spielt die Minimierung der Distanz von Artefakten eine bedeutende Rolle. </p>
+<p>Grund: <em>Distanz ist Widerstand gegen Veränderung.</em></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>10 January 2011</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/distanz-ist-widerstand.html&title=Distanz ist Widerstand">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

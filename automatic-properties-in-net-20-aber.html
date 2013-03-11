@@ -1,0 +1,138 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Automatic Properties in .NET 2.0, aber...</title>
+    <meta name="description" content="Eine kurze Beschreibung wie man den Einsatz von Automatic Properties in C# 2.0 Projekten ermöglichen kann.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="automatic-properties-in-net-20-aber">
+    <a href="automatic-properties-in-net-20-aber"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Automatic Properties in .NET 2.0, aber...</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Mittlerweile kennen ja einige schon die neuen Features von .NET 3.5 / C# 3.0. Einer der hilfreichen neuen Features sind die <a href="http://msdn.microsoft.com/en-us/library/bb384054.aspx">Automatic Properties</a>. Mit ihnen lassen sich schnell einfache "nur" get-set Properties implementieren:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Parameters</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">Option</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">Code</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Das interessante an den Automatic Properties ist, das sie durch die Art ihrer Implementierung als "Syntactic Sugar" oder "Compiler Trick" mit dem .NET Framework 2.0 lauffähig sind. Das geht sogar soweit, das man mit <a href="http://bypsoft.blogspot.com/2007/11/visual-studio-2008-automatic-properties.html">Visual Studio 2008 Automatic Properties für .NET 2.0-Projekte</a> verwenden kann.</p>
+<p>Doch uneingeschränkt einsetzen kann man das Automatic Property Feature nicht - denn, kompiliert man den gleichen Code nur mit <a href="http://blogs.msdn.com/msbuild/archive/2006/11/03/msbuild-orcas-and-multi-targeting.aspx">MSBuild 3.5 mit Target .NET 2.0</a> (z.B. mit <a href="http://nant.sourceforge.net/">NAnt</a> am Buildserver), wird der Build mit einem Compiler-Error fehlschlagen:</p>
+<div class="codehilite"><pre><span class="go">[msbuild] Project\Parameters.cs(65,7): error CS0501: &#39;Project.Parameters.get&#39; must declare a body because it is not marked abstract or extern</span>
+<span class="go">[msbuild] Project\Parameters.cs(66,4): error CS0501: &#39;&#39;Project.Parameters.set&#39; must declare a body because it is not marked abstract or extern</span>
+</pre></div>
+
+
+<p>Nun, das liegt wohl wiederum ein wenig an der Art der Implementierung der Automatic Properties als auch an Visual Studio 2008. Denn eigentlich hat MSBuild vollkommen recht, die Automatic Properties nicht zu übersetzen, denn für einige neue <a href="http://amroamroamro.wordpress.com/2007/06/26/understanding-linq-c-an-article-describing-the-new-language-features-of-linq/#FinalNotes">C# 3.0 Features ist das ExtensionAttribute (System.Runtime.CompilerServices) von System.Core.dll notwendig (.NET 3.5)</a> - so auch für Automatic Properties.</p>
+<p>Trotzdem schafft es VS2008, die Automatic Properties für .NET 2.0 zu kompilieren. Ich kenne die Interna von VS2008 nicht, ich nehme aber mal an das wird wohl daran liegen, das VS2008 die System.Core.dll während des Builds aufruft und refenzieren lässt, obwohl der Target der Assembly auf .NET 2.0 steht.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>29 May 2008</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/automatic-properties-in-net-20-aber.html&title=Automatic Properties in .NET 2.0, aber...">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

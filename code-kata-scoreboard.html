@@ -1,0 +1,243 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Code Kata Scoreboard</title>
+    <meta name="description" content="A little code kata created for fun at Munich&#39;s Coding Dojo with regards to the European Football Championship 2012. It started out for the fun initially but quickly turned into an interesting challenge with a diverse set of solutions and variations.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/code-kata-scoreboard.css?i3">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="code-kata-scoreboard">
+    <a href="code-kata-scoreboard"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Code Kata Scoreboard</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>This week we had a <a href="dotnet-coding-dojo.html">Coding Dojo in Munich</a> and let me just start by saying that it was real funny and challenging at the same time. That by itself is a nearly regular thing for Coding Dojo's. Yet, this time we had some extra fun and extra challenge thanks to a special Code Kata developed for the Dojo. The kata I'm talking about is <em>Scoreboard</em>.</p>
+<p>Before I continue on describing the kata, let me give credits to the original inventor of the kata. Just the very same as it was with the incredible <a href="code-kata-pickakin.html">PickAkin</a> kata, this kata was not my idea but the idea of smart people around me. The kata was invented specifically for this Coding Dojo by <a href="http://dwcg-consulting.de/">Dennis Wagner</a>, who is a regular Dojo participant in Munich for over a year. Since the <a href="http://www.uefa.com/uefaeuro/index.html">UEFA Euro 2012</a> Football Championship is being played this summer, he thought if it was possible to integrate this topical theme into our Dojo activities. The very successful result of this attempt is in fact the <em>Scoreboard</em> kata.</p>
+<p>At our Coding Dojo, we had three teams tackling the kata and to all our surprise the kata turned to be a very good source for interesting questions and approaches within the field of OO Design, type layout and test structuring. I wholeheartedly can recommend this Code Kata to anyone. Enjoy!</p>
+<h3 id="scoreboard">Scoreboard</h3>
+<p>You are an aspiring mobile developer who just got a little product description from a very big organization to develop an App for. The name of the organization is no less than the great <a href="http://www.uefa.com/">UEFA</a> himself, asking you to develop an App which is able to display <em>Scoreboards</em> of groups for the Euro 2012 Championship. As an added feature, the App should be able to display Scoreboards for not only the actual match results, but any "custom" match results the user may enter.</p>
+<p>As one of the first and most important things, you need to develop the scoring rules. It's crucial that the scoreboards actually display positions of teams <em>without any error</em>. Therefore, the official scoring system of the UEFA needs to be implemented. The scoring rules are described in detail in the official <a href="http://www.uefa.com/multimediafiles/download/competitions/euro/91/87/57/918757_download.pdf">Regulations of the Euro 2012</a> Football Championship, Section 8.</p>
+<p>As a nice to have suggestion, the sponsor of the UEFA would be very pleased if your implementation of the scoreboard rule system would be flexible and interchangable, so that regularatory changes or even different rules from other tournaments such as the FIFA World Championship could be applied.</p>
+<p>To verify the core functionality of the scoreboard, you may now use the results of Group A from Euro 2012:</p>
+<h4 id="matchresults">Matchresults</h4>
+<table>
+<thead>
+<tr>
+<th>Team I</th>
+<th>P</th>
+<th>P</th>
+<th>Team II</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Poland</td>
+<td>1</td>
+<td>1</td>
+<td>Greece</td>
+</tr>
+<tr>
+<td>Russia</td>
+<td>4</td>
+<td>1</td>
+<td>Czech</td>
+</tr>
+<tr>
+<td>Greece</td>
+<td>1</td>
+<td>2</td>
+<td>Czech</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td>1</td>
+<td>1</td>
+<td>Russia</td>
+</tr>
+<tr>
+<td>Greece</td>
+<td>1</td>
+<td>0</td>
+<td>Russia</td>
+</tr>
+<tr>
+<td>Czech</td>
+<td>1</td>
+<td>0</td>
+<td>Poland</td>
+</tr>
+</tbody>
+</table>
+<p>The matches listed have been played in order from top to bottom.</p>
+<h4 id="scoreboard_1">Scoreboard</h4>
+<table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Played</th>
+<th>Won</th>
+<th>Drawn</th>
+<th>Lost</th>
+<th>For</th>
+<th>Against</th>
+<th>Diff</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Czech</td>
+<td>3</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>-1</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Greece</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Russia</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>-1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p><em>Enjoy!</em></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>28 June 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/code-kata-scoreboard.html&title=Code Kata Scoreboard">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

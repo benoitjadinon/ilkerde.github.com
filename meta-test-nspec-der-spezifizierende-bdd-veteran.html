@@ -1,0 +1,162 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Meta-Test: NSpec – der spezifizierende BDD-Veteran</title>
+    <meta name="description" content="Vortstellung des behavior-driven-orientierten Unit-Test-Frameworks NSpec für das .NET Framework.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="meta-test-nspec-der-spezifizierende-bdd-veteran">
+    <a href="meta-test-nspec-der-spezifizierende-bdd-veteran"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Meta-Test: NSpec – der spezifizierende BDD-Veteran</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Einige meiner Freunde hatten schon Mutmaßungen geäußert, das <a href="http://xunit.codeplex.com/">xUnit</a> wohl das nächste Framework sein wird, welches ich mit "FizzBuzz" bearbeite. Keine Sorge, xUnit ist auch auf meiner Liste, aber heute soll zunächst einmal ein etwas weniger bekanntes Framework beäugelt werden: <a href="http://nspec.tigris.org/">NSpec</a>.</p>
+<p><a href="http://codebetter.com/blogs/jeremy.miller/archive/2006/06/27/146872.aspx">NSpec ist einer der ersten - wenn nicht sogar das erste explizite - BDD-Framework für .NET</a>. Mittlerweile wird es auch nicht mehr aktiv betreut. "Schade", denkt man sich auf der einen Seite. Andererseits jedoch nicht sooo schlimm. Schließlich war der Autor mit dieser "finalen" Version offensichtlich zufrieden. Überdies ist die NSpec-Basis auch in andere Test-Frameworks eingeflossen - dazu aber später mehr. Bleibt auch noch anzumerken, dass man NSpec und MSpec nicht miteinander verwechseln sollte. Die Frameworks unterscheiden sich massiv, obwohl die Namensähnlichkeit das nicht vermuten lässt. Auch <a href="http://github.com/machine/machine.specifications">MSpec</a> wird in meiner kleinen Serie sicherlich in der Zukunft noch seinen Platz finden. Doch nun zurück zu NSpec (N wie Nordpol) :-).</p>
+<p>Bei NSpec dreht sich, wie nicht anders zu erwarten war, alles um Spezifikationen. Ich werde hier nicht näher auf die <a href="bdd-thebetterwayofunittesting.html">Gemeinsamkeiten oder Unterschiede zwischen TDD und BDD</a> eingehen, werde auch nicht groß ausholen, wie und wieso BDD entstanden ist. Es sei nur kurz angerissen, dass bei BDD nicht das "testen" im Vordergrund steht, sondern die Spezifizierung des Verhaltens - Behavior Driven Design eben. Abgesehen von der Terminologie ergeben sich weitere Unterschiede, die auch am Beispiel von NSpec feststellbar sind. Genug Vorgeplänkel, auf geht's zum Test-Training mit dem <a href="http://codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz">FizzBuzz-Kata</a>!</p>
+<h3 id="der-ton-macht-die-musik-das-wort-macht-die-geschichte">Der Ton macht die Musik - das Wort macht die Geschichte</h3>
+<p>Visual Studio öffnen, Projekt anlegen, Referenz hinzufügen, los geht's! Äähhh... wohl doch nicht... wie schreibt man eigentlich Spezifikationen im Code? Also Finger wieder weg von der Tastatur und überlegen, um was es eigentlich geht. Ok, es geht um FizzBuzz. FizzBuzz ist ein Spiel mit <strong>Spielregeln</strong> - das ist es im Endeffekt, worum es hier geht. So eine Spielregel ist recht einfach, denn es gibt zu einer bestimmten Spielsituation - sagen wir mal zu einem bestimmten <strong>Kontext</strong> - immer eine Regel, die man anwenden muss, damit man weiter im Spiel bleibt. Anders ausgedrückt ist bei einer Spielsituation zu prüfen, ob die Regel richtig angewendet wird - ob also die <strong>Erwartungen</strong> an das Spielverhalten erfüllt werden.</p>
+<p>Aha - so ist das also. Hört sich vielleicht etwas abgedreht an, aber dieses kurze <a href="http://de.wikipedia.org/wiki/Repetitorium">Repetitorium</a> hilft beim Schreiben der ersten Spezifikation ungemein. Denn NSpec kennt zwei Attribute, namentlich <code>[Context]</code> und <code>[Specification]</code>. Mit der kleinen o.g. FizzBuzz-Geschichte macht das auch Sinn, wie man dann auch im Code sehen kann:</p>
+<div class="codehilite"><pre><span class="k">using</span> <span class="nn">NSpec.Framework</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">FizzBuzzNSpec.Specs</span> <span class="p">{</span>
+<span class="na">  [Context]</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">when_a_number_is_a_multiple_of_three</span> <span class="p">{</span>
+<span class="na">    [Specification]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">then_translation_should_return_fizz</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">Specify</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="m">6</span><span class="p">)).</span><span class="n">ShouldEqual</span><span class="p">(</span><span class="s">&quot;Fizz&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">readonly</span> <span class="n">FizzBuzz</span> <span class="n">game</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzz</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="anderes-framework-andere-sitten">Anderes Framework, andere Sitten</h3>
+<p>Die Konsequenz dieser Verbalisierung und Strukturierung ist zunächst einmal eine verbesserte Lesbarkeit. Weiterhin fällt auf, dass es nicht mehr eine einzige "Testklasse" gibt, sondern 4 verschiedene Spezifikationsklassen. Für jede Spielregel eine. Das Stukturierungssystem ist zwar mit klassischen Test-Frameworks auch möglich, wird aber nicht so offensichtlich "verlangt" wie es das BDD-Test-Framework NSpec hier tut.</p>
+<p><img alt="" class="alignright" src="/media/images/nspec_structure.png" />
+Den Code für die anderen Spielregeln spare ich mir - es sieht dem o.g. Beispiel sehr ähnlich :-). Hat man erst einmal das "sprechendere" schreiben der Tests bzw. Spezifikationen verinnerlicht, geht es mit NSpec auch zügig voran. Schade ist hier die fehlende Integration und Unterstützung für Visual Studio und die üblichen Code-Assistenten. Mir blieb also nichts anderes übrig, als in der Konsole meine Tests auszuführen. Das hat mich beim implementieren schon gebremst.</p>
+<h3 id="bewertung">Bewertung</h3>
+<ul>
+<li><strong>Dauer</strong><br />
+    Naja, knapp 15 Minuten für FizzBuzz ist doch schon dreimal länger als mit NUnit. Die mangelnde Integration und die 4 Klassen machen schon etwas aus.</li>
+<li><strong>Größe</strong><br />
+    Statt wie bei den "Klassikern" 4 Methoden sind es nun 4 Klassen. Schon etwas mehr Code - hält sich aber noch "in Grenzen".</li>
+<li><strong>Tooling</strong><br />
+    Schlecht. Der Runner ist dabei - das war's.</li>
+<li><strong>Usability</strong><br />
+    Geht so. Die Assertions mit <code>Specify</code> reichen für die gröbsten Fälle aus.</li>
+<li><strong>Support</strong><br />
+    Die Entwicklung von NSpec ist eingestellt. Support damit auch. Zukunftssicherheit ist etwas anderes.</li>
+</ul>
+<h3 id="nspec-for-a-taste-of-bdd">NSpec for a taste of BDD</h3>
+<p>NSpec - ein Vorreiter im .NET-Bereich was BDD angeht. Man merkt dem Framework deutlich an, dass es ein "erster Wurf" von der Adaption der BDD-Methodik ist. Nichtsdestotrotz ist as Framework schlank, stabil und gut anwendbar. Es zeigt schon in der Anwendung, wie das "System BDD" die Herangehensweise an die Spezifikation und Verifikation von Code ändert. Man beschäftigt sich automatisch mehr mit Kernaussagen und ist "gezwungen", sich deutlicher und expliziter in der Domänensprache zu artikulieren. NSpec kann diesen systematischen Aspekt transportieren, ist aber mittlerweile auf Grund der mangelnden Integration und des fehlenden Supports nicht mehr für "Real-World"-Projekte ernstzunehmen. Trotzdem hat mir der Ausflug mit NSpec Spaß gemacht. Da bekomme ich glatt Lust &amp; Laune mir schon das nächste Framework anzuschauen. Stay tuned!</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>22 April 2010</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/meta-test-nspec-der-spezifizierende-bdd-veteran.html&title=Meta-Test: NSpec – der spezifizierende BDD-Veteran">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

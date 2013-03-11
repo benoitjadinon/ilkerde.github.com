@@ -1,0 +1,2664 @@
+/*
+style-mobile.less
+=================
+
+Mobile stylesheet definition file.
+
+This is the stylesheet for used for mobile / small screen / touch
+devices. It supports all use cases which are covered by the master
+stylesheet. For more information, see `style.less`, the master
+stylesheet definiton.
+
+*/
+/* reset only */
+/* http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+/* remember to highlight inserts somehow! */
+ins {
+  text-decoration: none;
+}
+del {
+  text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* assets */
+/*
+### fonts.less
+
+Definition of fonts used throughout the entire website.
+
+By convention, the website layout only uses three types.
+- A text type in sans
+- A heading type in sans black condensed for
+  - headings
+  - menu
+  - buttons
+  - image captions
+  - form labels
+  - info/metadata
+
+- A mono type for
+  - source code
+  - text input elements
+  - comments
+
+*/
+/*
+### colors.less
+
+Definition of colors used throughout the entire website.
+
+The color system divides into two sections. The first section
+defines the colors itself (similar to a palette definition).
+
+The second section actually semantically defines which color
+is used for whatever component on the website. By convention,
+three color types exist:
+
+- Foreground color, suffixed "_fg"
+  This is the (primary) stroke color, used for text
+
+- Background color, suffixed "_bg"
+  This is the fill color, i.e. used for filled boxes
+
+- Line color, suffixed "_line"
+  The (secondary) hairline stroke color, used for borders
+
+Apart from the color type, colors can be defined
+for several object states as well. The default state
+is the "idle" (or passive) state. It's the only state
+which is not explicitly weaved into the color name.
+In addition to the default state there's:
+
+- over: user focuses object with mouse (mouseover/hover)
+- active: highlighted, active object, important in context
+- inactive: dimmed, inactive object, commonly unusable
+- error: strong highlight, object is errornous
+
+*/
+/*
+The main color set only contains greys, light whites
+and the theme blue color called "ease".
+*/
+/* > standard text colors */
+/* > colors for links */
+/* > code sections / fragments */
+/* > quotes / citations */
+/* > image captions / subtitles */
+/* > icons (usually imagery only) */
+/* > informational, contextually lower important text elements */
+/* > presentational canvas (slide) colors */
+/* > headings and titles */
+/* > main menu */
+/* > form labels */
+/* > input elements */
+/* > command button */
+/* > border colors */
+/*
+images.less
+===========
+
+Definition of images used throughout the entire website.
+
+The images defined herein are solely used for the purpose of
+the website layout. They have no special relevance for the content
+presented on the website. It mostly contains icons, which
+in fact can have multiple states.
+*/
+/* 
+mixins.less
+===========
+
+Generic style components ready to be weaved into website styles.
+*/
+/*
+### FUNCTIONS
+
+Pameterized style sets used frequently.
+*/
+/*
+### COMPONENTS
+
+Style components used by multiple website elements.
+*/
+.is_panel_top {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+}
+.is_panel_bottom {
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+}
+.is_panel {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+}
+.is_no_panel {
+  border-top-left-radius: 0px;
+  -moz-border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -moz-border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  -moz-border-bottom-right-radius: 0px;
+}
+/* squares, usually used for icons. */
+.is_square {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+}
+/* an icon is a simple 40x40 tiled navigation/menu/option item */
+.is_icon {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  color: #c2c3c4;
+  background-color: #ffffff;
+  font: 12pt 'PT Sans Narrow', 'Helvetica', 'Ubuntu Condensed', 'Century', 'Arial', sans-serif;
+  display: block;
+}
+.is_icon a {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  display: block;
+  opacity: 0.5;
+}
+.is_icon a:hover {
+  opacity: 1;
+}
+.is_icon a * {
+  display: none;
+}
+.is_button {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 1px solid #c2c3c4;
+  padding: 1px 7px 1px 7px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.is_button_over {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+}
+.is_command {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.is_page_list {
+  list-style-type: none;
+  list-style-position: inside;
+}
+.is_page_list li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+.is_page_list li * {
+  font-size: 16px;
+  line-height: 24px;
+}
+.is_page_list li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.is_page_list li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+.is_page_list li a:hover * {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+.is_page_list li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+.is_page_list li:last-child {
+  border-bottom: 0px;
+}
+.is_info_list {
+  list-style-type: none;
+  list-style-position: inside;
+}
+.is_info_list li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+.is_info_list li * {
+  font-size: 14px;
+  line-height: 18px;
+}
+.is_info_list li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.is_info_list li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+.is_info_list li a:hover * {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+.is_info_list li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+.is_info_list li:last-child {
+  border-bottom: 0px;
+}
+.is_sub_list {
+  list-style-type: none;
+  list-style-position: inside;
+}
+.is_sub_list li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+.is_sub_list li * {
+  font-size: 14px;
+  line-height: 18px;
+}
+.is_sub_list li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.is_sub_list li a:hover {
+  color: #f7f7f7;
+  background-color: #94989c;
+}
+.is_sub_list li a:hover * {
+  color: #f7f7f7;
+  background-color: #94989c;
+}
+.is_sub_list li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+.is_sub_list li:last-child {
+  border-bottom: 0px;
+}
+.is_sub_list li a span {
+  color: #443a3a;
+}
+.pygments {
+  background: #f0f0f0;
+  /* Comment */
+
+  /* Error */
+
+  /* Keyword */
+
+  /* Operator */
+
+  /* Comment.Multiline */
+
+  /* Comment.Preproc */
+
+  /* Comment.Single */
+
+  /* Comment.Special */
+
+  /* Generic.Deleted */
+
+  /* Generic.Emph */
+
+  /* Generic.Error */
+
+  /* Generic.Heading */
+
+  /* Generic.Inserted */
+
+  /* Generic.Output */
+
+  /* Generic.Prompt */
+
+  /* Generic.Strong */
+
+  /* Generic.Subheading */
+
+  /* Generic.Traceback */
+
+  /* Keyword.Constant */
+
+  /* Keyword.Declaration */
+
+  /* Keyword.Namespace */
+
+  /* Keyword.Pseudo */
+
+  /* Keyword.Reserved */
+
+  /* Keyword.Type */
+
+  /* Literal.Number */
+
+  /* Literal.String */
+
+  /* Name.Attribute */
+
+  /* Name.Builtin */
+
+  /* Name.Class */
+
+  /* Name.Constant */
+
+  /* Name.Decorator */
+
+  /* Name.Entity */
+
+  /* Name.Exception */
+
+  /* Name.Function */
+
+  /* Name.Label */
+
+  /* Name.Namespace */
+
+  /* Name.Tag */
+
+  /* Name.Variable */
+
+  /* Operator.Word */
+
+  /* Text.Whitespace */
+
+  /* Literal.Number.Float */
+
+  /* Literal.Number.Hex */
+
+  /* Literal.Number.Integer */
+
+  /* Literal.Number.Oct */
+
+  /* Literal.String.Backtick */
+
+  /* Literal.String.Char */
+
+  /* Literal.String.Doc */
+
+  /* Literal.String.Double */
+
+  /* Literal.String.Escape */
+
+  /* Literal.String.Heredoc */
+
+  /* Literal.String.Interpol */
+
+  /* Literal.String.Other */
+
+  /* Literal.String.Regex */
+
+  /* Literal.String.Single */
+
+  /* Literal.String.Symbol */
+
+  /* Name.Builtin.Pseudo */
+
+  /* Name.Variable.Class */
+
+  /* Name.Variable.Global */
+
+  /* Name.Variable.Instance */
+
+  /* Literal.Number.Integer.Long */
+
+}
+.pygments .hll {
+  background-color: #ffffcc;
+}
+.pygments .c {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.pygments .err {
+  border: none;
+}
+.pygments .k {
+  color: #336699;
+}
+.pygments .o {
+  color: #666666;
+}
+.pygments .cm {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.pygments .cp {
+  color: #c0c0c0;
+}
+.pygments .c1 {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.pygments .cs {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.pygments .gd {
+  color: #cc0000;
+}
+.pygments .ge {
+  font-style: italic;
+}
+.pygments .gr {
+  color: #cc0000;
+}
+.pygments .gh {
+  color: #336699;
+  font-weight: bold;
+}
+.pygments .gi {
+  color: #00cc00;
+}
+.pygments .go {
+  color: #666666;
+}
+.pygments .gp {
+  color: #0000cc;
+}
+.pygments .gs {
+  font-weight: bold;
+}
+.pygments .gu {
+  color: #336699;
+  font-weight: bold;
+}
+.pygments .gt {
+  color: #003366;
+}
+.pygments .kc {
+  color: #003366;
+}
+.pygments .kd {
+  color: #003366;
+}
+.pygments .kn {
+  color: #003366;
+}
+.pygments .kp {
+  color: #003366;
+}
+.pygments .kr {
+  color: #003366;
+}
+.pygments .kt {
+  color: #003366;
+}
+.pygments .m {
+  color: #666666;
+}
+.pygments .s {
+  color: #443a3a;
+}
+.pygments .na {
+  color: #003366;
+}
+.pygments .nb {
+  color: #003366;
+}
+.pygments .nc {
+  color: #003366;
+}
+.pygments .no {
+  color: #003366;
+}
+.pygments .nd {
+  color: #003366;
+}
+.pygments .ni {
+  color: #999999;
+}
+.pygments .ne {
+  color: #cc0000;
+}
+.pygments .nf {
+  color: #003366;
+}
+.pygments .nl {
+  color: #003366;
+}
+.pygments .nn {
+  color: #999999;
+}
+.pygments .nt {
+  color: #999999;
+}
+.pygments .nv {
+  color: #443a3a;
+}
+.pygments .ow {
+  color: #003366;
+}
+.pygments .w {
+  color: #c2c3c4;
+}
+.pygments .mf {
+  color: #666666;
+}
+.pygments .mh {
+  color: #666666;
+}
+.pygments .mi {
+  color: #666666;
+}
+.pygments .mo {
+  color: #666666;
+}
+.pygments .sb {
+  color: #443a3a;
+}
+.pygments .sc {
+  color: #443a3a;
+}
+.pygments .sd {
+  color: #443a3a;
+}
+.pygments .s2 {
+  color: #443a3a;
+}
+.pygments .se {
+  color: #443a3a;
+}
+.pygments .sh {
+  color: #443a3a;
+}
+.pygments .si {
+  color: #000000;
+}
+.pygments .sx {
+  color: #443a3a;
+}
+.pygments .sr {
+  color: #000000;
+}
+.pygments .s1 {
+  color: #443a3a;
+}
+.pygments .ss {
+  color: #443a3a;
+}
+.pygments .bp {
+  color: #003366;
+}
+.pygments .vc {
+  color: #003366;
+}
+.pygments .vg {
+  color: #003366;
+}
+.pygments .vi {
+  color: #003366;
+}
+.pygments .il {
+  color: #666666;
+}
+.highlight {
+  background: #f0f0f0;
+  /* Comment */
+
+  /* Error */
+
+  /* Keyword */
+
+  /* Operator */
+
+  /* Comment.Multiline */
+
+  /* Comment.Preproc */
+
+  /* Comment.Single */
+
+  /* Comment.Special */
+
+  /* Generic.Deleted */
+
+  /* Generic.Emph */
+
+  /* Generic.Error */
+
+  /* Generic.Heading */
+
+  /* Generic.Inserted */
+
+  /* Generic.Output */
+
+  /* Generic.Prompt */
+
+  /* Generic.Strong */
+
+  /* Generic.Subheading */
+
+  /* Generic.Traceback */
+
+  /* Keyword.Constant */
+
+  /* Keyword.Declaration */
+
+  /* Keyword.Namespace */
+
+  /* Keyword.Pseudo */
+
+  /* Keyword.Reserved */
+
+  /* Keyword.Type */
+
+  /* Literal.Number */
+
+  /* Literal.String */
+
+  /* Name.Attribute */
+
+  /* Name.Builtin */
+
+  /* Name.Class */
+
+  /* Name.Constant */
+
+  /* Name.Decorator */
+
+  /* Name.Entity */
+
+  /* Name.Exception */
+
+  /* Name.Function */
+
+  /* Name.Label */
+
+  /* Name.Namespace */
+
+  /* Name.Tag */
+
+  /* Name.Variable */
+
+  /* Operator.Word */
+
+  /* Text.Whitespace */
+
+  /* Literal.Number.Float */
+
+  /* Literal.Number.Hex */
+
+  /* Literal.Number.Integer */
+
+  /* Literal.Number.Oct */
+
+  /* Literal.String.Backtick */
+
+  /* Literal.String.Char */
+
+  /* Literal.String.Doc */
+
+  /* Literal.String.Double */
+
+  /* Literal.String.Escape */
+
+  /* Literal.String.Heredoc */
+
+  /* Literal.String.Interpol */
+
+  /* Literal.String.Other */
+
+  /* Literal.String.Regex */
+
+  /* Literal.String.Single */
+
+  /* Literal.String.Symbol */
+
+  /* Name.Builtin.Pseudo */
+
+  /* Name.Variable.Class */
+
+  /* Name.Variable.Global */
+
+  /* Name.Variable.Instance */
+
+  /* Literal.Number.Integer.Long */
+
+}
+.highlight .hll {
+  background-color: #ffffcc;
+}
+.highlight .c {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.highlight .err {
+  border: none;
+}
+.highlight .k {
+  color: #336699;
+}
+.highlight .o {
+  color: #666666;
+}
+.highlight .cm {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #c0c0c0;
+}
+.highlight .c1 {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.highlight .cs {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.highlight .gd {
+  color: #cc0000;
+}
+.highlight .ge {
+  font-style: italic;
+}
+.highlight .gr {
+  color: #cc0000;
+}
+.highlight .gh {
+  color: #336699;
+  font-weight: bold;
+}
+.highlight .gi {
+  color: #00cc00;
+}
+.highlight .go {
+  color: #666666;
+}
+.highlight .gp {
+  color: #0000cc;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #336699;
+  font-weight: bold;
+}
+.highlight .gt {
+  color: #003366;
+}
+.highlight .kc {
+  color: #003366;
+}
+.highlight .kd {
+  color: #003366;
+}
+.highlight .kn {
+  color: #003366;
+}
+.highlight .kp {
+  color: #003366;
+}
+.highlight .kr {
+  color: #003366;
+}
+.highlight .kt {
+  color: #003366;
+}
+.highlight .m {
+  color: #666666;
+}
+.highlight .s {
+  color: #443a3a;
+}
+.highlight .na {
+  color: #003366;
+}
+.highlight .nb {
+  color: #003366;
+}
+.highlight .nc {
+  color: #003366;
+}
+.highlight .no {
+  color: #003366;
+}
+.highlight .nd {
+  color: #003366;
+}
+.highlight .ni {
+  color: #999999;
+}
+.highlight .ne {
+  color: #cc0000;
+}
+.highlight .nf {
+  color: #003366;
+}
+.highlight .nl {
+  color: #003366;
+}
+.highlight .nn {
+  color: #999999;
+}
+.highlight .nt {
+  color: #999999;
+}
+.highlight .nv {
+  color: #443a3a;
+}
+.highlight .ow {
+  color: #003366;
+}
+.highlight .w {
+  color: #c2c3c4;
+}
+.highlight .mf {
+  color: #666666;
+}
+.highlight .mh {
+  color: #666666;
+}
+.highlight .mi {
+  color: #666666;
+}
+.highlight .mo {
+  color: #666666;
+}
+.highlight .sb {
+  color: #443a3a;
+}
+.highlight .sc {
+  color: #443a3a;
+}
+.highlight .sd {
+  color: #443a3a;
+}
+.highlight .s2 {
+  color: #443a3a;
+}
+.highlight .se {
+  color: #443a3a;
+}
+.highlight .sh {
+  color: #443a3a;
+}
+.highlight .si {
+  color: #000000;
+}
+.highlight .sx {
+  color: #443a3a;
+}
+.highlight .sr {
+  color: #000000;
+}
+.highlight .s1 {
+  color: #443a3a;
+}
+.highlight .ss {
+  color: #443a3a;
+}
+.highlight .bp {
+  color: #003366;
+}
+.highlight .vc {
+  color: #003366;
+}
+.highlight .vg {
+  color: #003366;
+}
+.highlight .vi {
+  color: #003366;
+}
+.highlight .il {
+  color: #666666;
+}
+.codehilite {
+  background: #f0f0f0;
+  /* Comment */
+
+  /* Error */
+
+  /* Keyword */
+
+  /* Operator */
+
+  /* Comment.Multiline */
+
+  /* Comment.Preproc */
+
+  /* Comment.Single */
+
+  /* Comment.Special */
+
+  /* Generic.Deleted */
+
+  /* Generic.Emph */
+
+  /* Generic.Error */
+
+  /* Generic.Heading */
+
+  /* Generic.Inserted */
+
+  /* Generic.Output */
+
+  /* Generic.Prompt */
+
+  /* Generic.Strong */
+
+  /* Generic.Subheading */
+
+  /* Generic.Traceback */
+
+  /* Keyword.Constant */
+
+  /* Keyword.Declaration */
+
+  /* Keyword.Namespace */
+
+  /* Keyword.Pseudo */
+
+  /* Keyword.Reserved */
+
+  /* Keyword.Type */
+
+  /* Literal.Number */
+
+  /* Literal.String */
+
+  /* Name.Attribute */
+
+  /* Name.Builtin */
+
+  /* Name.Class */
+
+  /* Name.Constant */
+
+  /* Name.Decorator */
+
+  /* Name.Entity */
+
+  /* Name.Exception */
+
+  /* Name.Function */
+
+  /* Name.Label */
+
+  /* Name.Namespace */
+
+  /* Name.Tag */
+
+  /* Name.Variable */
+
+  /* Operator.Word */
+
+  /* Text.Whitespace */
+
+  /* Literal.Number.Float */
+
+  /* Literal.Number.Hex */
+
+  /* Literal.Number.Integer */
+
+  /* Literal.Number.Oct */
+
+  /* Literal.String.Backtick */
+
+  /* Literal.String.Char */
+
+  /* Literal.String.Doc */
+
+  /* Literal.String.Double */
+
+  /* Literal.String.Escape */
+
+  /* Literal.String.Heredoc */
+
+  /* Literal.String.Interpol */
+
+  /* Literal.String.Other */
+
+  /* Literal.String.Regex */
+
+  /* Literal.String.Single */
+
+  /* Literal.String.Symbol */
+
+  /* Name.Builtin.Pseudo */
+
+  /* Name.Variable.Class */
+
+  /* Name.Variable.Global */
+
+  /* Name.Variable.Instance */
+
+  /* Literal.Number.Integer.Long */
+
+}
+.codehilite .hll {
+  background-color: #ffffcc;
+}
+.codehilite .c {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.codehilite .err {
+  border: none;
+}
+.codehilite .k {
+  color: #336699;
+}
+.codehilite .o {
+  color: #666666;
+}
+.codehilite .cm {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.codehilite .cp {
+  color: #c0c0c0;
+}
+.codehilite .c1 {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.codehilite .cs {
+  color: #c0c0c0;
+  font-style: italic;
+}
+.codehilite .gd {
+  color: #cc0000;
+}
+.codehilite .ge {
+  font-style: italic;
+}
+.codehilite .gr {
+  color: #cc0000;
+}
+.codehilite .gh {
+  color: #336699;
+  font-weight: bold;
+}
+.codehilite .gi {
+  color: #00cc00;
+}
+.codehilite .go {
+  color: #666666;
+}
+.codehilite .gp {
+  color: #0000cc;
+}
+.codehilite .gs {
+  font-weight: bold;
+}
+.codehilite .gu {
+  color: #336699;
+  font-weight: bold;
+}
+.codehilite .gt {
+  color: #003366;
+}
+.codehilite .kc {
+  color: #003366;
+}
+.codehilite .kd {
+  color: #003366;
+}
+.codehilite .kn {
+  color: #003366;
+}
+.codehilite .kp {
+  color: #003366;
+}
+.codehilite .kr {
+  color: #003366;
+}
+.codehilite .kt {
+  color: #003366;
+}
+.codehilite .m {
+  color: #666666;
+}
+.codehilite .s {
+  color: #443a3a;
+}
+.codehilite .na {
+  color: #003366;
+}
+.codehilite .nb {
+  color: #003366;
+}
+.codehilite .nc {
+  color: #003366;
+}
+.codehilite .no {
+  color: #003366;
+}
+.codehilite .nd {
+  color: #003366;
+}
+.codehilite .ni {
+  color: #999999;
+}
+.codehilite .ne {
+  color: #cc0000;
+}
+.codehilite .nf {
+  color: #003366;
+}
+.codehilite .nl {
+  color: #003366;
+}
+.codehilite .nn {
+  color: #999999;
+}
+.codehilite .nt {
+  color: #999999;
+}
+.codehilite .nv {
+  color: #443a3a;
+}
+.codehilite .ow {
+  color: #003366;
+}
+.codehilite .w {
+  color: #c2c3c4;
+}
+.codehilite .mf {
+  color: #666666;
+}
+.codehilite .mh {
+  color: #666666;
+}
+.codehilite .mi {
+  color: #666666;
+}
+.codehilite .mo {
+  color: #666666;
+}
+.codehilite .sb {
+  color: #443a3a;
+}
+.codehilite .sc {
+  color: #443a3a;
+}
+.codehilite .sd {
+  color: #443a3a;
+}
+.codehilite .s2 {
+  color: #443a3a;
+}
+.codehilite .se {
+  color: #443a3a;
+}
+.codehilite .sh {
+  color: #443a3a;
+}
+.codehilite .si {
+  color: #000000;
+}
+.codehilite .sx {
+  color: #443a3a;
+}
+.codehilite .sr {
+  color: #000000;
+}
+.codehilite .s1 {
+  color: #443a3a;
+}
+.codehilite .ss {
+  color: #443a3a;
+}
+.codehilite .bp {
+  color: #003366;
+}
+.codehilite .vc {
+  color: #003366;
+}
+.codehilite .vg {
+  color: #003366;
+}
+.codehilite .vi {
+  color: #003366;
+}
+.codehilite .il {
+  color: #666666;
+}
+/* components */
+/*
+core-mobile.less
+================
+
+mobile standards.
+*/
+/*
+core.less
+=========
+
+standard html tag elements / components definitions.
+*/
+body {
+  color: #443a3a;
+  background-color: #ffffff;
+  font: 16px 'Gudea', 'Helvetica', 'Ubuntu', 'Segoe UI', 'Arial', sans-serif;
+  line-height: 24px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #443a3a;
+  background-color: #ffffff;
+  padding: 8px 0px 8px 0px;
+  font-family: 'PT Sans Narrow', 'Helvetica', 'Ubuntu Condensed', 'Century', 'Arial', sans-serif;
+  font-weight: normal;
+}
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 *,
+h6 * {
+  color: #443a3a;
+  background-color: #ffffff;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  text-decoration: none;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  text-decoration: underline;
+}
+h1 {
+  font-size: 40px;
+  line-height: 48px;
+}
+h2 {
+  font-size: 32px;
+  line-height: 36px;
+}
+h3,
+h4,
+h5 {
+  font-size: 24px;
+  line-height: 26px;
+}
+h6 {
+  font-size: 16px;
+}
+blockquote,
+q,
+cite,
+dfn {
+  font-style: italic;
+}
+hr,
+span.no {
+  display: none;
+}
+pre {
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+/*
+* Styles only related to main content area
+*/
+#content a {
+  color: #336699;
+}
+#content a:hover {
+  color: #000000;
+}
+#content img,
+#content .video {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+}
+#content img.small {
+  width: 150px;
+  min-width: 150px;
+  height: 150px;
+  min-height: 150px;
+}
+#content img.medium {
+  width: 640px;
+}
+#content img.alignleft {
+  float: left;
+  margin-right: 12px;
+}
+#content img.alignright {
+  float: right;
+  margin-left: 12px;
+}
+#content p:first-child {
+  padding-top: 0px;
+}
+#content p,
+#content ul,
+#content ol {
+  text-align: justify;
+  padding-top: 4px;
+  padding-bottom: 16px;
+}
+#content ul,
+#content ol {
+  list-style-position: outside;
+}
+#content ul {
+  list-style-type: disc;
+}
+#content ol {
+  list-style-type: decimal;
+}
+#content li {
+  margin-left: 48px;
+}
+#content blockquote {
+  color: #336699;
+  background-color: #ffffff;
+  border-left: 2px solid #336699;
+  margin: 0px 24px 24px 22px;
+  font-style: normal;
+}
+#content blockquote p {
+  padding: 4px;
+  font-style: normal;
+}
+#content q {
+  color: #336699;
+  background-color: #ffffff;
+  padding: 0px 2px 0px 2px;
+}
+#content p cite {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  position: relative;
+  top: -20px;
+}
+#content pre,
+#content code {
+  font-family: 'Droid Sans Mono', 'Monaco', 'Ubuntu Mono', 'Consolas', monospace;
+}
+#content p code {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  color: #443a3a;
+  background-color: #f7f7f7;
+  border: 1px solid #c2c3c4;
+  font-size: 14px;
+  padding: 1px 3px;
+}
+#content pre {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  color: #443a3a;
+  background-color: #f7f7f7;
+  border: 1px solid #c2c3c4;
+  display: block;
+  padding: 7px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 18px;
+  overflow: hidden;
+}
+#content h5,
+#content h6 {
+  background: url("../images/pin_8.png") no-repeat;
+  background-position: 4px;
+  position: relative;
+  left: -16px;
+  padding-left: 16px;
+}
+#content .figure {
+  margin: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  text-align: center;
+}
+#content .figure .caption {
+  font: 10px 'Droid Sans Mono', 'Monaco', 'Ubuntu Mono', 'Consolas', monospace;
+  float: right;
+  text-align: right;
+  padding-top: 0px;
+}
+body {
+  font: 12pt 'Gudea', 'Helvetica', 'Ubuntu', 'Segoe UI', 'Arial', sans-serif;
+  line-height: 16pt;
+}
+h1 {
+  font-size: 20pt;
+  line-height: 24pt;
+}
+h2 {
+  font-size: 20pt;
+  line-height: 24pt;
+}
+h3 {
+  font-size: 16pt;
+  line-height: 20pt;
+}
+h4 {
+  font-size: 14pt;
+}
+h5 {
+  font-size: 12pt;
+}
+h6 {
+  font-size: 11pt;
+}
+#content .video {
+  display: none;
+}
+#content p,
+#content ul,
+#content ol {
+  text-align: left;
+  padding-bottom: 12px;
+}
+#content li {
+  margin-left: 12px;
+}
+#content blockquote {
+  margin: 4px;
+}
+#content p cite {
+  font-size: 10pt;
+}
+#content pre,
+#content code {
+  font-size: 8pt;
+  line-height: 10pt;
+}
+#content p code {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  color: #443a3a;
+  background-color: #f7f7f7;
+  border: 1px solid #c2c3c4;
+  font-size: 8pt;
+  line-height: 10pt;
+  padding: 1px;
+}
+#content pre {
+  font-size: 8pt;
+  line-height: 10pt;
+  padding: 3px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+#content img.small {
+  width: 80px;
+  min-width: 80px;
+  height: 80px;
+  min-height: 80px;
+  display: block;
+  float: left;
+  margin-right: 8px;
+}
+#content img {
+  max-width: 100%;
+}
+#content h3,
+#content h4,
+#content h5 {
+  border-left: 3px solid #c2c3c4;
+  padding: 4px 0px 4px 4px;
+  left: -7px;
+  position: relative;
+  background: none;
+  font-size: 16pt;
+  line-height: 16pt;
+  margin: 4px 0px;
+}
+#content a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  background-color: #f0f0f0;
+  padding: 2px;
+  text-decoration: none;
+}
+/*
+home.less
+=========
+
+the "home" page (front cover page)
+*/
+.home-page #bar h2 {
+  color: #dddddd;
+}
+.home-page #breadcrumb,
+.home-page #published,
+.home-page #related {
+  display: none;
+}
+#content.home {
+  position: relative;
+  top: 0px;
+}
+#content.home p.greeting {
+  font-size: 16px;
+  line-height: 24px;
+}
+#content.home p {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+#content.home .editorpick,
+#content.home .mostwanted,
+#content.home .mostrecent {
+  list-style-type: none;
+  list-style-position: inside;
+}
+#content.home .editorpick li,
+#content.home .mostwanted li,
+#content.home .mostrecent li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+#content.home .editorpick li *,
+#content.home .mostwanted li *,
+#content.home .mostrecent li * {
+  font-size: 14px;
+  line-height: 18px;
+}
+#content.home .editorpick li a,
+#content.home .mostwanted li a,
+#content.home .mostrecent li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+#content.home .editorpick li a:hover,
+#content.home .mostwanted li a:hover,
+#content.home .mostrecent li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+#content.home .editorpick li a:hover *,
+#content.home .mostwanted li a:hover *,
+#content.home .mostrecent li a:hover * {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+#content.home .editorpick li span,
+#content.home .mostwanted li span,
+#content.home .mostrecent li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+#content.home .editorpick li:last-child,
+#content.home .mostwanted li:last-child,
+#content.home .mostrecent li:last-child {
+  border-bottom: 0px;
+}
+#content.home .editorpick .order,
+#content.home .mostwanted .order,
+#content.home .mostrecent .order {
+  width: 160px;
+}
+.home-page #bar {
+  display: none;
+}
+.home-page #header #pin {
+  width: 280px;
+  min-width: 280px;
+  height: 80px;
+  min-height: 80px;
+  background: url("../images/ilkerde.png") no-repeat;
+  margin: 20px auto;
+  display: block;
+  clear: both;
+}
+.home-page #header #pin a {
+  display: none;
+}
+#content.home .order {
+  display: none;
+}
+/*
+listing-mobile.less
+===================
+
+mobile styles for topic/timelined list of posts.
+*/
+/*
+listing.less
+============
+
+styles for page mode 'listing', a topic/timelined list of posts.
+*/
+#content.listing {
+  margin-bottom: 80px;
+}
+#content.listing .all {
+  list-style-type: none;
+  list-style-position: inside;
+}
+#content.listing .all li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+#content.listing .all li * {
+  font-size: 16px;
+  line-height: 24px;
+}
+#content.listing .all li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+#content.listing .all li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+#content.listing .all li a:hover * {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+#content.listing .all li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+#content.listing .all li:last-child {
+  border-bottom: 0px;
+}
+#content.listing .all order {
+  width: 160px;
+}
+#content.listing .order {
+  display: none;
+}
+/*
+portfolio.less
+================
+*/
+#content.portfolio .go {
+  float: right;
+  margin-left: 8px;
+  margin-top: 10px;
+}
+#content.portfolio .go a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #f7f7f7;
+  background-color: #336699;
+  padding: 8px;
+  text-align: left;
+}
+#content.portfolio .facts * {
+  font-size: 14px;
+}
+#content.portfolio .facts td {
+  width: 120px;
+  padding: 2px 0px;
+}
+#content.portfolio .facts th {
+  text-align: left;
+  font-weight: normal;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 2px 0px;
+}
+#content.portfolio .facts th:first-child {
+  padding-left: 10px;
+}
+#content.portfolio .facts th:last-child {
+  text-align: right;
+  padding-right: 10px;
+}
+#content.portfolio .facts tr td:first-child {
+  width: 160px;
+  padding-left: 10px;
+}
+#content.portfolio .facts tr td:first-child + td + td {
+  width: 200px;
+}
+#content.portfolio .facts tr td:last-child {
+  width: 140px;
+  text-align: right;
+  padding-right: 10px;
+}
+#content.portfolio .seminars {
+  list-style-type: none;
+  list-style-position: inside;
+  padding-bottom: 4px;
+}
+#content.portfolio .seminars li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+#content.portfolio .seminars li * {
+  font-size: 14px;
+  line-height: 18px;
+}
+#content.portfolio .seminars li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+#content.portfolio .seminars li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+#content.portfolio .seminars li a:hover * {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+#content.portfolio .seminars li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+#content.portfolio .seminars li:last-child {
+  border-bottom: 0px;
+}
+#content.portfolio .seminardesc {
+  font-size: 14px;
+}
+#content.portfolio img {
+  margin-bottom: 12px;
+}
+#content.portfolio h5 {
+  clear: both;
+}
+#content.portfolio .remark {
+  font-size: 12px;
+  font-style: italic;
+}
+/*
+bio.less
+================
+*/
+#content.bio .portrait {
+  float: left;
+  margin-right: 40px;
+}
+#content.bio .name {
+  font-family: 'PT Sans Narrow', 'Helvetica', 'Ubuntu Condensed', 'Century', 'Arial', sans-serif;
+  font-size: 24px;
+  line-height: 30px;
+  display: block;
+}
+#content.bio .tags {
+  color: #336699;
+}
+#content.bio .areas li {
+  font-size: 14px;
+  list-style: none;
+}
+#content.bio .areas li:first-child {
+  font-family: 'Droid Sans Mono', 'Monaco', 'Ubuntu Mono', 'Consolas', monospace;
+  font-weight: bold;
+}
+#content.bio .bio {
+  clear: both;
+  font-size: 14px;
+  line-height: 20px;
+}
+#content.bio .journal li {
+  list-style: none;
+  margin: 10px 0px;
+}
+#content.bio .journal .time {
+  float: left;
+  display: block;
+  width: 160px;
+  font-size: 14px;
+}
+#content.bio .journal .event {
+  float: left;
+  width: 460px;
+  margin-left: 10px;
+  border-left: 2px solid #dddddd;
+  padding-left: 8px;
+}
+#content.bio .journal .description {
+  float: left;
+  width: 460px;
+  font-size: 14px;
+  line-height: 20px;
+  margin-left: 170px;
+  border-left: 2px solid #dddddd;
+  padding-left: 8px;
+  margin-bottom: 20px;
+}
+#content.bio .profile {
+  clear: both;
+  margin: 10px 0px;
+  height: 80px;
+  margin-left: 180px;
+}
+#content.bio .profile li {
+  list-style: none;
+  float: left;
+  margin-right: 20px;
+  margin-left: 0px;
+}
+#content.bio .profile li a {
+  min-height: 32px;
+  height: 32px;
+  display: block;
+  padding-left: 40px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 10px;
+  width: 80px;
+}
+#content.bio #xing {
+  background: url("../images/xing_32.png") no-repeat;
+}
+#content.bio #linkedin {
+  background: url("../images/linkedin_32.png") no-repeat;
+}
+#content.bio #twitter {
+  background: url("../images/twitter_32.png") no-repeat;
+}
+#content.bio #github {
+  background: url("../images/github_32.png") no-repeat;
+}
+#content.bio #amazon {
+  background: url("../images/amazon_32.png") no-repeat;
+}
+#content.bio #gplus {
+  background: url("../images/google-plus_32.png") no-repeat;
+}
+#content.bio .journal li {
+  clear: both;
+}
+#content.bio .journal .time {
+  width: auto;
+  float: left;
+}
+#content.bio .journal .event {
+  width: auto;
+  clear: both;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  border-left: 3px solid #dddddd;
+  padding-left: 7px;
+}
+#content.bio .journal .description {
+  display: none;
+}
+#content.bio h5 {
+  clear: both;
+  margin-top: 10px;
+}
+#content.bio .profile {
+  clear: both;
+  margin: 10px 0px;
+  height: auto;
+}
+#content.bio .profile li {
+  margin-bottom: 20px;
+}
+#content.bio .profile li a {
+  width: 60px;
+}
+/*
+talks-mobile.less
+===================
+
+mobile styles for topic/timelined list of talks.
+*/
+/*
+talks.less
+============
+
+styles for page mode 'talks', a topic/timelined list of talks.
+*/
+#content.talks {
+  margin-bottom: 80px;
+}
+#content.talks .all {
+  list-style-type: none;
+  list-style-position: inside;
+}
+#content.talks .all li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+#content.talks .all li * {
+  font-size: 16px;
+  line-height: 24px;
+}
+#content.talks .all li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+#content.talks .all li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+#content.talks .all li a:hover * {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+#content.talks .all li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+#content.talks .all li:last-child {
+  border-bottom: 0px;
+}
+#content.talks .all order {
+  width: 160px;
+}
+#content.talks .order {
+  display: none;
+}
+/*
+talksummary.less
+================
+
+styles for page mode 'talksummary', an informational index page for talks.
+*/
+.talksummary-page #published {
+  display: none;
+}
+#content.talksummary .go {
+  float: right;
+  margin-left: 8px;
+  margin-top: 10px;
+}
+#content.talksummary .go a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #f7f7f7;
+  background-color: #336699;
+  padding: 8px;
+  text-align: left;
+}
+#content.talksummary .facts * {
+  font-size: 14px;
+}
+#content.talksummary .facts td {
+  width: 100px;
+  padding: 2px 0px;
+}
+#content.talksummary .facts th {
+  text-align: left;
+  font-weight: normal;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 2px 0px;
+}
+#content.talksummary .facts th:first-child {
+  padding-left: 10px;
+}
+#content.talksummary .facts th:last-child {
+  padding-right: 10px;
+}
+#content.talksummary .facts tr td:first-child {
+  padding-left: 10px;
+}
+#content.talksummary .facts tr td:last-child {
+  width: 320px;
+  padding-right: 10px;
+}
+#content.talksummary .journal {
+  list-style-type: none;
+  list-style-position: inside;
+  padding-bottom: 4px;
+}
+#content.talksummary .journal li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+#content.talksummary .journal li * {
+  font-size: 14px;
+  line-height: 18px;
+}
+#content.talksummary .journal li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+#content.talksummary .journal li a:hover {
+  color: #f7f7f7;
+  background-color: #94989c;
+}
+#content.talksummary .journal li a:hover * {
+  color: #f7f7f7;
+  background-color: #94989c;
+}
+#content.talksummary .journal li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+#content.talksummary .journal li:last-child {
+  border-bottom: 0px;
+}
+#content.talksummary .journal li a span {
+  color: #443a3a;
+}
+#content.talksummary .journal .order {
+  width: 160px;
+}
+#content.talksummary .journal .location {
+  text-align: left;
+  width: 160px;
+}
+#content.talksummary img {
+  margin-bottom: 12px;
+}
+#content.talksummary h5 {
+  clear: both;
+}
+#content.talksummary .journal .order {
+  display: none;
+}
+#content.talksummary .journal .location {
+  text-align: right;
+}
+#content.talksummary .facts {
+  width: 100%;
+}
+#content.talksummary .facts th + th,
+#content.talksummary .facts td + td {
+  width: auto;
+}
+#content.talksummary .facts th + th + th,
+#content.talksummary .facts th + th + th + th,
+#content.talksummary .facts td + td + td,
+#content.talksummary .facts td + td + td + td {
+  display: none;
+}
+/*
+commandbox-mobile.less
+======================
+
+mobile styles for the commandbox.
+as of today, just disable it on mobile devices.
+*/
+/*
+commandbox.less
+===============
+
+styles for the commandbox functionality (title bar line coupled with keyboard commands).
+*/
+#commandbox {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  color: #443a3a;
+  background-color: #ffffff;
+  display: none;
+  border: 1px solid #c2c3c4;
+  padding: 0px;
+  height: 42px;
+  position: fixed;
+  top: 38px;
+}
+#commandbox label {
+  color: #94989c;
+  background-color: #f0f0f0;
+  border-right: 1px solid #c2c3c4;
+  border-radius: 4px 0px 0px 4px;
+  display: block;
+  float: left;
+  height: 42px;
+  width: 120px;
+}
+#commandbox label span {
+  margin: 8px 4px 4px 10px;
+  font: 20px/24px 'PT Sans Narrow', 'Helvetica', 'Ubuntu Condensed', 'Century', 'Arial', sans-serif normal;
+  display: block;
+}
+#commandbox input {
+  color: #443a3a;
+  background-color: #ffffff;
+  font: 20px/24px 'Droid Sans Mono', 'Monaco', 'Ubuntu Mono', 'Consolas', monospace normal;
+  padding: 6px 4px 2px 10px;
+  margin: 2px 0px;
+  border: none;
+  width: 500px;
+}
+#commandbar {
+  color: #443a3a;
+  background-color: #ffffff;
+  border-bottom: 2px solid #c2c3c4;
+}
+#commandbar input {
+  color: #443a3a;
+  background-color: #ffffff;
+  border: none;
+  font-size: 32px;
+  line-height: 36px;
+  font-family: 'PT Sans Narrow', 'Helvetica', 'Ubuntu Condensed', 'Century', 'Arial', sans-serif;
+  font-weight: normal;
+}
+/* do nothing since default style hides away the form. anyway. */
+#page {
+  margin: 0px;
+}
+#header #pin a {
+  width: 52px;
+  min-width: 52px;
+  height: 40px;
+  min-height: 40px;
+  background: url("../images/ilkerde_logo_32.png") no-repeat;
+  background-position: 0px 12px;
+  display: block;
+  float: right;
+}
+#header #pin a * {
+  display: none;
+}
+#header #bar {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+#header #bar h2 {
+  padding-top: 4px;
+}
+#content {
+  margin: 20px;
+}
+#footer {
+  background-color: #ffffff;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 44px;
+}
+#logo {
+  width: 32px;
+  min-width: 32px;
+  height: 40px;
+  min-height: 40px;
+  background: url("../images/ilkerde_logo_32.png") no-repeat;
+  background-position: 0px 14px;
+  margin: 0px 0px 0px 20px;
+  float: left;
+}
+#menu {
+  margin: 0px 20px;
+  float: left;
+}
+#menu li {
+  margin: 8px 8px 8px 0px;
+  float: left;
+}
+#menu li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  color: #f0f0f0;
+  background-color: #336699;
+  font: 12pt 'PT Sans Narrow', 'Helvetica', 'Ubuntu Condensed', 'Century', 'Arial', sans-serif;
+  padding: 4px 8px 4px 8px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+}
+#menu li a:hover {
+  color: #f0f0f0;
+  background-color: #336699;
+  text-decoration: none;
+}
+#menu li a:active {
+  color: #443a3a;
+  background-color: #c2c3c4;
+  text-decoration: none;
+}
+#published,
+#breadcrumb,
+#related,
+#website {
+  display: none;
+}
+#disclaimer {
+  font: 0.8em 'Droid Sans Mono', 'Monaco', 'Ubuntu Mono', 'Consolas', monospace;
+  font-weight: normal;
+  clear: both;
+  margin-bottom: 16pt;
+  text-align: center;
+}
+#disclaimer h6 {
+  border-top: 1pt solid #c2c3c4;
+  padding-top: 8pt;
+}
+#disclaimer * {
+  font: 0.8em 'Droid Sans Mono', 'Monaco', 'Ubuntu Mono', 'Consolas', monospace;
+  font-weight: normal;
+}
+#disclaimer p {
+  display: none;
+}
+#see {
+  position: relative;
+  left: -7px;
+  border-left: 3px solid #c2c3c4;
+  padding: 4px 0px 0px 4px;
+  margin: 12px 0px;
+}
+#see h6 {
+  background: none;
+  left: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+  position: inherit;
+  display: block;
+  font-size: 14pt;
+}
+#see ul {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0px;
+  padding-bottom: 0px;
+}
+#see ul li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+#see ul li * {
+  font-size: 14px;
+  line-height: 18px;
+}
+#see ul li a {
+  border-top-left-radius: 2px;
+  -moz-border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  -moz-border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  -moz-border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  -moz-border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+#see ul li a:hover {
+  color: #f7f7f7;
+  background-color: #94989c;
+}
+#see ul li a:hover * {
+  color: #f7f7f7;
+  background-color: #94989c;
+}
+#see ul li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+#see ul li:last-child {
+  border-bottom: 0px;
+}
+#see ul li a span {
+  color: #443a3a;
+}
+#see ul a .order {
+  display: none;
+}

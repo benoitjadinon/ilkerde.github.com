@@ -1,0 +1,187 @@
+/* 
+mixins.less
+===========
+
+Generic style components ready to be weaved into website styles.
+*/
+
+@panel_radius:2px;
+@square_size:40px;
+
+
+/*
+### FUNCTIONS
+
+Pameterized style sets used frequently.
+*/
+
+.size (@width, @height) {
+  width:@width;
+  min-width:@width;
+  height:@height;
+  min-height:@height;
+}
+
+.colors (@fg, @bg) {
+  color:@fg;
+  background-color:@bg;
+}
+
+.resourcelist (@fontsize, @lineheight, @hpadding, @hicolor) {
+  list-style-type:none;
+  list-style-position:inside;
+
+  li {
+    margin-left:0px;
+    border-bottom:1px solid @palette_border;
+    padding:4px 0px;
+
+    * {
+      font-size:@fontsize;
+      line-height:@lineheight;
+    }
+
+    a {
+      .is_command;
+      .colors(@color_graphite, transparent);
+
+      display:block;
+      text-align:left;
+
+      padding-top:@hpadding;
+      padding-bottom:@hpadding;
+    }
+
+    a:hover {
+      .colors(@color_chalk, @hicolor);
+
+      * {
+        .colors(@color_chalk, @hicolor);
+      }
+    }
+
+    span {
+      .colors(@color_granit, transparent);
+
+      text-align:right;
+      float:right;
+    }
+  }
+
+  li:last-child {
+    border-bottom:0px;
+  }
+}
+
+
+
+/*
+### COMPONENTS
+
+Style components used by multiple website elements.
+*/
+
+.is_panel_top {
+  border-top-left-radius:@panel_radius;
+  -moz-border-top-left-radius:@panel_radius;
+  border-top-right-radius:@panel_radius;
+  -moz-border-top-right-radius:@panel_radius;
+}
+
+.is_panel_bottom {
+  border-bottom-left-radius:@panel_radius;
+  -moz-border-bottom-left-radius:@panel_radius;
+  border-bottom-right-radius:@panel_radius;
+  -moz-border-bottom-right-radius:@panel_radius;
+}
+
+.is_panel {
+  .is_panel_top;
+  .is_panel_bottom;
+}
+
+.is_no_panel {
+  border-top-left-radius:0px;
+  -moz-border-top-left-radius:0px;
+  border-top-right-radius:0px;
+  -moz-border-top-right-radius:0px;
+  border-bottom-left-radius:0px;
+  -moz-border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+  -moz-border-bottom-right-radius:0px;
+}
+
+/* squares, usually used for icons. */
+.is_square {
+  .size(40px, 40px);
+}
+
+
+
+/* an icon is a simple 40x40 tiled navigation/menu/option item */
+.is_icon {
+  .is_square;
+  .is_panel;
+
+  .colors(@palette_icon_fg, @palette_icon_bg);
+
+  font:12pt @type_black;
+  display:block;
+
+  a {
+    .is_square;
+
+    display:block;
+    opacity:0.5;
+  }
+
+  a:hover {
+    opacity:1;
+  }
+
+  a * {
+    display:none;
+  }
+}
+
+.is_button {
+  .is_panel;
+
+  border:1px solid @palette_border;
+  padding:1px 7px 1px 7px;
+
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.is_button_over {
+  .is_panel;
+
+  border:0px;
+  padding:2px 8px 2px 8px;
+}
+
+.is_command {
+  .is_panel;
+
+  border:0px;
+  padding:2px 8px 2px 8px;
+
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.is_page_list {
+  .resourcelist(16px, 24px, 8px, @color_ease);
+}
+
+.is_info_list {
+  .resourcelist(14px, 18px, 4px, @color_ease);
+}
+
+.is_sub_list {
+  .resourcelist(14px, 18px, 4px, @color_granit);
+
+  li a span { color:@color_graphite; }
+}
+

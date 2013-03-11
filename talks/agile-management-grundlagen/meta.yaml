@@ -1,0 +1,8 @@
+extends: slide.j2
+pagetype: slide
+default_block: manuscript
+manuscript: true
+listable: false
+title: "Agile Management Grundlagen"
+slidecount: 25
+created: !!timestamp 2012-05-25 16:00:00

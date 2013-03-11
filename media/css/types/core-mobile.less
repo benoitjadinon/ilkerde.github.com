@@ -1,0 +1,107 @@
+/*
+core-mobile.less
+================
+
+mobile standards.
+*/
+
+@import "core";
+
+body {
+  font:12pt @type_text;
+  line-height:16pt;
+}
+
+h1 { 
+  font-size:20pt; 
+  line-height:24pt;
+}
+
+h2 { 
+  font-size:20pt; 
+  line-height:24pt;
+}
+
+h3 { 
+  font-size:16pt; 
+  line-height:20pt;
+}
+
+h4 { font-size:14pt; }
+h5 { font-size:12pt; }
+h6 { font-size:11pt; }
+
+#content {
+  .video { display:none; }
+
+  p, ul, ol {
+    text-align:left;
+    padding-bottom:12px;
+  }
+
+  li {
+    margin-left:12px;
+  }
+
+  blockquote {
+    margin:4px;
+  }
+
+  p cite {
+    font-size:10pt;
+  }
+
+  pre, code {
+    font-size:8pt;
+    line-height:10pt;
+  }
+
+  p code {
+    .is_panel;
+    .colors(@palette_code_fg, @palette_code_bg);
+
+    border:1px solid @palette_border;
+    font-size:8pt;
+    line-height:10pt;
+    padding:1px;
+  }
+
+  pre {
+    font-size:8pt;
+    line-height:10pt;
+    padding:3px;
+    margin-top:4px;
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+
+  img.small {
+    .size(80px, 80px);
+    display:block;
+    float:left;
+    margin-right:8px;
+  }
+
+  img {
+    max-width:100%;
+  }
+
+  h3, h4, h5 {
+    border-left:3px solid @color_fog;
+    padding:4px 0px 4px 4px;
+    left:-7px;
+    position:relative;
+    background:none;
+    font-size:16pt;
+    line-height:16pt;
+    margin:4px 0px;
+  }
+
+  a {
+    .is_panel;
+    background-color:@color_snow;
+    padding:2px;
+    text-decoration:none;
+  }
+}
+

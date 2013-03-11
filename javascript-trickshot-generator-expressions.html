@@ -1,0 +1,173 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>JS Trickshot: Generator Expressions</title>
+    <meta name="description" content="A short introduction into a nice new javascript language feature borrowed from python land: generator expressions.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="javascript-trickshot-generator-expressions">
+    <a href="javascript-trickshot-generator-expressions"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>JS Trickshot: Generator Expressions</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>It's time for another short article in my 'trickshot' series. Today, I'll dip into JavaScript code. But beware, this is not only a blog post about a language trick. It's a little rant about <a href="http://nodejs.org">node.js</a> and <a href="http://code.google.com/p/v8">v8</a> as well.</p>
+<p><em>&lt;rant&gt;</em></p>
+<p>I'm no JavaScript guru. However, I wrote quite a few applications in JS, ranging from "the good old web-apps" up to device-specific apps. Even a small data visualization app using <a href="http://en.wikipedia.org/wiki/XULRunner">XULRunner</a>. I used <a href="http://nodejs.org">node.js</a> in the past (for file/image processing purposes) and I use it today as well. Now, the thing is: With this (little) experience of a year with Node, I'm starting to <em>really</em> dislike the whole concept of Node.</p>
+<p>I'm not going to dive in further about my reasons for not liking it. I just want to lay out that in my opinion the fact that Node is based on <a href="http://code.google.com/p/v8">v8</a> <em>and</em> is forcing me to stick to inappropiate server-side single-threaded event-loop is a big step back to stampcard engineering.</p>
+<p>It shouldn't be that way. JavaScript has a vibrant community and with the rise of HTML5 JavaScript really can become a serious (albeit <em>sick</em>) option for frontend engineering. Even more, recent developments on JS really show that we <em>generally</em> head to the right direction.</p>
+<p><em>&lt;/rant&gt;</em></p>
+<h4 id="generator-expressions">Generator Expressions</h4>
+<p><em>One</em> of those little known innovations surely is the development of the JavaScript language itself. Since I had to dive in a little deeper into JS last summer for a small project, I discovered some neat features I wasn't aware of. One of those features is called <em>generator expressions</em>.</p>
+<p>The python people now surely know what this trickshot is going to be. <em>Generator expressions</em> are a nice way of creating sequences and even do some mapping and filtering on them. Before we look at generator expressions, let's first build up a small range generator with the <em>yield</em> feature:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">range</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">e</span><span class="p">){</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="nx">s</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;=</span><span class="nx">e</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="nx">yield</span> <span class="nx">i</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>Now that we have a simple range sequence generator using <code>yield</code>, we could just iterate over it and display the sequence:</p>
+<div class="codehilite"><pre><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Good thing. Now, if we'd like to materialize the sequence of <code>range(1,15)</code>, we could preinitialize an array and just push the values into the array instead of logging. Something similar to this:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+  <span class="nx">a</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Looks fairly straight-forward. However, we could materialize our range much easier by using array comprehensions:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="nx">i</span> <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">))];</span>
+</pre></div>
+
+
+<p>This is <em>much better</em>. Simple, terse, readable. <em>Array comprehensions</em> even allow us to modify and filter the materialization on the fly easily. Say you want the square of all evens from our list. Piece of cake with array comprehension syntax:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="nx">i</span> <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">)];</span>
+</pre></div>
+
+
+<p>Nice. Now let's finally get to the feature we were looking at from the beginning: <em>generator expressions</em>. Generator expressions are very similar to array comprehensions. The important difference between both is that generator expressions don't materialize to arrays. This is a very powerful feature since it allows us to write space and time-saving code.</p>
+<p>Let's make another little example for illustration. We want to compute the square and the factorial for the evens of a specific range. We can define this easily with generator expressions:</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nx">fac</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="nx">x</span><span class="o">&gt;</span><span class="mi">1</span> <span class="o">?</span> <span class="nx">x</span><span class="o">*</span><span class="nx">fac</span><span class="p">(</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="nx">x</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">squares</span> <span class="o">=</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="nx">i</span> <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">facs</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fac</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">));</span>
+</pre></div>
+
+
+<p>The <code>squares</code> and <code>facs</code> definitions look much like array comprehensions, except we used <em>braces</em> instead of <em>square brackets</em>. The real difference however is that both <code>squares</code> and <code>facs</code> are no arrays but real generators. </p>
+<p>This means that effectively no square or factorial is being calculated in the above example. The first calculation occurs when the first value of <code>square</code> or <code>facs</code> is being requested. Again, this is no news for people from python land and the C# lovers out there can easily think of generator expressions as a simplified LINQ <code>.Where()</code> and <code>.Select()</code> syntax.</p>
+<h4 id="javascript-innovation-land">JavaScript Innovation Land</h4>
+<p>I think the above examples show how new language features can help to write better - that's more powerful <em>and</em> readable - code in JavaScript. Actually, these language innovations are only one perspective on how many wonderful things happen in JS land. I for one have a solid impression that it's at least very unfortunate that node.js bigots and unreasonable hysteria on the 'server-side JS revolution' obliterate many thoughtful innovations.</p>
+<p>I'm well aware that above "trickshot" could surely reraise the old <em>ECMAScript</em> is no <em>JavaScript</em> discussion for a few JS devs outs there. Yes, the above language actually <em>is</em> JavaScript. And yes, I'm aware it only runs on Mozilla, although some of the above features are in <a href="http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts">ES.Next</a>. My intention surely is not to fire up such a discussion but instead show <em>this specific field of innovation</em> in JavaScript ecospace as an example to the many cool things happening nowadays regarding JavaScript.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>21 March 2012</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/javascript-trickshot-generator-expressions.html&title=JS Trickshot: Generator Expressions">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                      });
+    </script>
+  </body>
+</html>

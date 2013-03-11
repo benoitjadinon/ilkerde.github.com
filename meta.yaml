@@ -1,0 +1,7 @@
+extends: article.j2
+default_block: post
+commentable: true
+listable: true
+area: Main
+section: Articles
+

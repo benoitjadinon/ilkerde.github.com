@@ -1,0 +1,62 @@
+/*
+commandbox.less
+===============
+
+styles for the commandbox functionality (title bar line coupled with keyboard commands).
+*/
+
+#commandbox {
+  .is_panel;
+  .colors(@palette_head_fg, @palette_head_bg);
+
+  display:none;
+  border:1px solid @palette_border;
+  padding:0px;
+  height:42px;
+  position:fixed;
+  top:38px;
+
+  label {
+    .colors(@palette_label_fg, @palette_label_bg);
+
+    border-right:1px solid @palette_border;
+    border-radius:4px 0px 0px 4px;
+    display:block;
+    float:left;
+    height:42px;
+    width:120px;
+
+    span {
+      margin:8px 4px 4px 10px;
+      font:20px/24px @type_black normal;
+      display:block;
+    }
+  }
+
+  input {
+    .colors(@palette_input_fg, @palette_input_bg);
+    
+    font:20px/24px @type_mono normal;
+    padding:6px 4px 2px 10px;
+    margin:2px 0px;
+    border:none;
+    width:500px;
+  }
+}
+
+
+
+#commandbar {
+  .colors(@palette_head_fg, @palette_head_bg);
+  border-bottom:2px solid @palette_border;
+
+  input {
+    .colors(@palette_head_fg, @palette_head_bg);
+    border:none;
+    font-size:32px; 
+    line-height:36px;
+    font-family:@type_black;
+    font-weight:normal;
+  }
+}
+

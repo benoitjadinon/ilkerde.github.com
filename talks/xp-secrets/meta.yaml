@@ -1,0 +1,5 @@
+extends: slide.j2
+pagetype: slide
+default_block: slide
+title: "eXtreme Programming Secrets"
+lastmodified: "20. Februar 2012, DNUG Hamburg"
