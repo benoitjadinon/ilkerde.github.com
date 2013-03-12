@@ -49,8 +49,8 @@
 
       <div id="content" class="support">
         <p>Nun, diese Situation ist für uns beide nicht einfach, denn wir haben sie beide nicht erwartet. Aber, wo es nun mal soweit ist, werden wir beide einen Weg aus dieser mißlichen Lage finden.</p>
-<p class="figure">
-<img alt="Make it simple, but not simpler." src="/media/images/not_found.jpg" />
+<p class="figure" id="flickr_not_found">
+<img alt="404 NOT FOUND" src="/media/images/not_found.jpg" />
 <strong>404 - DIE ANGEFORDERTE SEITE IST NICHT VERFÜGBAR</strong></p>
 <p>Ja, leider. Aber es gibt auch eine gute Nachricht. Auf dieser Website sind noch eine Menge anderer Seiten, die es sich zu besuchen lohnt. </p>
 <p>Einen sehr guten Überblick darüber gibt die <a href="index.html">Startseite</a>.</p>
@@ -120,7 +120,7 @@ Impressum</a></li>
     </div>
     <script type="text/javascript">
       require(['main'], function(app){
-                
+                $('#flickr_not_found').prepend('<span class="image-source">(cc) <a href="http://www.flickr.com/photos/27807834@N02/3032838164/">SamahR</a></span>');        
   app.mailr(location.href, $);
       });
     </script>

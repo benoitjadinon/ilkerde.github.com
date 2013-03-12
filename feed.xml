@@ -7,11 +7,105 @@
         <link href="/"/>
     
         
-    <updated>2013-03-11T19:42:25Z</updated>
+    <updated>2013-03-12T22:06:55Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Marker Mixins in C#</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/marker-mixins.html"/>
+            <updated>2013-03-12T22:00:00Z</updated>
+            <published>2013-03-12T22:00:00Z</published>
+            <id>/marker-mixins.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>It's been a while since I wrote my last C# code. Frankly, I don't have much time to get into the pleasure of writing code in C#. In last couple of months my main area was Java and Python. I even had the chance to take a glimpse to <a href="http://www.scala-lang.org/">Scala</a>. Despite of that, I currently deal with <a href="http://www.java.com/en/">Java</a> (JavaEE and <a href="http://glassfish.java.net/">Glassfish</a>) and <a href="http://www.python.org/">Python</a> (and <a href="http://www.pygtk.org/">pyGTK</a>) in my main projects.</p>
+
+<p>Enough of that. Let's talk about programming languages. In C#, there's no out of the box support for multiple inheritance. Let's not dig into the details on why that is. With C# 3.0 and the landing of <a href="http://msdn.microsoft.com/en-us/library/vstudio/bb383977.aspx">extension methods</a>, the disadvantages of not having multiple inheritance have been cirumvented in a certain sense.</p>
+
+<p>With extension methods, one can easily add or overload functionality to existing types. This brings a couple of great advantages, as it equally brings a few challenges as well.</p>
+
+<p>I've been thinking about <a href="mehrfachvererbung-in-c.html">multiple inheritance in C#</a> and possible <a href="poor-mans-test-context-composition.html">everyday usage of mixins</a> already. I've been using it quite often within last 2 years. </p>
+
+<p>Most of the time, I was very lucky to have mixins at hand when I was testing legacy code or dealing with legacy code. In the end, mixins (and extension methods) in C# are about enriching existing code. Sometimes, I found mixins useful for transitions as well.</p>
+
+<h4 id="lets-change-static-things">Let's change static things</h4>
+
+<p>When it comes to legacy code, I like to use a pattern I refer to as <em>marker mixin</em>. It doesn't have much in common with <a href="http://en.wikipedia.org/wiki/Marker_interface_pattern">marker interfaces</a>, although I must admit that I thought about them while using <em>marker mixins</em>.</p>
+
+<p>A <em>marker mixin</em> typically is a (static) field of a class, decorating the original field type signature, and potentially altering behavior.</p>
+
+<p>I personally use marker mixins very often when it comes to legacy code where a lot of static fields, static class methods or singletons are being used. It's a sensible strategy for me to safe-guard the code back with tests, while not changing too much of its structure beforehand.</p>
+
+<p>Enough babbling. Let's walk the talk with a simple example. Imagine the following existing code:</p>
+
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">MainClass</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Hello!&quot;</span><span class="p">);</span>
+
+    <span class="n">var</span> <span class="n">d</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="p">();</span>
+    <span class="n">d</span><span class="p">.</span><span class="n">Bark</span><span class="p">();</span>
+
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Bye!&quot;</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Dog</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Bark</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Bark!&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Looks quite straight forward. Now imagine following scenario: You need to change the behavior of this code. The <code>MainClass</code> spits out messages the user does no longer want to see. How can you accomplish this task with a minimum impact on the existing code?</p>
+
+<p>The answer obviously is: marker mixins. With a marker mixin, we can change the behavior of the entire <code>MainClass</code> with just one single line of code:</p>
+
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">MainClass</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="n">ConsoleBehavior</span> <span class="n">Console</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Hello!&quot;</span><span class="p">);</span>
+
+    <span class="n">var</span> <span class="n">d</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="p">();</span>
+    <span class="n">d</span><span class="p">.</span><span class="n">Bark</span><span class="p">();</span>
+
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Bye!&quot;</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Spot the difference? Yes, it's the <code>ConsoleBehavior</code> field. This field basically is what I am talking about the whole time: the <em>marker mixin</em>. Only by adding the field, the behavior of the <code>Console</code> methods changed. Ok, now this is not really a game changer. Let's look at the implementation of <code>ConsoleBehavior</code>:</p>
+
+<div class="codehilite"><pre><span class="k">public</span> <span class="k">interface</span> <span class="n">ConsoleBehavior</span> <span class="p">{}</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">ConsoleAction</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">WriteLine</span><span class="p">(</span>
+    <span class="k">this</span> <span class="n">ConsoleBehavior</span> <span class="n">consoler</span><span class="p">,</span> 
+    <span class="kt">string</span> <span class="n">output</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* don&#39;t do anything */</span>
+  <span class="p">}</span>
+
+<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ReadKey</span><span class="p">(</span>
+  <span class="k">this</span> <span class="n">ConsoleBehavior</span> <span class="n">consoler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Hopefully now the <em>mixin</em> part of the pattern is a little more obvious. The <code>ConsoleBehavior</code> itself is really a <em>marker interface</em> to the extension methods from <code>ConsoleAction</code>. In this case, they selectively change the behavior of <code>WriteLine</code>, while keeping <code>ReadKey</code> intact. </p>
+
+<p>To me, the benefit actually is twofold: first, the extension methods layer the usage (and the usage <em>change</em>) transparently. They can be tested (even TDD'ed) quite easily. Most of the time, I TDD those extension methods to document the behavioral change I'm going to introduce to the legacy component.</p>
+
+<p>Second, I'm now able to selectively change the behavior of <code>MainClass</code> easily. I could revert it back to its initial behavior with other extension methods to <code>ConsoleBehavior</code> and linking them from another assembly, for instance. Surprisingly, I use this possibility more often than I ever thought I would use. It's a very powerful thing to change parts of the cross-cutting infrastructure just with a single assembly reference.</p>
+
+<p>Now, in the end, this <em>marker mixin</em> thing is nothing really special. However, it shows how powerful mixin strategies and extension methods can be in everyday C# programming. I for one solved a couple of challenges with this type of thinking and design. Especially when it comes to legacy code, mixin strategies are a great way to gradually enhance the code using small and approachable steps.</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Die Verbesserung an und für sich</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/die-verbesserung-an-und-fuer-sich.html"/>
@@ -6227,26 +6321,26 @@ Aha. Gut - interessant zu wissen. Schönen Dank auch.</p>
 
 <span class="cm">/* poor man&#39;s context composition &quot;framework&quot; */</span>
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">In_Tests</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">interface</span> <span class="n">As_Context</span> <span class="p">{</span> <span class="p">}</span>
+
   <span class="k">public</span> <span class="k">interface</span> <span class="n">As_Subject</span> <span class="p">{</span>
     <span class="n">As_Subject</span> <span class="nf">WithContext</span><span class="p">(</span><span class="n">T</span> <span class="n">context</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="k">public</span> <span class="k">class</span> <span class="nc">As_Subject</span> <span class="p">:</span> <span class="n">As_Subject</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">As_Subject</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">As_Subject</span> <span class="p">{</span>
     <span class="k">private</span> <span class="k">readonly</span> <span class="n">IKernel</span> <span class="n">_kernel</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StandardKernel</span><span class="p">();</span>
 
     <span class="k">public</span> <span class="n">T</span> <span class="nf">The</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="n">_kernel</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+      <span class="k">return</span> <span class="n">_kernel</span><span class="p">.</span><span class="n">Get</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="n">As_Subject</span> <span class="nf">WithContext</span><span class="p">(</span><span class="n">T</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">_kernel</span><span class="p">.</span><span class="n">Bind</span><span class="p">().</span><span class="n">ToConstant</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+    <span class="k">public</span> <span class="n">As_Subject</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">WithContext</span><span class="p">(</span><span class="n">T</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">_kernel</span><span class="p">.</span><span class="n">Bind</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;().</span><span class="n">ToConstant</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">protected</span> <span class="n">As_Subject</span> <span class="n">Having</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+    <span class="k">protected</span> <span class="n">As_Subject</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">Having</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
   <span class="p">}</span>
-
-  <span class="k">public</span> <span class="k">interface</span> <span class="n">As_Context</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 

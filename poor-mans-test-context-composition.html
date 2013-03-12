@@ -218,26 +218,26 @@
 
 <span class="cm">/* poor man&#39;s context composition &quot;framework&quot; */</span>
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">In_Tests</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">interface</span> <span class="n">As_Context</span> <span class="p">{</span> <span class="p">}</span>
+
   <span class="k">public</span> <span class="k">interface</span> <span class="n">As_Subject</span> <span class="p">{</span>
     <span class="n">As_Subject</span> <span class="nf">WithContext</span><span class="p">(</span><span class="n">T</span> <span class="n">context</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="k">public</span> <span class="k">class</span> <span class="nc">As_Subject</span> <span class="p">:</span> <span class="n">As_Subject</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">As_Subject</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">As_Subject</span> <span class="p">{</span>
     <span class="k">private</span> <span class="k">readonly</span> <span class="n">IKernel</span> <span class="n">_kernel</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StandardKernel</span><span class="p">();</span>
 
     <span class="k">public</span> <span class="n">T</span> <span class="nf">The</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="n">_kernel</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+      <span class="k">return</span> <span class="n">_kernel</span><span class="p">.</span><span class="n">Get</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="n">As_Subject</span> <span class="nf">WithContext</span><span class="p">(</span><span class="n">T</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">_kernel</span><span class="p">.</span><span class="n">Bind</span><span class="p">().</span><span class="n">ToConstant</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+    <span class="k">public</span> <span class="n">As_Subject</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">WithContext</span><span class="p">(</span><span class="n">T</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">_kernel</span><span class="p">.</span><span class="n">Bind</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;().</span><span class="n">ToConstant</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">protected</span> <span class="n">As_Subject</span> <span class="n">Having</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+    <span class="k">protected</span> <span class="n">As_Subject</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">Having</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
   <span class="p">}</span>
-
-  <span class="k">public</span> <span class="k">interface</span> <span class="n">As_Context</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -315,7 +315,7 @@
     </div>
     <script type="text/javascript">
       require(['main'], function(app){
-                      });
+                              });
     </script>
   </body>
 </html>

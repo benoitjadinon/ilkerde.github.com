@@ -2112,6 +2112,19 @@ pre {
   text-align: right;
   padding-top: 0px;
 }
+#content .figure .image-source {
+  font-size: 10px;
+  float: right;
+  text-align: right;
+  position: absolute;
+  margin-right: 4px;
+  right: 0px;
+  color: #94989c;
+}
+#content .figure .image-source *,
+#content .figure .image-source *:hover {
+  color: #94989c;
+}
 /*
 home.less
 =========

@@ -192,7 +192,7 @@ Impressum</a></li>
     </div>
     <script type="text/javascript">
       require(['main'], function(app){
-                      });
+                              });
     </script>
   </body>
 </html>
