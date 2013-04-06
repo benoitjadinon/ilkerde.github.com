@@ -1,0 +1,144 @@
+
+
+<!doctype html>
+ 
+
+
+
+
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>TDD Pro Tools</title>
+    <meta name="description" content="Die wichtigsten Werkzeuge eines agilen Software-Entwicklers für professionelles TDD im Alltag. Ein Kurzbericht eines Coding Dojo&#39;s mit Testversuchen zur Toolfrage.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" type="text/css" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+                <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Gudea|Droid%20Sans%20Mono" >
+    
+        <script src="/media/js/app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+                <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="tdd-pro-tools">
+    <a href="tdd-pro-tools"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>TDD Pro Tools</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Im letzten Coding Dojo ging es um ein wohl eher "normales" Thema zu TDD: Tools.  Die Toolfrage ist ja eine ganz beliebte und oft diskutierte Frage. Im Coding Dojo bei <a href="http://www.it-agile.de/">IT-Agile</a> ging es allerdings etwas spezifischer um "Pro Tools". Also die Werkzeuge, die man als professioneller Entwickler für tägliches und effektives TDD benötigt.</p>
+<p>Entgegen der nun vielleicht offensichtlich erscheinenden Frage um Frameworks, Testrunner und co. haben wir uns im Dojo auf die "wesentlichen" Dinge konzentriert. Zwar haben wir auch über <a href="http://www.jetbrains.com/resharper/">ReSharper</a>, <a href="https://github.com/machine/machine.specifications">MSpec</a>, <a href="https://github.com/FakeItEasy/FakeItEasy">FakeItEasy</a>, <a href="http://www.ncrunch.net/">NCrunch</a> und <a href="http://nsubstitute.github.io/">NSub</a> geredet, aber wir sind schnell von diesem üblichen Diskussionstrampelpfad wieder runter. Statt dessen wollten wir per Code Kata drei weitere "Werkzeuge" probieren, die uns als essentielles Rüstzeug für TDD erschienen.</p>
+<p>Nach kurzer Diskussion standen Kata, Modus, und die 3 Rundenversuche fest: Wir würden die beliebte <a href="http://codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz">KataFizzBuzz</a> im Randori mit 4 Teams über 3 Runden a 30 Minuten angehen. Pro Runde galt dabei die Fokussierung an eines der "Pro Tools". Die Runden-Themen waren:</p>
+<ul>
+<li>Merciless Refactoring</li>
+<li>Pen and Paper</li>
+<li>No Runner</li>
+</ul>
+<h3 id="merciless-refactoring">Merciless Refactoring</h3>
+<p>In der ersten Runde ging es um <em>das Werkzeug</em> schlechthin: gnadenloses Refactoring. Im TDD-Alltag wird zwar oft Refactoring betrieben - aber meist nicht gnadenlos. Ich persönlich schaffe es im Alltag sehr selten, wirklich <em>gnadenloses</em> Refactoring umzusetzen. Umso mehr ist das ein Grund, die Gnadenlosigkeit in jedem TDD-Cycle zu üben.</p>
+<p>Das frappierende an diesem so "offensichtlichen" und eigentlich eher als methodisches Konzept auszulegenden Tools ist: Es ist unfassbar einfach und schwer zur gleichen Zeit. Das rigorose, bis zur "Sinnlosigkeit" betriebene Refactoring zwingt einen, die Konzentration zum Lesen des Codes sehr hoch zu halten. Ich schaffe es derzeit kaum, wirklich ernsthaft mehr als eine Stunde <em>Vollgas-Refactoring</em> während des TDD zu betreiben.</p>
+<p>Interessanter Weise liegt das nur zu einem geringen Teil am eingesetzten elektronischen Helfer. Während ich für ein Rename z.B. in VIM stark mit Regular Expressions arbeite, habe ich für Visual Studio die <code>F2</code>-Taste oder eben den schnellen Resharper-Rename. Natürlich macht mich die eine oder andere Vorgehensweise in der Umsetzung schneller - aber das eigentlich schwere ist für mich nicht die <em>Geschwindigkeit</em> der Umsetzung, sondern die <em>Konsequenz</em> der Umsetzung.</p>
+<h3 id="pen-and-paper">Pen and Paper</h3>
+<p>Der zweite Versuch zur Erkundung von hilfreichen Tools ist nicht minder ungewöhnlich und interessant als der erste. Nun ging es darum, während des <a href="http://de.wikipedia.org/wiki/Testgetriebene_Entwicklung">TDD-Zyklusses</a> (Red-Green-Blue) nach jedem Zyklus <em>absichtlich</em> den Zyklus zu "pausieren" und sich kurz dem klassischen Werkzeug <a href="http://www.elmastudio.de/webdesign/wieso-stift-und-papier-noch-keine-fremdworter-fur-webdesigner-sind/">Stift und Papier</a> zuzuwenden.</p>
+<p>Nach jedem Zyklus wird die Aufmerksamkeit also kurz wieder auf die nebenliegenden Notizen gelenkt. Man kann dort z.B. eine Design-Visualisierung skizzieren, ein paar Optionen oder To-Do's vermerken, sich die Liste alle Domänen-Begriffe nochmals vor Augen halten, oder aber auch ganz lapidar Spezifikations-Texte für Tests ausprobieren.</p>
+<p>Das interessante an diesem "Tool" ist, dass es die Stringenz des TDD fördern kann. Obgleich es auf den ersten Blick eher als Ablenkung wahrgenommen wird, kann ein gut ausgenutzter Notizzettel viele hilfreiche Hinweise geben.  Besonders, wenn man sich mit einer komplexen Domäne beschäftigt, oder aber per Pair Programming längere Zeit an einem Feature arbeitet, können Papier und Bleistift nicht nur zu Freunden, sondern auch zu echten Helfern werden.</p>
+<h3 id="no-runner">No Runner</h3>
+<p>In der letzten Versuchsrunde - an der ich persönlich leider nicht teilnehmen konnte - war endlich auch ein technisches Tool im Fokus. Der beliebte und oft heiss diskutierte <em>Test Runner</em> rückte in den Vordergrund unserer Testreihe.  Sinn dieser Übung war es, durch den Verzicht herauszufinden, wie "schwerwiegend" denn das Tool <em>Test-Runner</em> sich auf das TDD auswirkt.</p>
+<p>Es galt also, FizzBuzz komplett ohne einen Test-Runner in TDD zu entwickeln.  Statt also einen Test-Runner und damit auch ein Test-Framework zu verwenden, musste man kreativ und mit minimalem Aufwand sich aus den Bordmitteln der Programmiersprache selbst Tests zusammenschustern. Die müssen dann natürlich ausgeführt werden und die wichtigsten Signale wie "Rot" (Test fehlgeschlagen) und "Grün" (Test erfolgreich) zurückliefern können.</p>
+<p>Wenn man das - auch ruhig mal in C# oder Java - ausprobiert hat, stellt man schnell fest, das so ein Test-Runner für eine "kleine Session" gar nicht so entscheidend ist. Natürlich ist es aufwendiger - gerade wenn man dann auch noch Mocks selber zusammenschreibt - aber bedeutend "schlechter" wird die TDD-Erfahrung dadurch nicht. Ganz im Gegenteil: man wird oft kreativer und baut sich schnell sehr treffende <code>Should()</code>-Extensions oder <code>Given()</code>-Factories zusammen.</p>
+<h3 id="fazit">Fazit</h3>
+<p>Alles in Allem kann man sagen: Wenn man im Alltag professionell TDD umsetzt, spielt das klassische, technische "Tooling" eine nicht so prominente Rolle wie man es vielleicht vermuten mag. Vielmehr sind es die methodischen Werkzeuge, die die Professionalität in Puncto Qualität und Geschwindigkeit potenziell steigern können. </p>
+<p>Gerade vor diesem Hintergrund ist es richtig und wichtig, immer weiter an den methodischen Elementen des TDD zu arbeiten und zu üben.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>06 April 2013</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/tdd-pro-tools.html&title=TDD Pro Tools">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
