@@ -55,8 +55,8 @@ from unittest import main as runTests</p>
 from lxml.html import soupparser</p>
 <p>class UrlMaker():
     host = 'www.dev.ilker.de'</p>
-<div class="codehilite"><pre><span class="n">def</span> <span class="n">page</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s">&#39;http://{0}/{1}&#39;</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
+<div class="codehilite"><pre><span class="n">def</span> <span class="n">page</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">return</span> <span class="err">&#39;</span><span class="n">http</span><span class="o">:</span><span class="c1">//{0}/{1}&#39;.format(self.host, page)</span>
 </pre></div>
 
 
@@ -65,11 +65,11 @@ from lxml.html import soupparser</p>
         r_page = requests.get(self.page('articles.html'))
         r_code = soupparser.fromstring(r_page.content)
         r_count = len(r_code.xpath('//ul[@class="all"]/li'))</p>
-<div class="codehilite"><pre>    <span class="n">f_page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">self</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="s">&#39;feed.xml&#39;</span><span class="p">))</span>
-    <span class="n">f_code</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XML</span><span class="p">(</span><span class="n">f_page</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-    <span class="n">f_count</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">f_code</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">&#39;//a:entry&#39;</span><span class="p">,</span> <span class="n">namespaces</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;a&#39;</span><span class="p">:</span><span class="s">&#39;http://www.w3.org/2005/Atom&#39;</span><span class="p">}))</span>
+<div class="codehilite"><pre>    <span class="n">f_page</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">page</span><span class="p">(</span><span class="err">&#39;</span><span class="n">feed</span><span class="p">.</span><span class="n">xml</span><span class="err">&#39;</span><span class="p">))</span>
+    <span class="n">f_code</span> <span class="o">=</span> <span class="n">etree</span><span class="p">.</span><span class="n">XML</span><span class="p">(</span><span class="n">f_page</span><span class="p">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">f_count</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">f_code</span><span class="p">.</span><span class="n">xpath</span><span class="p">(</span><span class="err">&#39;</span><span class="c1">//a:entry&#39;, namespaces={&#39;a&#39;:&#39;http://www.w3.org/2005/Atom&#39;}))</span>
 
-    <span class="n">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">r_count</span><span class="p">,</span> <span class="n">f_count</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">r_count</span><span class="p">,</span> <span class="n">f_count</span><span class="p">)</span>
 </pre></div>      </div>
 
       <div id="footer">

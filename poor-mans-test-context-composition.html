@@ -80,8 +80,8 @@
 
 <span class="na">  [Test]</span>
   <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_Checkout_Should_Fail_With_CashMashine_Failure</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">CashMashine</span><span class="p">);</span>
-    <span class="n">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollar</span><span class="p">());</span>
+    <span class="kt">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">CashMashine</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollar</span><span class="p">());</span>
     <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">checkoutResult</span><span class="p">.</span><span class="n">Failure</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="n">FailureCode</span><span class="p">.</span><span class="n">CashMashine</span><span class="p">));</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -172,8 +172,8 @@
 
 <span class="na">  [Test]</span>
   <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_Checkout_Should_Fail_With_CashMashine_Failure</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">cashMashine</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">daytime</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
-    <span class="n">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollars</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">cashMashine</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">daytime</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollars</span><span class="p">();</span>
     <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">checkoutResult</span><span class="p">.</span><span class="n">Failure</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="n">FailureCode</span><span class="p">.</span><span class="n">CashMashine</span><span class="p">));</span>
   <span class="p">}</span>
 <span class="p">}</span>

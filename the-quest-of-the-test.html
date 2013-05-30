@@ -66,7 +66,7 @@
   <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsDirty</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
   <span class="k">public</span> <span class="n">LocalTime</span> <span class="nf">SyncWith</span><span class="p">(</span><span class="n">TimeServer</span> <span class="n">ts</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">IsDirty</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">TimeEntry</span> <span class="n">te</span> <span class="p">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">GetTime</span><span class="p">();</span>
@@ -85,10 +85,10 @@
 
 
 <p>Hmm. This code smells to have bugs. You're staring at it and think <em>"Oh my. Look at the dupes. Rookies."</em> If you wouldn't just slurp your coffee while browsing code, your left hand would be ready to serve a generous face-palm. Your excellent nose didn't mislead you, as you soon realize while reading the bug report in Bugzilla:</p>
-<div class="codehilite"><pre><span class="n">Bug</span> <span class="n">Nr</span>      <span class="p">:</span> <span class="mi">0815</span>
-<span class="n">Title</span>       <span class="p">:</span> <span class="n">culture</span> <span class="n">is</span> <span class="ow">not</span> <span class="n">updated</span> <span class="n">when</span> <span class="n">clock</span> <span class="n">is</span> <span class="n">in</span> <span class="n">sync</span> <span class="n">with</span> <span class="n">server</span>
-<span class="n">Component</span>   <span class="p">:</span> <span class="n">Time</span> <span class="n">Sychronizer</span> <span class="p">(</span><span class="n">Chronograph</span><span class="p">)</span>
-<span class="n">Description</span> <span class="p">:</span> <span class="n">While</span> <span class="n">the</span> <span class="nb">local</span> <span class="nb">time</span> <span class="n">is</span> <span class="n">in</span> <span class="n">sync</span> <span class="n">with</span> <span class="n">server</span><span class="p">,</span> <span class="n">the</span> <span class="n">culture</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="s">&quot;updated&quot;</span> <span class="n">regularly</span><span class="o">.</span> <span class="n">It</span> <span class="n">happens</span> <span class="ow">not</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="k">case</span><span class="o">.</span> <span class="n">The</span> <span class="nb">time</span> <span class="n">server</span> <span class="n">API</span> <span class="n">has</span> <span class="n">a</span> <span class="n">specific</span> <span class="n">function</span> <span class="n">to</span> <span class="n">update</span> <span class="n">a</span> <span class="nb">time</span> <span class="n">entry</span> <span class="n">with</span> <span class="n">culture:</span> <span class="n">TimeEntry</span><span class="o">.</span><span class="n">Ensure</span><span class="p">(</span><span class="n">CultureInfo</span><span class="p">)</span><span class="o">.</span> <span class="n">Use</span> <span class="n">this</span> <span class="n">function</span> <span class="n">to</span> <span class="n">keep</span> <span class="n">culture</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span><span class="o">.</span>
+<div class="codehilite"><pre><span class="nx">Bug</span> <span class="nx">Nr</span>      <span class="o">:</span> <span class="mi">0815</span>
+<span class="nx">Title</span>       <span class="o">:</span> <span class="nx">culture</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">updated</span> <span class="nx">when</span> <span class="nx">clock</span> <span class="nx">is</span> <span class="k">in</span> <span class="nx">sync</span> <span class="kd">with</span> <span class="nx">server</span>
+<span class="nx">Component</span>   <span class="o">:</span> <span class="nx">Time</span> <span class="nx">Sychronizer</span> <span class="p">(</span><span class="nx">Chronograph</span><span class="p">)</span>
+<span class="nx">Description</span> <span class="o">:</span> <span class="nx">While</span> <span class="nx">the</span> <span class="nx">local</span> <span class="nx">time</span> <span class="nx">is</span> <span class="k">in</span> <span class="nx">sync</span> <span class="kd">with</span> <span class="nx">server</span><span class="p">,</span> <span class="nx">the</span> <span class="nx">culture</span> <span class="nx">needs</span> <span class="nx">to</span> <span class="nx">be</span> <span class="s2">&quot;updated&quot;</span> <span class="nx">regularly</span><span class="p">.</span> <span class="nx">It</span> <span class="nx">happens</span> <span class="nx">not</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">the</span> <span class="k">case</span><span class="p">.</span> <span class="nx">The</span> <span class="nx">time</span> <span class="nx">server</span> <span class="nx">API</span> <span class="nx">has</span> <span class="nx">a</span> <span class="nx">specific</span> <span class="kd">function</span> <span class="nx">to</span> <span class="nx">update</span> <span class="nx">a</span> <span class="nx">time</span> <span class="nx">entry</span> <span class="kd">with</span> <span class="nx">culture</span><span class="o">:</span> <span class="nx">TimeEntry</span><span class="p">.</span><span class="nx">Ensure</span><span class="p">(</span><span class="nx">CultureInfo</span><span class="p">).</span> <span class="nx">Use</span> <span class="k">this</span> <span class="kd">function</span> <span class="nx">to</span> <span class="nx">keep</span> <span class="nx">culture</span> <span class="nx">up</span> <span class="nx">to</span> <span class="nx">date</span><span class="p">.</span>
 </pre></div>
 
 
@@ -125,10 +125,10 @@
 <span class="k">public</span> <span class="k">class</span> <span class="nc">When_chrono_is_in_sync</span> <span class="p">{</span>
 <span class="na">  [Test]</span>
   <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_culture_is_ensured_with_time_entry</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="kt">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
 
-    <span class="n">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
-    <span class="n">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">();</span>
 
     <span class="n">chrono</span><span class="p">.</span><span class="n">IsDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
     <span class="n">chrono</span><span class="p">.</span><span class="n">SyncWith</span><span class="p">(</span><span class="n">ts</span><span class="p">);</span>
@@ -169,14 +169,14 @@
 <span class="k">public</span> <span class="k">class</span> <span class="nc">When_chrono_is_in_sync</span> <span class="p">{</span>
 <span class="na">  [Test]</span>
   <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_culture_is_ensured_with_time_entry</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="kt">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
 
     <span class="n">TimeEntryImplant</span><span class="p">.</span><span class="n">Ensure</span> <span class="n">implant</span> <span class="p">=</span>
       <span class="n">culture</span>
         <span class="p">=&gt;</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
 
-    <span class="n">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
-    <span class="n">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">(</span><span class="n">implant</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">(</span><span class="n">implant</span><span class="p">);</span>
 
     <span class="n">chrono</span><span class="p">.</span><span class="n">IsDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
     <span class="n">chrono</span><span class="p">.</span><span class="n">SyncWith</span><span class="p">(</span><span class="n">ts</span><span class="p">);</span>
@@ -238,7 +238,7 @@
   <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsDirty</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
   <span class="k">public</span> <span class="n">LocalTime</span> <span class="nf">SyncWith</span><span class="p">(</span><span class="n">TimeServer</span> <span class="n">ts</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">IsDirty</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">TimeEntry</span> <span class="n">te</span> <span class="p">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">GetTime</span><span class="p">();</span>

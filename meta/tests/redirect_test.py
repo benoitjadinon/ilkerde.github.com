@@ -55,11 +55,11 @@ from specs import HttpTest</p>
     def test_redirect_status_301(self):
         response = self.getresponse('test')
         self.assertEqual(response.status, 301)</p>
-<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_location_with_html_suffix</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="o">.</span><span class="n">getresponse</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">)</span>
-    <span class="n">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">getheader</span><span class="p">(</span><span class="s">&#39;location&#39;</span><span class="p">),</span> 
-        <span class="n">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="s">&#39;test.html&#39;</span><span class="p">))</span>
+<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_location_with_html_suffix</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">getresponse</span><span class="p">(</span><span class="err">&#39;</span><span class="n">test</span><span class="err">&#39;</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">getheader</span><span class="p">(</span><span class="err">&#39;</span><span class="n">location</span><span class="err">&#39;</span><span class="p">),</span> 
+        <span class="n">self</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="err">&#39;</span><span class="n">test</span><span class="p">.</span><span class="n">html</span><span class="err">&#39;</span><span class="p">))</span>
 </pre></div>
 
 
@@ -67,11 +67,11 @@ from specs import HttpTest</p>
     def test_respond_status_404(self):
         response = self.getresponse('non-existent')
         self.assertEqual(response.status, 404)</p>
-<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_respond_content_title_directory_of_alternatives</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="o">.</span><span class="n">getresponse</span><span class="p">(</span><span class="s">&#39;non-existent&#39;</span><span class="p">)</span>
-    <span class="n">body</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="nb">read</span><span class="p">())</span>
-    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">r</span><span class="s">&#39;.*&lt;title&gt;404.*&#39;</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
-    <span class="n">self</span><span class="o">.</span><span class="n">assertIsNotNone</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+<div class="codehilite"><pre><span class="nx">def</span> <span class="nx">test_respond_content_title_directory_of_alternatives</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self.</span><span class="nx">getresponse</span><span class="p">(</span><span class="s1">&#39;non-existent&#39;</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="nx">str</span><span class="p">(</span><span class="nx">response.read</span><span class="p">())</span>
+    <span class="k">match</span> <span class="o">=</span> <span class="nx">re.search</span><span class="p">(</span><span class="nb">r</span><span class="s1">&#39;.*&lt;title&gt;404.*&#39;</span><span class="p">,</span> <span class="nb">body</span><span class="p">)</span>
+    <span class="bp">self.</span><span class="nx">assertIsNotNone</span><span class="p">(</span><span class="k">match</span><span class="p">)</span>
 </pre></div>
 
 
@@ -79,11 +79,11 @@ from specs import HttpTest</p>
     def test_redirect_status_301(self):
         response = self.getresponse('page/3')
         self.assertEqual(response.status, 301)</p>
-<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_location_to_index_of_path</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="o">.</span><span class="n">getresponse</span><span class="p">(</span><span class="s">&#39;page/3&#39;</span><span class="p">)</span>
-    <span class="n">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">getheader</span><span class="p">(</span><span class="s">&#39;location&#39;</span><span class="p">),</span>
-        <span class="n">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">))</span>
+<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_location_to_index_of_path</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">getresponse</span><span class="p">(</span><span class="err">&#39;</span><span class="n">page</span><span class="o">/</span><span class="mi">3</span><span class="err">&#39;</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">getheader</span><span class="p">(</span><span class="err">&#39;</span><span class="n">location</span><span class="err">&#39;</span><span class="p">),</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="err">&#39;</span><span class="n">index</span><span class="p">.</span><span class="n">html</span><span class="err">&#39;</span><span class="p">))</span>
 </pre></div>
 
 
@@ -91,11 +91,11 @@ from specs import HttpTest</p>
     def test_redirect_status_301(self):
         response = self.getresponse('on/technology')
         self.assertEqual(response.status, 301)</p>
-<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_location_to_index_of_path</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="o">.</span><span class="n">getresponse</span><span class="p">(</span><span class="s">&#39;on/technology&#39;</span><span class="p">)</span>
-    <span class="n">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">getheader</span><span class="p">(</span><span class="s">&#39;location&#39;</span><span class="p">),</span>
-        <span class="n">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">))</span>
+<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_location_to_index_of_path</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">getresponse</span><span class="p">(</span><span class="err">&#39;</span><span class="n">on</span><span class="o">/</span><span class="n">technology</span><span class="err">&#39;</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">getheader</span><span class="p">(</span><span class="err">&#39;</span><span class="n">location</span><span class="err">&#39;</span><span class="p">),</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="err">&#39;</span><span class="n">index</span><span class="p">.</span><span class="n">html</span><span class="err">&#39;</span><span class="p">))</span>
 </pre></div>
 
 
@@ -103,25 +103,25 @@ from specs import HttpTest</p>
     def test_redirect_status_301(self):
         response = self.getresponse('2007')
         self.assertEqual(response.status, 301)</p>
-<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_location_to_index_of_path</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="o">.</span><span class="n">getresponse</span><span class="p">(</span><span class="s">&#39;2007&#39;</span><span class="p">)</span>
-    <span class="n">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">getheader</span><span class="p">(</span><span class="s">&#39;location&#39;</span><span class="p">),</span>
-        <span class="n">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">))</span>
+<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_location_to_index_of_path</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">getresponse</span><span class="p">(</span><span class="err">&#39;</span><span class="mi">2007</span><span class="err">&#39;</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">getheader</span><span class="p">(</span><span class="err">&#39;</span><span class="n">location</span><span class="err">&#39;</span><span class="p">),</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="err">&#39;</span><span class="n">index</span><span class="p">.</span><span class="n">html</span><span class="err">&#39;</span><span class="p">))</span>
 </pre></div>
 
 
 <p>class NoWwwSubdomainPrefixedHost(HttpTest):
     host = 'dev.ilker.de'</p>
-<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_status_301</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="o">.</span><span class="n">getresponse</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">)</span>
-    <span class="n">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="mi">301</span><span class="p">)</span>
+<div class="codehilite"><pre><span class="n">def</span> <span class="n">test_redirect_status_301</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">getresponse</span><span class="p">(</span><span class="err">&#39;</span><span class="n">test</span><span class="err">&#39;</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status</span><span class="p">,</span> <span class="mi">301</span><span class="p">)</span>
 
-<span class="n">def</span> <span class="n">test_redirect_location_to_www_domain</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="o">.</span><span class="n">getresponse</span><span class="p">(</span><span class="s">&#39;test&#39;</span><span class="p">)</span>
-    <span class="n">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">getheader</span><span class="p">(</span><span class="s">&#39;location&#39;</span><span class="p">),</span>
-        <span class="s">&#39;http://www.dev.ilker.de/meta/tests/test&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">test_redirect_location_to_www_domain</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">getresponse</span><span class="p">(</span><span class="err">&#39;</span><span class="n">test</span><span class="err">&#39;</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">getheader</span><span class="p">(</span><span class="err">&#39;</span><span class="n">location</span><span class="err">&#39;</span><span class="p">),</span>
+        <span class="err">&#39;</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.dev.ilker.de/meta/tests/test&#39;)</span>
 </pre></div>
 
 

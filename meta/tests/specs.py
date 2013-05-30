@@ -53,12 +53,12 @@ from httplib import HTTPConnection</p>
 <p>test_host = 'www.dev.ilker.de'</p>
 <p>class UrlMaker():
     host = test_host</p>
-<div class="codehilite"><pre><span class="nv">@classmethod</span>
-<span class="n">def</span> <span class="n">path</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
+<div class="codehilite"><pre><span class="err">@</span><span class="n">classmethod</span>
+<span class="n">def</span> <span class="n">path</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span><span class="o">:</span>
     <span class="k">return</span> <span class="s">&quot;/meta/tests/&quot;</span> <span class="o">+</span> <span class="n">page</span>
 
-<span class="n">def</span> <span class="n">url</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s">&quot;http://{0}/meta/tests/{1}&quot;</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">url</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">return</span> <span class="s">&quot;http://{0}/meta/tests/{1}&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">cls</span><span class="p">.</span><span class="n">host</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
 </pre></div>
 
 
@@ -66,13 +66,13 @@ from httplib import HTTPConnection</p>
     @classmethod
     def setUpClass(cls):
         cls.http = HTTPConnection(cls.host, 80)</p>
-<div class="codehilite"><pre><span class="nv">@classmethod</span>
-<span class="n">def</span> <span class="n">tearDownClass</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
-    <span class="n">cls</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="nb">close</span><span class="p">()</span>
+<div class="codehilite"><pre><span class="err">@</span><span class="n">classmethod</span>
+<span class="n">def</span> <span class="n">tearDownClass</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">cls</span><span class="p">.</span><span class="n">http</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="n">def</span> <span class="n">getresponse</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
-    <span class="n">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="n">self</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">page</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="n">def</span> <span class="n">getresponse</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">http</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="err">&#39;</span><span class="n">GET</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">path</span><span class="p">(</span><span class="n">page</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">http</span><span class="p">.</span><span class="n">getresponse</span><span class="p">()</span>
 </pre></div>      </div>
 
       <div id="footer">

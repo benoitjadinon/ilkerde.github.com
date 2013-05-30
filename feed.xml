@@ -7,11 +7,61 @@
         <link href="/"/>
     
         
-    <updated>2013-04-06T18:59:23Z</updated>
+    <updated>2013-05-30T21:05:29Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Linux: From Novice To Apprentice</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/linux-from-novice-to-apprentice.html"/>
+            <updated>2013-05-30T20:00:00Z</updated>
+            <published>2013-05-30T20:00:00Z</published>
+            <id>/linux-from-novice-to-apprentice.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>For many years now I'm a happy Linux user. Admittedly, I haven't been much into Linux in my first years as professional software developer. I always needed something which was more or less better or faster achievable with Linux than with Windows, which for many years was my primary OS both for development and personal usage. At that time, I used Linux mainly as a server OS, mostly as a VCS-, File- or Webserver.</p>
+
+<p>Seven years ago I decided to bring Linux back to my desktop. I decided to give the compelling <a href="http://www.ubuntu.com/">Ubuntu</a> distribution a chance. At that times <a href="http://www.ilker.de/ubuntu-upgrade-von-704-auf-710-feisty-auf-gutsy-funktioniert-nicht.html">I started with Ubuntu Feisty</a> in a dual-boot with Windows XP.</p>
+
+<p>I was very satisfied with the "easy" experience of installation and configuration. I wasn't used to expect from a Linux OS to immediately have appropiate VGA drivers and display resolution. Prior to Ubuntu, I was mainly dealing with <a href="https://www.suse.com/">SuSE</a> the years before (starting with the very first version 4.2). With SuSE, it was almost impossible for me to use it efficiently as a desktop OS. I was lucky to manage network connections, firewall, samba and ssh on SuSE - no more, no less.</p>
+
+<p>Back to Ubuntu. With Feisty and Gutsy, I got Linux to experience as a valid desktop OS. Although I wasn't using it as my main OS, I kept my curiousity on a constant scale to trigger me frequently back to use Ubuntu.</p>
+
+<p>After two years of infrequent sessions with Ubuntu on my desktop I decided to hop around a little and give <a href="http://www.debian.org/">Debian</a> a spin. By that time I already was fairly familiar with the distribution layout and toolset within Ubuntu. Since I knew Ubuntu being a derivate of Debian, I found Debian to be a valid next step in improving my understanding of Linux.</p>
+
+<p>My Debian experience was fairly good. For most things, I knew how to deal with them. I even was surprised to have a better support for my hardware than I had with Ubuntu. However, it turned out to be a rather uninspiring desktop experience, since I was missing new shiny software which happen to be standard on Ubuntu.</p>
+
+<p>Granted, my time with Debian was more or less an "experimantal" phase. I tried <a href="http://www.kde.org/">KDE</a> after being a <a href="http://www.gnome.org/">Gnome</a> user for many years. I experimented with IceWM, <a href="http://www.xfce.org">XFCE</a> and even got myself to fully configure a <a href="http://www.fvwm.org/">FVWM</a> environment. That was both fun and a great way to relearn things I forgot over the past years of the Windows regimen on my desktops.</p>
+
+<p>Finally, three years ago I decided to <a href="/ubuntu-10-10-on-vaio-vpc-s12-v9e.html">completely switch to Linux</a>. My decision was mainly reasoned by the fact that I was working on both a Python and ASP.NET project which no longer forced me need to frequently get back to Windows. Since I already was using Windows on a VM for a couple of months (within Debian on a dual-boot installation), I got used to have Linux as my main OS.</p>
+
+<p>So, my first full-fledged Linux desktop experience was again with Ubuntu (Maverick aka. "Perfect 10"). I had a great start since this was to me the first real experience to effectively and efficiently work on Linux as a desktop OS. I managed to develop the ASP.NET project with <a href="http://www.mono-project.com/Main_Page">Mono</a> and <a href="http://monodevelop.com/">Monodevelop</a>, I got my first contact with the lovely <a href="http://www.python.org/">Python</a> programming language, I got rid of all the MS Office ratpack software by using <a href="http://www.libreoffice.org/">LibreOffice</a> and GMail, I started to relearn <a href="http://www.vim.org/">VIM</a>.</p>
+
+<p>However, as time flew by, I happen to realize that Ubuntu was overloaded and freakingly packed full with plenty of useless and unfinished stuff. With the arrival of PPA's and the incredibly fast growth of packages, my system got regressed more often than I wanted it to be. Even me as non-expert, novice-level Linux user could recognize the lousy filesystem management, the inconsistent configuration strategies and the lack of solid tested core packages.</p>
+
+<p>Despite the inner life of Ubuntu being degenrated to a big mess, the main reason for quitting with Ubuntu is the sick politics and strategy of Canonical. It started off with the debut of <a href="http://en.wikipedia.org/wiki/Unity_(user_interface)">Unity</a> in Maverick, continued with the <a href="http://lifehacker.com/5953180/how-to-remove-amazon-ads-from-ubuntu-1210">dumbest idea ever made in Linux distribution history</a> in Quantal, and doesn't get any better with the drop of Wayland in favor of their own half-baked <a href="http://unity.ubuntu.com/mir/">Mir</a>.</p>
+
+<p>My conclusion: <strong>Ubuntu is out!</strong> Ubuntu is nothing more than a freaking wrong capitalizing of free software, surrounded with bloaty adware features and an overall attitude of this <em>"we wanna be cool and hipster like Apple but can't because we're too dumb"</em> company called <a href="http://www.canonical.com/">Canonical</a>. Sorry to say it, but Ubuntu sucks!</p>
+
+<p>Lucky me that I found a nice exit with <a href="http://fedoraproject.org/">Fedora</a>'s Lovelock. Just a few days after its release, I installed <a href="/fedora-15-lovelock-on-sony-vaio-s-series.html">Lovelock on my laptop</a>. Admittedly, I didn't got everything running at first sight and with the new Gnome Shell, systemd and SELinux I certainly needed a coumple of months to get comfy with it.</p>
+
+<p>After this slight ramp-up, Fedora was a very pleasant and stable distribution. Packages have good quality and are being updated frequently, the overall system is <em>clean</em> and <em>consistent</em> - both at the surface as well as behind the doors. I even installed Fedora on my tablet and had a great pleasure using it at meetings and for my day to day tasks.</p>
+
+<p>Fedora gave me the possibility to (re)discover things. My tablet installation certainly was a motivation as well, since I had to deal with limited resources, although I was running the full-blown Shell with it. I tried <a href="http://www.xfce.org">XFCE</a> (again), <a href="http://openbox.org/">Openbox</a>, <a href="http://xmonad.org/">Xmonad</a>, <a href="http://awesome.naquadah.org/">awesome</a>, <a href="http://dwm.suckless.org/">dwm</a> and many other niceties. I continued to happily use <a href="/gnome-shell-slow-after-fedora-17-upgrade.html">Fedora on my tablet</a> up to Beefy Miracle.</p>
+
+<p>At that time, while I was constantly exploring the Linux ecosystem, I dived into the myriad of available Linux distros as well. I installed quite a fair amount of distros (on VMs), ranging from the obvious <a href="http://www.debian.org/">Debian</a>, <a href="http://www.linuxmint.com/">Mint</a> and <a href="http://www.mageia.org/en/">Mageia</a> up to the lesser known <a href="http://crunchbang.org/">CrunchBang</a>, <a href="http://www.sabayon.org/">Sabayon</a> and <a href="https://www.archlinux.org/">Arch</a>. My primary motivation was to extend my knowledge of Linux as OS and ecosystem.</p>
+
+<p>After a period of evaluation, I decided to move away from Fedora a few months ago. I could write a large blog only about this fairly complex and lengthy process of evalution and decision. To keep a long story short: I was quite satisfied with Fedora, yet I was missing simplicity and flexibility to a certain extent. I found myself compiling my own stuff to get things going as I wanted to. Hence, I concluded to move on and opt for Arch.</p>
+
+<p>Today, I happily run Arch on two laptops for a couple of months. So far it's been a great experience. I wouldn't recommend Arch to people being new to Linux or people not willing to dive into details. </p>
+
+<p>For me, Arch is a incredibly good match. Everything in Arch is <em>clear, transparent, consistent</em>. The community and the user repositories are great and not only put attention on detail, but on quality as well. Thanks to Arch, I'm learning more about Linux, from Kernel to X and back.</p>
+
+<p>On the flip side, Arch requires attention and detail. If you're not willing to invest time, precision and accuracy in your system, Arch is not your proper companion. That being said, I'm very happy with Arch and find myself to be more efficient on my desktop than I ever was.</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">TDD Pro Tools</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/tdd-pro-tools.html"/>
@@ -168,7 +218,7 @@
   <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Hello!&quot;</span><span class="p">);</span>
 
-    <span class="n">var</span> <span class="n">d</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">d</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="p">();</span>
     <span class="n">d</span><span class="p">.</span><span class="n">Bark</span><span class="p">();</span>
 
     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Bye!&quot;</span><span class="p">);</span>
@@ -193,7 +243,7 @@
   <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Hello!&quot;</span><span class="p">);</span>
 
-    <span class="n">var</span> <span class="n">d</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">d</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="p">();</span>
     <span class="n">d</span><span class="p">.</span><span class="n">Bark</span><span class="p">();</span>
 
     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Bye!&quot;</span><span class="p">);</span>
@@ -422,8 +472,8 @@ Das braucht das Unternehmen von Heute.*</p>
 
 <p>Darüber hinaus werden in der aus dem TDD bekannten Keyword-Analyse sofort Kandidaten für Klassen und Methoden herausgearbeitet. Obwohl ich das selbst leider nie gemacht habe, empfand ich es schon smart und hilfreich, als ein sehr erfahrener Entwickler während des Meetings ab und zu in seine Konsole kurze Klassendefinitionen eintippte:</p>
 
-<div class="codehilite"><pre><span class="n">echo</span> <span class="err">“</span><span class="n">class</span> <span class="n">Recommendation:</span>
-  <span class="n">pass</span><span class="err">”</span> <span class="o">&gt;</span> <span class="n">recommendation</span><span class="o">.</span><span class="n">py</span>
+<div class="codehilite"><pre><span class="n">echo</span> <span class="err">“</span><span class="n">class</span> <span class="n">Recommendation</span><span class="o">:</span>
+  <span class="n">pass</span><span class="err">”</span> <span class="o">&gt;</span> <span class="n">recommendation</span><span class="p">.</span><span class="n">py</span>
 </pre></div>
 
 <p>Es ist sicherlich auch eine Frage des Geschmacks, wie man die Konzeption schlußendlich festhält. Hervorzuheben ist allerdings, dass es besonders hilfreich ist, früh in die Codebasis einzutauchen und sog. “executable specs” zu formulieren.</p>
@@ -519,34 +569,6 @@ Weiterführende Artikel</h6>
             ]]></content>
         </entry>
                         <entry>
-            <title type="html">The Feature Circle</title>
-            <author><name>Ilker Cetinkaya</name></author>
-            <link href="/feature-circle.html"/>
-            <updated>2012-12-30T15:37:24Z</updated>
-            <published>2012-12-30T15:37:24Z</published>
-            <id>/feature-circle.html</id>
-            
-            <content type="html"><![CDATA[
-                <h4 id="notizen-eines-nerds-1211">Notizen eines Nerds 12'11</h4>
-
-<p><img alt="The Feature Circle" src="/media/images/feature_circle.jpg" /></p>
-            ]]></content>
-        </entry>
-                        <entry>
-            <title type="html">David Parnas über die Dokumentation</title>
-            <author><name>Ilker Cetinkaya</name></author>
-            <link href="/parnas-on-documentation.html"/>
-            <updated>2012-12-30T15:37:24Z</updated>
-            <published>2012-12-30T15:37:24Z</published>
-            <id>/parnas-on-documentation.html</id>
-            
-            <content type="html"><![CDATA[
-                <h4 id="notizen-eines-nerds-128">Notizen eines Nerds 12'8</h4>
-
-<p><img alt="Parnas über Dokumentation" src="/media/images/parnas_on_documentation.jpg" /></p>
-            ]]></content>
-        </entry>
-                        <entry>
             <title type="html">Agiles RE für RE</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/agile-re-for-re.html"/>
@@ -558,104 +580,6 @@ Weiterführende Artikel</h6>
                 <h4 id="notizen-eines-nerds-1210">Notizen eines Nerds 12'10</h4>
 
 <p><img alt="Agiles RE für RE" src="/media/images/agile_re_for_re.jpg" /></p>
-            ]]></content>
-        </entry>
-                        <entry>
-            <title type="html">Das Wesen von Verhandlungen</title>
-            <author><name>Ilker Cetinkaya</name></author>
-            <link href="/wesen-von-verhandlungen.html"/>
-            <updated>2012-12-30T15:37:24Z</updated>
-            <published>2012-12-30T15:37:24Z</published>
-            <id>/wesen-von-verhandlungen.html</id>
-            
-            <content type="html"><![CDATA[
-                <h4 id="notizen-eines-nerds-124">Notizen eines Nerds 12'4</h4>
-
-<p><img alt="Verhandlungen" src="/media/images/wesen_verhandlung.jpg" /></p>
-            ]]></content>
-        </entry>
-                        <entry>
-            <title type="html">Agile Verhandlung</title>
-            <author><name>Ilker Cetinkaya</name></author>
-            <link href="/agile-verhandlung.html"/>
-            <updated>2012-12-30T15:37:24Z</updated>
-            <published>2012-12-30T15:37:24Z</published>
-            <id>/agile-verhandlung.html</id>
-            
-            <content type="html"><![CDATA[
-                <h4 id="notizen-eines-nerds-125">Notizen eines Nerds 12'5</h4>
-
-<p><img alt="Agile Verhandlung" src="/media/images/agile_verhandlung.jpg" /></p>
-            ]]></content>
-        </entry>
-                        <entry>
-            <title type="html">Culture Change Vector</title>
-            <author><name>Ilker Cetinkaya</name></author>
-            <link href="/change-vector.html"/>
-            <updated>2012-12-30T15:37:24Z</updated>
-            <published>2012-12-30T15:37:24Z</published>
-            <id>/change-vector.html</id>
-            
-            <content type="html"><![CDATA[
-                <h4 id="notizen-eines-nerds-121">Notizen eines Nerds 12'1</h4>
-
-<p><img alt="The Culture Change Vector" src="/media/images/change_vector_culture.jpg" /></p>
-            ]]></content>
-        </entry>
-                        <entry>
-            <title type="html">Das &#39;One Piece Flow&#39;-Modell</title>
-            <author><name>Ilker Cetinkaya</name></author>
-            <link href="/one-piece-flow-session.html"/>
-            <updated>2012-12-30T15:37:24Z</updated>
-            <published>2012-12-30T15:37:24Z</published>
-            <id>/one-piece-flow-session.html</id>
-            
-            <content type="html"><![CDATA[
-                <h4 id="notizen-eines-nerds-1212">Notizen eines Nerds 12'12</h4>
-
-<p><img alt="One Piece Flow" src="/media/images/one_piece_flow.jpg" /></p>
-            ]]></content>
-        </entry>
-                        <entry>
-            <title type="html">Der Berater</title>
-            <author><name>Ilker Cetinkaya</name></author>
-            <link href="/der-berater.html"/>
-            <updated>2012-12-30T15:37:24Z</updated>
-            <published>2012-12-30T15:37:24Z</published>
-            <id>/der-berater.html</id>
-            
-            <content type="html"><![CDATA[
-                <h4 id="notizen-eines-nerds-126">Notizen eines Nerds 12'6</h4>
-
-<p><img alt="Der Berater" src="/media/images/der_berater.jpg" /></p>
-            ]]></content>
-        </entry>
-                        <entry>
-            <title type="html">Die erste Story des Product Owners</title>
-            <author><name>Ilker Cetinkaya</name></author>
-            <link href="/story-1-product-owner.html"/>
-            <updated>2012-12-30T15:37:24Z</updated>
-            <published>2012-12-30T15:37:24Z</published>
-            <id>/story-1-product-owner.html</id>
-            
-            <content type="html"><![CDATA[
-                <h4 id="notizen-eines-nerds-129">Notizen eines Nerds 12'9</h4>
-
-<p><img alt="Story Nr.1 of a Product Owner" src="/media/images/story_nr_1_product_owner.jpg" /></p>
-            ]]></content>
-        </entry>
-                        <entry>
-            <title type="html">Amigo Agilo - Die Bedeutung</title>
-            <author><name>Ilker Cetinkaya</name></author>
-            <link href="/amigo-agilo-topics.html"/>
-            <updated>2012-12-30T15:37:24Z</updated>
-            <published>2012-12-30T15:37:24Z</published>
-            <id>/amigo-agilo-topics.html</id>
-            
-            <content type="html"><![CDATA[
-                <h4 id="notizen-eines-nerds-123">Notizen eines Nerds 12'3</h4>
-
-<p><img alt="Amigo Agilo - Die Bedeutung" src="/media/images/amigo_agilo_topics.jpg" /></p>
             ]]></content>
         </entry>
                         <entry>
@@ -673,6 +597,118 @@ Weiterführende Artikel</h6>
             ]]></content>
         </entry>
                         <entry>
+            <title type="html">Der Berater</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/der-berater.html"/>
+            <updated>2012-12-30T15:37:24Z</updated>
+            <published>2012-12-30T15:37:24Z</published>
+            <id>/der-berater.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-126">Notizen eines Nerds 12'6</h4>
+
+<p><img alt="Der Berater" src="/media/images/der_berater.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Amigo Agilo - Die Bedeutung</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/amigo-agilo-topics.html"/>
+            <updated>2012-12-30T15:37:24Z</updated>
+            <published>2012-12-30T15:37:24Z</published>
+            <id>/amigo-agilo-topics.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-123">Notizen eines Nerds 12'3</h4>
+
+<p><img alt="Amigo Agilo - Die Bedeutung" src="/media/images/amigo_agilo_topics.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Das &#39;One Piece Flow&#39;-Modell</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/one-piece-flow-session.html"/>
+            <updated>2012-12-30T15:37:24Z</updated>
+            <published>2012-12-30T15:37:24Z</published>
+            <id>/one-piece-flow-session.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-1212">Notizen eines Nerds 12'12</h4>
+
+<p><img alt="One Piece Flow" src="/media/images/one_piece_flow.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Culture Change Vector</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/change-vector.html"/>
+            <updated>2012-12-30T15:37:24Z</updated>
+            <published>2012-12-30T15:37:24Z</published>
+            <id>/change-vector.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-121">Notizen eines Nerds 12'1</h4>
+
+<p><img alt="The Culture Change Vector" src="/media/images/change_vector_culture.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Agile Verhandlung</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/agile-verhandlung.html"/>
+            <updated>2012-12-30T15:37:24Z</updated>
+            <published>2012-12-30T15:37:24Z</published>
+            <id>/agile-verhandlung.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-125">Notizen eines Nerds 12'5</h4>
+
+<p><img alt="Agile Verhandlung" src="/media/images/agile_verhandlung.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">David Parnas über die Dokumentation</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/parnas-on-documentation.html"/>
+            <updated>2012-12-30T15:37:24Z</updated>
+            <published>2012-12-30T15:37:24Z</published>
+            <id>/parnas-on-documentation.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-128">Notizen eines Nerds 12'8</h4>
+
+<p><img alt="Parnas über Dokumentation" src="/media/images/parnas_on_documentation.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Das Wesen von Verhandlungen</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/wesen-von-verhandlungen.html"/>
+            <updated>2012-12-30T15:37:24Z</updated>
+            <published>2012-12-30T15:37:24Z</published>
+            <id>/wesen-von-verhandlungen.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-124">Notizen eines Nerds 12'4</h4>
+
+<p><img alt="Verhandlungen" src="/media/images/wesen_verhandlung.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">The Feature Circle</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/feature-circle.html"/>
+            <updated>2012-12-30T15:37:24Z</updated>
+            <published>2012-12-30T15:37:24Z</published>
+            <id>/feature-circle.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-1211">Notizen eines Nerds 12'11</h4>
+
+<p><img alt="The Feature Circle" src="/media/images/feature_circle.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">CI Secrets - Die Notizen</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/ci-secrets-notes.html"/>
@@ -684,6 +720,20 @@ Weiterführende Artikel</h6>
                 <h4 id="notizen-eines-nerds-122">Notizen eines Nerds 12'2</h4>
 
 <p><img alt="CI Secrets" src="/media/images/ci-secrets-notes.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Die erste Story des Product Owners</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/story-1-product-owner.html"/>
+            <updated>2012-12-30T15:37:24Z</updated>
+            <published>2012-12-30T15:37:24Z</published>
+            <id>/story-1-product-owner.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-129">Notizen eines Nerds 12'9</h4>
+
+<p><img alt="Story Nr.1 of a Product Owner" src="/media/images/story_nr_1_product_owner.jpg" /></p>
             ]]></content>
         </entry>
                         <entry>
@@ -895,7 +945,7 @@ Figure 2: A <strong>desirable growth</strong> of self-expected quality through D
   <span class="p">}</span>
 
   <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ArgumentNotNull</span><span class="p">(</span><span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;&gt;</span> <span class="n">argumentAccessor</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">compiledAccessor</span> <span class="p">=</span> <span class="n">argumentAccessor</span><span class="p">.</span><span class="n">Compile</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">compiledAccessor</span> <span class="p">=</span> <span class="n">argumentAccessor</span><span class="p">.</span><span class="n">Compile</span><span class="p">();</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">compiledAccessor</span><span class="p">()</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
       <span class="k">throw</span> <span class="k">new</span> <span class="nf">ArgumentNullException</span><span class="p">(</span>
@@ -905,15 +955,15 @@ Figure 2: A <strong>desirable growth</strong> of self-expected quality through D
   <span class="p">}</span>
 
   <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ArgumentsNotNull</span><span class="p">(</span><span class="k">params</span> <span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;&gt;</span> <span class="n">argumentAccessors</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="n">var</span> <span class="n">argumentAccessor</span> <span class="n">argumentAccessors</span><span class="p">)</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">argumentAccessor</span> <span class="n">argumentAccessors</span><span class="p">)</span>
       <span class="n">ArgumentNotNull</span><span class="p">(</span><span class="n">argumentAccessor</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="k">private</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">GetMemberName</span><span class="p">(</span><span class="n">Expression</span> <span class="n">expression</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="p">(</span><span class="n">expression</span><span class="p">.</span><span class="n">NodeType</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">case</span> <span class="n">ExpressionType</span><span class="p">.</span><span class="n">MemberAccess</span><span class="p">:</span>
-        <span class="n">var</span> <span class="n">memberExpression</span> <span class="p">=</span> <span class="p">(</span><span class="n">MemberExpression</span><span class="p">)</span><span class="n">expression</span><span class="p">;</span>
-        <span class="n">var</span> <span class="n">supername</span> <span class="p">=</span> <span class="n">GetMemberName</span><span class="p">(</span><span class="n">memberExpression</span><span class="p">.</span><span class="n">Expression</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">memberExpression</span> <span class="p">=</span> <span class="p">(</span><span class="n">MemberExpression</span><span class="p">)</span><span class="n">expression</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">supername</span> <span class="p">=</span> <span class="n">GetMemberName</span><span class="p">(</span><span class="n">memberExpression</span><span class="p">.</span><span class="n">Expression</span><span class="p">);</span>
 
         <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">supername</span><span class="p">)</span> <span class="p">?</span>
           <span class="n">memberExpression</span><span class="p">.</span><span class="n">Member</span><span class="p">.</span><span class="n">Name</span> <span class="p">:</span>
@@ -924,7 +974,7 @@ Figure 2: A <strong>desirable growth</strong> of self-expected quality through D
         <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
 
       <span class="k">case</span> <span class="n">ExpressionType</span><span class="p">.</span><span class="n">Convert</span><span class="p">:</span>
-        <span class="n">var</span> <span class="n">unaryExpression</span> <span class="p">=</span> <span class="p">(</span><span class="n">UnaryExpression</span><span class="p">)</span><span class="n">expression</span><span class="p">;</span>
+        <span class="kt">var</span> <span class="n">unaryExpression</span> <span class="p">=</span> <span class="p">(</span><span class="n">UnaryExpression</span><span class="p">)</span><span class="n">expression</span><span class="p">;</span>
         <span class="k">return</span> <span class="nf">GetMemberName</span><span class="p">(</span><span class="n">unaryExpression</span><span class="p">.</span><span class="n">Operand</span><span class="p">);</span>
 
       <span class="k">default</span><span class="p">:</span>
@@ -1492,20 +1542,20 @@ Fig 1: Blaise Pascal (1623-1662)</p>
 
 <div class="codehilite"><pre><span class="n">sudo</span> <span class="n">yum</span> <span class="n">info</span> <span class="n">selenium</span><span class="o">-</span><span class="n">core</span>
 
-<span class="n">Loaded</span> <span class="n">plugins:</span> <span class="n">fastestmirror</span><span class="p">,</span> <span class="n">langpacks</span><span class="p">,</span> <span class="n">presto</span><span class="p">,</span> <span class="n">refresh</span><span class="o">-</span><span class="n">packagekit</span>
+<span class="n">Loaded</span> <span class="n">plugins</span><span class="o">:</span> <span class="n">fastestmirror</span><span class="p">,</span> <span class="n">langpacks</span><span class="p">,</span> <span class="n">presto</span><span class="p">,</span> <span class="n">refresh</span><span class="o">-</span><span class="n">packagekit</span>
 <span class="n">Installed</span> <span class="n">Packages</span>
-<span class="n">Name</span>        <span class="p">:</span> <span class="n">selenium</span><span class="o">-</span><span class="n">core</span>
-<span class="n">Arch</span>        <span class="p">:</span> <span class="n">noarch</span>
-<span class="n">Version</span>     <span class="p">:</span> <span class="mf">1.0.2</span>
-<span class="n">Release</span>     <span class="p">:</span> <span class="mf">0.5.20100324</span><span class="n">svn</span><span class="o">.</span><span class="n">fc15</span>
-<span class="n">Size</span>        <span class="p">:</span> <span class="mf">1.0</span> <span class="n">M</span>
-<span class="n">Repo</span>        <span class="p">:</span> <span class="n">installed</span>
-<span class="n">From</span> <span class="n">repo</span>   <span class="p">:</span> <span class="n">fedora</span>
-<span class="n">Summary</span>     <span class="p">:</span> <span class="n">A</span> <span class="n">DHTML</span> <span class="n">test</span> <span class="n">execution</span> <span class="n">framework</span>
-<span class="n">URL</span>         <span class="p">:</span> <span class="n">http:</span><span class="sr">//s</span><span class="n">eleniumhq</span><span class="o">.</span><span class="n">org</span><span class="sr">/projects/co</span><span class="n">re</span><span class="o">/</span>
-<span class="n">License</span>     <span class="p">:</span> <span class="n">LGPLv2</span> <span class="ow">and</span> <span class="n">MIT</span> <span class="ow">and</span> <span class="n">ASL</span> <span class="mf">2.0</span> <span class="ow">and</span> <span class="n">GPLv2</span><span class="o">+</span> <span class="ow">and</span> <span class="p">(</span><span class="n">MPLv1</span><span class="mf">.1</span> <span class="ow">or</span> <span class="n">GPLv2</span><span class="o">+</span> <span class="ow">or</span> <span class="n">LGPLv2</span><span class="o">+</span><span class="p">)</span>
-<span class="n">Description</span> <span class="p">:</span> <span class="n">Selenium</span> <span class="n">Core</span> <span class="n">is</span> <span class="n">the</span> <span class="n">engine</span> <span class="n">of</span> <span class="n">both</span><span class="p">,</span> <span class="n">Selenium</span> <span class="n">IDE</span> <span class="ow">and</span> <span class="n">Selenium</span> <span class="n">RC</span> <span class="p">(</span><span class="n">driven</span>
-            <span class="p">:</span> <span class="n">mode</span><span class="p">),</span> <span class="n">but</span> <span class="n">it</span> <span class="n">also</span> <span class="n">can</span> <span class="n">be</span> <span class="n">deployed</span> <span class="n">on</span> <span class="n">the</span> <span class="n">desired</span> <span class="n">application</span> <span class="n">server</span><span class="o">.</span>
+<span class="n">Name</span>        <span class="o">:</span> <span class="n">selenium</span><span class="o">-</span><span class="n">core</span>
+<span class="n">Arch</span>        <span class="o">:</span> <span class="n">noarch</span>
+<span class="n">Version</span>     <span class="o">:</span> <span class="mf">1.0.2</span>
+<span class="n">Release</span>     <span class="o">:</span> <span class="mf">0.5.20100324</span><span class="n">svn</span><span class="p">.</span><span class="n">fc15</span>
+<span class="n">Size</span>        <span class="o">:</span> <span class="mf">1.0</span> <span class="n">M</span>
+<span class="n">Repo</span>        <span class="o">:</span> <span class="n">installed</span>
+<span class="n">From</span> <span class="n">repo</span>   <span class="o">:</span> <span class="n">fedora</span>
+<span class="n">Summary</span>     <span class="o">:</span> <span class="n">A</span> <span class="n">DHTML</span> <span class="n">test</span> <span class="n">execution</span> <span class="n">framework</span>
+<span class="n">URL</span>         <span class="o">:</span> <span class="n">http</span><span class="o">:</span><span class="c1">//seleniumhq.org/projects/core/</span>
+<span class="n">License</span>     <span class="o">:</span> <span class="n">LGPLv2</span> <span class="n">and</span> <span class="n">MIT</span> <span class="n">and</span> <span class="n">ASL</span> <span class="mf">2.0</span> <span class="n">and</span> <span class="n">GPLv2</span><span class="o">+</span> <span class="n">and</span> <span class="p">(</span><span class="n">MPLv1</span><span class="mf">.1</span> <span class="n">or</span> <span class="n">GPLv2</span><span class="o">+</span> <span class="n">or</span> <span class="n">LGPLv2</span><span class="o">+</span><span class="p">)</span>
+<span class="n">Description</span> <span class="o">:</span> <span class="n">Selenium</span> <span class="n">Core</span> <span class="n">is</span> <span class="n">the</span> <span class="n">engine</span> <span class="n">of</span> <span class="n">both</span><span class="p">,</span> <span class="n">Selenium</span> <span class="n">IDE</span> <span class="n">and</span> <span class="n">Selenium</span> <span class="n">RC</span> <span class="p">(</span><span class="n">driven</span>
+            <span class="o">:</span> <span class="n">mode</span><span class="p">),</span> <span class="n">but</span> <span class="n">it</span> <span class="n">also</span> <span class="n">can</span> <span class="n">be</span> <span class="n">deployed</span> <span class="n">on</span> <span class="n">the</span> <span class="n">desired</span> <span class="n">application</span> <span class="n">server</span><span class="p">.</span>
 </pre></div>
 
 <p>Same goes for <code>selenium-server</code>, btw. Well, not really. Surprisingly, the selenium packages for fedora are quite outdated. They provide selenium version 1.02, while the current standalone server version happens to be on version 2.24.x. This is quite exceptional since fedora packages are quite on track with latest stables in general.</p>
@@ -1529,16 +1579,16 @@ java -jar /usr/local/lib/java/selenium-standalone-server.jar
 
 <p>A subsequent check with python to verify correct operation revealed another caveat. I checked the firefox webdriver with</p>
 
-<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">selenium</span> <span class="nb">import</span> <span class="n">webdriver</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">selenium</span> <span class="n">import</span> <span class="n">webdriver</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="n">Firefox</span><span class="p">()</span>
 </pre></div>
 
 <p>and got a nice message that the webdriver wasn't able to fire up firefox due to a <em>"wrong ELF class: ELFCLASS32"</em> error for <code>libX11.so.6</code>. A short research uncovered the issue being a known problem of selenium as described in <a href="http://code.google.com/p/selenium/issues/detail?id=2852">Issue 2852</a>. The selenium driver looks up libX11 on a wrong location.</p>
 
 <p>The somewhat ugly workaround for this is to redirect to the lib64 dll with a symlink:</p>
 
-<div class="codehilite"><pre><span class="n">mv</span> <span class="sr">/usr/</span><span class="n">lib</span><span class="o">/</span><span class="n">libX11</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span><span class="p">{,</span><span class="o">.</span><span class="n">x86</span><span class="p">}</span>
-<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="sr">/usr/</span><span class="n">lib64</span><span class="sr">/libX11.so.6.3.0 /</span><span class="n">usr</span><span class="sr">/lib/</span><span class="n">libX11</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span>
+<div class="codehilite"><pre><span class="n">mv</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libX11</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span><span class="p">{,.</span><span class="n">x86</span><span class="p">}</span>
+<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libX11</span><span class="p">.</span><span class="n">so</span><span class="mf">.6.3.0</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libX11</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span>
 </pre></div>
 
 <p>After this little hack, the firefox webdriver works as expected and the selenium testing fun finally was about to begin!</p>
@@ -1549,11 +1599,11 @@ java -jar /usr/local/lib/java/selenium-standalone-server.jar
 
 <p>The first option is to go for the (above created) server and use the <code>RemoteDriver</code> in the tests. This is quite straight-forward and did work very well in a few other projects I made. So I decided to check this path from within Python as well. Well, basically, it's just as easy as:</p>
 
-<div class="codehilite"><pre><span class="n">from</span> <span class="n">selenium</span> <span class="nb">import</span> <span class="n">webdriver</span>
-<span class="n">from</span> <span class="n">selenium</span><span class="o">.</span><span class="n">webdriver</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">desired_capabilities</span> <span class="nb">import</span> <span class="n">DesiredCapabilities</span>
+<div class="codehilite"><pre><span class="n">from</span> <span class="n">selenium</span> <span class="n">import</span> <span class="n">webdriver</span>
+<span class="n">from</span> <span class="n">selenium</span><span class="p">.</span><span class="n">webdriver</span><span class="p">.</span><span class="n">common</span><span class="p">.</span><span class="n">desired_capabilities</span> <span class="n">import</span> <span class="n">DesiredCapabilities</span>
 
-<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span>
-    <span class="n">desired_capabilities</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">HTMLUNIT</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="n">Remote</span><span class="p">(</span>
+    <span class="n">desired_capabilities</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="p">.</span><span class="n">HTMLUNIT</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -1571,19 +1621,19 @@ java -jar /usr/local/lib/java/selenium-standalone-server.jar
 
 <p>The xvfb package name may vary on other distributions. After installing pyvirtualdisplay, running a headless test with Xvfb is as easy as:</p>
 
-<div class="codehilite"><pre><span class="n">from</span> <span class="n">pyvirtualdisplay</span> <span class="nb">import</span> <span class="n">Display</span>
-<span class="n">from</span> <span class="n">selenium</span> <span class="nb">import</span> <span class="n">webdriver</span>
+<div class="codehilite"><pre><span class="n">from</span> <span class="n">pyvirtualdisplay</span> <span class="n">import</span> <span class="n">Display</span>
+<span class="n">from</span> <span class="n">selenium</span> <span class="n">import</span> <span class="n">webdriver</span>
 
 <span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span><span class="mi">768</span><span class="p">))</span>
-<span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">display</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
 
-<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
-<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://google.com&#39;</span><span class="p">)</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="n">browser</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="err">&#39;</span><span class="n">http</span><span class="o">:</span><span class="c1">//google.com&#39;)</span>
 
-<span class="k">print</span> <span class="n">browser</span><span class="o">.</span><span class="n">title</span>
+<span class="n">print</span> <span class="n">browser</span><span class="p">.</span><span class="n">title</span>
 
-<span class="n">browser</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-<span class="n">display</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<span class="n">browser</span><span class="p">.</span><span class="n">quit</span><span class="p">()</span>
+<span class="n">display</span><span class="p">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
 
 <p>And: it works beautifully! The nice thing about it is that switching from headless to visual mode is just changing a few lines, which can be easily parameterized. As for my simple tests on my little project, I'm using the virtual display version. It's fast enough and enables me to do some advanced checking as well.</p>
@@ -3412,25 +3462,25 @@ Es ist mir eine besondere Freude, dass ich für diese besondere Perspektive der 
 
 <p>The syntax of the PHP lambda will be very familiar to JavaScript developers, actually:</p>
 
-<div class="codehilite"><pre><span class="nv">$plus</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span> <span class="p">};</span>
+<div class="codehilite"><pre><span class="nx">$plus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$x</span><span class="p">,</span> <span class="nx">$y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">$x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span> <span class="p">};</span>
 </pre></div>
 
 <p>That's pretty straight forward. However, PHP's syntax is still unique. This mainly is reasoned by the fact how <em>closures</em> are implemented in PHP. Let's look at a function with a closure:</p>
 
-<div class="codehilite"><pre><span class="nv">$canprint</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$x</span> <span class="nv">%</span> <span class="nv">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="p">};</span>
-<span class="nv">$printseq</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$z</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$canprint</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$z</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
-    <span class="n">echo</span> <span class="nv">$canprint</span><span class="p">(</span><span class="nv">$i</span><span class="p">)</span> <span class="p">?</span> <span class="nv">$i</span> <span class="p">:</span> <span class="s">&#39;-&#39;</span><span class="p">;</span>
+<div class="codehilite"><pre><span class="nx">$canprint</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">$x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="p">};</span>
+<span class="nx">$printseq</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$a</span><span class="p">,</span> <span class="nx">$z</span><span class="p">)</span> <span class="nx">use</span> <span class="p">(</span><span class="nx">$canprint</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="k">for</span> <span class="p">(</span><span class="nx">$i</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">;</span> <span class="nx">$i</span> <span class="o">&lt;</span> <span class="nx">$z</span><span class="p">;</span> <span class="nx">$i</span><span class="o">++</span><span class="p">)</span>
+    <span class="nx">echo</span> <span class="nx">$canprint</span><span class="p">(</span><span class="nx">$i</span><span class="p">)</span> <span class="o">?</span> <span class="nx">$i</span> <span class="o">:</span> <span class="s1">&#39;-&#39;</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="nv">$printseq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="nx">$printseq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
 </pre></div>
 
 <p>Developers coming from other languages (such as JavaScript) may scratch their had a little on the explicit <code>function($x) use ($y) {}</code> syntax. However, it's quite interesting that you pretty easily can get used to it.</p>
 
 <p>The reason why I post this (nearly 3 years old) language feature of PHP is not only that I find it to be used rarely. I for one think that anonymous functions are very important to any language and enable the developer to build a whole new class of elegant solutions. Let me illustrate this with a classic example showing you that anonymous functions can be called recursively as well:</p>
 
-<div class="codehilite"><pre><span class="nv">$fib</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="o">&amp;</span><span class="nv">$fib</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$x</span><span class="o">&gt;</span><span class="mi">1</span> <span class="p">?</span> <span class="nv">$fib</span><span class="p">(</span><span class="nv">$x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="nv">$fib</span><span class="p">(</span><span class="nv">$x</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="p">:</span> <span class="nv">$x</span><span class="p">;</span> <span class="p">};</span>
+<div class="codehilite"><pre><span class="nx">$fib</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$x</span><span class="p">)</span> <span class="nx">use</span> <span class="p">(</span><span class="o">&amp;</span><span class="nx">$fib</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">$x</span><span class="o">&gt;</span><span class="mi">1</span> <span class="o">?</span> <span class="nx">$fib</span><span class="p">(</span><span class="nx">$x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="nx">$fib</span><span class="p">(</span><span class="nx">$x</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">:</span> <span class="nx">$x</span><span class="p">;</span> <span class="p">};</span>
 </pre></div>
             ]]></content>
         </entry>
@@ -3447,24 +3497,24 @@ Es ist mir eine besondere Freude, dass ich für diese besondere Perspektive der 
 
 <p>Suppose you have a file with some configuration settings:</p>
 
-<div class="codehilite"><pre><span class="nv">$admin_active</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-<span class="nv">$admin_startpage</span> <span class="o">=</span> <span class="s">&quot;dashboard&quot;</span><span class="p">;</span>
-<span class="nv">$admin_usemru</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-<span class="nv">$admin_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span> <span class="o">|</span> <span class="n">F_CHANGED</span><span class="p">;</span>
+<div class="codehilite"><pre><span class="err">$</span><span class="n">admin_active</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="err">$</span><span class="n">admin_startpage</span> <span class="o">=</span> <span class="s">&quot;dashboard&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">admin_usemru</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="err">$</span><span class="n">admin_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span> <span class="o">|</span> <span class="n">F_CHANGED</span><span class="p">;</span>
 
-<span class="nv">$user_active</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-<span class="nv">$user_startpage</span> <span class="o">=</span> <span class="s">&quot;listissues&quot;</span><span class="p">;</span>
-<span class="nv">$user_usemru</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
-<span class="nv">$user_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span><span class="p">;</span>
+<span class="err">$</span><span class="n">user_active</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="err">$</span><span class="n">user_startpage</span> <span class="o">=</span> <span class="s">&quot;listissues&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">user_usemru</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="err">$</span><span class="n">user_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span><span class="p">;</span>
 
-<span class="nv">$dashboard_layout</span> <span class="o">=</span> <span class="s">&quot;simple&quot;</span><span class="p">;</span>
-<span class="nv">$listissues_layout</span> <span class="o">=</span> <span class="s">&quot;self&quot;</span><span class="p">;</span>
-<span class="nv">$markissue_layout</span> <span class="o">=</span> <span class="s">&quot;detail&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">dashboard_layout</span> <span class="o">=</span> <span class="s">&quot;simple&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">listissues_layout</span> <span class="o">=</span> <span class="s">&quot;self&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">markissue_layout</span> <span class="o">=</span> <span class="s">&quot;detail&quot;</span><span class="p">;</span>
 </pre></div>
 
 <p>Let's further on suppose that you should write a small snippet to administer and configure these settings from above. It's pretty obvious that settings are grouped by role in the settings file (see <code>$admin_startpage</code> and <code>$user_startpage</code>). If you were to build up a configuration panel where the current role would be able to change his own dashboard layout, how would you solve that? Assume that you have variable with the current role in action, something like </p>
 
-<div class="codehilite"><pre><span class="nv">$active_role</span> <span class="o">=</span> <span class="s">&quot;admin&quot;</span><span class="p">;</span>
+<div class="codehilite"><pre><span class="err">$</span><span class="n">active_role</span> <span class="o">=</span> <span class="s">&quot;admin&quot;</span><span class="p">;</span>
 </pre></div>
 
 <p>How to read and change the page layout of the startpage of the currently logged on role?</p>
@@ -3479,12 +3529,12 @@ Es ist mir eine besondere Freude, dass ich für diese besondere Perspektive der 
 
 <p>The second line is the "trick" called meta-variable. The line actually reads: "Take the value of <code>$active_startpage</code> as the name (or symbol) of the variable I want to access the value of". The same applies to the 4th line, but this time with the more lightweight <code>$$</code>-syntax. Let's look at an even simpler example to get meta-variables illustrated:</p>
 
-<div class="codehilite"><pre><span class="nv">$mode</span> <span class="o">=</span> <span class="s">&quot;effect&quot;</span><span class="p">;</span>
-<span class="nv">$menu</span> <span class="o">=</span> <span class="s">&quot;mode&quot;</span><span class="p">;</span>
+<div class="codehilite"><pre><span class="err">$</span><span class="n">mode</span> <span class="o">=</span> <span class="s">&quot;effect&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">menu</span> <span class="o">=</span> <span class="s">&quot;mode&quot;</span><span class="p">;</span>
 
-<span class="n">echo</span> <span class="nv">$$menu</span><span class="p">;</span>  <span class="c1"># prints &quot;effect&quot;</span>
-<span class="n">echo</span> <span class="nv">$$mode</span><span class="p">;</span>  <span class="c1"># prints &quot;shade&quot;</span>
-<span class="n">echo</span> <span class="vg">$$</span><span class="nv">$menu</span><span class="p">;</span> <span class="c1"># prints &quot;shade&quot;</span>
+<span class="n">echo</span> <span class="err">$$</span><span class="n">menu</span><span class="p">;</span>  <span class="err">#</span> <span class="n">prints</span> <span class="s">&quot;effect&quot;</span>
+<span class="n">echo</span> <span class="err">$$</span><span class="n">mode</span><span class="p">;</span>  <span class="err">#</span> <span class="n">prints</span> <span class="s">&quot;shade&quot;</span>
+<span class="n">echo</span> <span class="err">$$$</span><span class="n">menu</span><span class="p">;</span> <span class="err">#</span> <span class="n">prints</span> <span class="s">&quot;shade&quot;</span>
 </pre></div>
 
 <p>The above example shows the power of meta-variables quite nicely. Despite the lightweight <code>$$</code>-syntax (which is more commonly used than the complex curly syntax), the example shows that the level of nesting is not limited to a simple meta-lookup. In fact, meta-variables (in theory) can be nested arbitrarily. I for one haven't ever used a deeper nesting than 3, though.</p>
@@ -3630,9 +3680,9 @@ Mein Interview mit Thorsten ist das zweite bei meiner Erkundungstour durch die W
 
 <p>Consider you want to create a pair of values for a simple configuration file model, something like a setting with a name and a value. One might easily implement this with the (quite) new <code>Tuple&lt;F,S&gt;</code> type:</p>
 
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">foreground</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="kt">string</span><span class="p">&gt;(</span><span class="s">&quot;foreground&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">background</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="n">ConsoleColor</span><span class="p">&gt;(</span><span class="s">&quot;background&quot;</span><span class="p">,</span> <span class="n">ConsoleColor</span><span class="p">.</span><span class="n">Yellow</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">errorlines</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;(</span><span class="s">&quot;errorlines&quot;</span><span class="p">,</span> <span class="m">3</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="kt">var</span> <span class="n">foreground</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="kt">string</span><span class="p">&gt;(</span><span class="s">&quot;foreground&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">background</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="n">ConsoleColor</span><span class="p">&gt;(</span><span class="s">&quot;background&quot;</span><span class="p">,</span> <span class="n">ConsoleColor</span><span class="p">.</span><span class="n">Yellow</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">errorlines</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="kt">int</span><span class="p">&gt;(</span><span class="s">&quot;errorlines&quot;</span><span class="p">,</span> <span class="m">3</span><span class="p">);</span>
 </pre></div>
 
 <p>Quite straightforward, isn't it? I'm even glad we have <em>type inference</em> since C# 3 and can use <code>var</code> here, otherwise we would've got the type repetition like this:</p>
@@ -3653,9 +3703,9 @@ Mein Interview mit Thorsten ist das zweite bei meiner Erkundungstour durch die W
 
 <p>And then - immediately - a reworked version of the above settings example looks much more readable - and intuitive:</p>
 
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">foreground</span> <span class="p">=</span> <span class="n">New</span><span class="p">.</span><span class="n">Tuple</span><span class="p">(</span><span class="s">&quot;foreground&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">background</span> <span class="p">=</span> <span class="n">New</span><span class="p">.</span><span class="n">Tuple</span><span class="p">(</span><span class="s">&quot;background&quot;</span><span class="p">,</span> <span class="n">ConsoleColor</span><span class="p">.</span><span class="n">Yellow</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">errorlines</span> <span class="p">=</span> <span class="n">New</span><span class="p">.</span><span class="n">Tuple</span><span class="p">(</span><span class="s">&quot;errorlines&quot;</span><span class="p">,</span> <span class="m">3</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="kt">var</span> <span class="n">foreground</span> <span class="p">=</span> <span class="n">New</span><span class="p">.</span><span class="n">Tuple</span><span class="p">(</span><span class="s">&quot;foreground&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">background</span> <span class="p">=</span> <span class="n">New</span><span class="p">.</span><span class="n">Tuple</span><span class="p">(</span><span class="s">&quot;background&quot;</span><span class="p">,</span> <span class="n">ConsoleColor</span><span class="p">.</span><span class="n">Yellow</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">errorlines</span> <span class="p">=</span> <span class="n">New</span><span class="p">.</span><span class="n">Tuple</span><span class="p">(</span><span class="s">&quot;errorlines&quot;</span><span class="p">,</span> <span class="m">3</span><span class="p">);</span>
 </pre></div>
 
 <p>Far better me thinks! Notice that the generic types for the tuple are being <em>inferred from the parameters</em> of the <code>Tuple&lt;K,V&gt;</code> static method. Yet another tiny gimmick with quite a big value delivered in terms of readable and concise code. All thanks to type inference.</p>
@@ -3680,9 +3730,9 @@ Mein Interview mit Thorsten ist das zweite bei meiner Erkundungstour durch die W
 
   <span class="k">if</span> <span class="p">(</span><span class="n">customers</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">customersOfSection</span> <span class="p">=</span> 
-      <span class="n">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="n">customers</span>
-      <span class="n">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCirle</span>
-      <span class="n">select</span> <span class="n">customer</span><span class="p">;</span>
+      <span class="k">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="n">customers</span>
+      <span class="k">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCirle</span>
+      <span class="k">select</span> <span class="n">customer</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="k">return</span> <span class="n">customersOfSection</span><span class="p">;</span>
@@ -3695,9 +3745,9 @@ Mein Interview mit Thorsten ist das zweite bei meiner Erkundungstour durch die W
 
 <div class="codehilite"><pre><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;</span> <span class="n">GetCustomersOfSection</span><span class="p">(</span><span class="n">Filter</span> <span class="n">regionAndNameFilter</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span>
-    <span class="n">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="nf">GetCustomersBy</span><span class="p">(</span><span class="n">regionAndNameFilter</span><span class="p">)</span> <span class="p">??</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Empty</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()</span>
-    <span class="n">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCircle</span>
-    <span class="n">select</span> <span class="n">customer</span><span class="p">;</span>
+    <span class="k">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="nf">GetCustomersBy</span><span class="p">(</span><span class="n">regionAndNameFilter</span><span class="p">)</span> <span class="p">??</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Empty</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()</span>
+    <span class="k">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCircle</span>
+    <span class="k">select</span> <span class="n">customer</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -3705,9 +3755,9 @@ Mein Interview mit Thorsten ist das zweite bei meiner Erkundungstour durch die W
 
 <div class="codehilite"><pre><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;</span> <span class="n">GetCustomersOfSection</span><span class="p">(</span><span class="n">Filter</span> <span class="n">regionAndNameFilter</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span>
-    <span class="n">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="nf">GetCustomersBy</span><span class="p">(</span><span class="n">regionAndNameFilter</span><span class="p">).</span><span class="n">OrEmpty</span><span class="p">()</span>
-    <span class="n">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCircle</span>
-    <span class="n">select</span> <span class="n">customer</span><span class="p">;</span>
+    <span class="k">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="nf">GetCustomersBy</span><span class="p">(</span><span class="n">regionAndNameFilter</span><span class="p">).</span><span class="n">OrEmpty</span><span class="p">()</span>
+    <span class="k">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCircle</span>
+    <span class="k">select</span> <span class="n">customer</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Extensions</span> <span class="p">{</span>
@@ -4560,7 +4610,7 @@ Agile approaches emphasize quality of design, because design quality is essentia
   <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsDirty</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
   <span class="k">public</span> <span class="n">LocalTime</span> <span class="nf">SyncWith</span><span class="p">(</span><span class="n">TimeServer</span> <span class="n">ts</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">IsDirty</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">TimeEntry</span> <span class="n">te</span> <span class="p">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">GetTime</span><span class="p">();</span>
@@ -4579,10 +4629,10 @@ Agile approaches emphasize quality of design, because design quality is essentia
 
 <p>Hmm. This code smells to have bugs. You're staring at it and think <em>"Oh my. Look at the dupes. Rookies."</em> If you wouldn't just slurp your coffee while browsing code, your left hand would be ready to serve a generous face-palm. Your excellent nose didn't mislead you, as you soon realize while reading the bug report in Bugzilla:</p>
 
-<div class="codehilite"><pre><span class="n">Bug</span> <span class="n">Nr</span>      <span class="p">:</span> <span class="mi">0815</span>
-<span class="n">Title</span>       <span class="p">:</span> <span class="n">culture</span> <span class="n">is</span> <span class="ow">not</span> <span class="n">updated</span> <span class="n">when</span> <span class="n">clock</span> <span class="n">is</span> <span class="n">in</span> <span class="n">sync</span> <span class="n">with</span> <span class="n">server</span>
-<span class="n">Component</span>   <span class="p">:</span> <span class="n">Time</span> <span class="n">Sychronizer</span> <span class="p">(</span><span class="n">Chronograph</span><span class="p">)</span>
-<span class="n">Description</span> <span class="p">:</span> <span class="n">While</span> <span class="n">the</span> <span class="nb">local</span> <span class="nb">time</span> <span class="n">is</span> <span class="n">in</span> <span class="n">sync</span> <span class="n">with</span> <span class="n">server</span><span class="p">,</span> <span class="n">the</span> <span class="n">culture</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="s">&quot;updated&quot;</span> <span class="n">regularly</span><span class="o">.</span> <span class="n">It</span> <span class="n">happens</span> <span class="ow">not</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="k">case</span><span class="o">.</span> <span class="n">The</span> <span class="nb">time</span> <span class="n">server</span> <span class="n">API</span> <span class="n">has</span> <span class="n">a</span> <span class="n">specific</span> <span class="n">function</span> <span class="n">to</span> <span class="n">update</span> <span class="n">a</span> <span class="nb">time</span> <span class="n">entry</span> <span class="n">with</span> <span class="n">culture:</span> <span class="n">TimeEntry</span><span class="o">.</span><span class="n">Ensure</span><span class="p">(</span><span class="n">CultureInfo</span><span class="p">)</span><span class="o">.</span> <span class="n">Use</span> <span class="n">this</span> <span class="n">function</span> <span class="n">to</span> <span class="n">keep</span> <span class="n">culture</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span><span class="o">.</span>
+<div class="codehilite"><pre><span class="nx">Bug</span> <span class="nx">Nr</span>      <span class="o">:</span> <span class="mi">0815</span>
+<span class="nx">Title</span>       <span class="o">:</span> <span class="nx">culture</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">updated</span> <span class="nx">when</span> <span class="nx">clock</span> <span class="nx">is</span> <span class="k">in</span> <span class="nx">sync</span> <span class="kd">with</span> <span class="nx">server</span>
+<span class="nx">Component</span>   <span class="o">:</span> <span class="nx">Time</span> <span class="nx">Sychronizer</span> <span class="p">(</span><span class="nx">Chronograph</span><span class="p">)</span>
+<span class="nx">Description</span> <span class="o">:</span> <span class="nx">While</span> <span class="nx">the</span> <span class="nx">local</span> <span class="nx">time</span> <span class="nx">is</span> <span class="k">in</span> <span class="nx">sync</span> <span class="kd">with</span> <span class="nx">server</span><span class="p">,</span> <span class="nx">the</span> <span class="nx">culture</span> <span class="nx">needs</span> <span class="nx">to</span> <span class="nx">be</span> <span class="s2">&quot;updated&quot;</span> <span class="nx">regularly</span><span class="p">.</span> <span class="nx">It</span> <span class="nx">happens</span> <span class="nx">not</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">the</span> <span class="k">case</span><span class="p">.</span> <span class="nx">The</span> <span class="nx">time</span> <span class="nx">server</span> <span class="nx">API</span> <span class="nx">has</span> <span class="nx">a</span> <span class="nx">specific</span> <span class="kd">function</span> <span class="nx">to</span> <span class="nx">update</span> <span class="nx">a</span> <span class="nx">time</span> <span class="nx">entry</span> <span class="kd">with</span> <span class="nx">culture</span><span class="o">:</span> <span class="nx">TimeEntry</span><span class="p">.</span><span class="nx">Ensure</span><span class="p">(</span><span class="nx">CultureInfo</span><span class="p">).</span> <span class="nx">Use</span> <span class="k">this</span> <span class="kd">function</span> <span class="nx">to</span> <span class="nx">keep</span> <span class="nx">culture</span> <span class="nx">up</span> <span class="nx">to</span> <span class="nx">date</span><span class="p">.</span>
 </pre></div>
 
 <p>Good to know that a professional like you is taking care of this nifty bug. While browsing through TimeServer API, you realize that <code>TimeServer</code>, <code>TimeEntry</code> and <code>LocalTime</code> classes are all sealed. Without interfaces. </p>
@@ -4629,10 +4679,10 @@ Agile approaches emphasize quality of design, because design quality is essentia
 <span class="k">public</span> <span class="k">class</span> <span class="nc">When_chrono_is_in_sync</span> <span class="p">{</span>
 <span class="na">  [Test]</span>
   <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_culture_is_ensured_with_time_entry</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="kt">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
 
-    <span class="n">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
-    <span class="n">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">();</span>
 
     <span class="n">chrono</span><span class="p">.</span><span class="n">IsDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
     <span class="n">chrono</span><span class="p">.</span><span class="n">SyncWith</span><span class="p">(</span><span class="n">ts</span><span class="p">);</span>
@@ -4677,14 +4727,14 @@ Agile approaches emphasize quality of design, because design quality is essentia
 <span class="k">public</span> <span class="k">class</span> <span class="nc">When_chrono_is_in_sync</span> <span class="p">{</span>
 <span class="na">  [Test]</span>
   <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_culture_is_ensured_with_time_entry</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="kt">var</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
 
     <span class="n">TimeEntryImplant</span><span class="p">.</span><span class="n">Ensure</span> <span class="n">implant</span> <span class="p">=</span>
       <span class="n">culture</span>
         <span class="p">=&gt;</span> <span class="n">ensureWasCalled</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
 
-    <span class="n">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
-    <span class="n">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">(</span><span class="n">implant</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">ts</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TimeServer</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">chrono</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Chronograph</span><span class="p">(</span><span class="n">implant</span><span class="p">);</span>
 
     <span class="n">chrono</span><span class="p">.</span><span class="n">IsDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
     <span class="n">chrono</span><span class="p">.</span><span class="n">SyncWith</span><span class="p">(</span><span class="n">ts</span><span class="p">);</span>
@@ -4762,7 +4812,7 @@ Agile approaches emphasize quality of design, because design quality is essentia
   <span class="k">public</span> <span class="kt">bool</span> <span class="n">IsDirty</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
   <span class="k">public</span> <span class="n">LocalTime</span> <span class="nf">SyncWith</span><span class="p">(</span><span class="n">TimeServer</span> <span class="n">ts</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">localTime</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LocalTime</span><span class="p">();</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">IsDirty</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">TimeEntry</span> <span class="n">te</span> <span class="p">=</span> <span class="n">ts</span><span class="p">.</span><span class="n">GetTime</span><span class="p">();</span>
@@ -5543,7 +5593,7 @@ Mittel für den Erhalt von Qualitätsstandards.</p>
 <p>First of all, on Fedora 15, you don't edit <code>/etc/httpd/conf/httpd.conf</code>, although you could go for it. Instead, you extend your initial (base) configuration with little configuration snippets located in <code>/etc/httpd/conf.d/</code>. To follow this convention, a simple <code>userdir.conf</code> file in previously mentioned directory should be created with the following content:</p>
 
 <div class="codehilite"><pre><span class="nt">&lt;IfModule</span> <span class="err">mod_userdir.c</span><span class="nt">&gt;</span>
-    UserDir enabled [user]
+    UserDir enabled <span class="cp">[</span><span class="nb">user</span><span class="cp">]</span>
     UserDir public_html
 <span class="nt">&lt;/IfModule&gt;</span>
 
@@ -5567,17 +5617,17 @@ Mittel für den Erhalt von Qualitätsstandards.</p>
 
 <p>First of all, ensure that the directories have proper permissions:</p>
 
-<div class="codehilite"><pre><span class="c1">## home directory ##</span>
-<span class="n">sudo</span> <span class="nb">chmod</span> <span class="mi">711</span> <span class="sr">/home/</span><span class="p">[</span><span class="n">user</span><span class="p">]</span>
+<div class="codehilite"><pre><span class="cp">## home directory ##</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">711</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="p">[</span><span class="n">user</span><span class="p">]</span>
 
-<span class="c1">## public_html directory ##</span>
-<span class="n">sudo</span> <span class="nb">chown</span> <span class="p">[</span><span class="n">user</span><span class="p">]:[</span><span class="n">user</span><span class="p">]</span> <span class="sr">/home/</span><span class="p">[</span><span class="n">user</span><span class="p">]</span><span class="o">/</span><span class="n">public_html</span>
-<span class="n">sudo</span> <span class="nb">chmod</span> <span class="mi">755</span> <span class="sr">/home/</span><span class="p">[</span><span class="n">user</span><span class="p">]</span><span class="o">/</span><span class="n">public_html</span>
+<span class="cp">## public_html directory ##</span>
+<span class="n">sudo</span> <span class="n">chown</span> <span class="p">[</span><span class="n">user</span><span class="p">]</span><span class="o">:</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="p">[</span><span class="n">user</span><span class="p">]</span><span class="o">/</span><span class="n">public_html</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="p">[</span><span class="n">user</span><span class="p">]</span><span class="o">/</span><span class="n">public_html</span>
 </pre></div>
 
 <p>Then, tweak SELinux settings for user directories and user content:</p>
 
-<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">setsebool</span> <span class="o">-</span><span class="n">P</span> <span class="n">httpd_enable_homedirs</span> <span class="n">true</span>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">setsebool</span> <span class="o">-</span><span class="n">P</span> <span class="n">httpd_enable_homedirs</span> <span class="nb">true</span>
 <span class="n">sudo</span> <span class="n">setsebool</span> <span class="o">-</span><span class="n">P</span> <span class="n">httpd_read_user_content</span> <span class="mi">1</span>
 </pre></div>
 
@@ -5762,7 +5812,7 @@ Installing Fedora is easy. I won't cover everything in detail but quickly want t
 
 <p>Adding RPM Fusion package repositories is a one-liner:</p>
 
-<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">yum</span> <span class="n">localinstall</span> <span class="o">--</span><span class="n">nogpgcheck</span> <span class="n">http:</span><span class="sr">//</span><span class="n">download1</span><span class="o">.</span><span class="n">rpmfusion</span><span class="o">.</span><span class="n">org</span><span class="sr">/free/</span><span class="n">fedora</span><span class="sr">/rpmfusion-free-release-stable.noarch.rpm http://download1.rpmfusion.org/</span><span class="n">nonfree</span><span class="sr">/fedora/</span><span class="n">rpmfusion</span><span class="o">-</span><span class="n">nonfree</span><span class="o">-</span><span class="n">release</span><span class="o">-</span><span class="n">stable</span><span class="o">.</span><span class="n">noarch</span><span class="o">.</span><span class="n">rpm</span>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">yum</span> <span class="n">localinstall</span> <span class="o">--</span><span class="n">nogpgcheck</span> <span class="n">http</span><span class="o">:</span><span class="c1">//download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm</span>
 </pre></div>
 
 <p>For me at least, above three steps are the foundation for a stable and frictionless installation and user experience. Next, I'll cover a few Vaio specific topics. It's not very much to talk about, since out-of-the-box support for Vaio S-Series on Fedora 15 is very good. Nearby, my Vaio is a VPCS12V9E.</p>
@@ -6115,10 +6165,10 @@ controlList = [F1]
       <span class="k">return</span> <span class="n">number</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">TranslateRange</span><span class="p">(</span><span class="kt">int</span> <span class="n">from</span><span class="p">,</span> <span class="kt">int</span> <span class="n">to</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">TranslateRange</span><span class="p">(</span><span class="kt">int</span> <span class="k">from</span><span class="p">,</span> <span class="kt">int</span> <span class="n">to</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">translations</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;();</span>
 
-      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="n">from</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;=</span> <span class="n">to</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="k">from</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;=</span> <span class="n">to</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
         <span class="n">translations</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
 
       <span class="k">return</span> <span class="n">translations</span><span class="p">;</span>
@@ -6192,7 +6242,7 @@ controlList = [F1]
       <span class="n">FizzBuzz</span> <span class="n">fizzbuzz</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FizzBuzz</span><span class="p">();</span>
       <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">translations</span> <span class="p">=</span> <span class="n">fizzbuzz</span><span class="p">.</span><span class="n">TranslateRange</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">15</span><span class="p">);</span>
 
-      <span class="k">foreach</span> <span class="p">(</span><span class="n">var</span> <span class="n">translation</span> <span class="k">in</span> <span class="n">translations</span><span class="p">)</span>
+      <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">translation</span> <span class="k">in</span> <span class="n">translations</span><span class="p">)</span>
           <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">translation</span><span class="p">.</span><span class="n">Value</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="n">fizzbuzz</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="n">translation</span><span class="p">.</span><span class="n">Key</span><span class="p">)));</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -6300,8 +6350,8 @@ Aha. Gut - interessant zu wissen. Schönen Dank auch.</p>
 
 <span class="na">  [Test]</span>
   <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_Checkout_Should_Fail_With_CashMashine_Failure</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">CashMashine</span><span class="p">);</span>
-    <span class="n">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollar</span><span class="p">());</span>
+    <span class="kt">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">CashMashine</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollar</span><span class="p">());</span>
     <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">checkoutResult</span><span class="p">.</span><span class="n">Failure</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="n">FailureCode</span><span class="p">.</span><span class="n">CashMashine</span><span class="p">));</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -6395,8 +6445,8 @@ Aha. Gut - interessant zu wissen. Schönen Dank auch.</p>
 
 <span class="na">  [Test]</span>
   <span class="k">public</span> <span class="k">void</span> <span class="nf">Then_Checkout_Should_Fail_With_CashMashine_Failure</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">cashMashine</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">daytime</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
-    <span class="n">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollars</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">atm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ATM</span><span class="p">(</span><span class="n">cashMashine</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">daytime</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">checkoutResult</span> <span class="p">=</span> <span class="n">atm</span><span class="p">.</span><span class="n">Checkout</span><span class="p">(</span><span class="m">200.D</span><span class="n">ollars</span><span class="p">();</span>
     <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">checkoutResult</span><span class="p">.</span><span class="n">Failure</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="n">FailureCode</span><span class="p">.</span><span class="n">CashMashine</span><span class="p">));</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -6979,7 +7029,7 @@ EndSection
 <span class="k">@import</span> <span class="s2">&quot;unit.footer&quot;</span><span class="p">;</span>
 
 <span class="nf">#logo</span> <span class="p">{</span>
-  <span class="o">.</span><span class="n">grid</span><span class="err">_</span><span class="m">16</span><span class="p">;</span>
+  <span class="o">.</span><span class="n">grid_16</span><span class="p">;</span>
   <span class="k">background-position</span><span class="o">:</span><span class="m">715px</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -8666,47 +8716,47 @@ Einfach mal Tests/Code schreiben und veröffentlichen ist somit unmöglich. Für
     <span class="n">AllFileCounter</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">AllScanTime</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="n">StartDirectory</span> <span class="o">=</span> <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span>
-    <span class="n">LabelInfo</span><span class="o">.</span><span class="n">Caption</span> <span class="o">=</span> <span class="s">&quot;Scanning Directory&quot;</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
+    <span class="n">StartDirectory</span> <span class="o">=</span> <span class="n">DirSource</span><span class="p">.</span><span class="n">Path</span>
+    <span class="n">LabelInfo</span><span class="p">.</span><span class="n">Caption</span> <span class="o">=</span> <span class="s">&quot;Scanning Directory&quot;</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
         <span class="n">StartDirectory</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
         <span class="s">&quot;Please wait until scan is complete.&quot;</span>
-    <span class="n">TabLog</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">Selected</span> <span class="o">=</span> <span class="n">True</span>
-    <span class="n">FormMain</span><span class="o">.</span><span class="n">MousePointer</span> <span class="o">=</span> <span class="mi">11</span>
-    <span class="n">TimerScanDuration</span><span class="o">.</span><span class="n">Enabled</span> <span class="o">=</span> <span class="n">True</span>
+    <span class="n">TabLog</span><span class="p">.</span><span class="n">Tabs</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="n">Selected</span> <span class="o">=</span> <span class="n">True</span>
+    <span class="n">FormMain</span><span class="p">.</span><span class="n">MousePointer</span> <span class="o">=</span> <span class="mi">11</span>
+    <span class="n">TimerScanDuration</span><span class="p">.</span><span class="n">Enabled</span> <span class="o">=</span> <span class="n">True</span>
 
     <span class="n">DoEvents</span>
 
-    <span class="n">If</span> <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">Then</span>
-        <span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">_</span>
-            <span class="n">Left</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">_</span>
-            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">_</span>
-            <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span> <span class="o">&amp;</span> <span class="n">_</span>
-            <span class="n">Right</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">-</span> <span class="n">_</span>
-            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="n">_</span>
+    <span class="n">If</span> <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">Then</span>
+        <span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">_</span>
+            <span class="n">Left</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">_</span>
+            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">_</span>
+            <span class="n">DirSource</span><span class="p">.</span><span class="n">Path</span> <span class="o">&amp;</span> <span class="n">_</span>
+            <span class="n">Right</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">-</span> <span class="n">_</span>
+            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="n">_</span>
             <span class="n">Len</span><span class="p">(</span><span class="n">LogTypeCommand</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">End</span> <span class="n">If</span>
-    <span class="n">If</span> <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">Then</span>
-        <span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">_</span>
-            <span class="n">Left</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span>
-            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">_</span>
-            <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span> <span class="o">&amp;</span> <span class="n">_</span>
-            <span class="n">Right</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">-</span> <span class="n">_</span>
-            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="n">_</span>
+    <span class="n">If</span> <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">Then</span>
+        <span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">_</span>
+            <span class="n">Left</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span>
+            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">_</span>
+            <span class="n">DirSource</span><span class="p">.</span><span class="n">Path</span> <span class="o">&amp;</span> <span class="n">_</span>
+            <span class="n">Right</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">-</span> <span class="n">_</span>
+            <span class="n">InStr</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">-</span> <span class="n">_</span>
             <span class="n">Len</span><span class="p">(</span><span class="n">LogTypeCommandShortCut</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">End</span> <span class="n">If</span>
 
-    <span class="n">If</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextLog</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">And</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">Then</span> <span class="n">_</span>
-        <span class="n">TextLog</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
-        <span class="n">String</span><span class="p">(</span><span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="o">.</span><span class="n">Text</span><span class="p">),</span> <span class="s">&quot;-&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span>
+    <span class="n">If</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextLog</span><span class="p">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">And</span> <span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">Then</span> <span class="n">_</span>
+        <span class="n">TextLog</span><span class="p">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
+        <span class="n">String</span><span class="p">(</span><span class="n">Len</span><span class="p">(</span><span class="n">TextHeader</span><span class="p">.</span><span class="n">Text</span><span class="p">),</span> <span class="s">&quot;-&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span>
 
-    <span class="n">ScanDirectory</span> <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">TextOutput</span><span class="o">.</span><span class="n">Text</span>
-    <span class="n">DirSource</span><span class="o">.</span><span class="n">Path</span> <span class="o">=</span> <span class="n">StartDirectory</span>
-    <span class="n">TimerScanDuration</span><span class="o">.</span><span class="n">Enabled</span> <span class="o">=</span> <span class="n">False</span>
+    <span class="n">ScanDirectory</span> <span class="n">DirSource</span><span class="p">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">TextOutput</span><span class="p">.</span><span class="n">Text</span>
+    <span class="n">DirSource</span><span class="p">.</span><span class="n">Path</span> <span class="o">=</span> <span class="n">StartDirectory</span>
+    <span class="n">TimerScanDuration</span><span class="p">.</span><span class="n">Enabled</span> <span class="o">=</span> <span class="n">False</span>
 
-    <span class="n">FormMain</span><span class="o">.</span><span class="n">MousePointer</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">FormMain</span><span class="p">.</span><span class="n">MousePointer</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">ScanTimeString</span> <span class="o">=</span> <span class="n">Trim</span><span class="p">(</span><span class="n">Str</span><span class="p">(</span><span class="n">AllScanTime</span> <span class="o">/</span> <span class="mi">10</span><span class="p">))</span>
     <span class="n">If</span> <span class="n">Left</span><span class="p">(</span><span class="n">ScanTimeString</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;.&quot;</span> <span class="n">Then</span> <span class="n">ScanTimeString</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span> <span class="o">&amp;</span> <span class="n">ScanTimeString</span>
-    <span class="n">LabelInfo</span><span class="o">.</span><span class="n">Caption</span> <span class="o">=</span> <span class="s">&quot;Scan complete !&quot;</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
+    <span class="n">LabelInfo</span><span class="p">.</span><span class="n">Caption</span> <span class="o">=</span> <span class="s">&quot;Scan complete !&quot;</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="n">_</span>
         <span class="s">&quot;Successfully passed through &quot;</span> <span class="o">&amp;</span> <span class="n">Trim</span><span class="p">(</span><span class="n">Str</span><span class="p">(</span><span class="n">AllFileCounter</span><span class="p">))</span> <span class="o">&amp;</span> <span class="s">&quot; files.&quot;</span> <span class="o">&amp;</span> <span class="n">_</span>
         <span class="n">vbCrLf</span> <span class="o">&amp;</span> <span class="s">&quot;Elapsed time: &quot;</span> <span class="o">&amp;</span> <span class="n">ScanTimeString</span> <span class="o">&amp;</span> <span class="s">&quot; seconds.&quot;</span>
 <span class="n">End</span> <span class="n">Sub</span>
@@ -8982,7 +9032,7 @@ Weiterführende Artikel</h6>
 
 <p>Das Ergebnis innerhalb der Count-Methode des Team 1 war bis dato recht überschaubar:</p>
 
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">lines</span> <span class="p">=</span> <span class="n">source</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="k">new</span> <span class="kt">string</span><span class="p">[]</span> <span class="p">{</span> <span class="n">Environment</span><span class="p">.</span><span class="n">NewLine</span> <span class="p">},</span> <span class="n">StringSplitOptions</span><span class="p">.</span><span class="n">RemoveEmptyEntries</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="kt">var</span> <span class="n">lines</span> <span class="p">=</span> <span class="n">source</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="k">new</span> <span class="kt">string</span><span class="p">[]</span> <span class="p">{</span> <span class="n">Environment</span><span class="p">.</span><span class="n">NewLine</span> <span class="p">},</span> <span class="n">StringSplitOptions</span><span class="p">.</span><span class="n">RemoveEmptyEntries</span><span class="p">);</span>
 
 <span class="k">return</span> <span class="n">lines</span>
     <span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Trim</span><span class="p">())</span>
@@ -10437,11 +10487,11 @@ Für den Zugriff via WinRM wird das Kommandozeilen-Tool WinRS verwendet. In eine
 <p>Setzt man <code>var</code> überall ein, wo es möglich wäre, kommt solcher Code zustande:</p>
 
 <div class="codehilite"><pre><span class="k">public</span> <span class="kt">object</span> <span class="nf">GetMatchingCode</span><span class="p">(</span><span class="kt">object</span><span class="p">[]</span> <span class="n">codes</span><span class="p">,</span> <span class="kt">string</span> <span class="n">matchPattern</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">ignoreInvalid</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">var</span> <span class="n">bestMatch</span> <span class="p">=</span> <span class="n">FindBestMatch</span><span class="p">(</span><span class="n">matchPattern</span><span class="p">);</span>
-  <span class="n">var</span> <span class="n">blackList</span> <span class="p">=</span> <span class="n">codelists</span><span class="p">.</span><span class="n">GetBlackList</span><span class="p">(</span><span class="n">codes</span><span class="p">);</span>
+  <span class="kt">var</span> <span class="n">bestMatch</span> <span class="p">=</span> <span class="n">FindBestMatch</span><span class="p">(</span><span class="n">matchPattern</span><span class="p">);</span>
+  <span class="kt">var</span> <span class="n">blackList</span> <span class="p">=</span> <span class="n">codelists</span><span class="p">.</span><span class="n">GetBlackList</span><span class="p">(</span><span class="n">codes</span><span class="p">);</span>
 
-  <span class="k">foreach</span><span class="p">(</span><span class="n">var</span> <span class="n">c</span> <span class="p">=</span> <span class="k">in</span> <span class="n">blackList</span><span class="p">.</span><span class="n">GetConfirmedCodes</span><span class="p">())</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">matchPoint</span> <span class="p">=</span> <span class="n">bestMatch</span><span class="p">.</span><span class="n">CompareCode</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ignoreInvalid</span><span class="p">);</span>
+  <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">c</span> <span class="p">=</span> <span class="k">in</span> <span class="n">blackList</span><span class="p">.</span><span class="n">GetConfirmedCodes</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kt">var</span> <span class="n">matchPoint</span> <span class="p">=</span> <span class="n">bestMatch</span><span class="p">.</span><span class="n">CompareCode</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">ignoreInvalid</span><span class="p">);</span>
     <span class="n">matchPoint</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">ParentCode</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">matchPoint</span><span class="p">.</span><span class="n">IsUnique</span><span class="p">(</span><span class="n">bestMatch</span><span class="p">))</span> <span class="k">return</span> <span class="n">matchPoint</span><span class="p">;</span>
   <span class="p">}</span>
@@ -10456,10 +10506,10 @@ Für den Zugriff via WinRM wird das Kommandozeilen-Tool WinRS verwendet. In eine
 
 <p>Auf der anderen Seite ist <code>var</code> natürlich auch notwendig und äußerst sinnvoll. Die Paradedisziplin dabei ist sicherlich der Einsatz anonymer Typen mit LINQ:</p>
 
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">persons</span> <span class="p">=</span>
-  <span class="n">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Customers</span>
-  <span class="n">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">State</span> <span class="p">=</span> <span class="m">1</span>
-  <span class="n">select</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Id</span> <span class="p">=</span> <span class="n">customer</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">customer</span><span class="p">.</span><span class="n">Name</span> <span class="p">};</span>
+<div class="codehilite"><pre><span class="kt">var</span> <span class="n">persons</span> <span class="p">=</span>
+  <span class="k">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="n">db</span><span class="p">.</span><span class="n">Customers</span>
+  <span class="k">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">State</span> <span class="p">=</span> <span class="m">1</span>
+  <span class="k">select</span> <span class="k">new</span> <span class="p">{</span> <span class="n">Id</span> <span class="p">=</span> <span class="n">customer</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">customer</span><span class="p">.</span><span class="n">Name</span> <span class="p">};</span>
 </pre></div>
 
 <p>Ich für meinen Teil finde <code>var</code> und Typ-Inferenz eine gelungene, sogar notwendige Bereicherung in C# - aber nur dort, wo es wirklich gebraucht wird. Obwohl Soren in seinem Blog mit "<a href="http://www.publicvoid.dk/TheCKeywordVar%C4%B0sEvil.aspx">the C# keyword var is evil</a>" sicherlich übertreibt, ist es dennoch empfehlenswert seinem Beispiel zu folgen und die geradezu unsinnige "Benutze immer var"-Funktion im ReSharper einfach abzuschalten.</p>
@@ -11099,7 +11149,7 @@ Du hast 4 mal die Zahl 4 zur Verfügung, um mit ihnen und den vier Grundrechenar
 
 <p>Beispiel gefällig?</p>
 
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">mock</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">ILoveThisFramework</span><span class="p">&gt;();</span>
+<div class="codehilite"><pre><span class="kt">var</span> <span class="n">mock</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">ILoveThisFramework</span><span class="p">&gt;();</span>
 
 <span class="n">mock</span><span class="p">.</span><span class="n">Expect</span><span class="p">(</span><span class="n">framework</span> <span class="p">=&gt;</span> <span class="n">framework</span><span class="p">.</span><span class="n">ShouldDownload</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Version</span><span class="p">&gt;()))</span>
   <span class="p">.</span><span class="n">Callback</span><span class="p">((</span><span class="n">Version</span> <span class="n">version</span><span class="p">)</span> <span class="p">=&gt;</span>
@@ -11943,7 +11993,7 @@ Jedes Projekt hat Teilnehmer. Generell sind alle Projektbeteiligten mit Namen, K
 
 <p><em>Beispiel:</em> Grundgerüst einer Projekt-Dokumentation</p>
 
-<div class="codehilite"><pre><span class="mi">1</span><span class="o">.</span> <span class="n">Projekt</span> <span class="p">(</span><span class="n">Portal</span><span class="p">)</span>
+<div class="codehilite"><pre><span class="mf">1.</span> <span class="n">Projekt</span> <span class="p">(</span><span class="n">Portal</span><span class="p">)</span>
   <span class="n">a</span><span class="p">)</span> <span class="n">Ziel</span> <span class="p">(</span><span class="n">Objektive</span><span class="p">)</span>
   <span class="n">b</span><span class="p">)</span> <span class="n">Status</span> <span class="p">(</span><span class="n">Current</span> <span class="n">State</span><span class="p">)</span>
   <span class="n">c</span><span class="p">)</span> <span class="n">Ergebnisse</span> <span class="p">(</span><span class="n">Deliverables</span><span class="p">)</span>
@@ -11951,33 +12001,33 @@ Jedes Projekt hat Teilnehmer. Generell sind alle Projektbeteiligten mit Namen, K
   <span class="n">e</span><span class="p">)</span> <span class="n">Ereignisse</span> <span class="p">(</span><span class="n">Events</span><span class="p">)</span>
   <span class="n">f</span><span class="p">)</span> <span class="n">Teilnehmer</span> <span class="p">(</span><span class="n">Members</span><span class="p">,</span> <span class="n">Stakeholders</span><span class="p">)</span>
 
-<span class="mi">2</span><span class="o">.</span> <span class="n">Ergebnisse</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">1</span><span class="n">c</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="n">Ergebnisse</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">1</span><span class="n">c</span><span class="p">)</span>
   <span class="n">a</span><span class="p">)</span> <span class="n">Strategie</span> <span class="p">(</span><span class="n">Approach</span><span class="p">)</span>
   <span class="n">b</span><span class="p">)</span> <span class="n">Durchf</span><span class="err">ü</span><span class="n">hrung</span> <span class="p">(</span><span class="n">Implementation</span><span class="p">)</span>
   <span class="n">c</span><span class="p">)</span> <span class="n">Erfahrung</span> <span class="p">(</span><span class="n">Experience</span><span class="p">)</span>
 
-<span class="mi">3</span><span class="o">.</span> <span class="n">Vorhaben</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">1</span><span class="n">d</span><span class="p">)</span>
+<span class="mf">3.</span> <span class="n">Vorhaben</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">1</span><span class="n">d</span><span class="p">)</span>
   <span class="n">a</span><span class="p">)</span> <span class="n">Ausblick</span> <span class="n">auf</span> <span class="n">Aufgaben</span> <span class="p">(</span><span class="n">Forecast</span><span class="p">)</span>
   <span class="n">b</span><span class="p">)</span> <span class="n">Fr</span><span class="err">ü</span><span class="n">hzeitiges</span> <span class="n">Erkennen</span> <span class="n">von</span> <span class="n">Problemen</span> <span class="p">(</span><span class="n">Risk</span> <span class="n">Mitigation</span><span class="p">)</span>
   <span class="n">c</span><span class="p">)</span> <span class="n">Erfolgskontrolle</span> <span class="p">(</span><span class="n">Review</span><span class="p">)</span>
 
-<span class="mi">4</span><span class="o">.</span> <span class="n">Ereignisse</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">1</span><span class="n">e</span><span class="p">)</span>
+<span class="mf">4.</span> <span class="n">Ereignisse</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">1</span><span class="n">e</span><span class="p">)</span>
   <span class="n">a</span><span class="p">)</span> <span class="n">Journal</span> <span class="p">(</span><span class="n">Timeline</span><span class="p">)</span>
   <span class="n">b</span><span class="p">)</span> <span class="n">Wichtige</span> <span class="n">Entscheidungssituationen</span> <span class="p">(</span><span class="n">Decisions</span><span class="p">)</span>
   <span class="n">c</span><span class="p">)</span> <span class="n">Beeinflussende</span> <span class="n">Ereignisse</span> <span class="p">(</span><span class="n">Adverse</span> <span class="n">Events</span><span class="p">)</span>
 
-<span class="mi">5</span><span class="o">.</span> <span class="n">Strategie</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">2</span><span class="n">a</span><span class="p">)</span>
+<span class="mf">5.</span> <span class="n">Strategie</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">2</span><span class="n">a</span><span class="p">)</span>
   <span class="n">a</span><span class="p">)</span> <span class="n">Ausgangslage</span> <span class="p">(</span><span class="n">Status</span> <span class="n">Quo</span><span class="p">)</span>
   <span class="n">b</span><span class="p">)</span> <span class="n">Anforderungen</span> <span class="p">(</span><span class="n">Requirements</span><span class="p">)</span>
   <span class="n">c</span><span class="p">)</span> <span class="n">L</span><span class="err">ö</span><span class="n">sung</span> <span class="p">(</span><span class="n">Solution</span><span class="p">)</span>
   <span class="n">d</span><span class="p">)</span> <span class="n">Dauer</span> <span class="o">&amp;</span> <span class="n">Aufwendungen</span> <span class="p">(</span><span class="n">Costs</span><span class="p">)</span>
 
-<span class="mi">6</span><span class="o">.</span> <span class="n">Durchf</span><span class="err">ü</span><span class="n">hrung</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">2</span><span class="n">b</span><span class="p">)</span>
+<span class="mf">6.</span> <span class="n">Durchf</span><span class="err">ü</span><span class="n">hrung</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">2</span><span class="n">b</span><span class="p">)</span>
   <span class="n">a</span><span class="p">)</span> <span class="n">Aufgabenbericht</span> <span class="p">(</span><span class="n">Work</span> <span class="n">Item</span>  <span class="n">Report</span><span class="p">)</span>
   <span class="n">b</span><span class="p">)</span> <span class="n">Ausnahmenbericht</span> <span class="p">(</span><span class="n">Alert</span> <span class="n">Report</span><span class="p">)</span>
   <span class="n">c</span><span class="p">)</span> <span class="n">Risikobericht</span> <span class="p">(</span><span class="n">Risk</span> <span class="n">Report</span><span class="p">)</span>
 
-<span class="mi">7</span><span class="o">.</span> <span class="n">Erfahrung</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">2</span><span class="n">c</span><span class="p">)</span>
+<span class="mf">7.</span> <span class="n">Erfahrung</span> <span class="p">(</span><span class="n">zu</span> <span class="mi">2</span><span class="n">c</span><span class="p">)</span>
   <span class="n">a</span><span class="p">)</span> <span class="n">Zielbericht</span> <span class="p">(</span><span class="n">Objective</span> <span class="n">Completion</span><span class="p">)</span>
   <span class="n">b</span><span class="p">)</span> <span class="n">Erfahrungsbericht</span> <span class="p">(</span><span class="n">Experience</span> <span class="n">Report</span><span class="p">)</span>
   <span class="n">c</span><span class="p">)</span> <span class="n">Konsequenzbericht</span> <span class="p">(</span><span class="n">Lessons</span> <span class="n">Learned</span><span class="p">)</span>

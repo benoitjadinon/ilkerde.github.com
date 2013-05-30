@@ -56,9 +56,9 @@
 
   <span class="k">if</span> <span class="p">(</span><span class="n">customers</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">customersOfSection</span> <span class="p">=</span> 
-      <span class="n">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="n">customers</span>
-      <span class="n">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCirle</span>
-      <span class="n">select</span> <span class="n">customer</span><span class="p">;</span>
+      <span class="k">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="n">customers</span>
+      <span class="k">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCirle</span>
+      <span class="k">select</span> <span class="n">customer</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="k">return</span> <span class="n">customersOfSection</span><span class="p">;</span>
@@ -70,9 +70,9 @@
 <p>Let's see how this micht look like in action:</p>
 <div class="codehilite"><pre><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;</span> <span class="n">GetCustomersOfSection</span><span class="p">(</span><span class="n">Filter</span> <span class="n">regionAndNameFilter</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span>
-    <span class="n">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="nf">GetCustomersBy</span><span class="p">(</span><span class="n">regionAndNameFilter</span><span class="p">)</span> <span class="p">??</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Empty</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()</span>
-    <span class="n">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCircle</span>
-    <span class="n">select</span> <span class="n">customer</span><span class="p">;</span>
+    <span class="k">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="nf">GetCustomersBy</span><span class="p">(</span><span class="n">regionAndNameFilter</span><span class="p">)</span> <span class="p">??</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Empty</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()</span>
+    <span class="k">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCircle</span>
+    <span class="k">select</span> <span class="n">customer</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -80,9 +80,9 @@
 <p>Now this looks a lot more concise, isn't it? The trick obviously is the usage of the inline null check <code>?? Enumerable.Empty&lt;Customer&gt;()</code>. It makes the <code>if</code> clause fall apart into two little question marks. Plus, the overhead of variable declaration is gone. If we now extract this construct to a little extension method, suddenly the code starts to tell us the whole story:</p>
 <div class="codehilite"><pre><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;</span> <span class="n">GetCustomersOfSection</span><span class="p">(</span><span class="n">Filter</span> <span class="n">regionAndNameFilter</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span>
-    <span class="n">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="nf">GetCustomersBy</span><span class="p">(</span><span class="n">regionAndNameFilter</span><span class="p">).</span><span class="n">OrEmpty</span><span class="p">()</span>
-    <span class="n">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCircle</span>
-    <span class="n">select</span> <span class="n">customer</span><span class="p">;</span>
+    <span class="k">from</span> <span class="n">customer</span> <span class="k">in</span> <span class="nf">GetCustomersBy</span><span class="p">(</span><span class="n">regionAndNameFilter</span><span class="p">).</span><span class="n">OrEmpty</span><span class="p">()</span>
+    <span class="k">where</span> <span class="n">customer</span><span class="p">.</span><span class="n">Section</span> <span class="p">==</span> <span class="n">SectionCode</span><span class="p">.</span><span class="n">InnerCircle</span>
+    <span class="k">select</span> <span class="n">customer</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Extensions</span> <span class="p">{</span>

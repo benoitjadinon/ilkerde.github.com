@@ -50,24 +50,24 @@
       <div id="content" class="article">
         <p>Last week I blogged about two little <em>"tricks"</em> in everyday C# coding. This week I want to switch language and show you a little gimmick in PHP which - to my own surprise - seems to be rarely used. The feature I'm talking about is <em>meta-variables</em>, also known as <em>variable-variables</em>. It's a feature which has been around in PHP for quite a long time and it's main purpose is to support meta-programming scenarios.</p>
 <p>Suppose you have a file with some configuration settings:</p>
-<div class="codehilite"><pre><span class="nv">$admin_active</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-<span class="nv">$admin_startpage</span> <span class="o">=</span> <span class="s">&quot;dashboard&quot;</span><span class="p">;</span>
-<span class="nv">$admin_usemru</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-<span class="nv">$admin_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span> <span class="o">|</span> <span class="n">F_CHANGED</span><span class="p">;</span>
+<div class="codehilite"><pre><span class="err">$</span><span class="n">admin_active</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="err">$</span><span class="n">admin_startpage</span> <span class="o">=</span> <span class="s">&quot;dashboard&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">admin_usemru</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="err">$</span><span class="n">admin_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span> <span class="o">|</span> <span class="n">F_CHANGED</span><span class="p">;</span>
 
-<span class="nv">$user_active</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-<span class="nv">$user_startpage</span> <span class="o">=</span> <span class="s">&quot;listissues&quot;</span><span class="p">;</span>
-<span class="nv">$user_usemru</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
-<span class="nv">$user_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span><span class="p">;</span>
+<span class="err">$</span><span class="n">user_active</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="err">$</span><span class="n">user_startpage</span> <span class="o">=</span> <span class="s">&quot;listissues&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">user_usemru</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="err">$</span><span class="n">user_persist_flag</span> <span class="o">=</span> <span class="n">F_ACTIVE</span><span class="p">;</span>
 
-<span class="nv">$dashboard_layout</span> <span class="o">=</span> <span class="s">&quot;simple&quot;</span><span class="p">;</span>
-<span class="nv">$listissues_layout</span> <span class="o">=</span> <span class="s">&quot;self&quot;</span><span class="p">;</span>
-<span class="nv">$markissue_layout</span> <span class="o">=</span> <span class="s">&quot;detail&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">dashboard_layout</span> <span class="o">=</span> <span class="s">&quot;simple&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">listissues_layout</span> <span class="o">=</span> <span class="s">&quot;self&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">markissue_layout</span> <span class="o">=</span> <span class="s">&quot;detail&quot;</span><span class="p">;</span>
 </pre></div>
 
 
 <p>Let's further on suppose that you should write a small snippet to administer and configure these settings from above. It's pretty obvious that settings are grouped by role in the settings file (see <code>$admin_startpage</code> and <code>$user_startpage</code>). If you were to build up a configuration panel where the current role would be able to change his own dashboard layout, how would you solve that? Assume that you have variable with the current role in action, something like </p>
-<div class="codehilite"><pre><span class="nv">$active_role</span> <span class="o">=</span> <span class="s">&quot;admin&quot;</span><span class="p">;</span>
+<div class="codehilite"><pre><span class="err">$</span><span class="n">active_role</span> <span class="o">=</span> <span class="s">&quot;admin&quot;</span><span class="p">;</span>
 </pre></div>
 
 
@@ -81,12 +81,12 @@
 
 
 <p>The second line is the "trick" called meta-variable. The line actually reads: "Take the value of <code>$active_startpage</code> as the name (or symbol) of the variable I want to access the value of". The same applies to the 4th line, but this time with the more lightweight <code>$$</code>-syntax. Let's look at an even simpler example to get meta-variables illustrated:</p>
-<div class="codehilite"><pre><span class="nv">$mode</span> <span class="o">=</span> <span class="s">&quot;effect&quot;</span><span class="p">;</span>
-<span class="nv">$menu</span> <span class="o">=</span> <span class="s">&quot;mode&quot;</span><span class="p">;</span>
+<div class="codehilite"><pre><span class="err">$</span><span class="n">mode</span> <span class="o">=</span> <span class="s">&quot;effect&quot;</span><span class="p">;</span>
+<span class="err">$</span><span class="n">menu</span> <span class="o">=</span> <span class="s">&quot;mode&quot;</span><span class="p">;</span>
 
-<span class="n">echo</span> <span class="nv">$$menu</span><span class="p">;</span>  <span class="c1"># prints &quot;effect&quot;</span>
-<span class="n">echo</span> <span class="nv">$$mode</span><span class="p">;</span>  <span class="c1"># prints &quot;shade&quot;</span>
-<span class="n">echo</span> <span class="vg">$$</span><span class="nv">$menu</span><span class="p">;</span> <span class="c1"># prints &quot;shade&quot;</span>
+<span class="n">echo</span> <span class="err">$$</span><span class="n">menu</span><span class="p">;</span>  <span class="err">#</span> <span class="n">prints</span> <span class="s">&quot;effect&quot;</span>
+<span class="n">echo</span> <span class="err">$$</span><span class="n">mode</span><span class="p">;</span>  <span class="err">#</span> <span class="n">prints</span> <span class="s">&quot;shade&quot;</span>
+<span class="n">echo</span> <span class="err">$$$</span><span class="n">menu</span><span class="p">;</span> <span class="err">#</span> <span class="n">prints</span> <span class="s">&quot;shade&quot;</span>
 </pre></div>
 
 
