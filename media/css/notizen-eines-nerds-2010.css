@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro|Inconsolata);
 /*
 ### colors.less
 
@@ -99,25 +100,17 @@ Style components used by multiple website elements.
 */
 .is_panel_top {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
 }
 .is_panel_bottom {
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
 }
 .is_panel {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
 }
 .is_no_panel {
   border-top-left-radius: 0px;
@@ -143,16 +136,12 @@ Style components used by multiple website elements.
   height: 40px;
   min-height: 40px;
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   color: #c2c3c4;
   background-color: #ffffff;
-  font: 12pt 'PT Sans Narrow', 'Helvetica', 'Ubuntu Condensed', 'Century', 'Arial', sans-serif;
+  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Cantarell', 'Arial', sans-serif;
   display: block;
 }
 .is_icon a {
@@ -171,13 +160,9 @@ Style components used by multiple website elements.
 }
 .is_button {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   border: 1px solid #c2c3c4;
   padding: 1px 7px 1px 7px;
   text-decoration: none;
@@ -185,25 +170,17 @@ Style components used by multiple website elements.
 }
 .is_button_over {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   border: 0px;
   padding: 2px 8px 2px 8px;
 }
 .is_command {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   border: 0px;
   padding: 2px 8px 2px 8px;
   text-decoration: none;
@@ -224,13 +201,9 @@ Style components used by multiple website elements.
 }
 .is_page_list li a {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   border: 0px;
   padding: 2px 8px 2px 8px;
   text-decoration: none;
@@ -274,13 +247,9 @@ Style components used by multiple website elements.
 }
 .is_info_list li a {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   border: 0px;
   padding: 2px 8px 2px 8px;
   text-decoration: none;
@@ -324,13 +293,9 @@ Style components used by multiple website elements.
 }
 .is_sub_list li a {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   border: 0px;
   padding: 2px 8px 2px 8px;
   text-decoration: none;
@@ -374,13 +339,9 @@ Style components used by multiple website elements.
 }
 .do_display_lists_as_tiles li {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   width: 150px;
   min-width: 150px;
   height: 150px;
@@ -390,13 +351,9 @@ Style components used by multiple website elements.
 }
 .do_display_lists_as_tiles li a {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   width: 150px;
   min-width: 150px;
   height: 150px;
@@ -405,7 +362,7 @@ Style components used by multiple website elements.
   background-color: #f7f7f7;
   display: block;
   float: left;
-  font: 12pt 'PT Sans Narrow', 'Helvetica', 'Ubuntu Condensed', 'Century', 'Arial', sans-serif;
+  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Cantarell', 'Arial', sans-serif;
   text-decoration: none;
   text-align: center;
   position: relative;
@@ -417,13 +374,9 @@ Style components used by multiple website elements.
 }
 .do_display_lists_as_tiles li a:before {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   width: 100px;
   min-width: 100px;
   height: 100px;
@@ -446,13 +399,9 @@ Style components used by multiple website elements.
 }
 #notizen-eines-nerds-2010 #content li {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   width: 150px;
   min-width: 150px;
   height: 150px;
@@ -462,13 +411,9 @@ Style components used by multiple website elements.
 }
 #notizen-eines-nerds-2010 #content li a {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   width: 150px;
   min-width: 150px;
   height: 150px;
@@ -477,7 +422,7 @@ Style components used by multiple website elements.
   background-color: #f7f7f7;
   display: block;
   float: left;
-  font: 12pt 'PT Sans Narrow', 'Helvetica', 'Ubuntu Condensed', 'Century', 'Arial', sans-serif;
+  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Cantarell', 'Arial', sans-serif;
   text-decoration: none;
   text-align: center;
   position: relative;
@@ -489,13 +434,9 @@ Style components used by multiple website elements.
 }
 #notizen-eines-nerds-2010 #content li a:before {
   border-top-left-radius: 2px;
-  -moz-border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  -moz-border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
-  -moz-border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-  -moz-border-bottom-right-radius: 2px;
   width: 100px;
   min-width: 100px;
   height: 100px;
