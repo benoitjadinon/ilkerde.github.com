@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Don&#39;t RAPID, Do RAI</title>
+    <meta name="description" content="Ein kurzer Artikel über den geeigneten Zeitpunkt für Refactoring von Code im Sinne der qualitativen Überarbeitung.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="dont-rapid-do-rai">
+    <a href="dont-rapid-do-rai"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Don&#39;t RAPID, Do RAI</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>RAPID - ist die im Kontext dieses knappen Artikels zu verstehende, eindringliche Abkürzung für "Refactor After Programming Is Done". Refaktorisierung ist für sich schon ein breites und heikles Thema. In diesem kurzen Beitrag soll es mehrheitlich um den <em>Zeitpunkt</em> der Refaktorisierung gehen.</p>
+<p>Der Zeitpunkt einer Code-Überarbeitung scheint anfangs kein sonderlich ergiebiger Diskussionspunkt zu sein. Schließlich ist ja schon in der Natur des Wortes verankert, dass eine "Überarbeitung" des Codes erst im Nachgang der Entstehung des selbigen erfolgen kann. Das soll hier auch nicht in Frage gestellt werden. Vielmehr geht es darum, <em>wann danach</em> die Refaktorisierung stattfinden kann und soll, so dass sie ihrem Ruf des "mächtigen Qualitätswerkzeuges" gerecht werden kann.</p>
+<h3 id="die-aufgabe-refactoring">Die "Aufgabe" Refactoring</h3>
+<p>Oftmals taucht Refaktorisierung als Aufgabe in einer Projektplanung oder als "Task" am Board auf. Das scheint zunächst eine gute Sache zu sein. Zumindest besser, als das berüchtigte "gar nicht refaktorisieren" - weil der Code sowieso schon super ist, oder es in der Realität für solche Dinge keine Zeit gibt.</p>
+<p>Selbstverständlich ist es auch besser, die Refaktorisierung in den Entwickleralltag zu etablieren, statt es einfach so unter den Tisch zu kehren. Das steht hier auch nicht zur Diskussion, sondern die vermeintliche Sicherheit, die einem ein "Refactoring-Task" am Board zu geben scheint.</p>
+<p>Um diese trügerische Sicherheit zu enttarnen, genügt es nur, die im Alltag entstehenden Problemstellungen zu den Verbesserungsaufgaben näher zu betrachten.</p>
+<p>Mehr schlecht als recht lassen sich nämlich Refaktorisierungsmaßnahmen in die Projekt- oder Produktentwicklung verankern. Schließlich ist der Geschäftswert einer solchen oft als 'Umbau' titulierten Maßnahme schwer vermittelbar. Darüber hinaus kommen Refactorings oft in periodischen 'Schüben'. </p>
+<p>Bei solchen Beobachtungen erscheinen die Refactorings dem außenstehenden Betrachter geradezu als eine Art von 'Programm-Pflege', ähnlich der samstäglichen Autowäschen, die im urbanen Lebensraum kaum unbeachtet bleiben. Für diese Refaktorisierungsphasen ist man sich manchmal nicht mehr so sicher, ob die Maßnahme nun noch als "Entwicklung", oder schon als frühe "Wartung" des entstehenden Produktes gewertet werden soll.</p>
+<h3 id="refaktorisierungskunst-beim-tdd">Refaktorisierungskunst beim TDD</h3>
+<p>Schaut man sich dazu z.B. die testgetriebene Entwicklungsmethodik näher an, kommen interessante Dinge zum Vorschein. Interessant ist es zumindest, dass Refaktorisierung im Kontext der testgetriebenen Entwicklung nicht nur als ein "Arbeitsschritt" innerhalb eines methodischen Vorgehens betrachtet wird. Die Vorschrift des TDD-Zyklus ist ja bekanntlich <em>Red, Green, Refactor</em>. Doch überdies ist Refaktorisierung in TDD ein sogenannter "Skill".</p>
+<p>Für bekennende und erfahrene Praktizierende des TDD ist Refaktorisierung demnach keine lapidare Aufgabe, sondern eine Fertigkeit. Wie jede andere Fertigkeit auch, verlangt diese vom Ausübenden Kenntnis, Übung und insbesondere adequate Anwendung.</p>
+<p>Gerade der letzte Punkt der "adequaten Anwendung" ist dabei ein Knackpunkt. Nicht selten ist die Anwendung einer Refaktorisierung beim TDD eine "Situationsentscheidung", die von vielen Faktoren wie z.B. Programm, Abhängigkeiten, Sicherheit, Zeit, Zeitpunkt und sogar Entwicklungskollegen abhängt. Gerade dieser Charakterzug ist es, welches die Refaktorisierung aus der Routine-Tätigkeit heraus zu einer anspruchsvollen Fertigkeit eines Software-Entwicklers erhebt.</p>
+<p>Die Beobachtung von Refaktorisierungen innerhalb des TDD-Zyklus, im Besonderen bei langjährig erfahrenen TDD-Entwicklern, führt zu weiteren Rückschlüssen. Dabei ist äußerst hervorstechend, mit welcher <em>Frequenz</em> und <em>Latenz</em> Refaktorisierungen angegangen werden. </p>
+<p>Die <em>Latenz</em> der Refaktorisierung ist die Zeitspanne, die zwischen der Erstellung des Programmcodes und dessen Überarbeitung liegt. Die <em>Frequenz</em> der Refaktorisierung ist indes die Häufigkeit der Überarbeitung des Programmcodes, besser gesagt <em>eines eindeutig fachgebundenen Programmcodes</em>. Die zentralen Fragen zur Anwedung einer Refaktorisierung sind also neben der Bewertung der Güte eines Programmcodes die Fragen des "wann?" und "wie oft?".</p>
+<h3 id="hochfrequent-und-niederlatent">Hochfrequent und Niederlatent</h3>
+<p>Im Kontext der testgetriebenen Entwicklung - jedoch in keinster Weise ausschließlich in diesem - herrscht der aus der Empirie gewonnene Konsens, das Refaktorisierungen um so effektiver umsetzbar sind, je niedriger deren Latenz und höher deren Frequenz ist. Die Gründe für diese Schlußfolgerung sind durchaus breit gefächert. Meist jedoch werden die geringeren technischen sowie organisatorischen Hürden, der stringentere Erhalt der "Qualität" des Codes, sowie schlichtweg lapidare Referenzen auf agile Prinzipien wie <a href="http://www.codinghorror.com/blog/2005/06/the-broken-window-theory.html">Never Leave Broken Windows</a> und <a href="http://www.jamesshore.com/Blog/Merciless-Refactoring.html">Merciless Refactoring</a> angeführt.</p>
+<p>Aus diesen Erfahrungen lassen sich sicherlich Tendenzen für ein besseres Refactoring - im Sinne von nachhaltigem und stetigem Erhalt von Qualität - ableiten. Doch an dieser Stelle soll es nur um die Auswirkungen einer hohen oder niedrigen Latenz des Refactorings gehen.</p>
+<p>Offensichtlich hat ein zügig an die Implementierung geknüpftes Refactoring den Vorteil, dass man sich zu diesem Zeitpunkt schon "im Flow" befindet. Die Um- und Zustände des Codes sind gegenwärtig, man befindet sich schon im oftmals komplexen Gefüge der Abhängigkeiten verschiedener Subsysteme, man kennt die fachlichen Bedingungen bzw. Anforderungen zum betreffenden Programmteil.</p>
+<p>Des Weiteren bietet eine direkt an die Implementierung angeknüpfte Überarbeitung eine Möglichkeit des Reviews der Umsetzung. Gepaart mit Pair Programming sind dabei Peer Reviews durchaus Gang und Gäbe. Die qualifizierte Zweitmeinung zum Code kann unmittelbar aufgenommen, diskutiert und bewertet werden, es stehen dabei keine größeren organisatorischen oder technischen Hürden im Weg. Darüber hinaus wird des öfteren dabei festgestellt, dass gerade zeitnahe Feedbacks besser angenommen und verwertet werden.</p>
+<h3 id="not-rapid-but-rai-refactor-always-immediately">Not RAPID, But RAI (Refactor Always Immediately)</h3>
+<p>In Summe deuten die obigen Vorteile darauf hin, dass der Nutzen von "Refactoring" besonders deutlich zum Tragen kommt, wenn es nicht als eigenständige Aufgabe im Nachgang der Implementierung betrachtet wird, sondern als integraler Bestandteil der Implementierungsfertigkeiten eines jeden Entwicklers zu werten ist. Schlußfolgernd ist Refactoring kein produkt- oder projektgebundenes Aufgabengebiet. Viel mehr ist es konsequent, Refactoring als ein "Asset" (zu deutsch: Bereicherung) des Software-Entwicklers selbst zu bewerten.</p>
+<p>Für die Eingangs erwähnte Perspektive des <em>Zeitpunktes des Refactorings</em> lässt sich folgern, dass die qualitative Überarbeitung der Implementierung so direkt wie möglich am Anschluß der Erstellung dessen durchzuführen ist. Idealerweise unverzüglich, wie es z. B. auch in der testgetriebenen Entwicklung (TDD) verfahrenstechnisch verankert ist. </p>
+<p>Damit kann man mit ruhigem Gewissen behaupten, dass jedes unverzügliche Refactoring - an dieser Stelle plakativ benannt als "Refactor Always Immediately" (RAI) - dem zur Entwicklungszeit entkoppelten, nachrangigen Refactoring - hier als "Refactor After Code Is Done" (RAPID) tituliert - vorzuziehen ist. In kurzem, englischen Wortlaut subsummierbar als: Don't refactor after code is done, but refactor always immediately. </p>
+<p><strong>Don't RAPID. Do RAI.</strong></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>28 August 2013</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/dont-rapid-do-rai.html&title=Don&#39;t RAPID, Do RAI">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
