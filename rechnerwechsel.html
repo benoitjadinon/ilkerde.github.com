@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Rechnerwechsel</title>
+    <meta name="description" content="Ein Kurzbericht zur NRWConf 2013, der Community-Konferenz für .NET Technologien in Nordrhein-Westfalen.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/rechnerwechsel.css?i3">
+
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="rechnerwechsel">
+    <a href="rechnerwechsel"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Rechnerwechsel</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <h3 id="ein-kurzbericht-von-der-nrwconf-2013">Ein Kurzbericht von der NRWConf 2013</h3>
+<p>Auch dieses Jahr hatte ich wieder die Gelegenheit, bei der <a href="http://nrwconf.de/de">NRWConf</a>, einer bekannten und beliebten Community-Konferenz für .NET Technologie dabei zu sein.</p>
+<p>Die Konferenz war top organisiert, hatte eine ausgesprochen ausgewogene und stetig interessante Agenda und wurde absolut zurecht bestens besucht.</p>
+<p>Ich durfte mit meinem spontanen Kurzvortrag <a href="/talks/we-is-you/index.html">We Is You</a> gleich zu Beginn der Konferenz loslegen und hoffe, dass ich damit vermitteln konnte, wie notwendig es in unserer heutigen Zeit ist auf sich selbst zu achten und zu hören. Es war mir auch ein Anliegen darzulegen, dass vermeintlich "abgehobene Philosophien" wie <em>verstehen wollen</em> und <em>konsequenzloses kritisieren</em> sehr wohl konkrete Anwendungen in der täglichen Software-Entwicklung haben und großes Bewirken können.</p>
+<p>Darüber hinaus durfte ich noch bei weiteren Sessions neue Impulse mitnehmen. Meine Sessionwahl war:</p>
+<ul>
+<li>WTF is a Type Provider von <a href="http://www.navision-blog.de/blog/steffen-forkmann-ueber-mich/">Steffen Forkmann</a></li>
+<li>Refactoring von Legacy-Anwendungen von <a href="http://www.artiso.com/problog/">Thomas Schissler</a></li>
+<li>Continuous Delivery - Good, Bad &amp; Ugly von <a href="http://shishkin.org/">Sergey Shishkin</a></li>
+<li>Deploy &amp; Deliver von <a href="https://www.xing.com/profile/Michael_Willers">Michael Willers</a></li>
+</ul>
+<p>Ich möchte kurz auf meine Eindrücke und Erkenntnisse eingehen, die ich bei den Vorträgen mitnehmen konnte.</p>
+<h3 id="wtf-is-a-type-provider">WTF is a Type Provider</h3>
+<p class="figure-left">
+<img alt="Vortrag von Steffen Forkmann" src="/media/images/nrwconf-fsharp-320.jpg" /></p>
+<p>Es ist sehr schwer, für diesen Vortrag Worte zu finden. Steffen hat es geschafft, mir die Grundlagen und Vorzüge von <a href="http://msdn.microsoft.com/en-us/library/hh156509.aspx">F# Type Providern</a> so zu erklären, dass ich mich danach wie ein 9-jähriger Junge gefühlt habe, der an einem dunklen Dezember-Abend bei klirrender Kälte fröstelnd und frierend seit einer Stunde seine Nase an dem mit Schneeflocken dekorierten Schaufensterglas plattgedrückt hat, weil er seine runden Kulleraugen nicht losbringen konnte von der hinter der Glaswand funkelnden, doppelspurigen <a href="http://www.carrera-toys.com/de/">Carrera-Bahn</a> mit schwarzem Porsche und rotem Ferrari. <strong>Der Vortrag war genial.</strong></p>
+<h3 id="refactoring-von-legacy-anwendungen">Refactoring von Legacy Anwendungen</h3>
+<p class="figure-right">
+<img alt="Vortrag von Thomas Schissler" src="/media/images/nrwconf-refactoring-320.jpg" /></p>
+<p>Thomas hat mit seiner Session ein klares Statement zu mehr funktionaler Programmierung abgegeben. Gerade beim Refactoring von Legacy-Anwendungen sei es wichtig, Daten von Funktionalität zu trennen. Er ging zu Beginn seines Vortrages auch darauf ein, dass die Testbarkeit ein wichtiges Ziel und auch Mittel für die Refaktorisierung ist. Seine Live-Refaktorisierung des "Legacy-Bank-OCR" habe ich mir nur zu Beginn angesehen. Auf Grund der sehr individuellen - ja teilweise sogar irreführenden - Wortwahl war es für mich schwer, das Motiv des Vortrages zu erschließen. Dennoch erschien es mir, als ob das übergeordnete "Leitmotiv" des Vortrages ein Lobgesang an Funktionen und Funktionale Programmierung gewesen ist.</p>
+<h3 id="continuous-delivery">Continuous Delivery</h3>
+<p class="figure-right">
+<img alt="Vortrag von Sergey Shishkin" src="/media/images/nrwconf-devop-320.jpg" /></p>
+<p>Sergey hat deutliche Worte und deutliche Bilder sprechen lassen, als er mit seinem Vortrag die Prinzipien des Continuous Delivery aufgezeigt hat. Besonders beeindruckend fand ich die Metaphern, die er sowohl sprachlich als auch bildlich gewählt hat, um Prinzipien des Build, Deploy &amp; Deliver zu erklären. Obgleich ich durch die Zuhörerschaft nur wenig neue Einblicke in das Thema gewinnen konnte, war für mich besonders wertvoll, dass ich die Prinzipien aus einer anderen Perspektive aufnehmen konnte. Neben den "Manual Build is a No-Go" Grundprinzipien konnte Sergey auch mit inspirierenden und tiefsinnigen Ratschlägen wie "<a href="http://de.wikipedia.org/wiki/Grace_Hopper">Ask Forgiveness, Not Permission</a>" mir wertvolle Impulse mitgeben.</p>
+<h3 id="deploy-and-deliver">Deploy and Deliver</h3>
+<p class="figure-left">
+<img alt="Vortrag von Michael Willers" src="/media/images/nrwconf-devop2-320.jpg" /></p>
+<p>Gleich im Anschluß zu Sergey habe ich Michaels Vortrag besucht. Besonders erfrischend empfand ich es, dass Michael sich bei seinem Vortrag aus einer ganz anderen Perspektive dem Thema genähert hat als Sergey. Michael hat starke Beispiele in MSBuild, Nant, MSI und Powershell zur Hand gehabt, um die konkreten Alltagsaufgaben einer Continuous Delivery Pipeline zu beschreiben. Voller Energie erklärte Michael, dass Konventionen, Strukturen und Empfänger as A und O in der technischen Realisierung sind. Ich kann seinen Ratschlag der konfigurationsfreien Bereitstellung von Software aus langjähriger Erfahrung ausdrücklich unterstreichen.</p>
+<h3 id="fazit">Fazit</h3>
+<p>Die <a href="http://nrwconf.de/de">NRWConf</a> war dieses Jahr in Bestform. Ein großer Dank gilt den Organisatoren, Sponsoren, Sprechern und Teilnehmern, die diese Konferenz zu einem der wertvollsten Community-Konferenzen für .NET und Windows-Technologien gemacht hat.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>13 October 2013</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/rechnerwechsel.html&title=Rechnerwechsel">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
