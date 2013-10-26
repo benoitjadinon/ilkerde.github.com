@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Qualität ist mehr als TDD</title>
+    <meta name="description" content="TDD ist eines der wichtigsten und mächtigsten Werkzeuge für qualitativ hochwertige Software-Entwicklung. Jedoch gibt es weitere, wichtige Maßnahmen, um eine nachhaltig hohe Software-Qualität sowohl in der Entwicklung als auch im Betrieb zu gewährleisten.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="qualitaet-ist-mehr-als-tdd">
+    <a href="qualitaet-ist-mehr-als-tdd"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Qualität ist mehr als TDD</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Wenn es um qualitativ hochwertige Software-Entwicklung geht, dann kommt man meist früher als später zum Thema Unit Tests, Test-First und Test-Driven-Design. Gerade TDD und deren Freunde BDD und ATDD erfreuen sich dabei großer Beliebtheit.</p>
+<p>Doch TDD ist nicht alles. Bei weitem nicht alles, wenn es um moderne Software von hoher Qualität gehen soll. Leider rückt es oftmals in den Hintergrund, dass es neben TDD noch einige weitere, besonders wichtige Massnahmen gibt, um eine hohe Qualität von Software-Entwicklung zu gewährleisten.</p>
+<p>In diesem kurzen Beitrag möchte ich weniger auf die breite Palette von weiteren Massnahmen eingehen. Statt dessen möchte ich mich im Folgenden auf 5 Dinge konzentrieren, die ich für mein Dafürhalten als mindestens genauso wichtig wie TDD einstufe. Und wer mich kennt weiß, dass ich <em>TDD als <a href="unit-tests-tdd-und-testbarkeit-ja.html">absolut</a> <a href="tdd-ist-keine-wissenschaft.html">notwendig</a> und <a href="tdd-pro-tools.html">unabdingbar</a> einstufe</em>.</p>
+<h3 id="softwarepflege">Softwarepflege</h3>
+<p>Eines der fundamentalen Eckpfeiler für qualitativ hochwertige Software-Entwicklung ist die Pflege der Quellen. Damit ist schlichtweg die Pflege der gesamten Quellen zu verstehen - also Souce Code im VCS, Datenbanken, Daten, Bilder, Designs, Dokumente usw. usf. Einfach alles. </p>
+<p>Angefangen von der Dateistruktur, über die Einbindung der externen Bibliotheken bis hin zu Projektdateien und natürlich dem Source Code an sich. Einher mit diesem “Housekeeping” geht die Umsetzung von grundlegenden Konventionen für Platzierung und Formatierung der Quellen. Diese grundlegende Hygiene der Software-Quellen ist essentiell - wenn nicht sogar existentiell wichtig.</p>
+<h3 id="protokollierung">Protokollierung</h3>
+<p>Seit nunmehr Jahrzehnten sehe ich leidvoll immer wieder Projekte, die mangelnde oder völlig inadequate Protokollierung aufweisen. Es ist ebenso stupide, gar keine Protokollierung zu haben, wie auch einfach nur per Postsharp oder DI-Proxies generische Aufruf-Protokollierung umzusetzen. Ich habe leider viel zu selten Programme gesehen, die eine klare, semantisch wertvolle Protokollierung aufweisen konnten.</p>
+<p>Das paradoxe dabei ist: es ist im ureigenen Sinn des Programmierers, aussagekräftige Protokollierung umzusetzen. Schließlich sollte er im Fehlerfall in der Lage sein, die Informationen richtig auszuwerten. Über die Vorteile für System-Administratoren, Support-Mitarbeiter und manchmal sogar Endanwender muss man sich hier offensichtlich nicht weiter unterhalten.</p>
+<h3 id="ausnahmebehandlung">Ausnahmebehandlung</h3>
+<p>Exceptions. Eines der meist missverstandenen (und offen gesagt auch irreführenden) Konzepte objektorientierter Sprachen. Ich werde hier bestimmt nicht über den Sinn und Zweck von strukturierter Ausnahmebehandlung eingehen können, aber so viel sei gesagt: </p>
+<p>Eine Exception und deren Behandlung ist dafür erfunden worden, den Abbruch eines Programmes geordnet und informativ zu gestalten. Eine Ausnahme ist per Definition nicht dazu da, “gefangen” und “behandelt” zu werden, sondern das “Fangen” und “Behandeln” eines Programmabbruches zu ermöglichen.</p>
+<h3 id="protokolluberwachung">Protokollüberwachung</h3>
+<p>Mit den oben genannten Punkten geht natürlich die Überwachung der Protokolle zur Laufzeit einher. Ich kenne viele Entwickler, die wenig wert auf Protokollauswertung legen. Ein Stück weit hängt das natürlich auch von der Plattform und den Werkzeugen ab. So haben Entwickler dynamischer Sprachen ohne Debugger oftmals eher den Drang, Logdateien zu durchforsten, als Programmierer, die Laufzeitinformationen über den Debugger abgreifen. </p>
+<p>Fakt ist: Protokolle sind dazu da, gelesen zu werden. Alle Ausnahmen, Fehler und Warnungen im Protokoll sind wichtige Informationen und sollten nicht ignoriert werden. Weder in der Entwicklung, noch im produktiven Einsatz.</p>
+<h3 id="konfiguration">Konfiguration</h3>
+<p>Kaum eine Software läuft heutzutage konfigurationsfrei. Das ist ja prinzipiell nichts verkehrtes. Jedoch hat die Konfiguration (und oftmals deren Dateien) einen schwierigen Stand: Obgleich sie signifikanten Einfluss auf das Verhalten der Software haben, werden sie oft nicht als gleichwertiger “Source Code” behandelt. Ich finde es mindestens bedauerlich, wenn nicht sogar fahrlässig, wenn sich Entwickler der Anwendungs- und Systemkonfiguration nur halbherzig annehmen.</p>
+<p>Das fängt bei lapidaren Konfigurationen wie DB-Verbindungen an, geht über Lokalisierungs- und Ressourcendateien bis hin zur in der .NET-Welt omnipräsenten <code>App/Web.config</code>. Doch auch “subtilere” Konfigurationen wie z.B. Ausführungsverzeichnis, HTTP-Header oder Lizenzschlüssel gehören in das Gebiet der Konfiguration. Nur eine ausgeklügelte, transparente und einfache Konfiguration ermöglicht es sowohl dem Entwickler als auch dem Benutzer, aus der Konfiguration genau den Nutzen zu ziehen, den sie auch verspricht.</p>
+<h3 id="care-about-your-code">Care About Your Code</h3>
+<p>In Summe sind die o.g. Beispiele für mich mindestens so wichtig wie TDD oder Unit Tests. Es gibt noch ein dutzend weitere Merkmale, die für mich in diesem Zusammenhang wichtig sind. Mein Ziel ist ḿit diesem Beitrag jedoch nicht eine umfängliche Auflistung. Vielmehr möchte ich klar zum Ausdruck bringen, dass es um die <em>Fürsorge</em> und <em>Achtsamkeit</em> der Anwendung geht.</p>
+<p>Die genannten Maßnahmen haben als Motiv mit TDD gemein, dass sie sich um das (korrekte) Verhalten der Anwendung und eine nachhaltige Stabilität der Qualität sorgen. Genau dieser Umstand macht sie zu ebenbürtigen Mitstreitern in der Werkzeugkiste der qualitätsorientierten, modernen Software-Entwicklung. </p>
+<p>TDD ist und bleibt eine der mächtigsten Werkzeuge für nachhaltig hohe Qualität (und noch viele weitere wünschenswerte Dinge). Jedoch ist es ebenso wichtig zu erkennen, dass es neben TDD auch andere Maßnahmen geben muss, um moderne Software-Entwicklung mit kurzen Entwicklungszeiten zu ermöglichen und nachhaltig erfolgreich zu gestalten.</p>
+<p><strong>Please: Care about your code.</strong></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>26 October 2013</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/qualitaet-ist-mehr-als-tdd.html&title=Qualität ist mehr als TDD">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
