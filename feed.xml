@@ -7,11 +7,75 @@
         <link href="/"/>
     
         
-    <updated>2013-10-26T15:18:34Z</updated>
+    <updated>2013-11-06T22:43:22Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Git Goodie: HTTPS Basic Authentication</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/git-goodie-https-basic-authentication.html"/>
+            <updated>2013-11-06T22:30:00Z</updated>
+            <published>2013-11-06T22:30:00Z</published>
+            <id>/git-goodie-https-basic-authentication.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>Let's just be very clear about one thing: If you are using git, it's really the best thing to use it with SSH keys. There's nothing more convenient and secure than SSH keys.</p>
+<p>The downside is: reality is different. Reality is that you need to switch back to HTTPS transport for various reasons. Be it firewalls, be it strange git server configurations. Hence, there must be a way to deal with the dilemma of using git with HTTPS and basic authentication, while enjoying the comfort of being asked for your username and password whenever you push/pull/fetch stuff.</p>
+<h3 id="storing-authentication-credentials">Storing authentication credentials</h3>
+<p>Luckily, there's an easy (and even secure) solution for that. Git uses the almighty <a href="http://curl.haxx.se">cURL</a> behind the scenes for HTTPS communication. Having this in mind, it enables us to utilize the cURL configration file, namely <code>.netrc</code> to configure it appropiately for our use case. The only thing you need to do is to provide your credentials in the <code>.netrc</code> configuration file:</p>
+<div class="codehilite"><pre><span class="cp"># .netrc</span>
+
+<span class="n">machine</span> <span class="n">gitserver</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
+<span class="n">login</span> <span class="n">myusername</span>
+<span class="n">password</span> <span class="n">mypassword</span>
+<span class="n">protocol</span> <span class="n">https</span>
+
+<span class="n">machine</span> <span class="n">gitserver</span><span class="p">.</span><span class="n">corporation</span><span class="p">.</span><span class="n">com</span>
+<span class="n">login</span> <span class="n">myothername</span>
+<span class="n">password</span> <span class="n">myotherpassword</span>
+<span class="n">protocol</span> <span class="n">https</span>
+</pre></div>
+
+
+<p>Just save this config file as <code>.netrc</code> (Note: <code>_netrc</code> on Windows) in your home directory, and git won't ask you about your username and password anymore.</p>
+<h3 id="secure-your-date">Secure your date</h3>
+<p>The bad part about this approach obviously is that the credentials are stored within the file as <em>plaintext</em>. Even if you <code>0600</code> your file, it's not a very secure thing. For a long time, this was a pain point in git, up until recently: Since git version 1.8.3 you can now use <a href="http://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-github/18362082#18362082">a GPG encrypted netrc</a>, which finally is a way to securely and comfortably use the HTTPS transport channel.</p>
+<p>All you need to do is to install GPG, import your key (or create one if you don't have one) and trust it</p>
+<div class="codehilite"><pre><span class="err">$</span> <span class="n">gpg</span> <span class="o">--</span><span class="n">import</span> <span class="n">mykey</span> <span class="err">#</span> <span class="n">gpg</span> <span class="o">--</span><span class="n">gen</span><span class="o">-</span><span class="n">key</span>
+</pre></div>
+
+
+<p>Trusting the key is usually not required if you have generated them using the wizard. Here's how to trust:</p>
+<div class="codehilite"><pre><span class="err">$</span> <span class="n">gpg</span> <span class="o">--</span><span class="n">edit</span><span class="o">-</span><span class="n">key</span> <span class="n">john</span><span class="err">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
+<span class="o">&gt;</span> <span class="n">trust</span>
+<span class="o">&gt;</span> <span class="mi">5</span>
+<span class="o">&gt;</span> <span class="n">save</span>
+<span class="err">$</span>
+</pre></div>
+
+
+<p>Then you can download the crendentials helper, activate it and encrypt your <code>.netrc</code>:</p>
+<div class="codehilite"><pre><span class="err">$</span> <span class="n">curl</span> <span class="o">-</span><span class="n">o</span> <span class="n">c</span><span class="o">:</span><span class="err">\</span><span class="n">prgs</span><span class="err">\</span><span class="n">bin</span><span class="err">\</span><span class="n">git</span><span class="o">-</span><span class="n">credential</span><span class="o">-</span><span class="n">netrc</span> <span class="n">https</span><span class="o">:</span><span class="c1">//raw.github.com/git/git/master/contrib/credential/netrc/git-credential-netrc</span>
+<span class="err">$</span> <span class="n">gpg</span> <span class="o">-</span><span class="n">e</span> <span class="o">-</span><span class="n">r</span> <span class="n">john</span><span class="err">@</span><span class="n">example</span><span class="p">.</span><span class="n">com</span> <span class="p">.</span><span class="n">netrc</span>
+</pre></div>
+
+
+<p>Finally activate using</p>
+<div class="codehilite"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">local</span> <span class="n">credential</span><span class="p">.</span><span class="n">helper</span> <span class="s">&quot;netrc -f ~/.netrc.gpg -v&quot;</span>
+</pre></div>
+
+
+<p>or on Windows</p>
+<div class="codehilite"><pre><span class="nl">C:</span><span class="err">\</span><span class="o">&gt;</span> <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">local</span> <span class="n">credential</span><span class="p">.</span><span class="n">helper</span> <span class="s">&quot;netrc -f %HOME%/_netrc.gpg -v&quot;</span>
+</pre></div>
+
+
+<p>Et voilà! Now you are happy to use HTTPS comfortably and secure.</p>
+<p>Oh, by the way: please make sure you (and your trusted git server you are sharing code with) soon switch over to <a href="http://superuser.com/questions/303358/why-is-ssh-key-authentication-better-than-password-authentication">SSH with public-key authentication</a>. You and me both know that this would be the simple and secure way.</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Qualität ist mehr als TDD</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/qualitaet-ist-mehr-als-tdd.html"/>
