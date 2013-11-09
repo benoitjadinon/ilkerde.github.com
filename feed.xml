@@ -7,11 +7,34 @@
         <link href="/"/>
     
         
-    <updated>2013-11-06T22:43:22Z</updated>
+    <updated>2013-11-09T18:44:30Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Using VIM for C# Development</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/using-vim-for-csharp-development.html"/>
+            <updated>2013-11-09T18:45:00Z</updated>
+            <published>2013-11-09T18:45:00Z</published>
+            <id>/using-vim-for-csharp-development.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>It's been a few years now since I came back to <a href="http://www.vim.org/">VIM</a> after a decade of absence. I remember it was around the almighty <a href="http://en.wikipedia.org/wiki/Year_2000_problem">Y2K-Bug</a> being my most active time with VIM. Then, <a href="http://en.wikipedia.org/wiki/Microsoft_Visual_Studio">Visual Studio</a> reigned my desktop for almost a decade. In retrospective, I have to say: By that time I was just using 1% of the true power of VIM - yet I <em>felt somehow productive</em> with it.</p>
+<p>Needless to say that today I'm feeling more productive than ever with VIM. Of course, today I'm using a lot more than 1% of VIMs super powers. Maybe around 2% or something like that.</p>
+<p>I'm still an avid user of Visual Studio (and <a href="http://www.jetbrains.com/resharper/">ReSharper</a>), because it simply is an amazing IDE. It helps me alot in my daily work as well as for large-scale .NET development. Even more, I'm pretty much sold to ReSharper. Since 2010, I really love to use Visual Studio with ReSharper when it comes to C# development. From my gut feeling, I think I'm using around 30% to 40% of VS/ReSharpers capabilities.</p>
+<h3 id="vim-and-c35">VIM and C#</h3>
+<p>With all that love for C# and VS/ReSharper, there's still the notion and need for me to get back to my beloved VIM even for C# development. I'm happily using Linux now for years and of course do develop stuff on Linux as well. Yes, I do use <a href="http://monodevelop.com/">MonoDevelop</a> from time to time as well, but I always come back to the point where I think to myself: "I don't feel comfortable here, VIM is nearby, so why don't use it?"</p>
+<p>Since 2011 I'm using VIM for (small) C# projects. <em>"Small"</em> in this context is something between five and ten assemblies (csproj projects). I started with doing Katas in VIM, just to know how it feels to have no compiler at <code>F5</code> or an external unit test runner. Then, I gradually started to edit projects. I realized that <a href="http://en.wikipedia.org/wiki/Grep">grep</a> and <a href="http://en.wikipedia.org/wiki/Sed">sed</a> will stand beside me for my project management needs.</p>
+<p>But still, I somehow couldn't reach that level of comfort that I would actually feel confident to <em>entirely</em> use VIM for small C# projects. Until beginning of 2013. Then, a new era started for me and my C# development desires: I discovered <a href="https://github.com/nosami/Omnisharp">Omnisharp</a>!</p>
+<h3 id="omnisharp">Omnisharp!</h3>
+<p><img alt="Omnisharp" src="/media/images/vim_omnisharp.png" /></p>
+<p>Omnisharp is such an incredibly great thing. It gives me what I thought of could be rarely ever possible: <em>Intellisense!</em> Even more, it delivers me <em>Type Lookup</em> and <em>Symbol Navigation</em>. Yes, all you spoilt Visual Studio "power users", I'm excited about this! And just to let you know: there's even <em>Refactorings</em> available!</p>
+<p>The real value of Omnisharp plugin truly is that finally I can combine the superior editing of VIM with the essential symbol navigation, lookups and intellisense. I already did a few (little) projects with VIM and Omnisharp and have to conclude: Now I'm (almost) as fast and productive with VIM as I am with VS/ReSharper. For me, this means that I my little dream of pure C# development with VIM becomes a <em>real option</em>.</p>
+<p>As of today, I already do all of my personal code review and code contributions with VIM. Even more, I comfortably took part in 2 little projects with VIM as well. I'm not sure if I want to use VIM/Omnisharp for large projects as of today, but I'll definitely continue to use it as my first class editor for C# on Linux.</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Git Goodie: HTTPS Basic Authentication</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/git-goodie-https-basic-authentication.html"/>
