@@ -7,11 +7,43 @@
         <link href="/"/>
     
         
-    <updated>2013-11-09T18:44:30Z</updated>
+    <updated>2013-11-16T11:40:48Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">ReSharper settings for Teams</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/resharper-settings-for-teams.html"/>
+            <updated>2013-11-16T11:40:00Z</updated>
+            <published>2013-11-16T11:40:00Z</published>
+            <id>/resharper-settings-for-teams.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>Every team has a culture. Every team has agreements, conventions and rules. This is because a team has individuals, but a common goal.</p>
+<p>To achieve a common sense on a tool level as well, teams use guidelines and settings which are shared within the team. In my current team we do this as well. In particular, we want to share our C# code and formatting settings. Every developer in our team uses <a href="http://www.jetbrains.com/resharper/">ReSharper</a>, which is a great thing. Hence, we thought it would be a good idea to share our ReSharper settings team-wide. Since ReSharper 7+ greatly supports <a href="http://www.jetbrains.com/resharper/webhelp/Reference__Settings_Layers.html">fine-granular settings control</a>, it was obvious for us to go that way.</p>
+<h3 id="settings-for-team-solution-and-individuals">Settings for team, solution and individuals</h3>
+<p>While thinking about how we would want to share our settings, we discovered several pitfalls. While there is a plugin to share settings like <a href="https://github.com/JetBrains/JetBox">JetBox</a>, we felt that this might work for an individual, but is not a feasible approach for teams. Our requirements were as follows:</p>
+<ul>
+<li>Team settings should be available instantly for any shared codebase, without manual intervention</li>
+<li>Settings would be shared across the whole codebase, applicable for all solutions and projects in there</li>
+<li>The individual settings of every team member need to be respected</li>
+<li>Individual solutions and projects may introduce additions exceptions and additions to team settings</li>
+<li>A change in team settings should be available "immediately" for all team members</li>
+<li>All settings should be stored in VCS, except individual settings</li>
+</ul>
+<p>Thanks to the ReSharper settings layers, most requirements are can be covered. </p>
+<p><img alt="Resharper Settings Layers" src="/media/images/settings_layers.png" /></p>
+<p>It was obvious for us to use <code>.DotSettings</code>-files for solutions to share our team settings. While <code>.DotSettings</code> would solve the solution-wide sharing, it wouldn't fully solve the problem of diverging solution to team settings as well as non-redundant, safe team settings updates. This could only be solved, if we could update the layers of all <code>.DotSettings</code>-files for our solutions whenever we would want to change team settings.</p>
+<p>My teammate <a href="http://www.andreas-helmberger.de/en/home">Andreas Helmberger</a> had the great idea to benefit from a special behavior as of ReSharper 7.1, where an invalid absolute path on a settings layer reference would cause a <a href="http://youtrack.jetbrains.com/issue/RSRP-288235">fallback to the relative path</a>. This actually would enable us to introduce the concept of <em>relative settings references</em> within the <code>.DotSettings</code> file.</p>
+<h3 id="making-team-settings-managable">Making team settings managable</h3>
+<p>In order to make this approach usable and managable for us, we would need a system to instantly configure and update our <em>"settings references"</em> throughout the complete codebase. </p>
+<p>Enter <a href="https://github.com/CHECK24/c24.TeamSharper">TeamSharper</a>.</p>
+<p>TeamSharper is a small CLI tool to manage and deploy your team settings to all your solutions using the abovementioned <em>relative settings reference</em> technique. You simply configure your layers in a JSON file and fire TeamSharper to distribute the settings. </p>
+<p>We successfully deploy and manage our team settings for quite a large repository containing a large amount of solutions. Honestly, I haven't yet had a more frictionless team settings distribution than with TeamSharper. Our teams could work instantly with the team settings, while still being able to have individual additions for certain solutions.</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Using VIM for C# Development</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/using-vim-for-csharp-development.html"/>
