@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The Most Elegant Guard</title>
+    <meta name="description" content="A short writing on why contracted parameter preconditions, also known as &#34;Guards&#34;, are useful, yet should be avoided at all.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="the-most-elegant-guard">
+    <a href="the-most-elegant-guard"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>The Most Elegant Guard</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Last year I blogged about <a href="the-elegant-guard.html">an elegant Guard</a>. This was a piece of code I saw in a codebase I was reviewing at that time. I saw how the guard was used:</p>
+<div class="codehilite"><pre><span class="n">Guard</span><span class="p">.</span><span class="n">ArgumentsNotNull</span><span class="p">(</span>
+  <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">section</span><span class="p">,</span>
+  <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">inception</span><span class="p">,</span>
+  <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">expiry</span>
+<span class="p">);</span>
+</pre></div>
+
+
+<p>At that time, I found this solution to be quite elegant, while I wouldn't have used it myself at all. I'm using guards quite frequently in projects, but most of the time they look similar tthis:</p>
+<div class="codehilite"><pre><span class="n">Guard</span><span class="p">.</span><span class="n">NotNull</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="s">&quot;arg&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Yes, the string literal with the name of the argument is not nice. Sometimes I make the second parameter optional, leaving me to a guard usage of</p>
+<div class="codehilite"><pre><span class="n">Guard</span><span class="p">.</span><span class="n">NotNull</span><span class="p">(</span><span class="n">arg</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Which works. I didn't think about the correctness of my approach up until recently. Yesterday, I was thinking about the guards being used in several projects I'm reviewing right now. They are all very different, although essentially tackling the same problem. I have to admit that the guard I was attributing as <a href="the-elegant-guard.html">an elegant Guard</a> last year now is not so elegant to me anymore. It's too much overhead for the purpose of the guard, me thinks.</p>
+<p>Even more, I think guards should be avoided. Guards are no good. I strongly believe that they only can help if they are used in <em>unavoidable cases</em>, such as interfacing with other systems or dealing with interop or guarding against highly volatile, stateful components. In all other cases, which is a surprisingly large area, guards can be avoided. Just because <code>NULL</code>s can be avoided.</p>
+<p>In order to have a coded manifest of what I mean by that, I reimplemented a guard again. This time, I <em>intentionally</em> left the guard being "feature-incomplete". For instance, it lacks detailed reporting of the argument name being null. Plus, it is only able to check one parameter at once. That's by purpose, because I wanted to implant the philosophy of avoiding <code>NULL</code> and avoiding guards within the guard itself. I call it <a href="https://github.com/ilkerde/guardian">Guardian</a>.</p>
+<p><a href="https://github.com/3komma14/Guard">There</a> <a href="https://github.com/sh4dov/Guard">are</a> <a href="https://github.com/oakio/ArgGuard">dozens</a> <a href="https://github.com/littlebits/guard_claws">of</a> <a href="https://github.com/Haacked/NullGuard">guard</a> <a href="https://github.com/dustindavis/FluentGuard">helpers</a> <a href="https://github.com/liteguard/liteguard">out</a> <a href="https://github.com/danielwertheim/Ensure.That">there</a>. A few of them even are trying to solve it through some sort of meta-programming. The truth is, that in the end, they all do the same thing: Throw an exception when the argument is null. With a little bit of invest in thinking, it soon becomes obvious that the <em>purpose</em> of a guard helper is aligned to following conditions:</p>
+<ul>
+<li>Check the <em>arguments</em> of a method against null.</li>
+<li><em>Abort</em> execution of the program when an argument is null.</li>
+<li>Provide information for <em>developers</em> on where the unexpected null appeared.</li>
+</ul>
+<p>The first two conditions can be met very easily, while the last condition is sort of debatable - as a concept as well as a concrete implementation. <a href="https://github.com/ilkerde/guardian">Guardian</a> tackles the third condition from a conceptual perspective. In particular, the problem of reporting the location of the <code>NULL</code> reference is solved by not solving it.</p>
+<p>In the end, <em>Guardian</em> exists to be not used at all (or at least as rare as possible). The most important thing here essentially is the insight to <strong>avoid <code>NULL</code></strong>.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>17 November 2013</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">Articles
+</a></li>
+            <li><a href="/talks.html">Talks
+</a></li>
+            <li><a href="/bio.html">Profile
+</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>Options
+</h5>
+                    <ul>
+                        <li><a href="/feed.xml">Subscribe To Feed
+</a></li>
+                                    <li><a href="/comments.html?ref=/the-most-elegant-guard.html&title=The Most Elegant Guard">Write A Comment
+</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">Colophon
+</a></li>
+            <li><a href="/imprint.html">Imprint
+</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
