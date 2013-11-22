@@ -7,11 +7,86 @@
         <link href="/"/>
     
         
-    <updated>2013-11-17T23:59:34Z</updated>
+    <updated>2013-11-22T22:17:56Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Git Goodie: Pull Requests</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/git-goodie-pull-requests.html"/>
+            <updated>2013-11-22T22:30:00Z</updated>
+            <published>2013-11-22T22:30:00Z</published>
+            <id>/git-goodie-pull-requests.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>Git is such a nice version control system. It helps you in every way to get your code managed and distributed throughout the whole team. One of the philosophies of Git actually is the heavy commit (change) exchange between all developers. That's why Git supports this in a manifold of cases. One of the popular, yet rarely deeply known features is the pull request feature.</p>
+<h3 id="pull-requests">Pull Requests</h3>
+<p><a href="https://www.kernel.org/pub/software/scm/git/docs/git-request-pull.html">Pull Requests</a> basically are a core Git feature. Although they are widely known to be a <a href="https://help.github.com/articles/using-pull-requests">feature of Github</a>, they are in fact at the very heart of Git development. In short, pull requests are a short message to the other developers at the team that another team member has finished some work (possibly on a separate branch) and that this work is ready to be shared with everyone. </p>
+<p>In practice, a "real" pull request is most often nothing more than an Email with some short information about the changes ready to be shared. It's a <em>request</em> for others to <em>pull</em> the changes made. That's it.</p>
+<p>Nowadays, with <a href="https://github.com/">Github</a>, <a href="https://bitbucket.org">Bitbucket</a> and the other kids on the block like <a href="https://gitorious.org/">Gitorious</a>, <a href="http://gitlab.org/">Gitlab</a> or <a href="https://code.google.com/p/gerrit/">Gerrit</a> (and of course the commercial editions like <a href="https://enterprise.github.com/">Github Enterprise</a> and <a href="https://www.atlassian.com/software/stash/overview">Stash</a>), pull requests are pretty much more than just a barebone message. That typically includes all patches, provide commenting and online collaborative code review facilities and nice integration with issue trackers and more. I for one think that those tools can help teams to live the philosophy of pull requests in a productive and transparent way.</p>
+<h3 id="roll-your-own">Roll Your Own</h3>
+<p>Disregarding all the aforementioned fancy tools, it might be applicable to roll a pull request on your own. Maybe you don't have any of the shiny tools. Maybe you just want to leave a message to a few other teammates on what the current status of your work is. Maybe you want to see or communicate a "what if I did a pull request now" status. That's when a solid hand-crafted pull request comes handy.</p>
+<p>Git gives you a helping hand with the <code>request-pull</code> command. The <a href="https://www.kernel.org/pub/software/scm/git/docs/git-request-pull.html">request-pull command</a> gives you a nice summary about the changes you have in focus. It provides you necessary SHA of start and end commits, gives you a nice shortlog summary, accompanied by the all-famous diffstat. Suppose you want to create a pull request for your changes in <code>pairs</code> branch to be picked up to <code>master</code>.Your request-pull would be as simple as</p>
+<div class="codehilite"><pre><span class="p">[</span><span class="n">ilker</span><span class="p">]</span><span class="err">$</span> <span class="n">git</span> <span class="n">checkout</span> <span class="n">pairs</span>
+<span class="n">Switched</span> <span class="n">to</span> <span class="n">branch</span> <span class="err">&#39;</span><span class="n">pairs</span><span class="err">&#39;</span>
+<span class="p">[</span><span class="n">ilker</span><span class="p">]</span><span class="err">$</span> <span class="n">git</span> <span class="n">request</span><span class="o">-</span><span class="n">pull</span> <span class="n">master</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="n">ilkerde</span><span class="o">/</span><span class="n">codekatas</span><span class="p">.</span><span class="n">git</span>
+</pre></div>
+
+
+<p>Easy, isn't it? If everything went well, Git will happily present the result on your screen. Something like this:</p>
+<div class="codehilite"><pre><span class="n">The</span> <span class="n">following</span> <span class="n">changes</span> <span class="n">since</span> <span class="n">commit</span> <span class="mf">0135228f</span><span class="n">ae2b9a10727d7083381b95deb20d083d</span><span class="o">:</span>
+
+<span class="n">touchdown</span><span class="p">.</span> <span class="n">this</span> <span class="n">was</span> <span class="n">a</span> <span class="n">real</span> <span class="n">nice</span> <span class="n">one</span><span class="p">.</span> <span class="p">(</span><span class="mi">2013</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">23</span> <span class="mo">00</span><span class="o">:</span><span class="mi">09</span><span class="o">:</span><span class="mi">34</span> <span class="o">+</span><span class="mo">0200</span><span class="p">)</span>
+
+<span class="n">are</span> <span class="n">available</span> <span class="n">in</span> <span class="n">the</span> <span class="n">git</span> <span class="n">repository</span> <span class="n">at</span><span class="o">:</span>
+
+<span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="n">ilkerde</span><span class="o">/</span><span class="n">codekatas</span><span class="p">.</span><span class="n">git</span> <span class="n">pairs</span>
+
+<span class="k">for</span> <span class="n">you</span> <span class="n">to</span> <span class="n">fetch</span> <span class="n">changes</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">6199</span><span class="n">cf61b165fd1c83890ca7729cc1709feedad4</span><span class="o">:</span>
+
+<span class="n">stringcalculator</span> <span class="n">cmdline</span> <span class="n">session</span> <span class="n">with</span> <span class="n">diego</span><span class="p">.</span> <span class="n">pt1</span> <span class="p">(</span><span class="mi">2013</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">24</span> <span class="mi">09</span><span class="o">:</span><span class="mi">46</span><span class="o">:</span><span class="mi">16</span> <span class="o">+</span><span class="mo">0200</span><span class="p">)</span>
+
+<span class="o">----------------------------------------------------------------</span>
+<span class="n">Ilker</span> <span class="n">Cetinkaya</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span>
+<span class="n">stringcalculator</span> <span class="n">cmdline</span> <span class="n">session</span> <span class="n">with</span> <span class="n">diego</span><span class="p">.</span> <span class="n">pt1</span>
+
+<span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">build</span><span class="p">.</span><span class="n">ps1</span>                                <span class="o">|</span>   <span class="mi">8</span> <span class="o">++++++++</span>
+<span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">CommandLine</span><span class="p">.</span><span class="n">dll</span>                      <span class="o">|</span> <span class="n">Bin</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">26624</span> <span class="n">bytes</span>
+<span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">Machine</span><span class="p">.</span><span class="n">Specifications</span><span class="p">.</span><span class="n">Reporting</span><span class="p">.</span><span class="n">dll</span> <span class="o">|</span> <span class="n">Bin</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">45056</span> <span class="n">bytes</span>
+<span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">Machine</span><span class="p">.</span><span class="n">Specifications</span><span class="p">.</span><span class="n">dll</span>           <span class="o">|</span> <span class="n">Bin</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">72704</span> <span class="n">bytes</span>
+<span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mspec</span><span class="p">.</span><span class="n">exe</span>                            <span class="o">|</span> <span class="n">Bin</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">18432</span> <span class="n">bytes</span>
+<span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">StringCalculator</span><span class="p">.</span><span class="n">cs</span>                  <span class="o">|</span>  <span class="mi">21</span> <span class="o">+++++++++++++++++++++</span>
+<span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">StringCalculatorSpecs</span><span class="p">.</span><span class="n">cs</span>             <span class="o">|</span>  <span class="mi">19</span> <span class="o">+++++++++++++++++++</span>
+<span class="mi">7</span> <span class="n">files</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">48</span> <span class="n">insertions</span><span class="p">(</span><span class="o">+</span><span class="p">)</span>
+<span class="n">create</span> <span class="n">mode</span> <span class="mi">100755</span> <span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">build</span><span class="p">.</span><span class="n">ps1</span>
+<span class="n">create</span> <span class="n">mode</span> <span class="mi">100755</span> <span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">CommandLine</span><span class="p">.</span><span class="n">dll</span>
+<span class="n">create</span> <span class="n">mode</span> <span class="mi">100755</span> <span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">Machine</span><span class="p">.</span><span class="n">Specifications</span><span class="p">.</span><span class="n">Reporting</span><span class="p">.</span><span class="n">dll</span>
+<span class="n">create</span> <span class="n">mode</span> <span class="mi">100755</span> <span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">Machine</span><span class="p">.</span><span class="n">Specifications</span><span class="p">.</span><span class="n">dll</span>
+<span class="n">create</span> <span class="n">mode</span> <span class="mi">100755</span> <span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mspec</span><span class="p">.</span><span class="n">exe</span>
+<span class="n">create</span> <span class="n">mode</span> <span class="mi">100755</span> <span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">StringCalculator</span><span class="p">.</span><span class="n">cs</span>
+<span class="n">create</span> <span class="n">mode</span> <span class="mi">100755</span> <span class="n">KataStringCalculator</span><span class="p">.</span><span class="n">CsCmd</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">StringCalculatorSpecs</span><span class="p">.</span><span class="n">cs</span>
+</pre></div>
+
+
+<p>Looks pretty, concise and clean. All you need to know to have an <em>overview</em> of the changes. Now, if you were to share this with others, you'd possibly just want to add some short notes about the changes and send it via email. As easy as that. That's all about a <em>pull request</em>.</p>
+<h3 id="pull-requests-for-command-liners">Pull Requests for Command Liners</h3>
+<p>If you enjoy working on the command line just as I do, you most probably would like to have a nice shorthand command for the request-pull command. Maybe you even want to edit and send the pull request in one go. Well, here's how I do it with <em>git</em> and <em>mutt</em> in a teamplay:</p>
+<div class="codehilite"><pre><span class="p">[</span><span class="n">ilker</span><span class="p">]</span><span class="err">$</span> <span class="n">git</span> <span class="n">co</span> <span class="n">pairs</span>
+<span class="n">Switched</span> <span class="n">to</span> <span class="n">branch</span> <span class="err">&#39;</span><span class="n">pairs</span><span class="err">&#39;</span>
+<span class="p">[</span><span class="n">ilker</span><span class="p">]</span><span class="err">$</span> <span class="n">mutt</span> <span class="o">-</span><span class="n">i</span><span class="o">&lt;</span><span class="p">(</span><span class="n">git</span> <span class="n">pr</span> <span class="n">origin</span> <span class="n">master</span><span class="p">)</span> <span class="o">-</span><span class="n">s</span> <span class="s">&quot;PR: Attach Pairing Session To List.&quot;</span> <span class="n">team</span>
+</pre></div>
+
+
+<p>Since I'm using <em>mutt</em> on a regular basis, this is a great way to have a streamlined "here's my current changes" mail posted in one go. If you are using <em>mutt</em>, you most probably know how this works, except the nice magic within process substitution: <code>git pr origin master</code>. Well, that's just a short alias for the very first <em>request-pull</em> command I showed at the beginning of this post. The alias proved to be very helpful to me, since it automatically expands the remote url for the pull request. If you care about it, here it is:</p>
+<div class="codehilite"><pre><span class="n">pr</span> <span class="o">=</span> <span class="s">&quot;!f() { git request-pull $2 $(git config --get remote.$1.url); }; f&quot;</span>
+</pre></div>
+
+
+<p>Enjoy Git!</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Agile Honks</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/agile-honks.html"/>
