@@ -7,11 +7,31 @@
         <link href="/"/>
     
         
-    <updated>2013-11-24T13:00:35Z</updated>
+    <updated>2013-11-28T19:47:06Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Let&#39;s Code In The Dark</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/lets-code-in-the-dark.html"/>
+            <updated>2013-11-28T19:30:00Z</updated>
+            <published>2013-11-28T19:30:00Z</published>
+            <id>/lets-code-in-the-dark.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>Vor ein paar Monaten habe ich vom <a href="http://codeinthedark.com/">Code In The Dark</a> gehört und war von Anfang an dem Format und der Durchführung einer solchen Veranstaltung interessiert. Nicht, weil ich so ein besonders guter Front-End-Programmierer bin. Auch nicht, weil ich Programmierwettbewerbe gut finde. Nein, meine Motivation ist eine ganz andere.</p>
+<h3 id="der-umgang-mit-leistungsvergleich">Der Umgang mit Leistungsvergleich</h3>
+<p>Ich bin daran interessiert, den Umgang mit Leistung und Leistungsvergleich in unserer Zunft uns selbst ein Stück weit bewusster zu machen. Ich bin der festen Überzeugung, dass gerade die Kultur der Leistung und des Leistungsvergleiches eine besondere, komplexe Kultur ist, die wir in dem heutigen Zeitalter der postmodernen Informations-(verarbeitungs-)Gesellschaften zu kurz kommen lassen. Wir kümmern uns um Agilität, um Wertschätzung, um gemeinsame Werte und gemeinschaftliches Arbeiten. Doch leider ist es all zu offensichtlich, dass wir uns um ein <em>gemeinsames Verständnis</em> von Leistungsvergleich zu wenig kümmern.</p>
+<p>Neben dieser für mich schwerwiegenden Motivation habe ich noch ein paar weitere, sekundäre Treiber. Da wäre zum Einen natürlich das <em>Programmieren ohne Feedback</em>. Es konterkariert die in uns als Agilisten umtreibende Kraft, schnell eine (ohne mehrere) Feedbackschleifen für unser Tun zu etablieren. Ich bin der Meinung, dass man den Wert des Feedbacks in einem solchen Experiment besonders gut herausfinden kann. Gerade eben, weil er gänzlich fehlt.</p>
+<p>Zum Zweiten finde ich es nennenswert interessant, sich einer Aufgabe in einem <em>lockeren und ausgelassenen Rahmen</em> zu stellen. Es ist besonders schwierig, konzentrierte kreative Leistung auf Abruf zu liefern. Diese ohnehin schon bemerkenswerte Leistung wird nun durch den ausgelassenen, lockeren Rahmen der Veranstaltung um ein weiteres Stück herausragender. Eine unorthodoxe, aber durchaus sinnvolle Auseinandersetzung mit der schwierigen Beziehung zwischen Kreativität und Konzentration.</p>
+<h3 id="code-in-the-dark-in-munchen">Code In The Dark In München</h3>
+<p>All das hat <a href="https://twitter.com/wagnerdennis">Dennis</a>, <a href="https://twitter.com/lennybacon">Daniel</a> und mich dazu motiviert, auch einmal ein solches Experiment zu wagen. Nach ein paar Wochen reiflicher Überlegung und Planung ist es nun so weit: am 12. Dezember findet im <a href="https://muc.ccc.de/">Münchener Chaos Computer Club</a> das deutschlandweit erste <a href="http://codeinthedark.com/">Code In The Dark</a> in der <a href="http://www.cclabs.de/codeinthedark.html">Münchener Variation</a> statt. Ähnlich wie bei den Coding Dojos, ist diese "Idee" nicht unsere, sondern die <a href="http://vimeo.com/63318482">von anderen intelligenten Menschen</a>. Wir greifen sie auf und bringen unsere Erfahrungen mit ein, um auch diese Veranstaltung als weitere Bereicherung zu erleben.</p>
+<p>Die Anmeldung erfolgt entweder per <a href="mailto:codeinthedark@cclabs.de">Email</a>, über das <a href="https://www.xing.com/events/munich-code-the-dark-1334086">Xing-Event</a>, oder über das <a href="http://www.meetup.com/Coding-Dojo-Munich/events/153129342/">Meetup-Event</a>. Weitere Informationen zum <em>Münchener Code In The Dark</em> finden sich <a href="http://www.cclabs.de/codeinthedark.html">hier</a>. Das <em>Code In The Dark</em> braucht nicht nur Teilnehmer, sondern auch Zuschauer. Also: wenn man selbst nicht programmieren möchte, aber die Anderen anfeuern möchte, oder aber bei gelassener Stimmung und erheiterndem Getränk den Austausch mit Gleichgesinnten sucht, ist diese Veranstaltung sicher ein guter Fundort. In diesem Sinne:</p>
+<p><strong>Let's Code In The Dark!</strong></p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Git Goodie: Pull Requests</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/git-goodie-pull-requests.html"/>
