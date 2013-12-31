@@ -7,11 +7,197 @@
         <link href="/"/>
     
         
-    <updated>2013-11-28T19:47:06Z</updated>
+    <updated>2013-12-31T08:54:07Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Notizen eines Nerds 2013</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/notizen-eines-nerds-2013.html"/>
+            <updated>2013-12-31T00:30:38Z</updated>
+            <published>2013-12-31T00:30:38Z</published>
+            <id>/notizen-eines-nerds-2013.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>Hier sind meine <em>Notizen eines Nerds</em> für 2013. Viel Spaß! </p>
+<h3 id="notizen-eines-nerds">Notizen eines Nerds</h3>
+<ul>
+<li><a href="verhandlung-und-agil.html">Verhandlung und Agil</a></li>
+<li><a href="state-of-change.html">State Of Change</a></li>
+<li><a href="arch.html">Arch</a></li>
+<li><a href="agile-tactical-briefing.html">Agile Tactical Briefing</a></li>
+<li><a href="informatik-ist-kommunikation.html">Informatik ist Kommunikation</a></li>
+<li><a href="harvard-negotiation.html">Harvard-Negotiation</a></li>
+<li><a href="we-is-you.html">We Is You</a></li>
+<li><a href="lambda-loop.html">Lambda Loop</a></li>
+<li><a href="definition-of-software-quality.html">Definition of Software Quality</a></li>
+<li><a href="continuous-things.html">Continuous Things</a></li>
+<li><a href="rex-version.html">Rex Version</a></li>
+<li><a href="give-take-feedback.html">Give-Take-Feedback</a></li>
+</ul>
+<h4 id="more-nerd-notes">More Nerd Notes</h4>
+<p>Der aufmerksame Leser meines Blogs kennt sicherlich auch die letzten Ausgaben meiner Nerd-Notizen, nämlich die <a href="notizen-eines-nerds-2012.html">Notizen eines Nerds 2012</a>, <a href="notizen-eines-nerds-2011.html">Notizen eines Nerds 2011</a> als auch die <a href="notizen-eines-nerds-2010.html">Notizen eines Nerds 2010</a>.</p>
+<p><strong>Ich wünsche uns allen gemeinsam ein gesundes, frohes, glückliches und erfolgreiches Jahr 2014!</strong></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Give Take Feedback</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/give-take-feedback.html"/>
+            <updated>2013-12-30T15:48:00Z</updated>
+            <published>2013-12-30T15:48:00Z</published>
+            <id>/give-take-feedback.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-1312">Notizen eines Nerds 13'12</h4>
+<p><img alt="Give Take Feedback" src="/media/images/give-take-feedback.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Rex Version</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/rex-version.html"/>
+            <updated>2013-12-30T15:47:00Z</updated>
+            <published>2013-12-30T15:47:00Z</published>
+            <id>/rex-version.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-1311">Notizen eines Nerds 13'11</h4>
+<p><img alt="Rex Version" src="/media/images/rex-version.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Continuous Things</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/continuous-things.html"/>
+            <updated>2013-12-30T15:46:00Z</updated>
+            <published>2013-12-30T15:46:00Z</published>
+            <id>/continuous-things.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-1310">Notizen eines Nerds 13'10</h4>
+<p><img alt="Continuous Things" src="/media/images/continuous-things.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Definition of Software Quality</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/definition-of-software-quality.html"/>
+            <updated>2013-12-30T15:45:00Z</updated>
+            <published>2013-12-30T15:45:00Z</published>
+            <id>/definition-of-software-quality.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-139">Notizen eines Nerds 13'9</h4>
+<p><img alt="Definition of Software Quality" src="/media/images/definition-of-software-quality.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Lambda Loop</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/lambda-loop.html"/>
+            <updated>2013-12-30T15:44:00Z</updated>
+            <published>2013-12-30T15:44:00Z</published>
+            <id>/lambda-loop.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-138">Notizen eines Nerds 13'8</h4>
+<p><img alt="Lambda Loop" src="/media/images/lambda-loop.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">We Is You</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/we-is-you.html"/>
+            <updated>2013-12-30T15:43:00Z</updated>
+            <published>2013-12-30T15:43:00Z</published>
+            <id>/we-is-you.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-137">Notizen eines Nerds 13'7</h4>
+<p><img alt="We Is You" src="/media/images/we-is-you.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Harvard Negotiation</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/harvard-negotiation.html"/>
+            <updated>2013-12-30T15:42:00Z</updated>
+            <published>2013-12-30T15:42:00Z</published>
+            <id>/harvard-negotiation.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-136">Notizen eines Nerds 13'6</h4>
+<p><img alt="Harvard Negotiation" src="/media/images/harvard-negotiation.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Informatik ist Kommunikation</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/informatik-ist-kommunikation.html"/>
+            <updated>2013-12-30T15:41:00Z</updated>
+            <published>2013-12-30T15:41:00Z</published>
+            <id>/informatik-ist-kommunikation.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-135">Notizen eines Nerds 13'5</h4>
+<p><img alt="Informatik ist Kommunikation" src="/media/images/informatik-ist-kommunikation.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Agile Tactical Briefing</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/agile-tactical-briefing.html"/>
+            <updated>2013-12-30T15:40:00Z</updated>
+            <published>2013-12-30T15:40:00Z</published>
+            <id>/agile-tactical-briefing.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-134">Notizen eines Nerds 13'4</h4>
+<p><img alt="Agile Tactical Briefing" src="/media/images/agile-tactical-briefing.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Arch</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/arch.html"/>
+            <updated>2013-12-30T15:39:00Z</updated>
+            <published>2013-12-30T15:39:00Z</published>
+            <id>/arch.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-133">Notizen eines Nerds 13'3</h4>
+<p><img alt="Arch" src="/media/images/arch.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">State Of Change</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/state-of-change.html"/>
+            <updated>2013-12-30T15:38:00Z</updated>
+            <published>2013-12-30T15:38:00Z</published>
+            <id>/state-of-change.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-132">Notizen eines Nerds 13'2</h4>
+<p><img alt="State Of Change" src="/media/images/state-of-change.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
+            <title type="html">Verhandlung und Agil</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/verhandlung-und-agil.html"/>
+            <updated>2013-12-30T15:37:24Z</updated>
+            <published>2013-12-30T15:37:24Z</published>
+            <id>/verhandlung-und-agil.html</id>
+            
+            <content type="html"><![CDATA[
+                <h4 id="notizen-eines-nerds-131">Notizen eines Nerds 13'1</h4>
+<p><img alt="Verhandlung und Agil" src="/media/images/verhandlung-und-agil.jpg" /></p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Let&#39;s Code In The Dark</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/lets-code-in-the-dark.html"/>

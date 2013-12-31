@@ -1,0 +1,485 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro|Inconsolata);
+/*
+### colors.less
+
+Definition of colors used throughout the entire website.
+
+The color system divides into two sections. The first section
+defines the colors itself (similar to a palette definition).
+
+The second section actually semantically defines which color
+is used for whatever component on the website. By convention,
+three color types exist:
+
+- Foreground color, suffixed "_fg"
+  This is the (primary) stroke color, used for text
+
+- Background color, suffixed "_bg"
+  This is the fill color, i.e. used for filled boxes
+
+- Line color, suffixed "_line"
+  The (secondary) hairline stroke color, used for borders
+
+Apart from the color type, colors can be defined
+for several object states as well. The default state
+is the "idle" (or passive) state. It's the only state
+which is not explicitly weaved into the color name.
+In addition to the default state there's:
+
+- over: user focuses object with mouse (mouseover/hover)
+- active: highlighted, active object, important in context
+- inactive: dimmed, inactive object, commonly unusable
+- error: strong highlight, object is errornous
+
+*/
+/*
+The main color set only contains greys, light whites
+and the theme blue color called "ease".
+*/
+/* > standard text colors */
+/* > colors for links */
+/* > code sections / fragments */
+/* > quotes / citations */
+/* > image captions / subtitles */
+/* > icons (usually imagery only) */
+/* > informational, contextually lower important text elements */
+/* > presentational canvas (slide) colors */
+/* > headings and titles */
+/* > main menu */
+/* > form labels */
+/* > input elements */
+/* > command button */
+/* > border colors */
+/*
+### fonts.less
+
+Definition of fonts used throughout the entire website.
+
+By convention, the website layout only uses three types.
+- A text type in sans
+- A heading type in sans black condensed for
+  - headings
+  - menu
+  - buttons
+  - image captions
+  - form labels
+  - info/metadata
+
+- A mono type for
+  - source code
+  - text input elements
+  - comments
+
+*/
+/*
+images.less
+===========
+
+Definition of images used throughout the entire website.
+
+The images defined herein are solely used for the purpose of
+the website layout. They have no special relevance for the content
+presented on the website. It mostly contains icons, which
+in fact can have multiple states.
+*/
+/* 
+mixins.less
+===========
+
+Generic style components ready to be weaved into website styles.
+*/
+/*
+### FUNCTIONS
+
+Pameterized style sets used frequently.
+*/
+/*
+### COMPONENTS
+
+Style components used by multiple website elements.
+*/
+.is_panel_top {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.is_panel_bottom {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.is_panel {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.is_no_panel {
+  border-top-left-radius: 0px;
+  -moz-border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -moz-border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  -moz-border-bottom-right-radius: 0px;
+}
+/* squares, usually used for icons. */
+.is_square {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+}
+/* an icon is a simple 40x40 tiled navigation/menu/option item */
+.is_icon {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  color: #c2c3c4;
+  background-color: #ffffff;
+  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Cantarell', 'Arial', sans-serif;
+  display: block;
+}
+.is_icon a {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  display: block;
+  opacity: 0.5;
+}
+.is_icon a:hover {
+  opacity: 1;
+}
+.is_icon a * {
+  display: none;
+}
+.is_button {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border: 1px solid #c2c3c4;
+  padding: 1px 7px 1px 7px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.is_button_over {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+}
+.is_command {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.is_page_list {
+  list-style-type: none;
+  list-style-position: inside;
+}
+.is_page_list li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+.is_page_list li * {
+  font-size: 16px;
+  line-height: 24px;
+}
+.is_page_list li a {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.is_page_list li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+.is_page_list li a:hover * {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+.is_page_list li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+.is_page_list li:last-child {
+  border-bottom: 0px;
+}
+.is_info_list {
+  list-style-type: none;
+  list-style-position: inside;
+}
+.is_info_list li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+.is_info_list li * {
+  font-size: 14px;
+  line-height: 18px;
+}
+.is_info_list li a {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.is_info_list li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+.is_info_list li a:hover * {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+.is_info_list li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+.is_info_list li:last-child {
+  border-bottom: 0px;
+}
+.is_sub_list {
+  list-style-type: none;
+  list-style-position: inside;
+}
+.is_sub_list li {
+  margin-left: 0px;
+  border-bottom: 1px solid #c2c3c4;
+  padding: 4px 0px;
+}
+.is_sub_list li * {
+  font-size: 14px;
+  line-height: 18px;
+}
+.is_sub_list li a {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #443a3a;
+  background-color: transparent;
+  display: block;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.is_sub_list li a:hover {
+  color: #f7f7f7;
+  background-color: #94989c;
+}
+.is_sub_list li a:hover * {
+  color: #f7f7f7;
+  background-color: #94989c;
+}
+.is_sub_list li span {
+  color: #94989c;
+  background-color: transparent;
+  text-align: right;
+  float: right;
+}
+.is_sub_list li:last-child {
+  border-bottom: 0px;
+}
+.is_sub_list li a span {
+  color: #443a3a;
+}
+.do_display_lists_as_tiles ul,
+.do_display_lists_as_tiles ol {
+  padding: 0px;
+  list-style-position: none;
+  list-style-type: none;
+}
+.do_display_lists_as_tiles ul + * {
+  clear: both;
+  padding-top: 16px;
+}
+.do_display_lists_as_tiles li {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  width: 150px;
+  min-width: 150px;
+  height: 150px;
+  min-height: 150px;
+  margin: 5px;
+  float: left;
+}
+.do_display_lists_as_tiles li a {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  width: 150px;
+  min-width: 150px;
+  height: 150px;
+  min-height: 150px;
+  color: #94989c;
+  background-color: #f7f7f7;
+  display: block;
+  float: left;
+  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Cantarell', 'Arial', sans-serif;
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.do_display_lists_as_tiles li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+.do_display_lists_as_tiles li a:before {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  width: 100px;
+  min-width: 100px;
+  height: 100px;
+  min-height: 100px;
+  content: "";
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  opacity: 0.5;
+}
+#notizen-eines-nerds-2013 #content ul,
+#notizen-eines-nerds-2013 #content ol {
+  padding: 0px;
+  list-style-position: none;
+  list-style-type: none;
+}
+#notizen-eines-nerds-2013 #content ul + * {
+  clear: both;
+  padding-top: 16px;
+}
+#notizen-eines-nerds-2013 #content li {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  width: 150px;
+  min-width: 150px;
+  height: 150px;
+  min-height: 150px;
+  margin: 5px;
+  float: left;
+}
+#notizen-eines-nerds-2013 #content li a {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  width: 150px;
+  min-width: 150px;
+  height: 150px;
+  min-height: 150px;
+  color: #94989c;
+  background-color: #f7f7f7;
+  display: block;
+  float: left;
+  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Cantarell', 'Arial', sans-serif;
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#notizen-eines-nerds-2013 #content li a:hover {
+  color: #f7f7f7;
+  background-color: #336699;
+}
+#notizen-eines-nerds-2013 #content li a:before {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  width: 100px;
+  min-width: 100px;
+  height: 100px;
+  min-height: 100px;
+  content: "";
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  opacity: 0.5;
+}
+#notizen-eines-nerds-2013 #content li a[href*='verhandlung-und-agil']:before {
+  background: url(/media/images/verhandlung-und-agil_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='change']:before {
+  background: url(/media/images/state-of-change_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='arch']:before {
+  background: url(/media/images/arch_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='tactical']:before {
+  background: url(/media/images/agile-tactical-briefing_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='informatik-ist-kommunikation']:before {
+  background: url(/media/images/informatik-ist-kommunikation_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='harvard']:before {
+  background: url(/media/images/harvard-negotiation_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='we-is-you']:before {
+  background: url(/media/images/we-is-you_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='lambda']:before {
+  background: url(/media/images/lambda-loop_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='software-quality']:before {
+  background: url(/media/images/definition-of-software-quality_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='things']:before {
+  background: url(/media/images/continuous-things_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='rex']:before {
+  background: url(/media/images/rex-version_s.jpg);
+}
+#notizen-eines-nerds-2013 #content li a[href*='give-take-feedback']:before {
+  background: url(/media/images/give-take-feedback.jpg);
+}
