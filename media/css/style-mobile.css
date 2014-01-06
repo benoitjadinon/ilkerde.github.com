@@ -1598,6 +1598,10 @@ pre {
   font-size: 12px;
   text-align: center;
 }
+#content .figure img {
+  display: block;
+  margin: 0px auto;
+}
 #content .figure .caption {
   font: 10px 'Droid Sans Mono', 'Monaco', 'Ubuntu Mono', 'Consolas', monospace;
   float: right;

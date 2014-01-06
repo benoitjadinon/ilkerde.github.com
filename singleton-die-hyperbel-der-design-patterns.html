@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Singleton, die Hyperbel der Design Patterns</title>
+    <meta name="description" content="Eine eingehende Betrachtung der Grundlagen des sog. &#39;Singleton&#39;-Design Patterns. Es werden die wesentlichen Vor- und Nachteile des Singletons an Hand von Beispielen erklärt. Als Besonderheit enthält der Artikel die Programmieraufgabe des &#39;Lehrers von Bacoli&#39;.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="singleton-die-hyperbel-der-design-patterns">
+    <a href="singleton-die-hyperbel-der-design-patterns"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Singleton, die Hyperbel der Design Patterns</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Als ob es schon nicht genug Content im Internet gäbe, gibt's hier noch ein Artikel über das "berühmt berüchtigte" Singleton Design Pattern.</p>
+<p>Die Motivation für diesen Artikel habe ich dennoch relativ schnell gefunden. Nachdem ich vor einiger Zeit das Pattern für den Einsatz in einer Anwendung propagiert hatte, sah ich mich bestürzten Kommentaren ausgesetzt: "Wie kannst Du nur? Wer setzt denn heutzutage noch Singleton ein? Das ist doch das Anti-Pattern schlechthin..."</p>
+<p>Schnell hatte ich begriffen, dass meinem gegenüber wohl der Sinn und Zweck des Singleton nicht ganz geläufig war. Nach einigen Minuten war die Sache schnell geklärt. Trotzdem hatte es mich überrascht, wie viele Entwickler doch einen verzerrten Eindruck des Entwurfsmusters haben.</p>
+<p>Das Singleton-Pattern ist wohl eines der bekanntesten Design Patterns überhaupt. Als klassisches GoF-Pattern und obendrauf noch konzeptionell einfaches Entwurfsmuster ist das Singleton der kleine Popstar unter den Design Patterns.</p>
+<p>Wie es nun meistens ist mit Popstars, polarisiert das Singleton ungemein. Die einen finden es essentiell, den anderen ist es ein verhaßtes Übel. Unbestritten bleibt aber, dass es sehr viel Verwendung findet.</p>
+<p>Es gibt mehrere Dutzend von Tutorials im Internet, die das Singleton erklären, aufbauen, implementieren und zeigen wofür es da ist - eine Kopie dessen wird es hier nicht geben.</p>
+<p>Statt dessen wird hier das Singleton in Einzelteile und Aspekte geteilt, um einen möglichst breitgefächerten Einblick in die Vor- und Nachteile, die Herausforderungen sowie Anwendungsbereiche zu erlangen.</p>
+<h4 id="intention">Intention</h4>
+<p>Bevor ich zu der eigentlichen einsatzorientierten Betrachtungsweise komme, möchte ich kurz und knapp ein paar Grundlagen geklärt wissen.</p>
+<p>Das Singleton-Pattern findet seinen Einsatz, wenn es grundsätzlich darum geht
+<em> die Instanziierung einer Klasse auf eine einzige Instanz zu reglementieren, und
+</em> den Zugriff zu dieser Instanz global verfügbar zu machen.</p>
+<p>Nichts neues, aber es macht Sinn, sich den Zweck des Patterns bei der genaueren Betrachtung vor Augen zu halten. Schlussfolgernd daraus, soll man das Singleton dann einsetzen, wenn es Sinn macht, die Anzahl der Instanzen einer Klasse zu beschränken und diese anwendungsweit einheitlich verfügbar zu machen.</p>
+<h4 id="implementierung">Implementierung</h4>
+<p>Die Mechanik des Patterns - also die konkrete Implementierung - ist auf den ersten Blick trivial. Dennoch gibt es zum Teil hitzige Diskussionen im Internet bezüglich der konkreten Umsetzung, denn das Singleton bringt einige Herausforderungen mit sich:</p>
+<p>Lazy oder Eager Initialization, Thread-Safety, Double-Check-Locking und der Gültigkeitsbereich des Singletons sind die Probleme, auf die man früher oder später stößt, wenn es um den korrekten Einsatz geht.</p>
+<p>In der .NET-Programmierung wird ein spezieller Implementierungsweg eingeschlagen und von vielen Experten propagiert:</p>
+<div class="codehilite"><pre><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
+<span class="n">namespace</span> <span class="n">Example</span> <span class="p">{</span>
+  <span class="n">public</span> <span class="n">sealed</span> <span class="n">class</span> <span class="n">Singleton</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="k">static</span> <span class="n">readonly</span> <span class="n">Singleton</span> <span class="n">Instance</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Singleton</span><span class="p">();</span>
+    <span class="n">private</span> <span class="nf">Singleton</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Na, das ging ja einfach. Ein knapper 10-Zeiler inklusiv der vielbeschworenen Thread-Sicherheit obendrauf. Für den ersten Moment soll dieser ".NET-Weg" die Basis der weiteren Betrachtung sein.</p>
+<h3 id="analyse-am-konkreten-anwendungsfall">Analyse am konkreten Anwendungsfall</h3>
+<p>Geht man nun in die konkrete Anwendung, fällt man - meistens weit nach der Implementierung - in die Fallstricke des Patterns. </p>
+<p>Ein Beispiel aus der Praxis soll helfen, die konkrete Wirkungsweise des Singletons zu fokussieren.</p>
+<h4 id="der-configurator-eine-standardanwendung-des-singleton">Der Configurator, eine Standardanwendung des Singleton</h4>
+<p>Oft genug kommt es vor, dass das Singleton zum Abbilden von Cross-Cutting-Concerns verwendet wird. Die Ausgangslage bietet es ja auf den ersten Blick an.</p>
+<blockquote>
+<p>Anforderung: Die Anwendung soll eine Konfigurationdatei haben, auf die alle Programmteile zugreifen können, um die entsprechenden Parameter zu lesen.</p>
+</blockquote>
+<p>Eine äußerst rudimentäre Umsetzung wäre die Folgende:</p>
+<div class="codehilite"><pre><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Specialized</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="n">Example</span> <span class="p">{</span>
+  <span class="n">public</span> <span class="n">sealed</span> <span class="n">class</span> <span class="n">Configurator</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="k">static</span> <span class="n">readonly</span> <span class="n">Configurator</span> <span class="n">Instance</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Configurator</span><span class="p">();</span>
+    <span class="n">private</span> <span class="n">NameValueCollection</span> <span class="n">values</span><span class="p">;</span>
+
+    <span class="n">private</span> <span class="nf">Configurator</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">this</span><span class="p">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">public</span> <span class="n">string</span> <span class="nf">GetValue</span><span class="p">(</span><span class="n">string</span> <span class="n">configurationParameter</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">this</span><span class="p">.</span><span class="n">values</span><span class="p">[</span><span class="n">configurationParameter</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Kurz und knapp. Von irgendeinem Programmteil könnte dann zum Beispiel ein Konfigurationswert einfach mit <code>Configurator.Instance.GetValue()</code> ausgelesen werden:</p>
+<div class="codehilite"><pre><span class="cm">/* anywhere in code */</span>
+
+<span class="n">private</span> <span class="k">void</span> <span class="n">SendNotificationMail</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">string</span> <span class="n">mail</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="s">&quot;notifyMail&quot;</span><span class="p">);</span>
+  <span class="cm">/* do something */</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Nun sieht das zwar ganz Nett aus; dem etwas erfahreneren .NET-Programmierer stellen sich allerdings einige Fragen.</p>
+<p>Zum Beispiel die Frage, warum das Singleton überhaupt verwendet wurde. Schliesslich ist der ConfigurationManager des .NET-Frameworks ja auch anwendungsweit erreichbar. Außerdem gibt es eben nur diesen einen ConfigurationManager.</p>
+<p>Postwendend ist die Antwort, dass man durch die Verwendung des Configurators, wie ich es genannt habe, die eigentliche Konfigurationsbasis abstrahiert. Das heißt, die Methode SendNotificationMail() kennt die Konfigurationsquelle nicht - ist also davon unabhängig. Klarer Vorteil, wenn man sich die Tür für mehrere Konfigurationsquellen offen halten möchte.</p>
+<h4 id="die-statische-klasse-ein-ersatz-fur-das-singleton">Die statische Klasse, ein Ersatz für das Singleton ?</h4>
+<p>Ok, aber wieso muss es denn ein Singleton-Pattern sein? Würde denn eine statische Klasse nicht den Anforderungen genügen? Seit dem Framework 2.0 lässt sich der oben geschriebene Singleton ja auch so schreiben:</p>
+<div class="codehilite"><pre><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Specialized</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="n">Example</span> <span class="p">{</span>
+  <span class="n">public</span> <span class="k">static</span> <span class="n">class</span> <span class="n">Configurator</span> <span class="p">{</span>
+    <span class="n">private</span> <span class="k">static</span> <span class="n">NameValueCollection</span> <span class="n">values</span> <span class="o">=</span>
+      <span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">;</span>
+
+    <span class="n">public</span> <span class="k">static</span> <span class="n">string</span> <span class="nf">GetValue</span><span class="p">(</span><span class="n">string</span> <span class="n">configurationParameter</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">Configurator</span><span class="p">.</span><span class="n">values</span><span class="p">[</span><span class="n">configurationParameter</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Damit werden alle Funktionen erfüllt, die auch das Singleton zur Verfügung stellt.</p>
+<p>Dem ist nicht ganz zuzustimmen. Um die Unterschiede gut aufzeigen zu können, verändern - beziehungsweise erweitern - wir nun die Anforderungen ein klein wenig:</p>
+<blockquote>
+<p>Weitere Anforderung: Zusätzlich zum Auslesen einzelner Konfigurationswerte soll es ermöglicht werden, alle Konfigurationsparameter und die dazugehörigen Werte auszulesen.</p>
+</blockquote>
+<p>Hört sich ganz einfach an - und für die Pragmatiker ist es wohl auch einfach. Denn wieso groß grübeln, wenn die Lösung so nah ist:</p>
+<div class="codehilite"><pre><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Specialized</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="n">Example</span> <span class="p">{</span>
+  <span class="n">public</span> <span class="k">static</span> <span class="n">class</span> <span class="n">Configurator</span> <span class="p">{</span>
+    <span class="n">private</span> <span class="k">static</span> <span class="n">NameValueCollection</span> <span class="n">values</span> <span class="o">=</span>
+      <span class="n">ConfigurationManagerer</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">;</span>
+
+    <span class="n">public</span> <span class="k">static</span> <span class="n">string</span> <span class="nf">GetValue</span><span class="p">(</span><span class="n">string</span> <span class="n">configurationParameter</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">Configurator</span><span class="p">.</span><span class="n">values</span><span class="p">[</span><span class="n">configurationParameter</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="n">public</span> <span class="k">static</span> <span class="n">IEnumerator</span> <span class="n">Keys</span> <span class="p">{</span>
+      <span class="n">get</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Configurator</span><span class="p">.</span><span class="n">values</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Geschafft. Natürlich mit einigen Prämissen - in der Implementierung die Kenntnis, das der Enumerator der <code>NameValueCollection</code> die <em>Keys</em> der Collection zurückliefert und - das ist wohl noch schlimmer - dass der <code>IEnumerator</code> hier auch noch als Property implementeriet ist <em>(Anmerkung: Kaum zu glauben, aber das gibt es wirklich - Ich habe einen ähnlichen Code schon bei Code-Reviews erleben dürfen)</em>.</p>
+<p>In der Verwendung ist wohl noch der cast von Object auf String notwendig. Zusätzlich der n-Fache Methoden-Aufruf von <code>GetValue()</code> innerhalb der foreach-Schleife, versteht sich:</p>
+<div class="codehilite"><pre><span class="cm">/* anywhere in code */</span>
+
+<span class="n">private</span> <span class="k">void</span> <span class="n">ReadAllConfigSettings</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">foreach</span> <span class="p">(</span><span class="k">string</span> <span class="n">key</span> <span class="n">in</span> <span class="n">Configurator</span><span class="p">.</span><span class="n">Keys</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">string</span> <span class="n">value</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">AddConfigSettingToListView</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Aber es geht auch wesentlich eleganter. Das .NET-Framework liefert ja genug Handwerkszeug mit - zum Beispiel das Interface <code>IEnumerable&lt;T&gt;</code>. Das wäre doch ein guter Kandidat für die oben genannten Zwecke. Mit der statischen Klasse kommen wir da allerdings nicht sehr weit.</p>
+<p>Jetzt kommt eine nicht zu unterschätzende Eigenschaft des Singleton-Patterns ins Spiel, nämlich die Möglichkeit der Polymorphie. Mit dem Singleton, implementieren wir eleganterweise das Interface, lösen die erweiterten Anforderungen und fügen uns obendrein relativ gut in das Framework ein:</p>
+<div class="codehilite"><pre><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Configuration</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Specialized</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="n">Example</span>
+<span class="p">{</span>
+  <span class="n">public</span> <span class="n">sealed</span> <span class="n">class</span> <span class="n">Configurator</span> <span class="o">:</span> <span class="n">IEnumerable</span><span class="o">&lt;</span><span class="n">KeyValuePair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="k">static</span> <span class="n">readonly</span> <span class="n">Configurator</span> <span class="n">Instance</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Configurator</span><span class="p">();</span>
+    <span class="n">private</span> <span class="n">NameValueCollection</span> <span class="n">values</span><span class="p">;</span>
+
+    <span class="n">private</span> <span class="nf">Configurator</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">this</span><span class="p">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">public</span> <span class="n">string</span> <span class="nf">GetValue</span><span class="p">(</span><span class="n">string</span> <span class="n">configurationParameter</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">this</span><span class="p">.</span><span class="n">values</span><span class="p">[</span><span class="n">configurationParameter</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="n">public</span> <span class="n">IEnumerator</span><span class="o">&lt;</span><span class="n">KeyValuePair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">GetEnumerator</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">foreach</span> <span class="p">(</span><span class="n">string</span> <span class="n">key</span> <span class="n">in</span> <span class="n">this</span><span class="p">.</span><span class="n">values</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">yield</span> <span class="k">return</span> <span class="n">new</span> <span class="n">KeyValuePair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">this</span><span class="p">.</span><span class="n">values</span><span class="p">[</span><span class="n">key</span><span class="p">]);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">IEnumerator</span> <span class="n">IEnumerable</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">this</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Damit würde sich die Verwendung der Funktionalität nun auch erleichtern:</p>
+<div class="codehilite"><pre><span class="cm">/* anywhere in code */</span>
+
+<span class="n">private</span> <span class="k">void</span> <span class="n">ReadAllConfigSettings</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">foreach</span> <span class="p">(</span><span class="n">KeyValuePair</span><span class="o">&lt;</span><span class="k">string</span><span class="p">,</span> <span class="k">string</span><span class="o">&gt;</span> <span class="n">setting</span> <span class="n">in</span> <span class="n">Configurator</span><span class="p">.</span><span class="n">Instance</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">AddConfigSettingToListView</span><span class="p">(</span><span class="n">setting</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">setting</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Abgesehen von der "Eleganz" der zweiten Variante fallen die unnötigen Aufrufe an den Configurator in der Schleife weg. Der eigentliche Vorteil ist allerdings die grundsätzliche Möglichkeit, mit einem Singleton jedes beliebige Interface implementieren zu können. Damit schafft man sich Erweiterungsmöglichkeiten und gewährleistet - wenn man selbst den Configurator mit einer Schnittstellendefinition belegen würde - sogar die unbemerkte Austauschbarkeit des Singletons.</p>
+<h3 id="der-lehrer-von-bacoli">Der Lehrer von Bacoli</h3>
+<p>Um eine der wichtigsten Herausforderungen bei der Anwendung des Singletons in der Entwicklung moderner Software aufzuzeigen, möchte ich eine kleine Geschichte als Basis für ein Beispiel verwenden, welche mir schon zu meiner Schulzeit ein aufgeweckter Mathematiker erzählt hatte.</p>
+<p>Im beschaulichen italienischen Süden, genauer in der Nähe von Neapel gibt es ein kleines Städtchen namens Bacoli. In Bacoli gibt es eine Grundschule, in der vor einiger Zeit Francesco Di Monti den Schülern die Mathematik näherzubringen versuchte. Für Di Monti - übrigens ein überaus disziplin-orientierter Zeitgenosse - war es jeher ein besonderes Anliegen, den Schülern nicht nur das Rechnen an sich, sondern im Besonderen das schnelle Kopfrechnen beizubringen.</p>
+<p>Um das seinen faulen Schülern auch wirklich einzubläuen, dachte er sich an einem üblichen Montag Morgen eine besondere Unterrichtsstunde aus:</p>
+<p>Er würde drei Schüler an die Tafel holen. Die linke und rechte Tafelhälfte würden so platziert werden, dass man sie von der Mitte aus nicht einsehen könne. Der erste sollte so schnell wie möglich zwei beliebige Zahlen an die linke Tafelhälfte schreiben und benennen. Der zweite Schüler in der Mitte der Tafel sollte so schnell wie möglich beide Zahlen im Kopf addieren und das Ergebnis benennen. Der dritte Schüler an der rechten Tafelhälfte sollte das Ergebnis einfach nur aufschreiben.</p>
+<p>Würde der Schüler in der Mitte für eine Aufgabe länger brauchen, als die anderen beiden schreiben könnten, hätte er noch ein wenig Übung notwendig, dachte sich Di Monti. Also, keine Gnade, der kopfrechnende Schüler müsse so lange weitermachen, bis Di Monti die Übung abbricht. Dabei darf der Kopfrechner in der Mitte den Zahlenausdenker links von ihm immer wieder auffordern, schon geschriebene Zahlen nochmals zu nennen, damit er eine Chance hat, alle gestellten Aufgaben zu lösen.</p>
+<p class="figure">
+<img alt="Der Lehrer von Bacoli als Computerprogramm" src="/media/images/teacher_of_bacoli_ui.png" />
+Abb 1: Der Lehrer von Bacoli als Computerprogramm</p>
+<h4 id="die-herausforderung-gekonntes-management-gleichzeitiger-arbeitsablaufe">Die Herausforderung: gekonntes Management gleichzeitiger Arbeitsabläufe</h4>
+<p>Will man nun dieses - zugegeben für die Schüler von Di Monti sicher unangenehmes Szenario in einem Computerprogramm simulieren, kommt man schnell zu einer Lösung, in der das Singleton-Pattern eingesetzt werden kann.</p>
+<p>Die insgesamt 5 Teilnehmer der Übung können einfach konstruiert werden: Die Tafel ist das einzige gemeinsam verwendete Objekt, also unser Singleton <code>WhiteBoard</code>.</p>
+<p>Die Schüler sind im Allgemeinen die Arbeiter, also <code>Worker</code>. Der Schüler, der sich die einzelnen Aufgaben ausdenkt, ist der <code>WorkerToCreateJobToDo</code>, der Schreiberling auf der rechten Tafelseite ein <code>WorkerToWriteJobDone</code> und schlußendlich der arme Kopfrechner in der Mitte ein <code>WorkerToSolveJob</code>.</p>
+<p>Alle verwenden die Tafel als Informations- und Kommunikationsbasis. Der alle Parteien instruierende und überwachende Lehrer ist in diesem Fall der Benutzer der Anwendung.</p>
+<p class="figure">
+<img alt="Die Kernobjekte" src="/media/images/teacher_of_bacoli.png" />
+Abb 2: Die Kernobjekte der Implementierung</p>
+<p>Die <a href="https://github.com/ilkerde/teacher-of-bacoli">Implementierung</a> erscheint auf den ersten Blick trivial. Laut Di Monti sollen alle Schüler gleichzeitig an Ihrer gestellten Aufgabe arbeiten. Umgesetzt auf die Anwendung heisst das: alle Worker arbeiten in einem eigenen Thread.</p>
+<p>Jetzt greifen alle Worker gleichzeitig auf das WhiteBoard zu, wollen entweder neue Aufgaben einstellen, Aufgaben zum Lösen abfragen, gelöste Aufgaben einstellen oder Aufgaben zum Schreiben abfragen. Hier liegt die eigentliche Herausforderung - das organisierte Management aller Anforderungen an das WhiteBoard - ergo Threadsicherheit.</p>
+<p>Nun kann man berechtigterweise einwenden, dass das Problem der Threadsicherheit auch dann gegeben wäre, wenn man nicht das Singleton-Pattern angewendet hätte, sondern zum Beispiel die WhiteBoard-Instanz den Workern bei der Konstruktion mitgeteilt hätte. Das ist auch richtig, denn wann immer der gleichzeitige Zugriff erfolgt, ist eine threadsichere Implementierung erforderlich.</p>
+<p>Das essentielle an obigem Beispiel ist allerdings die Aussage, dass bei einem Singleton - einer strikt reglementierten Instanz einer Klasse - prinzipiell ein Augenmerk auf die Threadsicherheit gegeben sein soll. Ist eine Singleton-Implementierung beispielsweise Teil eines Frameworks oder einer Hilfskomponente, wobei die Einsatzumgebung dessen nicht von vornherein klar ist, dann ist es vehement wichtig, das Thema Threadsicherheit umfassend zu klären.</p>
+<p>Schlußfolgernd lässt sich sagen, dass das Singleton-Pattern eine threadsichere Implementierung zwar nicht per se erfordert - aber - das Singleton hat eine latente Neigung dazu, dass mehrere Parteien beziehungsweise Threads auf dieses zugreifen möchten. Genau aus diesem Grund ist Threadsicherheit beim Singleton ein Thema, welches unbedingt durchleuchtet werden sollte.</p>
+<p><em>(Der Quellcode zum "Lehrer von Bacoli" ist verfügbar auf <a href="https://github.com/ilkerde/teacher-of-bacoli">Github</a>)</em></p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>15 March 2007</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/singleton-die-hyperbel-der-design-patterns.html&title=Singleton, die Hyperbel der Design Patterns">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
