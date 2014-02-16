@@ -7,11 +7,25 @@
         <link href="/"/>
     
         
-    <updated>2014-02-10T21:00:43Z</updated>
+    <updated>2014-02-16T10:10:15Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Red Builds Are Stop Signs</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/red-builds-are-stop-signs.html"/>
+            <updated>2014-02-16T10:00:00Z</updated>
+            <published>2014-02-16T10:00:00Z</published>
+            <id>/red-builds-are-stop-signs.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>I want to share my perspective on "red builds" with you. Red builds (of a continuous integration system) are very important. They need to exist to let us know that something is going wrong. In the spirit of Kanban (the process), you can think of a "red build" literally being a "Kanban" (a signal card). It is a visualization of a problem which occurred in the process of building our software.</p>
+<p>Hence, I truly believe that we need red builds. If such a red build happens, then I always think that something went severely wrong. Hence, I believe it's good to completely stop continuing to build software (develop) and try to fix the problem (re-green the build). For me, it's crucial to find and fix the problem before it causes more problems.</p>
+<p>The morale here is to accept a "red build" as a stop sign. A "red build" on the CI server means: <em>"STOP! Do not check-in anymore. There is a serious problem. Fix the problem, then continue to check-in."</em> I'd really like to see this culture of stop signs being lived and respected, since I truly believe that it helps developing clean and fast solutions on the long run.</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Agile Personalvermittler</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/agile-personalvermittler.html"/>
