@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Über das Ziel von Coding Dojos V</title>
+    <meta name="description" content="Der fünfte Artikel über die Ziele und Auswirkungen von regelmäßigen Coding Dojos. In diesem Artikel wird der Aspekt des stetigen Perspektiv-Wechsels sowie die Notwendigkeit von Lerngruppen and Hand eines Coding-Dojo-Berichtes aufgezeigt.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="uber-das-ziel-von-coding-dojos-v">
+    <a href="uber-das-ziel-von-coding-dojos-v"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Über das Ziel von Coding Dojos V</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Seit 5 Jahren mache ich regelmäßig Coding Dojos. Jeden Monat mindestens einmal ein <a href="http://www.cclabs.de/codingdojo.html">öffentliches Dojo</a> und dann noch die team- bzw. unternehmensinternen Coding Dojos. Und: ich lerne mehr denn je und habe immer noch richtig viel Spass dabei.</p>
+<p>Ich möchte hier nicht so sehr auf einer theoretischen Ebene darauf eingehen, wie man eine stetige Lernumgebung erfolgreich gestalten kann, sondern versuchen, an einem konkreten Beispiel die Prinzipien erfolgreicher Lerngruppen "zwischen den Zeilen" wiederzugeben. Als Beispiel soll das vergangene Coding Dojo in München bei <a href="http://www.netlight.com/de/">netlight</a> dienen.</p>
+<h3 id="code-without-ide">Code without IDE</h3>
+<p>In jenem eben erwähnten Coding Dojo wurde die Erstellung von Software auf eine interessante Perspektive geschoben: Programmieren ohne "Hilfsmittel", genauer gesagt "programmieren ohne IDE". Heutzutage ist eine professionelle Software-Entwicklung ohne IDE und deren Helfer nahezu undenkbar. Gerade vor diesem Hintergrund ist diese Aufgabenstellung sicherlich nicht nur ungewöhnlich, sondern auch herausfordernd.</p>
+<p>Ziel war es, mit einem Text-Editor und einem Browser ausgestattet die absolut empfehlenswerte <a href="http://www.cclabs.de/code-kata-maze-bank.html">Maze Bank Code Kata</a> zu implementieren. Ich persönlich bin leider zu diesem Dojo etwas verspätet angekommen, wodurch ich die Beschreibung der Kata als auch die erste Runde verpasst hatte. Aber das war nicht weiter schlimm, denn ich konnte mich nahtlos in eines der 5 Teams integrieren.</p>
+<h3 id="code-like-you-never-coded-before">Code like you never coded before</h3>
+<p>Wie es der Zufall nun wollte, wurde diese Gruppe (durch den vorzeitigen Abschied eines Team-Mitgliedes) seines Arbeitsgerätes (Laptops) beraubt. Nun standen wir also da, wir zwei übrig gebliebenen. Mein langjähriger Dojo-Freund Andreas und ich sprachen zunächst noch ein wenig über die Kata selbst und überlegten, ob wir uns nicht zu den anderen Gruppen aufteilen sollten. Doch mitten im Gespräch erinnerten wir uns wieder an das Motto des Coding Dojos: "Entwickeln ohne IDE.".</p>
+<p>Wir schauten uns gegenseitig an. Als Andreas sein IPhone aus der Tasche zog, war uns beiden schlagartig klar: <em>Wir programmieren die Kata auf dem IPhone!</em></p>
+<p>Aus dieser vielleicht etwas ungewöhnlichen Idee wurde nach und nach nicht nur ein lustiger Programmierweg, sondern auch eine Implementierungsreise mit vielen Stationen der Erkenntnis. Zunächst galt es für uns herauszufinden, wie wir auf dem IPhone einfach das Javascript ausführen und testen könnten. Spontan entschlossen wir uns für einen Online-Text-Editor. Die Wahl fiel zunächst auf das bekannte <a href="http://www.jsfiddle.net">JSFiddle</a>, welches sich allerdings als nicht 100% geeignet erwies, weil es leider kein Test-Framework zum einbetten anbot.</p>
+<p>Nach kurzer Suche fanden wir dann eine geeignete "JS-REPL" mit Test-Framework-Unterstützung: <a href="http://jsbin.com">JSBin</a> bot uns ein Editor-Fenster, ein Ausgabe-Fenser und das Test-Framework <a href="https://qunitjs.com">QUnit</a> an. Genug für uns, um auf dem IPhone loszulegen. Wir entschlossen uns dazu, Pair programming im Ping-Pong-Stil umzusetzen. Schnell bemerkten wir, wie uns die fehlende Tastatur und das kleine Display zu vielen Anpassungen unserer Programmierweise zwang.</p>
+<p><img alt="Pair Programming on IPhone" src="/media/images/pair-programming-on-iphone.jpg" /></p>
+<p>Wir stellten noch zwei weitere Smartphones daneben, um ein "Multi-Monitor-Setup" zu simulieren. Während die Neben-Phones für's Nachschlagen von Framework-Funktionen diente, konnten wir weiter an unserem IPhone "Hauptrechner" unsere Implementierung programmieren.</p>
+<h3 id="team-up">Team up!</h3>
+<p>Das Ergebnis konnte sich trotz der schwierigen Umstänge durchaus sehen lassen. Wir hatten zumindest den ersten Teil der Kata elegant gelöst. Sogar Refactoring konnten wir auf dem IPhone (begrenzt) durchführen.</p>
+<p><img alt="Maze Bank on IPhone" src="/media/images/maze-bank-on-iphone.png" /></p>
+<p>Doch ich war nicht nur stolz auf unser Ergebnis. Besonders stolz war ich darüber, wie wir als kleine Gruppe von 2-3 Leuten es geschafft haben, innerhalb von kurzer Zeit (ca. 30 min.) uns über viele Dinge auszutauschen und zu lernen, <em>obwohl</em> wir mit der Entwicklungsumgebung sichtlich zu kämpfen hatten. Man kann durchaus die Behauptung aufstellen, dass der Austausch gerade eben durch die Unwegsamkeiten noch <em>gefördert</em> wurde.</p>
+<p>Wir, Andreas, Dennis und ich hatten jedenfalls bei der Kata mit dem IPhone viele Dinge gelernt und dabei richtig viel Spass gehabt. Auch nach 5 Jahren, hunderten von Coding Dojos und tausenden von Code Katas die ich gemacht habe bringt mir eine Teilnahme an einem Coding Dojo <em>so viele, unterschiedliche</em> Erkenntnisse bei gleichzeitiger <em>Freude an der Zusammenarbeit</em>, dass ich mit Sicherheit weiter Coding Dojos veranstalten werde und auch an anderen Coding Dojos teilnehmen werde.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>22 February 2014</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/uber-das-ziel-von-coding-dojos-v.html&title=Über das Ziel von Coding Dojos V">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
