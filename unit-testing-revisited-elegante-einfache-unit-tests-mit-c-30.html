@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Elegante &amp; einfache Unit Tests mit C# 3.0</title>
+    <meta name="description" content="Ein Artikel über die neue Art des Unit Testings unter .NET mit den Neuerungen der Programmiersprache C# 3.0, im speziellen Lambda-Ausdrücke und Erweiterungs-Methoden.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="unit-testing-revisited-elegante-einfache-unit-tests-mit-c-30">
+    <a href="unit-testing-revisited-elegante-einfache-unit-tests-mit-c-30"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Elegante &amp; einfache Unit Tests mit C# 3.0</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Nun, Unit Tests sind ja mittlerweile in der professionellen Software-Entwicklung Standard - schon fast ein alter Hut. Gleiches gilt natürlich für Unit Tests in der .NET-Welt, denn Tools wie <a href="http://www.nunit.org">NUnit</a> sind ja seit langer Zeit schon Teil des Standard-Repertoires eines .NET-Entwicklers.</p>
+<p>Mit der Veröffentlichung von C# 3.0 und den .NET Framework 3.5 hat sich jedoch einiges geändert und vieles vereinfacht. Davon bleiben auch Unit Tests nicht unbetroffen, denn neue Tools wie <em>Moq</em>, <em>Autofac</em> und <em>xUnit.net</em> bringen frischen Wind.</p>
+<p>In diesem Artikel beschäftige ich mich mit diesen neuen Werkzeugen, deren Verwendung und vor Allem deren Auswirkung auf die Art und Weise, wie man mit .NET und C# effizient Unit Testing betreiben kann.</p>
+<h3 id="am-anfang-war-die-ungewiheit">Am Anfang war die Ungewißheit</h3>
+<p>Ich möchte nicht zu lange in die Geschichte des <a href="http://en.wikipedia.org/wiki/Unit_test">Unit Testings</a> ausschweifen, aber dennoch ein paar Sätze zu Beginn verlieren. Unit Tests gibt es schon ziemlich lange, damals hiessen Sie aber nicht Unit Tests, sondern vielmehr "Verifikations-Programme" oder "Test-Programme". Mit der Zeit erkannte man schnell, das die meisten "Test-Programme" sich ähnelten und auch die Vorgehensweisen zum Schreiben solcher Programme immer klarer und schärfer wurden.</p>
+<p>Ein Herr namens <a href="http://en.wikipedia.org/wiki/Kent_Beck">Kent Beck</a> dachte sich, das man diese Arbeit mit einem Framework erleichtern könnte und schuf zunächst SUnit (für Smalltalk) und danach das wesentlich bekanntere <a href="http://en.wikipedia.org/wiki/Junit">JUnit</a> für Java.</p>
+<p>So ist es auch kaum verwunderlich, das kurz nach dem Erscheinen des .NET Frameworks auch ein Unit Testing Framework für .NET und C# geschaffen wurde: <a href="http://www.nunit.org">NUnit</a>.</p>
+<p>Mit steigendem Bekanntheitsgrad agiler Software-Entwicklungs-Methoden wie z.B. <a href="http://en.wikipedia.org/wiki/Extreme_Programming">XP</a> und dem Einsatz weiterer Verfahrensweisen und Patterns wie z.B. <a href="http://de.wikipedia.org/wiki/Dependency_Injection">Dependency Injection</a> und <a href="http://en.wikipedia.org/wiki/Mock_Object">Mock Objects</a> werden Unit Tests in immer mehr Projekten erfolgreich und gewinnbringend eingesetzt.</p>
+<h3 id="die-standards-nunit-rhino-mocks-und-castle-windsor">Die Standards: NUnit, Rhino Mocks und Castle Windsor</h3>
+<p>Mittlerweile gibt es zum Thema Unit Tests in .NET eine breite Palette von Werkzeugen. Darunter haben sich die folgenden Tools unter den "Unit Testern" als de-facto Standard etabliert:</p>
+<ul>
+<li><a href="http://www.nunit.org">NUnit</a><br />
+  Das Unit-Testing Framework schlechthin. Es gibt einige Alternativen zu NUnit, darunter seit VS2005 auch das hauseigene Test-Framework von Microsoft. Nichtsdestotrotz wird NUnit immer noch von einer breiten Community von Anwendern unterstützt und angewendet. Nichtzuletzt, weil es umfangreich, stabil, schnell und frei verfügbar ist.</li>
+<li><a href="http://www.ayende.com/projects/rhino-mocks.aspx">Rhino Mocks</a><br />
+  Ein Mock Object Framework par excellence. Mit Rhino Mocks kann man schnell und einfach Dummy Objekte erstellen und diese mit einfachen Verhaltensweisen ausstatten, um Unit Tests vor der eigentlichen Code-Entwicklung zu schreiben (<a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a>) oder schnell und effektiv den zu testenden Code in Unit Tests zu isolieren.</li>
+<li><a href="http://www.castleproject.org/container/index.html">Castle Windsor</a><br />
+  Ein sog. Inversion-Of-Control-Container, mit dem schnell und einfach das Dependency-Injection Pattern umgesetzt werden kann. Es hilft ungemein bei der komponenten-orientierten Anwendungsarchitektur und ermöglicht <a href="http://en.wikipedia.org/wiki/Design_by_Contract">Design by Contract</a> sowie Isolation von Code-Komponenten.</li>
+</ul>
+<h3 id="c-30-machs-einfacher">C# 3.0 - Mach's einfacher</h3>
+<p>Mit der Veröffentlichung von C#3.0 (und dem .NET Framework 3.5) wurden neue Programmierkonstrukte und ein wenig <a href="http://en.wikipedia.org/wiki/Syntactic_sugar">Syntactic Sugar</a> eingeführt. Konsequenterweise haben sich einige Leute Gedanken darüber gemacht, wie man auch Unit Testing vereinfachen kann, wenn schon die Sprache an sich einfacher wird.</p>
+<p>Als neues Feature von C#3.0 besonders hervorzuheben sind die <a href="http://msdn.microsoft.com/en-us/library/bb397687.aspx">Lambda Expressions</a>, mit denen es nun wesentlich einfacher und eleganter wird, <a href="http://msdn.microsoft.com/en-us/library/0yw3tz5k.aspx">anonyme Methoden</a> (seit .NET 2.0 bekannt) zu schreiben.</p>
+<p>Diese neue Ausdruckskraft machen sich auch neue Tools für Unit Testing (und mehr) zu Nutze.</p>
+<h4 id="moq-immer-noch-mocks-aber-einfacher-und-schneller">Moq: Immer noch Mocks, aber einfacher und schneller</h4>
+<p>Das erste Beispiel dafür ist ein neues <a href="http://code.google.com/p/moq/">Framework zur Erstellung von Mock-Objekten namens <em>Moq</em></a>.</p>
+<p>Es ist ungemein einfach, mit Moq ein Mock-Objekt ausgehend von einer Interface-Definition zu erstellen. Darüber hinaus macht sich das Framework die neue einfache Lambda-Syntax zu Nutze, um Verhaltensweisen des Dummy-Objektes zu definieren.</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="nf">static</span> <span class="nx">Mock</span><span class="o">&lt;</span><span class="nx">IMathValue</span><span class="o">&gt;</span> <span class="nx">CreateMock</span><span class="p">(</span><span class="kt">decimal</span> <span class="nb">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Mock</span><span class="o">&lt;</span><span class="nx">IMathValue</span><span class="o">&gt;</span> <span class="n">mock</span> <span class="o">=</span> <span class="nb">new</span> <span class="nx">Mock</span><span class="o">&lt;</span><span class="nx">IMathValue</span><span class="o">&gt;</span><span class="p">();</span>
+
+  <span class="cm">/* expect to return value */</span>
+  <span class="nx">mock.ExpectGet</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="nx">x.Value</span><span class="p">)</span><span class="bp">.</span><span class="nx">Returns</span><span class="p">(</span><span class="nb">value</span><span class="p">);</span>
+
+  <span class="cm">/* expect to return itself on solve */</span>
+  <span class="nx">mock.Expect</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="nx">x.Solve</span><span class="p">())</span><span class="bp">.</span><span class="nx">Returns</span><span class="p">(</span><span class="nx">mock.Object</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">mock</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Das obige Beispiel erstellt eine Dummy-Objekt-Instanz des Interfaces <code>IMathValue</code> (soll einen "mathematischen" Wert resp. eine reelle Zahl darstellen). Des Weiteren werden einfache Verhaltensweisen des Mock-Objektes definiert:</p>
+<ul>
+<li>Beim Abrufen des Wertes des <code>Value</code>-Properties soll der Wert des übergebenen Parameters <code>value</code> zurückgegeben werden.</li>
+<li>Beim Aufruf der <code>Solve()</code>-Methode soll die Objekt-Instanz sich selbst zurückgeben.</li>
+</ul>
+<p>Schon ohne weitere Kenntnis des Moq-Frameworks wird deutlich, das es geradezu ein Kinderspiel ist, mit wenigen Zeilen Code ein effektives Dummy-Objekt zu erstellen. Besonders auffällig dabei ist die gute Lesbarkeit der Verhaltensdefinitionen, was einen weiteren Mehrwert darstellt.</p>
+<h4 id="autofac-immer-noch-ioc-aber-einfacher-und-schneller">Autofac: Immer noch IoC, aber einfacher und schneller</h4>
+<p>Analog zu Moq hat man sich auch frische Gedanken zu Microkernel und IoC-Container Frameworks gemacht. Herausgekommen ist dabei <a href="http://code.google.com/p/autofac/">Autofac</a>, ein eleganter und kompakter IoC-Container.</p>
+<p>Auch hier soll ein kurzer Code-Auszug als Beispiel für die einfache und vor allem schnelle Konfiguration und Verwendung des Containers dienen.</p>
+<div class="codehilite"><pre><span class="nx">ContainerBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="nb">new</span> <span class="nx">ContainerBuilder</span><span class="p">();</span>
+
+<span class="cm">/* concrete tests */</span>
+<span class="nx">builder.Register</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="nb">new</span> <span class="nx">TestTarget</span><span class="p">())</span><span class="bp">.</span><span class="nx">As</span><span class="o">&lt;</span><span class="nx">ITestTarget</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="cm">/* mocked tests */</span>
+<span class="nx">builder.Register</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="nb">new</span> <span class="nx">TestTargetMocked</span><span class="p">())</span><span class="bp">.</span><span class="nx">As</span><span class="o">&lt;</span><span class="nx">ITestTarget</span><span class="o">&gt;</span><span class="p">()</span><span class="bp">.</span><span class="nx">OnlyIf</span><span class="p">(</span><span class="n">b</span> <span class="o">=&gt;</span> <span class="nx">MOCKED</span><span class="p">);</span>
+
+<span class="cm">/* sets */</span>
+<span class="nx">builder.Register</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="nb">new</span> <span class="nx">TestSet</span><span class="p">())</span><span class="bp">.</span><span class="nx">As</span><span class="o">&lt;</span><span class="nx">ITestSet</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="n">container</span> <span class="o">=</span> <span class="nx">builder.Build</span><span class="p">();</span>
+
+<span class="nx">...</span>
+<span class="nx">...</span>
+<span class="nx">...</span>
+
+<span class="nx">ITestTarget</span> <span class="n">myTarget</span> <span class="o">=</span> <span class="nx">container.Resolve</span><span class="o">&lt;</span><span class="nx">ITestTarget</span><span class="o">&gt;</span><span class="p">();</span>
+</pre></div>
+
+
+<p>Schon wieder wird man mit der neuen Ausdruckskraft der Lambda-Expressions konfrontiert. Und schon wieder wird es einfacher schreib- und lesbar. </p>
+<p>Interessant ist hierbei jedoch nicht nur die "schöne" Programmierung, sondern vor allem der durch den Einsatz der Lamda-Ausdrücke gewonnene Performancegewinn. Denn wo andere IoC-Container umständlich per Reflection die Objektinstanziierung durchführen müssen, ruft Autofac einfach die anonyme Methode auf.</p>
+<h3 id="entdeckung-der-neuen-einfachheit">Entdeckung der neuen Einfachheit</h3>
+<p>Durch den Einsatz neuer Tools wie Moq und Autofaq werden auch Denkanstöße für Unit Tests vorangetrieben. Nicht nur, weil Simulation und Isolation innerhalb einer Test-Suite vereinfacht werden, sondern vielmehr weil durch die gewonnene Flexibilität bessere Test-Konstruktionen möglich werden.</p>
+<p>Unter anderem wird es einfacher, einen Unit Test zu isolieren, indem man mit einem zentralen Kontext für die Tests arbeitet, über den wiederum Einfluss auf den Simulationsgrad und Testdaten genommen werden kann.</p>
+<p>Test-Kontexte sind nichts neues - durch den Einsatz von evolutionären Tools wird es allerdings einfacher und transparenter. Dies gilt sowohl für den Tester selbst als auch für diejenigen, die durch das Lesen von Tests die Anwendung und deren Spezifikation verstehen möchten.</p>
+<p>So ist es nicht unüblich, das ein Unit Test durch geschickten Einsatz von Mock- und IoC-Frameworks so aussehen kann:</p>
+<div class="codehilite"><pre><span class="k">[TestFixture]</span>
+<span class="err">public</span> <span class="err">class</span> <span class="err">MathValueTest</span> <span class="err">:</span> <span class="err">MathTest</span> <span class="err">{</span>
+
+  <span class="k">[Test]</span>
+  <span class="err">public</span> <span class="err">void</span> <span class="err">GetValue()</span> <span class="err">{</span>
+    <span class="na">IMathValue subject</span> <span class="o">=</span> <span class="s">this.Target.CreateValue(this.Set.SingleValue);</span>
+
+    <span class="err">Assert.AreEqual(this.Set.SingleResult,</span> <span class="err">subject.Value)</span><span class="c1">;</span>
+  <span class="err">}</span>
+
+  <span class="k">[Test]</span>
+  <span class="err">public</span> <span class="err">void</span> <span class="err">HasChilds()</span> <span class="err">{</span>
+    <span class="na">IMathValue subject</span> <span class="o">=</span> <span class="s">this.Target.CreateValue(this.Set.SingleValue);</span>
+
+    <span class="err">Assert.AreEqual(false,</span> <span class="err">subject.HasChilds)</span><span class="c1">;</span>
+  <span class="err">}</span>
+
+  <span class="k">[Test]</span>
+  <span class="err">public</span> <span class="err">void</span> <span class="err">Solve()</span> <span class="err">{</span>
+    <span class="na">IMathValue subject</span> <span class="o">=</span> <span class="s">this.Target.CreateValue(this.Set.SingleValue);</span>
+<span class="s">    IMathEquation equation = subject.Solve();</span>
+
+    <span class="err">Assert.IsNotNull(equation)</span><span class="c1">;</span>
+
+    <span class="na">IMathValue value</span> <span class="o">=</span> <span class="s">equation as IMathValue;</span>
+
+    <span class="err">Assert.IsNotNull(value)</span><span class="c1">;</span>
+    <span class="err">Assert.AreEqual(this.Set.SingleResult,</span> <span class="err">value.Value)</span><span class="c1">;</span>
+  <span class="err">}</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<h4 id="test-kontext-mit-mock-objekten-und-test-daten">Test-Kontext mit Mock-Objekten und Test-Daten</h4>
+<p>Das Beispiel zeigt, das es mit einigen wenigen Handgriffen durchaus möglich ist, kleine und saubere Unit Tests zu schreiben. Die Test-Klasse selbst erbt von <code>MathTest</code>, einer einfachen Basisklasse, die als <a href="http://martinfowler.com/eaaCatalog/layerSupertype.html">Layer Supertype</a> fungiert und der Testklasse die Properties <code>Target</code> und <code>Set</code> zur Verfügung stellt. Die Basisklasse selbst bezieht die Werte dafür aus dem eben angesprochenen Test-Kontext:</p>
+<div class="codehilite"><pre><span class="k">public</span> <span class="nf">static</span> <span class="nb">class</span> <span class="nx">TestContext</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nf">const</span> <span class="nx">bool</span> <span class="n">MOCKED</span> <span class="o">=</span>
+    <span class="vi">#if</span> <span class="nx">MOCK</span>
+      <span class="kc">true</span>
+    <span class="vi">#else</span>
+      <span class="kc">false</span>
+    <span class="vi">#endif</span>
+  <span class="p">;</span>
+
+  <span class="k">private</span> <span class="nf">static</span> <span class="nx">IContainer</span> <span class="nx">container</span><span class="p">;</span>
+
+  <span class="nx">static</span> <span class="nx">TestContext</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ContainerBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="nb">new</span> <span class="nx">ContainerBuilder</span><span class="p">();</span>
+
+    <span class="nx">builder.Register</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="nb">new</span> <span class="nx">TestTarget</span><span class="p">())</span><span class="bp">.</span><span class="nx">As</span><span class="o">&lt;</span><span class="nx">ITestTarget</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="nx">builder.Register</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="nb">new</span> <span class="nx">TestTargetMocked</span><span class="p">())</span><span class="bp">.</span><span class="nx">As</span><span class="o">&lt;</span><span class="nx">ITestTarget</span><span class="o">&gt;</span><span class="p">()</span><span class="bp">.</span><span class="nx">OnlyIf</span><span class="p">(</span><span class="n">b</span> <span class="o">=&gt;</span> <span class="nx">MOCKED</span><span class="p">);</span>
+
+    <span class="nx">builder.Register</span><span class="p">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="nb">new</span> <span class="nx">TestSet</span><span class="p">())</span><span class="bp">.</span><span class="nx">As</span><span class="o">&lt;</span><span class="nx">ITestSet</span><span class="o">&gt;</span><span class="p">();</span>
+
+    <span class="n">container</span> <span class="o">=</span> <span class="nx">builder.Build</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="nf">static</span> <span class="nx">ITestTarget</span> <span class="nb">Target</span> <span class="p">{</span>
+    <span class="nb">get</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">container.Resolve</span><span class="o">&lt;</span><span class="nx">ITestTarget</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="nf">static</span> <span class="nx">ITestSet</span> <span class="nb">Set</span> <span class="p">{</span>
+    <span class="nb">get</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">container.Resolve</span><span class="o">&lt;</span><span class="nx">ITestSet</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Durch den Einsatz des IoC-Containers wird der Test-Kontext konfiguriert. Dabei liefert <code>Target</code> das sog. Test-Ziel, also im klassischen Fall die zu testenden Klassen. Die Property <code>Set</code> liefert ein Test-Set, d.h. eine Klasse mit vordenifierten Test-Daten für die Unit Tests.</p>
+<p>Interessant wird es nun, wenn das Test-Ziel simuliert werden soll - also praktisch die Tests geschrieben werden, bevor es überhaupt zu testende Klassen gibt. Hier ist der Einsatz von Mock-Objekten gefragt, wobei idealerweise gleichzeitig die grundlegenden Erwartungen an das Verhalten der zu testenden Klassen gestellt werden kann.</p>
+<h3 id="mehr-erwarten-weniger-schreiben">Mehr erwarten, weniger schreiben</h3>
+<p>Hier kommt nun Moq ins Spiel. Mit Moq ist es ein leichtes, zu erwartende Verhaltensweisen den Dummy-Objekten "beizubringen". So kann man mit einem einfachen Lambda-Ausdruck festlegen, welchen Wert z.B. eine Property zurückliefern soll:</p>
+<div class="codehilite"><pre><span class="cm">/* expect add operator */</span>
+<span class="n">mock</span><span class="p">.</span><span class="n">ExpectGet</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Operator</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="n">Operator</span><span class="p">.</span><span class="n">Add</span><span class="p">);</span>
+</pre></div>
+
+
+<blockquote>
+<p><em>Beschreibung:</em><br />
+ Ich erwarte, das die <code>Operator</code>-Eigenschaft bei Abfrage den Wert <code>Operator.Add</code> (Enum-Wert) zurückliefert.</p>
+</blockquote>
+<p>Mindestens genauso einfach und intuitiv sind Definitionen für fehlerhafte Parameter einer Methode:</p>
+<div class="codehilite"><pre><span class="cm">/* expect argumentnull on null */</span>
+<span class="n">mock</span><span class="p">.</span><span class="n">Expect</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="k">null</span><span class="p">)).</span><span class="n">Throws</span><span class="p">(</span><span class="k">new</span> <span class="n">ArgumentNullException</span><span class="p">());</span>
+</pre></div>
+
+
+<blockquote>
+<p><em>Beschreibung:</em><br />
+ Ich erwarte, das die Methode <code>Parse</code> bei einem Parameter-Wert von <code>NULL</code> eine <code>ArgumentNullException</code> wirft.</p>
+</blockquote>
+<p>Besonders hilfreich bei der Definition der Parameter ist die Hilfsklasse <code>It</code>, mit der man leicht Parameterbeschreibungen durchführen kann:</p>
+<div class="codehilite"><pre><span class="cm">/* expect argumentoutofrange on operations with operator.none */</span>
+<span class="n">mock</span><span class="p">.</span><span class="n">Expect</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">CreateOperation</span><span class="p">(</span><span class="n">Operator</span><span class="p">.</span><span class="n">None</span><span class="p">,</span> <span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="o">&lt;</span><span class="n">IMathEquation</span><span class="o">&gt;</span><span class="p">(),</span> <span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="o">&lt;</span><span class="n">IMathEquation</span><span class="o">&gt;</span><span class="p">()))</span>
+    <span class="p">.</span><span class="n">Throws</span><span class="p">(</span><span class="k">new</span> <span class="n">ArgumentOutOfRangeException</span><span class="p">());</span>
+</pre></div>
+
+
+<blockquote>
+<p><em>Beschreibung:</em><br />
+Ich erwarte, das die Methode <code>CreateOperation</code> eine <code>ArgumentOutOfRangeException</code> wirft. Aber nur dann, wenn der erste Parameter <code>Operator.None</code> (Enum-Wert) und die restlichen Parameter vom Typ <code>IMathEquation</code> sind.</p>
+</blockquote>
+<p>Die Parameterbeschreibung ist sogar so flexibel, das sie wie im Flug mit Prädikaten versehen werden kann - natürlich auch mit Hilfe von Lambda-Ausdrücken:</p>
+<div class="codehilite"><pre><span class="nx">mock.Expect</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="nx">x.Calculate</span><span class="p">(</span><span class="nx">It.Is</span><span class="o">&lt;</span><span class="nx">IMathOperation</span><span class="o">&gt;</span><span class="p">(</span><span class="n">p</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">p.Operator</span> <span class="o">==</span> <span class="nx">Operator.Add</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">p.Left</span> <span class="nx">is</span> <span class="nx">IMathValue</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">p.Right</span> <span class="nx">is</span> <span class="nx">IMathValue</span><span class="p">))))</span>
+    <span class="bp">.</span><span class="nx">Returns</span><span class="o">&lt;</span><span class="nx">IMathOperation</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">r.Left</span> <span class="nx">as</span> <span class="nx">IMathValue</span><span class="p">)</span><span class="bp">.</span><span class="nb">Value</span> <span class="o">+</span> <span class="p">(</span><span class="nx">r.Right</span> <span class="nx">as</span> <span class="nx">IMathValue</span><span class="p">)</span><span class="bp">.</span><span class="nb">Value</span><span class="p">);</span>
+</pre></div>
+
+
+<blockquote>
+<p><em>Beschreibung:</em><br />
+Ich erwarte, das die Methode <code>Calculate</code> sich wie folgt verhält: Wenn der Parameter der Methode vom Typ <code>IMathOperation</code> ist und dessen <code>Operator</code> Eigenschaft den Wert <code>Operator.Add</code> (Enum-Wert) hat und dessen <code>Left</code> und <code>Right</code> Eigenschaften Werte vom Typ <code>IMathValue</code> sind, dann soll die <code>Calculate()</code> Methode die Summe der <code>Left</code> und <code>Right</code> Eigenschafts-Werte des übergebenen Parameters zurückliefern.</p>
+</blockquote>
+<p>Zugegeben, auf den ersten Blick wirkt so eine Definition "etwas haarig". Mit zunehmender Verwendung wird man jedoch bald die Flexibilität solcher Ausdrücke nicht mehr vermissen wollen.</p>
+<p>Zu guter Letzt noch ein Beispiel für die extrem intuitive Definiton von Verhaltensweisen, die über die zu testende Methodengrenze hinweg Einfluss nimmt:</p>
+<div class="codehilite"><pre><span class="cm">/* expect clearchilds eliminating childs and count */</span>
+<span class="n">mock</span><span class="p">.</span><span class="n">Expect</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">ClearChilds</span><span class="p">()).</span><span class="n">Callback</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="cm">/* expect left hand side */</span>
+  <span class="n">mock</span><span class="p">.</span><span class="n">ExpectGet</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Left</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="k">null</span> <span class="n">as</span> <span class="n">IMathEquation</span><span class="p">);</span>
+
+  <span class="cm">/* expect right hand side */</span>
+  <span class="n">mock</span><span class="p">.</span><span class="n">ExpectGet</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Right</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="k">null</span> <span class="n">as</span> <span class="n">IMathEquation</span><span class="p">);</span>
+
+  <span class="cm">/* expect having childs (left and right) */</span>
+  <span class="n">mock</span><span class="p">.</span><span class="n">ExpectGet</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">HasChilds</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="n">false</span><span class="p">);</span>
+  <span class="n">mock</span><span class="p">.</span><span class="n">ExpectGet</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">ChildCount</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="mh">0</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<blockquote>
+<p><em>Beschreibung:</em><br />
+Ich erwarte, das nach dem Aufruf der <code>ClearChilds()</code>-Methode sich das Verhalten der Klasse derart ändert, als das zu erwarten ist, das bei Abruf der Eigenschaften <code>Left</code> und <code>Right</code> der Wert <code>NULL</code> zurückgeliefert wird; bei Abruf der Eigenschaft <code>HasChilds</code> der Wert <code>false</code> zurückgelifert wird und das bei Abruf der Eigenschaft <code>ChildCount</code> der Wert <code>0</code> zurückgeliefert wird.</p>
+</blockquote>
+<p>Wie man sieht, ist es möglich, mit ein paar Zeilen Code sogar schwierigere Abhängigkeitsbeziehungen und Verhaltensweisen zu definieren. Der besondere Vorteil von Moq und den damit verwendeten Lambda-Ausdrücken ist jedoch deren ungemein leichte Verständlichkeit.</p>
+<h3 id="die-ersten-erfahrunges-sehr-positiv">Die ersten Erfahrunges sehr positiv</h3>
+<p>Ich habe mich sowohl mit Unit Tests und den neuen Frameworks <a href="http://code.google.com/p/moq/">Moq</a> und <a href="http://code.google.com/p/autofac/">Autofac</a> eingehend auseinandergesetzt und bin mehr als positiv überrascht. Obwohl beide Projekte noch relativ jung sind, sind sie schon jetzt ausgereift genug, um sie produktiv einsetzen zu können.</p>
+<p>Vor Allem die Stabilität und Geschwindigkeit beider Frameworks lässt hier kaum Wünsche übrig. Natürlich gibt es neben den schon bestehenden Features noch eine Reihe weiterer Ideen, die die Mitglieder beider Projekte umsetzen möchten.</p>
+<p>Dennoch ist schon heute der Funktionsumfang für die meisten Anwendungen mehr als ausreichend.</p>
+<h4 id="calculator-die-spielwiese">Calculator - Die Spielwiese</h4>
+<p>An dieser Stelle möchte ich auf ein kleines Beispiel-Projekt hinweisen, mit dem ich beide Frameworks evaluiert und deren Verwendungsmöglichkeiten analysiert habe: Der <a href="https://github.com/ilkerde/calculator-sample-moq-autofac">Calculator</a>.</p>
+<p>Der <em>Calculator</em> ist eine C#-Bibliothek, mit der man einfache Rechenoperationen durchführen kann. Er eignete sich besonders für den Test-Einsatz, da ich die Bibliothek schon vor geraumer Zeit einmal geschrieben hatte und dafür "klassische" Unit-Tests (ohne Mock-Objekte und IoC-Container) geschrieben hatte. Die Beispiele in diesem Artikel sind Auszüge aus dem Quellcode der Calculator Tests.</p>
+<h3 id="fazit-solide-verbesserung">Fazit: Solide Verbesserung</h3>
+<p>In knappen Worten gesagt ist das Dreigestirn NUnit / Moq / Autofac zu meinem neuen Test-Standard avanciert. Ich werde wohl kaum existierende Tests nochmal umschreiben, mir aber für die zukünftigen Projekte das Trio vormerken.</p>
+<p>Abschließend und der Vollständigkeit halber sei hier noch das neue Test-Framework <a href="http://www.codeplex.com/xunit">xUnit</a> erwähnt. Es ist ein neues, schlankes Test-Framework, welches sicherlich Wert ist, einen Blick darauf zu werfen. Einige Konzepte von xUnit finde ich durchaus richtig und bemerkenswert, wie z.B. das "Eine-Klasse-Pro-Test"-Prinzip oder <code>Assert.Throws</code> statt des von NUnit bekannten <code>[ExpectedException]</code> Attributs.</p>
+<p>Doch vorerst bleibe ich <a href="http://www.nunit.org%20NUnit">NUnit</a> treu - nicht zuletzt weil es ungemein stabil ist, sehr hilfreiche Features anbietet und bei vielen verschiedenen Tools breite Unterstützung findet.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>29 June 2008</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/unit-testing-revisited-elegante-einfache-unit-tests-mit-c-30.html&title=Elegante &amp; einfache Unit Tests mit C# 3.0">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
