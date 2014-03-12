@@ -7,11 +7,41 @@
         <link href="/"/>
     
         
-    <updated>2014-02-26T22:28:48Z</updated>
+    <updated>2014-03-12T07:54:52Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Lead Less</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/lead-less.html"/>
+            <updated>2014-03-12T08:15:00Z</updated>
+            <published>2014-03-12T08:15:00Z</published>
+            <id>/lead-less.html</id>
+            
+            <content type="html"><![CDATA[
+                <blockquote>
+<p><strong>Lead Less!</strong> Wir sind laterale Leitfiguren, systemische Denker, lean Manager und moderne Organisationsgestalter. Wir bemühen uns um soziale Effekte, geschäftliche Relevanz, agile Wege, diversifizierte Führung und ethische Arbeit. In unseren "Lead Less"-Treffen diskutieren wir darüber, wie wir weniger führen <em>(lead less)</em> um uns stetig zu steigern <em>(progress permanently)</em> hin zu einem kollaborativen konstruktivismus <em>(collaborative constructivism)</em>.</p>
+</blockquote>
+<p>Das ist die Beschreibung einer neuen Interessensgruppe, die ich hiermit heute hochoffiziell gründe. Ich will mich mit anderen Interessierten über die mannigfaltigen Themen des modernen Managements in der IT und in anderen informationsorientierten Arbeitsumfeldern (z.B. Medien, Kommunikation, Statistik) austauschen und mehr über die Praxis und Theorie der alternativen Organisationsgestaltung erfahren. Deswegen gründe ich <em>"Lead Less"</em>.</p>
+<h3 id="worum">Worum?</h3>
+<p>Ein Lead Less ist eine Veranstaltung, in der man ein besonderes Thema im Umfeld des modernen Managements herauspickt und gemeinsam aufarbeitet. Das Themenfeld bewegt sich rund um Agiles Management, Lean Management, Kanban, Laterale Führung, Systemische Organisation, Heterarchie-Konzepte und mehr. Es richtet sich an alle Interessierte, im Besonderen allerdings an Führungskräfte, Organisationsgestalter, Personalverantwortliche und Management-Enthusiasten.</p>
+<h3 id="warum">Warum?</h3>
+<p>"Aber es gibt doch schon so viele Communities zu <a href="http://agiletuesday.org/">Agilität</a>, <a href="http://www.limitedwip.org/">Kanban</a> oder <a href="http://www.management30.com/">(angeblich) modernem Management</a>." - Ja, das stimmt. Aber alle diese Communities und Veranstaltungen kümmern sich nicht um die Durchleuchtung der Perspektiven, die mich bei alternativen Management-Methoden interessieren. Sie kümmern sich um bestimmte Paradigmen oder die eine oder andere 'aus der Praxis neu erschaffene Methodik'. Das ist gut, denn das interessiert mich ja auch. Aber es geht dort eben nicht um Organisationsgestaltung, um Personalmanagement, um soziale Arbeitsstrukturen, um ethische Grundsätze, um wirkliche Alternativen weit ab vom Mainstream des "Agile and Lean Movements". </p>
+<h3 id="was">Was?</h3>
+<p>Mit Lead Less will ich mich nicht um grosse Themen oder Trends wie "agile Skalierung" oder "Management 3.1" oder "Lean Startup" kümmern. Ich will mich intensiv und fundiert mit den kleinen, <em>unaffälligen</em> Themen des modernen Managements beschäftigen. Ich will Nischenwege der Teamarbeit erkunden und echte <em>alternative</em> Organisationsstrukturen erforschen. Ich will mich mit anderen Interessierten austauschen und <em>fokussierte</em> Diskussionen führen.</p>
+<h3 id="wo">Wo?</h3>
+<p>Da ich als "Gründer" des Lead Less in München wohne, ist es wohl klar, dass ich das erste Lead Less auch in München veranstalten werde. Es ist eine mehrstündige Abendveranstaltung, meist in der Münchener Innenstadt. Ich würde mich über Unterstützung/Sponsoring bzgl. Location in und um München natürlich freuen.</p>
+<h3 id="wann">Wann?</h3>
+<p>Das erste <em>Lead Less</em> findet am Mittwoch, den 26. März um 19:00 Uhr statt. Wir treffen und unterhalten uns in den Räumen der <a href="http://www.check24.de">Check24</a> an der Donnersberger Brücke. Anmeldung erfolgt entweder per <a href="info@cclabs.de">Mail</a>, per <a href="https://www.xing.com/events/lead-less-1-decisions-1376873">Xing</a> oder per <a href="http://www.meetup.com/Munich-Lead-Less/events/170831412/">Meetup</a>. Das Thema unseren ersten Treffens wird <em>Entscheidungen in Gruppen bzw. Organisationen</em> sein. Wir werden uns bis ca 21:00 Uhr austauschen. Nach der Veranstaltung kann man - falls gewollt - die Diskussion in einem der umliegenden Restaurants weiter führen.</p>
+<h3 id="lead-less">Lead Less</h3>
+<p>Also, auf geht's, seien Sie beim ersten "Lead Less" dabei und melden Sie sich an! Here's the deal. Join us for our first "Lead Less" and R.S.V.P now!</p>
+<blockquote>
+<p><strong>Lead Less!</strong> We are a group of lateral leaders, system thinkers, lean managers and modern organization craftspeople. We care about social effects, business impacts, agile ways, diversified leadership and ethical work. In our "Lead Less" meetups, we talk on how we do "lead less" in order to "progress permantly" towards "collaborative constructivism".</p>
+</blockquote>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Über das Ziel von Coding Dojos V</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/uber-das-ziel-von-coding-dojos-v.html"/>
