@@ -1,11 +1,12 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro|Inconsolata);
 /*
 ### fonts.less
 
 Definition of fonts used throughout the entire website.
 
 By convention, the website layout only uses three types.
+
 - A text type in sans
+
 - A heading type in sans black condensed for
   - headings
   - menu
@@ -130,7 +131,7 @@ Style components used by multiple website elements.
   border-bottom-right-radius: 2px;
   color: #c2c3c4;
   background-color: #ffffff;
-  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Cantarell', 'Arial', sans-serif;
+  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
   display: block;
 }
 .is_icon a {
