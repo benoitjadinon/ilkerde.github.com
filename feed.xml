@@ -7,11 +7,70 @@
         <link href="/"/>
     
         
-    <updated>2014-03-12T07:54:52Z</updated>
+    <updated>2014-03-24T00:58:25Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Nuget Paketverzerrung</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/nuget-paketverzerrung.html"/>
+            <updated>2014-03-24T08:00:00Z</updated>
+            <published>2014-03-24T08:00:00Z</published>
+            <id>/nuget-paketverzerrung.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>Diesmal soll es um ein technisches Thema aus der .NET-Welt gehen. Ich möchte in diesem kurzen Artikel meine Eindrücke zu <a href="http://www.nuget.org">Nuget</a>, dem "Package Manager for .NET", schildern.</p>
+<p>Zunächst einmal gilt festzuhalten, dass Nuget sehr hilfreich für das gesamte .NET-Ökosystem ist. Es ist eine Anlaufstelle für Libraries, Tools und Produkte rund um die .NET-Software-Entwicklung. Manche gehen sogar so weit und nutzen es als <a href="https://chocolatey.org/">Software-Packaging-System</a>. Doch um diese Spielereien soll es hier nicht gehen. Als .NET-Entwickler möchte ich die Kernfunktionalität von Nuget in den Vordergrund stellen.</p>
+<h3 id="funktionsbereich">Funktionsbereich</h3>
+<p>Der Anwendungsbereich von Nuget ist leider wesentlich breiter als der Funktionsbereich. Auf Grund der gar schauderhaften Integration von Nuget in Visual Studio und der irreführenden Kommunikation des Nuget/Microsoft-Teams zu der Funktionalität, wird Nuget gern als "die Allzweckwaffe für Libraries" betrachtet.</p>
+<p>Obgleich auf der Website Nuget "nur" als <em>Package Manager</em> angepriesen wird, erhebt es durch die Integration in Visual Studio auch einen Anspruch auf Abhängigkeitsverwaltung. Schlimmer noch, durch den auf keinste Weise nachvollziehbaren Hype um die <a href="https://docs.nuget.org/docs/reference/package-restore">Package Restore</a>-Funktion wird es auch noch als <a href="http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages">Heilsbringer in der Bauphase einer Software</a> angewendet.</p>
+<p><img alt="Nuget Functionality" src="media/images/nuget-functionality.png" /></p>
+<p>Die Wahrheit ist allerdings eine ganz andere. Der Funktionsbereich von Nuget lässt sich quasi vollständig auf <em>grundlegende</em> Paketverwaltung reduzieren. Das einzige, was Nuget noch im Ansatz mit Abhängigkeitsverwaltung zu tun hat, ist im Endeffekt die inhärente Versionierung.</p>
+<h3 id="verzerrungen">Verzerrungen</h3>
+<p>Durch den invasiven Eingriff der Visual-Studio-Clients von Nuget in die Projektstrukturen und Anwendungskonfigurationen der Software erhebt sich Nuget allerdings aus dem auch schon zweifelhaften Pakethelfer-Status heraus zu einem Werkzeug, welches sich anmaßt, die Abhängigkeiten zu eben diesen Paketen auch noch verwalten zu können.</p>
+<p>Dies mag vielleicht für kleine Spielprojekte gerade noch amüsant sein, doch spätestens bei semi-professioneller Software-Entwicklung ist diese Zweifaltigkeit von Nuget nicht nur erkennbar, sondern auch noch in höchstem Maße gefährlich.</p>
+<p>Natürlich ist in einer Paketverwaltung auch das erkennen und auflösen von Abhängigkeiten eine wichtige Funktion. Ganz so einfach ist es im Alltag des Software-Entwicklers großer Anwendungen jedoch nicht, Abhängigkeiten zu eigenen und anderen Softwarebestandteilen zu verwalten.</p>
+<p>Die offensichtliche Konzeptarmut von Nuget offenbart sich schon bei den einfachsten alltäglichen Überlegungen. Es ist kaum unüblich, dass in größeren Projekten eigene Bibliotheken für bestimmte Grundfunktionen oder spezielle Anwendungsteile geschrieben werden. Sei es nun eine gemeinsame Geschäftskomponente oder aber der Treiber für ein besonderes Endgerät. Mit diesem Hintergrundwissen lässt sich für die Beziehung von Paketen die folgende Grafik ohne langes Überlegen schlußfolgern:</p>
+<p><img alt="Package Landscape" src="media/images/package-landscape.png" /></p>
+<p>Alleine diese <em>einfachsten Überlegungen</em> zeigen schon, wie Nuget sich elegant vor konzeptioneller Tragfähigkeit drückt. Während klarerweise alle externen Pakete per Binärreferenz via Nuget eingeholt werden, gibt es am anderen Ende die Projektreferenzen, um interne Bibliotheken zu verwenden. Die Schnittstelle zwischen diesen zwei Bereichen ist - natürlich - das .NET Projekt. Genau an dieser Stelle findet die substanzielle Software-Entwicklung statt. Hier werden auch tagtäglich Struktur-Entscheidungen getroffen: ob man Codeblöcke ausgliedern möchte, andere Bibliotheken verwenden möchte, oder aber neue Anforderungen mit externen Helfern implementieren möchte.</p>
+<p>Nuget aber schert sich mit Verlaub einen Dreck um eben geschilderten Umstand. Es tut gerade so, als gäbe es Projekte nur, um irgendwie Referenzen zu verknüpfen. Eine Simplifizierung, die selbst Hobby-Informatiker schwerlich als vertretbar hinnehmen könnten.</p>
+<p><img alt="Package Transience" src="media/images/package-transience.png" /></p>
+<p>Erkennbar ist dieses Defizit nicht nur an der in Nuget fehlenden Terminologie für o.g. "Schnittstelle" namens <em>Projekt</em>, sondern ganz besonders in den äußerst mageren Versionsverwaltungsfunktionen von Nuget. Wohin man auch nur schaut, weit und breit gibt es keine Möglichkeit, ein Paket als <em>in Entwicklung</em> zu markieren. Wohlgemerkt: in Entwicklung - das hat mit <em>Pre-Releases</em> (wie im Weiteren geschildert) nur annähernd etwas zu tun.</p>
+<p>Es ist schon eine Farce, dass Nuget dem Entwickler zumutet, eine gerade in Entwicklung befindliche Bibliothek zunächst in das Repository zu pushen (egal ob lokal oder anderswo), um es in anderen Anwendungsteilen oder Subsystemen weiter zu verwenden. Doch zu allem Überdruß schafft es Nuget nicht einmal, ein Paket in einem transienten Status zu verwalten. Eigentlich irre, wenn man mal genauer darüber nachdenkt.</p>
+<p>Nun bin ich ja nicht der erste und einzige, dem dieses unfassbare Defizit auffällt. Die aufgeweckten Entwickler des <em>Fubu-Projektes</em> haben das in ihrer Entwicklung auch schnell erkannt. Ihr Lösungsweg war es, Nuget einen Aufsatz namens <a href="http://darthfubumvc.github.io/ripple/">Ripple</a> zu verpassen, um so die gravierendsten Probleme wie Transienz und Projektdatei-Konflikte in den Griff zu bekommen. Auf den ersten Blick erscheint einem dieser Ansatz durchaus plausibel. Ein näherer Blick zeigt jedoch auch bei der Umsetzung von Ripple massive Schwierigkeiten. Für mich haben es die Jungs zwar gut gemeint, aber leider schlecht gemacht.</p>
+<h3 id="inkonsistenzen">Inkonsistenzen</h3>
+<p>Dass Nuget sich mit dem hinzufügen von Referenzen und teilweise drastischen verändern von Projekten sich in das Abhängigkeitsmanagement einmischt, ist nicht von der Hand zu weisen. Das Problem dabei ist meines Erachtens, dass es sich eben einmischt, ohne wirklich zu wissen, worum es da wirklich geht. Eine Abhängigkeit hinzufügen kann jeder; die Abhängigkeiten sinnvoll nach Softwaregröße und Produktstrategie verwalten - das ist schon ein anderes Kaliber.</p>
+<p>Wie leichtfertig und geradezu infantil Nuget an das Abhängigkeitsmanagement herantritt ist einem <em>grundlegenden Anwendungsfall</em> für Abhängigkeitsverwaltung abzulesen: den <em>transitiven</em> Abhängigkeiten und deren Interferenz zueinander. Ein einfaches Beispiel aus dem Alltag mittelgroßer Projekte: Wir haben eine Komponente <em>A</em>, die <em>B</em> und <em>C</em> als Abhängigkeiten birgt. Während <em>B</em> von <em>D</em> und <em>E</em> abhängt, ist <em>C</em> von <em>D</em> und <em>F</em> abhängig. Ein klassischer potenzieller Konflikt zu <em>D</em> entsteht.</p>
+<p><img alt="Transitive Conflict" src="media/images/transitive-conflict.png" /></p>
+<p>Anstatt nun dem Entwickler diese Konfliktsituation vor Augen zu halten, ermächtigt sich Nuget eines naiven Herangehens: einfach die <a href="http://blog.davidebbo.com/2011/01/nuget-versioning-part-2-core-algorithm.html">höchste angewendete Version</a> zu nehmen. An dieser Stelle sollte bitte nicht gelacht werden, denn es ist wirklich so.</p>
+<p>Als "Strategie" lässt sich dieses Verhalten nur mit Wohlwollen bezeichnen. Denn einfach Versionen installieren und schlichtweg <a href="http://blog.davidebbo.com/2011/01/nuget-versioning-part-3-unification-via.html">Binding Redirects einsetzen</a>, um nur eine <em>halbwegs korrekte</em> Version der Abhängigkeit zu verwenden ist nicht gerade vertrauenseinflößend. Das ist ungefähr so, als ob man an der Kasse am Supermarkt nicht mehr den genauen Betrag bezahlen kann, sondern nur noch in "ungefähren" Beträgen wie 1, 5, 10, 50, 100, 200 und 500 Euro.</p>
+<p>Bevor man sich auf solch eine Art von <em>Ungenauigkeit</em> einlässt, sollte man doch wenigstens es <em>versuchen</em>, etwas besser hinzukriegen. Und offen gesagt ist das nicht nur "nicht zuviel verlangt", sondern auch noch ziemlich einfach.</p>
+<p><img alt="Downgrade to align" src="media/images/downgrade-to-align.png" /></p>
+<p>Wenn nun transitive Abhängigkeiten von mehreren direkten Abhängigkeiten im Konflikt zueinander stehen, so lohnt es sich doch zumindest, sich die direkten Abhängigkeiten näher anzuschauen. Obgleich es nicht garantierbar ist, dass andere Versionen der direkten Abhängigkeit eine treffende transitive Version aufweisen, kann es durchaus der Fall sein. Aus meiner Erfahrung kommt es öfter vor als man Anfangs vermuten mag.</p>
+<p><img alt="Upgrade to align" src="media/images/upgrade-to-align.png" /></p>
+<p>Natürlich kann es sein, dass weder ein <em>Downgrade</em> der einen, noch ein <em>Upgrade</em> der anderen Abhängigkeit zu einem sog. <em>Dependency Alignment</em> führt. Nichtsdestotrotz kann man durch solch eine bewußte Mitigationsstrategie den Versionsunterschied zumindest minimieren. Um im Bild der o.g. Supermarktkasse zu bleiben könnte man sagen: es ist besser, 3,- Euro für ein eigentlich 2,50 Euro teures Brot zu bezahlen, statt sich einfach mit 5,- Euro abspeisen zu lassen.</p>
+<h3 id="entwicklungsfluss">Entwicklungsfluss</h3>
+<p>Es gibt noch eine Reihe weiterer Grundelemente einer vertrauensvollen, praktischen Abhängigkeitsverwaltung, die Nuget vermissen lässt: sichere Upgrades, sichere Downgrades, Paketgruppen, Depencency Scopes (Gültigkeitsräume) und vieles mehr.</p>
+<p>Doch an dieser Stelle sollen sogar diese <em>Grundfunktionen</em> vernachlässigt werden. Denn leider gibt es ein noch viel fundamentaleres Problem, welches es zu beachten gilt. Wie Eingangs schon erwähnt ist Nuget mit seiner <em>Anwendungsumgebung</em> nicht sehr vertraut. Es konzentriert sich geschickt auf den Download von Paketen, ohne zu beachten, <em>wieso</em> und <em>wohin</em> es diese Downloads denn durchführt.</p>
+<p>Wichtig in diesem Zusammenhang ist, dass in größeren Projekten durchaus die Paketverwaltung für das eigene System angewendet werden möchte. Zumindest sprächen eine Reihe von Argumenten dafür: starke Systemgrenzen, unabhängige Entwicklungszyklen, strukturietes Portfolio, experimentelle Builds und mehr.</p>
+<p>Der Anwendungsfall Nuget für seine hausinternen Assemblies zu verwenden liegt also nah. Weiterhin ist das .NET Ökosystem dafür bekannt, viele große Projekte im Geschäftsumfeld zu beherbergen und zu fördern. In Summe lässt sich sagen: man könnte mit ein wenig gutem Willen schnell zum Schluß kommen, dass Nuget als Paketverwaltung auch für <a href="http://blog.devopsguys.com/2013/01/30/nuget-as-a-service/">eigene Pakete verwendet werden kann</a>.</p>
+<p>Die Köpfe hinter Nuget scheinen das anders zu sehen. Schließlich geht die Architektur von Nuget wie Eingangs erwähnt in keinster Weise auf diesen Anwendungskontext ein. Während der Entwicklung von Komponenten und Systemen werden Schnittstellen definiert, aufgebrochen oder temporär außer Kraft gesetzt. Experimente werden durchgeführt, neue Modelle eingeführt und Komponenten neu strukturiert. Eine Paketverwaltung für Entwickler sollte das zumindest <em>in Betracht ziehen</em>.</p>
+<p><img alt="Floating Dependencies" src="media/images/floating-dependencies.png" /></p>
+<p>Zum Glück für den solch mitivierten Nuget-Anwender gibt es die sog. <a href="http://nuget.codeplex.com/wikipage?title=Pre-Release%20Packages">Prerelease Packages</a>. Ursprünglich gedacht für Beta-Versionen und Tests, kann man sie - mit ein wenig Konvention versehen - auch für die Auszeichnung <em>instabiler Abhängigkeiten</em> verwenden. Damit kommt man an die innere Feedback-Schleife der Entwicklung wie bei den Projekt-Referenzen noch lange nicht heran, kann aber zumindest schon den Entwicklungsaustausch zwischen Entwicklern bzw. Teams halbwegs operabel abbilden.</p>
+<p><img alt="Tracking Dependencies" src="media/images/tracking-dependencies.png" /></p>
+<p>Wenn es eben genau um diesen schnellen Entwicklungs-Feedback geht, dann wird es mit Nuget ganz, ganz schwer - fast schon unmöglich. Ein unsäglicher Umstand, dem man sich nur noch mit <em>Hacks</em> behelfen kann. Ein solcher Hack ist es, die Binär-Referenzen der Pakete in den Projekten durch das Erweitern des <a href="http://msdn.microsoft.com/en-us/library/6taasyc6%28v=vs.100%29.aspx">Assembly-Suchpfades</a> aufzulösen.</p>
+<p>In der Praxis ermöglicht einem ein solcher "Workaround" zumindest eine lokale Entwicklung der betroffenen Anwendungsteile bzw. Pakete, ohne die Binär-/Paketreferenzen aufschlüsseln zu müssen. Das ist zwar immer noch weit weg von einer adequaten Lösung, hilft aber mit diesem unfassbaren Konzeptfehler umzugehen.</p>
+<h3 id="alternativlosigkeit">Alternativlosigkeit</h3>
+<p>Nuget ist heutzutage aus der .NET-Software-Entwicklung kaum wegzudenken. Zweifellos hat es der gesamten Entwicklergemeinde viele Vorteile beschert über die man sich freuen darf. Für mich persönlich ist besonders die Öffnung des Ökosystems in Richtung Open Source nennenswert.</p>
+<p>Um so beschämender ist es allerdings, dass Nuget durch das Diktat von Microsoft quasi alternativlos ist. Interessante Mitstreiter wie <a href="http://www.openwrap.org/">OpenWrap</a> oder das hauseigene <a href="http://coapp.org/index.html">CoApp</a> wurden niedergeredet und mißachtet. Die Grundidee des Paketverwalters wurde durch opportune Marketing-Features wie der <em>grauenhaften</em> VisualStudio-Integration per <a href="https://docs.nuget.org/docs/start-here/using-the-package-manager-console">Powershell</a> oder des klickfreundlichen <a href="http://visualstudiogallery.msdn.microsoft.com/4ec1526c-4a8c-4a84-b702-b21a8f5293ca">Package Managers</a> gnadenlos unterwandert.</p>
+<p>Das Ergebnis: ein Paketmanager, der sich konzeptlos in die Abhängigkeitsverwaltung einmischt. Ein Paketmanager, der Versionsverwaltung nur rudimentär mit Journalfunktionalität, Konfliktmitigation und Kompatibilitätsgraphen auseinandersetzt. Ein Paketmanager, der Paketverwendung beschleunigt, aber Paketentwicklung bremst.</p>
+<p>Unterm Strich darf sich der engagierte Entwickler damit begnügen, Nuget mit Bedacht und Vorsicht anzuwenden. Wenn möglich nur von der Kommandozeile, um unüberlegte Eingriffe der "Logik" der weiteren Nuget-Helfer zu vermeiden. Doch auch mit dieser eingeschränkten Anwendung bleibt Nuget verbesserungsbedürftig. Teilweise in Nuancen, teilweise grundlegend. Die Verbesserungsversuche der Community mit <a href="http://darthfubumvc.github.io/ripple/">Ripple</a> und <a href="https://github.com/mavnn/NuGetPlus">NugetPlus</a> sind lobenswert, allerdings konzeptionell mindestens genau so fragwürdig wie Nuget selbst.</p>
+<p>Es bleibt der .NET-Entwicklergemeinde nichts anderes übrig, als demütig und treudoof Nuget zu akzeptieren wie es ist. Natürlich ist - verglichen mit den Jahren zuvor - Nuget ein großer Fortschritt. Die Frage ist nur, ob man sich nun damit begnügen möchte. Es ist eine verzwickte Situation mit der Paketverwaltung bei .NET-Projekten. </p>
+<p>Besser gesagt: es ist eine verzerrte Situation mit der Nuget Paketverzerrung.</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Lead Less</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/lead-less.html"/>
@@ -21,15 +80,15 @@
             
             <content type="html"><![CDATA[
                 <blockquote>
-<p><strong>Lead Less!</strong> Wir sind laterale Leitfiguren, systemische Denker, lean Manager und moderne Organisationsgestalter. Wir bemühen uns um soziale Effekte, geschäftliche Relevanz, agile Wege, diversifizierte Führung und ethische Arbeit. In unseren "Lead Less"-Treffen diskutieren wir darüber, wie wir weniger führen <em>(lead less)</em> um uns stetig zu steigern <em>(progress permanently)</em> hin zu einem kollaborativen konstruktivismus <em>(collaborative constructivism)</em>.</p>
+<p><strong>Lead Less!</strong> Wir sind laterale Leitfiguren, systemische Denker, lean Manager und moderne Organisationsgestalter. Wir bemühen uns um soziale Effekte, geschäftliche Relevanz, agile Wege, diversifizierte Führung und ethische Arbeit. In unseren "Lead Less"-Treffen diskutieren wir darüber, wie wir weniger führen <em>(lead less)</em> um uns stetig zu steigern <em>(progress permanently)</em> hin zu einem kollaborativen Konstruktivismus <em>(collaborative constructivism)</em>.</p>
 </blockquote>
 <p>Das ist die Beschreibung einer neuen Interessensgruppe, die ich hiermit heute hochoffiziell gründe. Ich will mich mit anderen Interessierten über die mannigfaltigen Themen des modernen Managements in der IT und in anderen informationsorientierten Arbeitsumfeldern (z.B. Medien, Kommunikation, Statistik) austauschen und mehr über die Praxis und Theorie der alternativen Organisationsgestaltung erfahren. Deswegen gründe ich <em>"Lead Less"</em>.</p>
 <h3 id="worum">Worum?</h3>
-<p>Ein Lead Less ist eine Veranstaltung, in der man ein besonderes Thema im Umfeld des modernen Managements herauspickt und gemeinsam aufarbeitet. Das Themenfeld bewegt sich rund um Agiles Management, Lean Management, Kanban, Laterale Führung, Systemische Organisation, Heterarchie-Konzepte und mehr. Es richtet sich an alle Interessierte, im Besonderen allerdings an Führungskräfte, Organisationsgestalter, Personalverantwortliche und Management-Enthusiasten.</p>
+<p>Ein Lead Less ist eine Veranstaltung, in der man ein besonderes Thema im Umfeld des modernen Managements herauspickt und gemeinsam aufarbeitet. Das Themenfeld bewegt sich rund um laterale Führung, systemische Organisationen, Heterarchie-Konzepte, prozessuale Resilienz und mehr. Auch die Themenfelder Agile und Lean werden dabei tangiert. Es richtet sich an alle Interessierte, im Besonderen allerdings an Führungskräfte, Organisationsgestalter, Personalverantwortliche und Management-Enthusiasten.</p>
 <h3 id="warum">Warum?</h3>
 <p>"Aber es gibt doch schon so viele Communities zu <a href="http://agiletuesday.org/">Agilität</a>, <a href="http://www.limitedwip.org/">Kanban</a> oder <a href="http://www.management30.com/">(angeblich) modernem Management</a>." - Ja, das stimmt. Aber alle diese Communities und Veranstaltungen kümmern sich nicht um die Durchleuchtung der Perspektiven, die mich bei alternativen Management-Methoden interessieren. Sie kümmern sich um bestimmte Paradigmen oder die eine oder andere 'aus der Praxis neu erschaffene Methodik'. Das ist gut, denn das interessiert mich ja auch. Aber es geht dort eben nicht um Organisationsgestaltung, um Personalmanagement, um soziale Arbeitsstrukturen, um ethische Grundsätze, um wirkliche Alternativen weit ab vom Mainstream des "Agile and Lean Movements". </p>
 <h3 id="was">Was?</h3>
-<p>Mit Lead Less will ich mich nicht um grosse Themen oder Trends wie "agile Skalierung" oder "Management 3.1" oder "Lean Startup" kümmern. Ich will mich intensiv und fundiert mit den kleinen, <em>unaffälligen</em> Themen des modernen Managements beschäftigen. Ich will Nischenwege der Teamarbeit erkunden und echte <em>alternative</em> Organisationsstrukturen erforschen. Ich will mich mit anderen Interessierten austauschen und <em>fokussierte</em> Diskussionen führen.</p>
+<p>Mit Lead Less will ich mich nicht um grosse Themen oder Trends wie "agile Skalierung" oder "Management 3.x" oder "Lean Startup" kümmern. Ich will mich intensiv und fundiert mit den kleinen, <em>unaffälligen</em> Themen des modernen Managements beschäftigen. Ich will Nischenwege der Teamarbeit erkunden und echte <em>alternative</em> Organisationsstrukturen erforschen. Ich will mich mit anderen Interessierten austauschen und <em>fokussierte</em> Diskussionen führen.</p>
 <h3 id="wo">Wo?</h3>
 <p>Da ich als "Gründer" des Lead Less in München wohne, ist es wohl klar, dass ich das erste Lead Less auch in München veranstalten werde. Es ist eine mehrstündige Abendveranstaltung, meist in der Münchener Innenstadt. Ich würde mich über Unterstützung/Sponsoring bzgl. Location in und um München natürlich freuen.</p>
 <h3 id="wann">Wann?</h3>
@@ -733,7 +792,7 @@
 <p><strong>Please: Care about your code.</strong></p>
             ]]></content>
         </entry>
-                        <entry>
+                                  <entry>
             <title type="html">Rechnerwechsel</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/rechnerwechsel.html"/>
@@ -1089,21 +1148,25 @@
             <id>/netzwerk-autonomie-emergenz.html</id>
             
             <content type="html"><![CDATA[
-                <p>Seit mittlerweile 4 Jahren beschäftige ich mich intensiv mit Organisationen und Organisationsentwicklung. Das theoretische und praktische Handlungsumfeld ist dabei wie ich finde oft anspruchsvoller als man gemeinhin darüber denken mag. Ich betrachte mich und meine Kenntnisse darüber durchaus als "sattelfest", sehe aber noch einiges an spannenden und noch stärker zu durchdringenden Themen vor mir.</p>
+                <h5 id="erlauterung">Erläuterung</h5>
+<p>Seit mittlerweile 4 Jahren beschäftige ich mich intensiv mit Organisationen und Organisationsentwicklung. Das theoretische und praktische Handlungsumfeld ist dabei wie ich finde oft anspruchsvoller als man gemeinhin darüber denken mag. Ich betrachte mich und meine Kenntnisse darüber durchaus als "sattelfest", sehe aber noch einiges an spannenden und noch stärker zu durchdringenden Themen vor mir.</p>
 <p>Nun, zu Beginn meines Interesses an Organisations- und Gruppengestaltung - so ca. Ende 2006 - hatte ich noch einen ganz anderen Zugang zu dem Thema als Heute. Das ist insofern interessant, als das seither die Theorie dazu mein stetiger Begleiter ist. Damals dachte ich nicht, dass ich jemals in die Gelegenheit kommen würde, dieses Wissen eigenständig anzuwenden. Heute, knapp 7 Jahre später, mache ich oft von diesem Wissensrepertoire gebrauch.</p>
-<h4 id="netzwerk-autonomie-emergenz">Netzwerk, Autonomie, Emergenz</h4>
 <p>Während dieser Zeit haben mich drei Themenblöcke immer wieder eingefangen. Da wäre zunächst einmal das <em>Netzwerk</em> als Organisationsform. Es gibt viele Ausprägungen von Netzen, angefangen von Stern- und Ringnetzen, bis hin zu All-Channel-Netzen und der geliebten Graphentheorie.</p>
 <p>Dem schließt sich nahtlos das Thema der <em>Autonomie</em> an. Autonomie ist ein faszinierendes, jedoch umso schwerer greifbares Themengebiet. Ich musste gerade bei der Autonomie viel lernen und verstehen, bevor es sich in das Gesamtbild in der Organisationsentwicklung einbetten ließ.</p>
 <p>Die Krönung ist allerdings das Phänomen der <em>Emergenz</em>. Obwohl ich mich gerade mit der Emergenz als erstes von diesen drei Themen auseinandergesetzt habe, ist die <em>Emergenz</em> für mich immer noch nicht vollends überschaubar. Zwar habe ich mittlerweile einiges an Wissen und Erfahrung angesammelt. Doch gerade hier liegt die Schwierigkeit verborgen: Mit dem zusätzlichen Wissen kommen oft noch mehr Fragen auf.</p>
 <p>Wie dem auch sei. Der Zufall will es nun, dass ich einen Vortrag darüber nun drei Mal in nahezu exaktem 3-Jahres-Rhytmus gehalten habe. Unlängst bei der bekannten <a href="http://www.sigs-datacom.de/oop2013/oop2013.html">OOP 2013</a> als Pecha Kucha in München. Drei Jahre davor als Kurzvortrag bei der O'Reilly <a href="http://igniteshow.de">Ignite</a>, wieder in München. Die Premiere des Vortrages war ganz ohne Bilder - nur als Motivationsrede - 2007 bei dem "Tag der Ideen", einer Fachtagung für alternative Ideen, wieder in München.</p>
-<p>Grund genug, dass ich die Folien zu dem "Vortrag" nun auch <a href="talks/netzwerk-autonomie-emergenz/index.html">Online zur Verfügung</a> stelle. Doch damit nicht genug, denn es gibt noch eine weitere Besonderheit: Sowohl der Pecha Kucha bei der OOP, als auch der O'Reilly Ignite-Talk wurden per Video aufgezeichnet:</p>
-<ul>
-<li><a href="http://www.techcast.com/events/oop/pecha03">Video des Pecha Kucha bei der OOP 2013</a></li>
-<li><a href="http://vimeo.com/59532802">Video des Ignite Talks bei der Ignite MUC 2010</a></li>
-</ul>
-<p>In diesem Sinne: Netzwerk - Autonomie - Emergenz.<br />
+<p>Grund genug, dass ich die Folien zu dem "Vortrag" nun auch Online zur Verfügung stelle. Doch damit nicht genug, denn es gibt noch eine weitere Besonderheit: Sowohl der Pecha Kucha bei der OOP, als auch der O'Reilly Ignite-Talk wurden per Video aufgezeichnet. In diesem Sinne: </p>
+<blockquote>
+<p>Netzwerk - Autonomie - Emergenz.
 Das braucht das Unternehmen von Heute.*</p>
+</blockquote>
 <p>*<em>seit über 6 Jahren sage ich das. :-)</em></p>
+<h5 id="videoaufzeichnungen">Videoaufzeichnungen</h5>
+<p>Von diesem Vortrag gibt es folgende Videoaufzeichnungen:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=u_zEO0TT_64">Aufzeichnung bei der OOP 2013</a></li>
+<li><a href="http://vimeo.com/59532802">Aufzeichnung bei der Oreilly Ignite 2010</a></li>
+</ul>
             ]]></content>
         </entry>
                         <entry>
@@ -1779,7 +1842,7 @@ Fig 1: Blaise Pascal (1623-1662)</p>
 <p>Der Software-Architekt ist die Vergangenheit, der Software-Experte ist die Zukunft.</p>
             ]]></content>
         </entry>
-                                  <entry>
+                                            <entry>
             <title type="html">Feel Good Psychology</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/feel-good-psychology.html"/>
@@ -1979,7 +2042,7 @@ java -jar /usr/local/lib/java/selenium-standalone-server.jar
 <p>And: it works beautifully! The nice thing about it is that switching from headless to visual mode is just changing a few lines, which can be easily parameterized. As for my simple tests on my little project, I'm using the virtual display version. It's fast enough and enables me to do some advanced checking as well.</p>
             ]]></content>
         </entry>
-                        <entry>
+                                  <entry>
             <title type="html">Kurzbericht von der Agile World 2012</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/kurzbericht-von-der-agile-world.html"/>
@@ -4352,7 +4415,7 @@ Agile approaches emphasize quality of design, because design quality is essentia
 <p>Ich freue mich auf Feedback, Meinungen und Anregungen. Danke.</p>
             ]]></content>
         </entry>
-                                  <entry>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <entry>
             <title type="html">Notizen eines Nerds 2011</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/notizen-eines-nerds-2011.html"/>

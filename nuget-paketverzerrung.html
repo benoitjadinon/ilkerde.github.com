@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Nuget Paketverzerrung</title>
+    <meta name="description" content="In diesem Artikel schildere ich meine Eindrücke zu Nuget, dem Package Manager for .NET. Im Speziellen gehe ich auf die Schwächen der Paketverwaltung im Anwendungsalltag ein und empfehle einen bewußten und eingeschränkten Einsatz von Nuget bei größeren Software-Projekten.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+  <body id="nuget-paketverzerrung">
+    <a href="nuget-paketverzerrung"></a>
+    <div id="page" class="article-page">
+      <div id="header">
+        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
+</span></a></div>
+        <div id="bar">
+          <h2>Nuget Paketverzerrung</h2>
+        </div>
+      </div>
+
+      <div id="content" class="article">
+        <p>Diesmal soll es um ein technisches Thema aus der .NET-Welt gehen. Ich möchte in diesem kurzen Artikel meine Eindrücke zu <a href="http://www.nuget.org">Nuget</a>, dem "Package Manager for .NET", schildern.</p>
+<p>Zunächst einmal gilt festzuhalten, dass Nuget sehr hilfreich für das gesamte .NET-Ökosystem ist. Es ist eine Anlaufstelle für Libraries, Tools und Produkte rund um die .NET-Software-Entwicklung. Manche gehen sogar so weit und nutzen es als <a href="https://chocolatey.org/">Software-Packaging-System</a>. Doch um diese Spielereien soll es hier nicht gehen. Als .NET-Entwickler möchte ich die Kernfunktionalität von Nuget in den Vordergrund stellen.</p>
+<h3 id="funktionsbereich">Funktionsbereich</h3>
+<p>Der Anwendungsbereich von Nuget ist leider wesentlich breiter als der Funktionsbereich. Auf Grund der gar schauderhaften Integration von Nuget in Visual Studio und der irreführenden Kommunikation des Nuget/Microsoft-Teams zu der Funktionalität, wird Nuget gern als "die Allzweckwaffe für Libraries" betrachtet.</p>
+<p>Obgleich auf der Website Nuget "nur" als <em>Package Manager</em> angepriesen wird, erhebt es durch die Integration in Visual Studio auch einen Anspruch auf Abhängigkeitsverwaltung. Schlimmer noch, durch den auf keinste Weise nachvollziehbaren Hype um die <a href="https://docs.nuget.org/docs/reference/package-restore">Package Restore</a>-Funktion wird es auch noch als <a href="http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages">Heilsbringer in der Bauphase einer Software</a> angewendet.</p>
+<p><img alt="Nuget Functionality" src="media/images/nuget-functionality.png" /></p>
+<p>Die Wahrheit ist allerdings eine ganz andere. Der Funktionsbereich von Nuget lässt sich quasi vollständig auf <em>grundlegende</em> Paketverwaltung reduzieren. Das einzige, was Nuget noch im Ansatz mit Abhängigkeitsverwaltung zu tun hat, ist im Endeffekt die inhärente Versionierung.</p>
+<h3 id="verzerrungen">Verzerrungen</h3>
+<p>Durch den invasiven Eingriff der Visual-Studio-Clients von Nuget in die Projektstrukturen und Anwendungskonfigurationen der Software erhebt sich Nuget allerdings aus dem auch schon zweifelhaften Pakethelfer-Status heraus zu einem Werkzeug, welches sich anmaßt, die Abhängigkeiten zu eben diesen Paketen auch noch verwalten zu können.</p>
+<p>Dies mag vielleicht für kleine Spielprojekte gerade noch amüsant sein, doch spätestens bei semi-professioneller Software-Entwicklung ist diese Zweifaltigkeit von Nuget nicht nur erkennbar, sondern auch noch in höchstem Maße gefährlich.</p>
+<p>Natürlich ist in einer Paketverwaltung auch das erkennen und auflösen von Abhängigkeiten eine wichtige Funktion. Ganz so einfach ist es im Alltag des Software-Entwicklers großer Anwendungen jedoch nicht, Abhängigkeiten zu eigenen und anderen Softwarebestandteilen zu verwalten.</p>
+<p>Die offensichtliche Konzeptarmut von Nuget offenbart sich schon bei den einfachsten alltäglichen Überlegungen. Es ist kaum unüblich, dass in größeren Projekten eigene Bibliotheken für bestimmte Grundfunktionen oder spezielle Anwendungsteile geschrieben werden. Sei es nun eine gemeinsame Geschäftskomponente oder aber der Treiber für ein besonderes Endgerät. Mit diesem Hintergrundwissen lässt sich für die Beziehung von Paketen die folgende Grafik ohne langes Überlegen schlußfolgern:</p>
+<p><img alt="Package Landscape" src="media/images/package-landscape.png" /></p>
+<p>Alleine diese <em>einfachsten Überlegungen</em> zeigen schon, wie Nuget sich elegant vor konzeptioneller Tragfähigkeit drückt. Während klarerweise alle externen Pakete per Binärreferenz via Nuget eingeholt werden, gibt es am anderen Ende die Projektreferenzen, um interne Bibliotheken zu verwenden. Die Schnittstelle zwischen diesen zwei Bereichen ist - natürlich - das .NET Projekt. Genau an dieser Stelle findet die substanzielle Software-Entwicklung statt. Hier werden auch tagtäglich Struktur-Entscheidungen getroffen: ob man Codeblöcke ausgliedern möchte, andere Bibliotheken verwenden möchte, oder aber neue Anforderungen mit externen Helfern implementieren möchte.</p>
+<p>Nuget aber schert sich mit Verlaub einen Dreck um eben geschilderten Umstand. Es tut gerade so, als gäbe es Projekte nur, um irgendwie Referenzen zu verknüpfen. Eine Simplifizierung, die selbst Hobby-Informatiker schwerlich als vertretbar hinnehmen könnten.</p>
+<p><img alt="Package Transience" src="media/images/package-transience.png" /></p>
+<p>Erkennbar ist dieses Defizit nicht nur an der in Nuget fehlenden Terminologie für o.g. "Schnittstelle" namens <em>Projekt</em>, sondern ganz besonders in den äußerst mageren Versionsverwaltungsfunktionen von Nuget. Wohin man auch nur schaut, weit und breit gibt es keine Möglichkeit, ein Paket als <em>in Entwicklung</em> zu markieren. Wohlgemerkt: in Entwicklung - das hat mit <em>Pre-Releases</em> (wie im Weiteren geschildert) nur annähernd etwas zu tun.</p>
+<p>Es ist schon eine Farce, dass Nuget dem Entwickler zumutet, eine gerade in Entwicklung befindliche Bibliothek zunächst in das Repository zu pushen (egal ob lokal oder anderswo), um es in anderen Anwendungsteilen oder Subsystemen weiter zu verwenden. Doch zu allem Überdruß schafft es Nuget nicht einmal, ein Paket in einem transienten Status zu verwalten. Eigentlich irre, wenn man mal genauer darüber nachdenkt.</p>
+<p>Nun bin ich ja nicht der erste und einzige, dem dieses unfassbare Defizit auffällt. Die aufgeweckten Entwickler des <em>Fubu-Projektes</em> haben das in ihrer Entwicklung auch schnell erkannt. Ihr Lösungsweg war es, Nuget einen Aufsatz namens <a href="http://darthfubumvc.github.io/ripple/">Ripple</a> zu verpassen, um so die gravierendsten Probleme wie Transienz und Projektdatei-Konflikte in den Griff zu bekommen. Auf den ersten Blick erscheint einem dieser Ansatz durchaus plausibel. Ein näherer Blick zeigt jedoch auch bei der Umsetzung von Ripple massive Schwierigkeiten. Für mich haben es die Jungs zwar gut gemeint, aber leider schlecht gemacht.</p>
+<h3 id="inkonsistenzen">Inkonsistenzen</h3>
+<p>Dass Nuget sich mit dem hinzufügen von Referenzen und teilweise drastischen verändern von Projekten sich in das Abhängigkeitsmanagement einmischt, ist nicht von der Hand zu weisen. Das Problem dabei ist meines Erachtens, dass es sich eben einmischt, ohne wirklich zu wissen, worum es da wirklich geht. Eine Abhängigkeit hinzufügen kann jeder; die Abhängigkeiten sinnvoll nach Softwaregröße und Produktstrategie verwalten - das ist schon ein anderes Kaliber.</p>
+<p>Wie leichtfertig und geradezu infantil Nuget an das Abhängigkeitsmanagement herantritt ist einem <em>grundlegenden Anwendungsfall</em> für Abhängigkeitsverwaltung abzulesen: den <em>transitiven</em> Abhängigkeiten und deren Interferenz zueinander. Ein einfaches Beispiel aus dem Alltag mittelgroßer Projekte: Wir haben eine Komponente <em>A</em>, die <em>B</em> und <em>C</em> als Abhängigkeiten birgt. Während <em>B</em> von <em>D</em> und <em>E</em> abhängt, ist <em>C</em> von <em>D</em> und <em>F</em> abhängig. Ein klassischer potenzieller Konflikt zu <em>D</em> entsteht.</p>
+<p><img alt="Transitive Conflict" src="media/images/transitive-conflict.png" /></p>
+<p>Anstatt nun dem Entwickler diese Konfliktsituation vor Augen zu halten, ermächtigt sich Nuget eines naiven Herangehens: einfach die <a href="http://blog.davidebbo.com/2011/01/nuget-versioning-part-2-core-algorithm.html">höchste angewendete Version</a> zu nehmen. An dieser Stelle sollte bitte nicht gelacht werden, denn es ist wirklich so.</p>
+<p>Als "Strategie" lässt sich dieses Verhalten nur mit Wohlwollen bezeichnen. Denn einfach Versionen installieren und schlichtweg <a href="http://blog.davidebbo.com/2011/01/nuget-versioning-part-3-unification-via.html">Binding Redirects einsetzen</a>, um nur eine <em>halbwegs korrekte</em> Version der Abhängigkeit zu verwenden ist nicht gerade vertrauenseinflößend. Das ist ungefähr so, als ob man an der Kasse am Supermarkt nicht mehr den genauen Betrag bezahlen kann, sondern nur noch in "ungefähren" Beträgen wie 1, 5, 10, 50, 100, 200 und 500 Euro.</p>
+<p>Bevor man sich auf solch eine Art von <em>Ungenauigkeit</em> einlässt, sollte man doch wenigstens es <em>versuchen</em>, etwas besser hinzukriegen. Und offen gesagt ist das nicht nur "nicht zuviel verlangt", sondern auch noch ziemlich einfach.</p>
+<p><img alt="Downgrade to align" src="media/images/downgrade-to-align.png" /></p>
+<p>Wenn nun transitive Abhängigkeiten von mehreren direkten Abhängigkeiten im Konflikt zueinander stehen, so lohnt es sich doch zumindest, sich die direkten Abhängigkeiten näher anzuschauen. Obgleich es nicht garantierbar ist, dass andere Versionen der direkten Abhängigkeit eine treffende transitive Version aufweisen, kann es durchaus der Fall sein. Aus meiner Erfahrung kommt es öfter vor als man Anfangs vermuten mag.</p>
+<p><img alt="Upgrade to align" src="media/images/upgrade-to-align.png" /></p>
+<p>Natürlich kann es sein, dass weder ein <em>Downgrade</em> der einen, noch ein <em>Upgrade</em> der anderen Abhängigkeit zu einem sog. <em>Dependency Alignment</em> führt. Nichtsdestotrotz kann man durch solch eine bewußte Mitigationsstrategie den Versionsunterschied zumindest minimieren. Um im Bild der o.g. Supermarktkasse zu bleiben könnte man sagen: es ist besser, 3,- Euro für ein eigentlich 2,50 Euro teures Brot zu bezahlen, statt sich einfach mit 5,- Euro abspeisen zu lassen.</p>
+<h3 id="entwicklungsfluss">Entwicklungsfluss</h3>
+<p>Es gibt noch eine Reihe weiterer Grundelemente einer vertrauensvollen, praktischen Abhängigkeitsverwaltung, die Nuget vermissen lässt: sichere Upgrades, sichere Downgrades, Paketgruppen, Depencency Scopes (Gültigkeitsräume) und vieles mehr.</p>
+<p>Doch an dieser Stelle sollen sogar diese <em>Grundfunktionen</em> vernachlässigt werden. Denn leider gibt es ein noch viel fundamentaleres Problem, welches es zu beachten gilt. Wie Eingangs schon erwähnt ist Nuget mit seiner <em>Anwendungsumgebung</em> nicht sehr vertraut. Es konzentriert sich geschickt auf den Download von Paketen, ohne zu beachten, <em>wieso</em> und <em>wohin</em> es diese Downloads denn durchführt.</p>
+<p>Wichtig in diesem Zusammenhang ist, dass in größeren Projekten durchaus die Paketverwaltung für das eigene System angewendet werden möchte. Zumindest sprächen eine Reihe von Argumenten dafür: starke Systemgrenzen, unabhängige Entwicklungszyklen, strukturietes Portfolio, experimentelle Builds und mehr.</p>
+<p>Der Anwendungsfall Nuget für seine hausinternen Assemblies zu verwenden liegt also nah. Weiterhin ist das .NET Ökosystem dafür bekannt, viele große Projekte im Geschäftsumfeld zu beherbergen und zu fördern. In Summe lässt sich sagen: man könnte mit ein wenig gutem Willen schnell zum Schluß kommen, dass Nuget als Paketverwaltung auch für <a href="http://blog.devopsguys.com/2013/01/30/nuget-as-a-service/">eigene Pakete verwendet werden kann</a>.</p>
+<p>Die Köpfe hinter Nuget scheinen das anders zu sehen. Schließlich geht die Architektur von Nuget wie Eingangs erwähnt in keinster Weise auf diesen Anwendungskontext ein. Während der Entwicklung von Komponenten und Systemen werden Schnittstellen definiert, aufgebrochen oder temporär außer Kraft gesetzt. Experimente werden durchgeführt, neue Modelle eingeführt und Komponenten neu strukturiert. Eine Paketverwaltung für Entwickler sollte das zumindest <em>in Betracht ziehen</em>.</p>
+<p><img alt="Floating Dependencies" src="media/images/floating-dependencies.png" /></p>
+<p>Zum Glück für den solch mitivierten Nuget-Anwender gibt es die sog. <a href="http://nuget.codeplex.com/wikipage?title=Pre-Release%20Packages">Prerelease Packages</a>. Ursprünglich gedacht für Beta-Versionen und Tests, kann man sie - mit ein wenig Konvention versehen - auch für die Auszeichnung <em>instabiler Abhängigkeiten</em> verwenden. Damit kommt man an die innere Feedback-Schleife der Entwicklung wie bei den Projekt-Referenzen noch lange nicht heran, kann aber zumindest schon den Entwicklungsaustausch zwischen Entwicklern bzw. Teams halbwegs operabel abbilden.</p>
+<p><img alt="Tracking Dependencies" src="media/images/tracking-dependencies.png" /></p>
+<p>Wenn es eben genau um diesen schnellen Entwicklungs-Feedback geht, dann wird es mit Nuget ganz, ganz schwer - fast schon unmöglich. Ein unsäglicher Umstand, dem man sich nur noch mit <em>Hacks</em> behelfen kann. Ein solcher Hack ist es, die Binär-Referenzen der Pakete in den Projekten durch das Erweitern des <a href="http://msdn.microsoft.com/en-us/library/6taasyc6%28v=vs.100%29.aspx">Assembly-Suchpfades</a> aufzulösen.</p>
+<p>In der Praxis ermöglicht einem ein solcher "Workaround" zumindest eine lokale Entwicklung der betroffenen Anwendungsteile bzw. Pakete, ohne die Binär-/Paketreferenzen aufschlüsseln zu müssen. Das ist zwar immer noch weit weg von einer adequaten Lösung, hilft aber mit diesem unfassbaren Konzeptfehler umzugehen.</p>
+<h3 id="alternativlosigkeit">Alternativlosigkeit</h3>
+<p>Nuget ist heutzutage aus der .NET-Software-Entwicklung kaum wegzudenken. Zweifellos hat es der gesamten Entwicklergemeinde viele Vorteile beschert über die man sich freuen darf. Für mich persönlich ist besonders die Öffnung des Ökosystems in Richtung Open Source nennenswert.</p>
+<p>Um so beschämender ist es allerdings, dass Nuget durch das Diktat von Microsoft quasi alternativlos ist. Interessante Mitstreiter wie <a href="http://www.openwrap.org/">OpenWrap</a> oder das hauseigene <a href="http://coapp.org/index.html">CoApp</a> wurden niedergeredet und mißachtet. Die Grundidee des Paketverwalters wurde durch opportune Marketing-Features wie der <em>grauenhaften</em> VisualStudio-Integration per <a href="https://docs.nuget.org/docs/start-here/using-the-package-manager-console">Powershell</a> oder des klickfreundlichen <a href="http://visualstudiogallery.msdn.microsoft.com/4ec1526c-4a8c-4a84-b702-b21a8f5293ca">Package Managers</a> gnadenlos unterwandert.</p>
+<p>Das Ergebnis: ein Paketmanager, der sich konzeptlos in die Abhängigkeitsverwaltung einmischt. Ein Paketmanager, der Versionsverwaltung nur rudimentär mit Journalfunktionalität, Konfliktmitigation und Kompatibilitätsgraphen auseinandersetzt. Ein Paketmanager, der Paketverwendung beschleunigt, aber Paketentwicklung bremst.</p>
+<p>Unterm Strich darf sich der engagierte Entwickler damit begnügen, Nuget mit Bedacht und Vorsicht anzuwenden. Wenn möglich nur von der Kommandozeile, um unüberlegte Eingriffe der "Logik" der weiteren Nuget-Helfer zu vermeiden. Doch auch mit dieser eingeschränkten Anwendung bleibt Nuget verbesserungsbedürftig. Teilweise in Nuancen, teilweise grundlegend. Die Verbesserungsversuche der Community mit <a href="http://darthfubumvc.github.io/ripple/">Ripple</a> und <a href="https://github.com/mavnn/NuGetPlus">NugetPlus</a> sind lobenswert, allerdings konzeptionell mindestens genau so fragwürdig wie Nuget selbst.</p>
+<p>Es bleibt der .NET-Entwicklergemeinde nichts anderes übrig, als demütig und treudoof Nuget zu akzeptieren wie es ist. Natürlich ist - verglichen mit den Jahren zuvor - Nuget ein großer Fortschritt. Die Frage ist nur, ob man sich nun damit begnügen möchte. Es ist eine verzwickte Situation mit der Paketverwaltung bei .NET-Projekten. </p>
+<p>Besser gesagt: es ist eine verzerrte Situation mit der Nuget Paketverzerrung.</p>      </div>
+
+      <div id="footer">
+                <div class="about">
+          <hr />
+          <div id="published"><span class='no'>written on 
+</span>24 March 2014</div>
+          <div id="reference"><span class='no'>by Ilker Cetinkaya.
+</span></div>
+        </div>
+        
+                <div class="location">
+          <hr />
+          <div id="breadcrumb">
+                        <a href="/index.html">Main</a>
+                            / <a href="/articles.html">Articles</a>
+                                    </div>
+        </div>
+        
+                <div class="index">
+          <hr />
+          <div id="logo"><span class='no'>Index of ilker.de
+</span></div>
+          <ul id="menu">
+            <li><a href="/articles.html">
+Artikel</a></li>
+            <li><a href="/talks.html">
+Vorträge</a></li>
+            <li><a href="/bio.html">
+Person</a></li>
+          </ul>
+        </div>
+              </div>
+      
+      <div id="meta">
+                        <div id="related">
+          <hr />
+          <h5>
+Aktionen</h5>
+                    <ul>
+                        <li><a href="/feed.xml">
+Abonnieren</a></li>
+                                    <li><a href="/comments.html?ref=/nuget-paketverzerrung.html&title=Nuget Paketverzerrung">
+Kommentieren</a></li>
+                      </ul>
+                  </div>
+                        <div id="website">
+          <hr />
+          <h5>Website
+</h5>
+          <ul>
+            <li><a href="/about.html">
+Kolophon</a></li>
+            <li><a href="/imprint.html">
+Impressum</a></li>
+          </ul>
+        </div>
+                      </div>
+
+      <div id="disclaimer">
+                <hr />
+        <p>(c) Copyright <span class='no'>.
+</span>1998 - 2013<span class='no'>.
+</span> Ilker Cetinkaya.</p>
+              </div>
+    </div>
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
