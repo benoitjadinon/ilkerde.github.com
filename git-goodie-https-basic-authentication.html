@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="git-goodie-https-basic-authentication">
+
+  <body id="git-goodie-https-basic-authentication" class="article">
     <a href="git-goodie-https-basic-authentication"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Git Goodie: HTTPS Basic Authentication</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Let's just be very clear about one thing: If you are using git, it's really the best thing to use it with SSH keys. There's nothing more convenient and secure than SSH keys.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Let's just be very clear about one thing: If you are using git, it's really the best thing to use it with SSH keys. There's nothing more convenient and secure than SSH keys.</p>
 <p>The downside is: reality is different. Reality is that you need to switch back to HTTPS transport for various reasons. Be it firewalls, be it strange git server configurations. Hence, there must be a way to deal with the dilemma of using git with HTTPS and basic authentication, while enjoying the comfort of being asked for your username and password whenever you push/pull/fetch stuff.</p>
 <h3 id="storing-authentication-credentials">Storing authentication credentials</h3>
 <p>Luckily, there's an easy (and even secure) solution for that. Git uses the almighty <a href="http://curl.haxx.se">cURL</a> behind the scenes for HTTPS communication. Having this in mind, it enables us to utilize the cURL configration file, namely <code>.netrc</code> to configure it appropiately for our use case. The only thing you need to do is to provide your credentials in the <code>.netrc</code> configuration file:</p>
@@ -93,72 +106,51 @@
 
 
 <p>Et voilà! Now you are happy to use HTTPS comfortably and secure.</p>
-<p>Oh, by the way: please make sure you (and your trusted git server you are sharing code with) soon switch over to <a href="http://superuser.com/questions/303358/why-is-ssh-key-authentication-better-than-password-authentication">SSH with public-key authentication</a>. You and me both know that this would be the simple and secure way.</p>      </div>
+<p>Oh, by the way: please make sure you (and your trusted git server you are sharing code with) soon switch over to <a href="http://superuser.com/questions/303358/why-is-ssh-key-authentication-better-than-password-authentication">SSH with public-key authentication</a>. You and me both know that this would be the simple and secure way.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>06 November 2013</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>06.11.2013</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/git-goodie-https-basic-authentication.html&title=Git Goodie: HTTPS Basic Authentication">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

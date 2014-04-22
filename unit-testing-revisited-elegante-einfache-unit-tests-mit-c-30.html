@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="unit-testing-revisited-elegante-einfache-unit-tests-mit-c-30">
+
+  <body id="unit-testing-revisited-elegante-einfache-unit-tests-mit-c-30" class="article">
     <a href="unit-testing-revisited-elegante-einfache-unit-tests-mit-c-30"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Elegante &amp; einfache Unit Tests mit C# 3.0</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Nun, Unit Tests sind ja mittlerweile in der professionellen Software-Entwicklung Standard - schon fast ein alter Hut. Gleiches gilt natürlich für Unit Tests in der .NET-Welt, denn Tools wie <a href="http://www.nunit.org">NUnit</a> sind ja seit langer Zeit schon Teil des Standard-Repertoires eines .NET-Entwicklers.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Nun, Unit Tests sind ja mittlerweile in der professionellen Software-Entwicklung Standard - schon fast ein alter Hut. Gleiches gilt natürlich für Unit Tests in der .NET-Welt, denn Tools wie <a href="http://www.nunit.org">NUnit</a> sind ja seit langer Zeit schon Teil des Standard-Repertoires eines .NET-Entwicklers.</p>
 <p>Mit der Veröffentlichung von C# 3.0 und den .NET Framework 3.5 hat sich jedoch einiges geändert und vieles vereinfacht. Davon bleiben auch Unit Tests nicht unbetroffen, denn neue Tools wie <em>Moq</em>, <em>Autofac</em> und <em>xUnit.net</em> bringen frischen Wind.</p>
 <p>In diesem Artikel beschäftige ich mich mit diesen neuen Werkzeugen, deren Verwendung und vor Allem deren Auswirkung auf die Art und Weise, wie man mit .NET und C# effizient Unit Testing betreiben kann.</p>
 <h3 id="am-anfang-war-die-ungewiheit">Am Anfang war die Ungewißheit</h3>
@@ -265,72 +278,51 @@ Ich erwarte, das nach dem Aufruf der <code>ClearChilds()</code>-Methode sich das
 <h3 id="fazit-solide-verbesserung">Fazit: Solide Verbesserung</h3>
 <p>In knappen Worten gesagt ist das Dreigestirn NUnit / Moq / Autofac zu meinem neuen Test-Standard avanciert. Ich werde wohl kaum existierende Tests nochmal umschreiben, mir aber für die zukünftigen Projekte das Trio vormerken.</p>
 <p>Abschließend und der Vollständigkeit halber sei hier noch das neue Test-Framework <a href="http://www.codeplex.com/xunit">xUnit</a> erwähnt. Es ist ein neues, schlankes Test-Framework, welches sicherlich Wert ist, einen Blick darauf zu werfen. Einige Konzepte von xUnit finde ich durchaus richtig und bemerkenswert, wie z.B. das "Eine-Klasse-Pro-Test"-Prinzip oder <code>Assert.Throws</code> statt des von NUnit bekannten <code>[ExpectedException]</code> Attributs.</p>
-<p>Doch vorerst bleibe ich <a href="http://www.nunit.org%20NUnit">NUnit</a> treu - nicht zuletzt weil es ungemein stabil ist, sehr hilfreiche Features anbietet und bei vielen verschiedenen Tools breite Unterstützung findet.</p>      </div>
+<p>Doch vorerst bleibe ich <a href="http://www.nunit.org%20NUnit">NUnit</a> treu - nicht zuletzt weil es ungemein stabil ist, sehr hilfreiche Features anbietet und bei vielen verschiedenen Tools breite Unterstützung findet.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>29 June 2008</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/unit-testing-revisited-elegante-einfache-unit-tests-mit-c-30.html&title=Elegante &amp; einfache Unit Tests mit C# 3.0">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>29.06.2008</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

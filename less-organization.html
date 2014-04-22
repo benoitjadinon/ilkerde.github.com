@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="less-organization">
+
+  <body id="less-organization" class="article">
     <a href="less-organization"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>LESS Organization</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>My blog is based on <a href="http://wordpress.org">Wordpress</a>. Since years now. However, since years, I wasn't really satisfied with even one of the tons of themes you can find for Wordpress. Maybe I'm too picky. Maybe I just wanted to get an opportunity to write a theme by myself. You just look at the (very first alpha) results of my first attempt in writing a Wordpress theme.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>My blog is based on <a href="http://wordpress.org">Wordpress</a>. Since years now. However, since years, I wasn't really satisfied with even one of the tons of themes you can find for Wordpress. Maybe I'm too picky. Maybe I just wanted to get an opportunity to write a theme by myself. You just look at the (very first alpha) results of my first attempt in writing a Wordpress theme.</p>
 <p>But this is just the side-note. Today I just want you to quickly take a glimpse on my <a href="http://lesscss.org/">LESS</a> (Leaner CSS) organization. I've been using LESS now for quite a while and have come to a certain structured organization of my stylesheet. In my opinion, the organization pattern I'd like to share with you is well suited for tiny / small blog or company sites.</p>
 <h3 id="uses-standards-units">Uses, Standards, Units</h3>
 <p>In almost any recent stylesheet I've done you can find the <code>USU</code> include header, which in turn is my core modularization pattern. I'll usually start off with a few "uses". That is, a LESS file where I define resources of any kind. Usually colors, fonts, a resetter and the like.</p>
@@ -78,72 +91,51 @@
 
 
 <p>My experience so far with this little organization pattern was quite good. I quickly find what I'm looking for and I'm able to change / reuse significant visual styles easily. The redundancy level, which is a certain concern of LESS productions, is kept reasonably low.</p>
-<p>What do you think? And, if you are using LESS as well: How do you organize your LESS styles? Looking forward for your thoughts and comments!</p>      </div>
+<p>What do you think? And, if you are using LESS as well: How do you organize your LESS styles? Looking forward for your thoughts and comments!</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>01 December 2010</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>01.12.2010</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/less-organization.html&title=LESS Organization">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

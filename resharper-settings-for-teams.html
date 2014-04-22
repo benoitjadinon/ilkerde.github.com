@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="resharper-settings-for-teams">
+
+  <body id="resharper-settings-for-teams" class="article">
     <a href="resharper-settings-for-teams"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>ReSharper settings for Teams</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Every team has a culture. Every team has agreements, conventions and rules. This is because a team has individuals, but a common goal.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Every team has a culture. Every team has agreements, conventions and rules. This is because a team has individuals, but a common goal.</p>
 <p>To achieve a common sense on a tool level as well, teams use guidelines and settings which are shared within the team. In my current team we do this as well. In particular, we want to share our C# code and formatting settings. Every developer in our team uses <a href="http://www.jetbrains.com/resharper/">ReSharper</a>, which is a great thing. Hence, we thought it would be a good idea to share our ReSharper settings team-wide. Since ReSharper 7+ greatly supports <a href="http://www.jetbrains.com/resharper/webhelp/Reference__Settings_Layers.html">fine-granular settings control</a>, it was obvious for us to go that way.</p>
 <h3 id="settings-for-team-solution-and-individuals">Settings for team, solution and individuals</h3>
 <p>While thinking about how we would want to share our settings, we discovered several pitfalls. While there is a plugin to share settings like <a href="https://github.com/JetBrains/JetBox">JetBox</a>, we felt that this might work for an individual, but is not a feasible approach for teams. Our requirements were as follows:</p>
@@ -61,72 +74,51 @@
 <p>In order to make this approach usable and managable for us, we would need a system to instantly configure and update our <em>"settings references"</em> throughout the complete codebase. </p>
 <p>Enter <a href="https://github.com/CHECK24/c24.TeamSharper">TeamSharper</a>.</p>
 <p>TeamSharper is a small CLI tool to manage and deploy your team settings to all your solutions using the abovementioned <em>relative settings reference</em> technique. You simply configure your layers in a JSON file and fire TeamSharper to distribute the settings. </p>
-<p>We successfully deploy and manage our team settings for quite a large repository containing a large amount of solutions. Honestly, I haven't yet had a more frictionless team settings distribution than with TeamSharper. Our teams could work instantly with the team settings, while still being able to have individual additions for certain solutions.</p>      </div>
+<p>We successfully deploy and manage our team settings for quite a large repository containing a large amount of solutions. Honestly, I haven't yet had a more frictionless team settings distribution than with TeamSharper. Our teams could work instantly with the team settings, while still being able to have individual additions for certain solutions.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>16 November 2013</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>16.11.2013</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/resharper-settings-for-teams.html&title=ReSharper settings for Teams">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

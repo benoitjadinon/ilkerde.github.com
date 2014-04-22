@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="comments-code-smell">
+
+  <body id="comments-code-smell" class="article">
     <a href="comments-code-smell"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Comments != Code Smell</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Erst kürzlich machte mich ein Kollege von mir per Email auf einen Post von Neal Ford aufmerksam. Neal bahauptet und begründet das <a href="http://memeagora.blogspot.com/2008/11/comments-code-smell.html">Kommentare angeblich ein Code Smell</a> seien. Dieser Aussage stelle ich mich strikt dagegen und behaupte, das <strong>Kommentare im Code im Allgemeinen kein Code Smell</strong> sind.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Erst kürzlich machte mich ein Kollege von mir per Email auf einen Post von Neal Ford aufmerksam. Neal bahauptet und begründet das <a href="http://memeagora.blogspot.com/2008/11/comments-code-smell.html">Kommentare angeblich ein Code Smell</a> seien. Dieser Aussage stelle ich mich strikt dagegen und behaupte, das <strong>Kommentare im Code im Allgemeinen kein Code Smell</strong> sind.</p>
 <h3 id="sind-inline-kommentare-schlecht">Sind Inline-Kommentare schlecht ?</h3>
 <p>Neal behauptet, Kommentare wären ein Bruch des <a href="http://de.wikipedia.org/wiki/DRY">DRY-Prinzips</a>, denn schließlich hätte man das essentielle ja schon im Code. Diesen nochmals zu kommentieren wäre eine Wiederholung dessen, was man ohnehin schon programmiert hätte.</p>
 <p>Ganz so einfach ist das leider nicht. Es gibt viele Situationen, in denen Kommentare in gut geschriebenem Code hilfreich sind. Die pauschale Aussage, Kommentare würden gegen DRY verstoßen, ist schlichtweg naiv. Wichtig bei Inline-Kommentaren ist es, darüber zu schreiben, wieso man den Code in der gegebenen Form aufgebaut hat. Eine "stupide" Wiederholung der Statements wie z.B.</p>
@@ -106,72 +119,51 @@
 <p>Entscheidend für mich ist der Anfang des Satzes: "When you feel the need to write a comment...". Es geht ihm also nicht darum, Kommentare zu eliminieren oder aber den Sinn von Kommentaren zu hinterfragen, sondern vielmehr um die Tatsache, das man versuchen sollte, den Code so gut wie möglich selbsterklärend zu schreiben. Das dies nicht immer der Fall sein kann oder in manchen Situationen nicht adequat ist, ist für Fowler selbstverständlich. Aus meiner Sicht ist die obige "best practice" eine gute - aber keine schlüssige Argumentation für einen Code Smell.</p>
 <h3 id="kommentare-sind-gut-und-wichtig">Kommentare sind gut und wichtig</h3>
 <p>Aus all den Betrachtungen heraus kann ich für mich nur den Schluß ziehen, das Kommentare gut und wichtig für qualitativ hochwertige und wartbare Software sind. Natürlich sollte - wie bei so vielen Dingen in der Programmierung - auf den richtigen Einsatz und die richtige Dosierung von Kommentaren geachtet werden. Wie auch für den Code selbst gilt für Kommentare, das sie erstellt und gepflegt werden müssen. Manchmal muss man sie auch löschen oder verbessern - genauso wie beim Code selbst. Entscheidend für mich beim Kommentieren ist, das ich es mindestens so durchführe, wie ich es beim ersten Lesen meines eigenen Codes erwarten würde, damit ich den Code schnell und gänzlich verstehe.</p>
-<p>Fazit: <strong>Comments are a good thing</strong> (if you know how to use them).</p>      </div>
+<p>Fazit: <strong>Comments are a good thing</strong> (if you know how to use them).</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>18 November 2008</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/comments-code-smell.html&title=Comments != Code Smell">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>18.11.2008</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

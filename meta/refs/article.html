@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="article">
+
+  <body id="article" class="article">
     <a href="article"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>A reference title is a reference title no matter how long that title is.</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>This is a reference article (or blog post) page. It contains text as well as other media. For reference purposes, this page will contain a variety of text format types and variations, in order to have a good overview on how the real article pages might look like when they are using specific text formatting classes.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>This is a reference article (or blog post) page. It contains text as well as other media. For reference purposes, this page will contain a variety of text format types and variations, in order to have a good overview on how the real article pages might look like when they are using specific text formatting classes.</p>
 <p>Let's just start with two separate paragraphs in order to see how they are visually separated - just by the paragraph spacing itself.</p>
 <h3 id="headings">Headings</h3>
 <p>Beside the page title, the article may contain headings (titles) as well. The headings system support up to 4 levels, ranging from <code>&lt;h3&gt;</code> to <code>&lt;h6&gt;</code>. Above you can see a level 1 heading, which corresponds to the HTML <code>&lt;h3&gt;</code> tag.</p>
@@ -131,72 +144,51 @@ The second, small sized image format is scales to <code>150px</code> in both wid
 <p class="figure">
 <img alt="Large Image" src="/media/images/screen_m.png" />
 Fig 1: This is a screenshot of the <em>dark skin</em> I used to in VS2010 some time ago.</p>
-<p>Now, that's all from the reference side.</p>      </div>
+<p>Now, that's all from the reference side.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>29 July 2012</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>29.07.2012</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/meta/index.html">Meta</a>
-                            / <a href="/meta/refs/index.html">Refs</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/meta/refs/article.html&title=A reference title is a reference title no matter how long that title is.">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

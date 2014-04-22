@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="wozu-unit-tests">
+
+  <body id="wozu-unit-tests" class="article">
     <a href="wozu-unit-tests"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Wozu Unit Tests?</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Die Frage stellen sich einige Entwickler und Manager immer wieder. Nicht nur diejenigen (hoffentlich wenigen), die noch keine Unit Tests schreiben, sondern vielmehr jene, die schon seit längerem Unit Tests einsetzen. Der Hauptgrund dafür ist sicherlich die falsche Anwendung und falsche Erwartungshaltung beim einsetzen von Unit Tests.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Die Frage stellen sich einige Entwickler und Manager immer wieder. Nicht nur diejenigen (hoffentlich wenigen), die noch keine Unit Tests schreiben, sondern vielmehr jene, die schon seit längerem Unit Tests einsetzen. Der Hauptgrund dafür ist sicherlich die falsche Anwendung und falsche Erwartungshaltung beim einsetzen von Unit Tests.</p>
 <p>Steve Sanderson beantwortet diese Fragen in seinem <a href="http://blog.codeville.net/2009/08/24/writing-great-unit-tests-best-and-worst-practises/">Unit Test Best &amp; Worst Practices</a> Artikel äußerst anschaulich. Ich möchte hier dennoch einen kurzen Abriss über die Fragestellung und seine Antworten geben.</p>
 <p>Zunächst einmal sollte die Eingangsfrage geklärt werden: <em>Wozu Unit Tests? Ganz einfach: Um konsequent stabile Software entwickeln zu können</em>. Bei Unit Tests geht's also nicht um Fehlerfindung (jeglicher Art), sondern um eine Entwicklungsmethode, von vornherein Komponenten einer Software funktional korrekt und technisch stabil zu entwickeln. Unit Tests helfen auch deutlich bei der Verwaltung und Veränderung von Komponenten (z.B. durch Extensions oder Refactoring), um Instabilitäten während Refactorings zu erkennen und zu beheben.</p>
 <h3 id="gute-und-schlechte-unit-tests">Gute und schlechte Unit Tests</h3>
@@ -54,72 +67,51 @@
 <h3 id="schmerztherapie-unit-tests">Schmerztherapie Unit Tests</h3>
 <p>Besonders bei existierenden Systemen, bei denen die Weiterentwicklung strategisch wichtig ist und die ökonomische Effizienz gesteigert werden soll, sind echte, gute Unit Tests ein mittelfristig starkes Werkzeug, um das gesamte System effizienter und stabiler zu gestalten. Damit ist nicht nur die Funktionalität (Integrity) oder Defekt-Quote (Defect Rate) gemeint, sondern im Besonderen der Verwaltungsaufwand (Maintenance), die Weiterentwicklungskosten (Features) und die hochgelobte niedrige Reaktionslatenz zum Markt (Time To Market). Manchmal ist es schwer Unit Tests zu schreiben, weil man grundlegende Systemkomponenten anders aufbauen und strukturieren muss, um diese testbar zu machen.</p>
 <p>Manchmal ist es schwer, Tests für Dinge zu schreiben, deren Implementierung nicht bekannt ist. Manchmal ist es schwer, die geänderte Grundfunktionalität in dutzenden Tests nochmals zu adaptieren. Doch am Ende wird man belohnt mit schnellerer Feature-Entwicklung und einer besonders vertrauenswürdigen, stabilen Software.</p>
-<p><strong>Unit Testing tut gut, auch wenn es weh tut.</strong></p>      </div>
+<p><strong>Unit Testing tut gut, auch wenn es weh tut.</strong></p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>28 August 2009</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/wozu-unit-tests.html&title=Wozu Unit Tests?">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>28.08.2009</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,91 +31,81 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="fears-in-oo-angst-vor-asymmetrie">
+
+  <body id="fears-in-oo-angst-vor-asymmetrie" class="article">
     <a href="fears-in-oo-angst-vor-asymmetrie"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Fears in OO: Angst vor Asymmetrie</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Ich hatte vor einiger Zeit schon von der <a href="fears-in-oo-angst-vor-logik.html">Angst vor Logik</a> erzählt. Das ist aber bei Weitem nicht das einzige, wovor einige sich in der OO-Programmierung und im objekt-orientierten Design fürchten. Ein weiteres, vor Allem bei größeren Anwendungen auftretendes Phänomen ist die Angst vor Asymmetrie - oder auch anders ausgedrückt das quasi bedingungslose Streben nach Symmetrie.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Ich hatte vor einiger Zeit schon von der <a href="fears-in-oo-angst-vor-logik.html">Angst vor Logik</a> erzählt. Das ist aber bei Weitem nicht das einzige, wovor einige sich in der OO-Programmierung und im objekt-orientierten Design fürchten. Ein weiteres, vor Allem bei größeren Anwendungen auftretendes Phänomen ist die Angst vor Asymmetrie - oder auch anders ausgedrückt das quasi bedingungslose Streben nach Symmetrie.</p>
 <p>Symmetrie im Sinne von objekt-orientiertem Design kann in vielfältiger Weise auftreten. Ein prominentes Beispiel ist die Symmetrie über Schichten hinweg. Da beginnt man trivial mit einem <code>UserAccountDTO</code> und einem <code>UserAccountDAO</code>, bewegt sich dann auf den Business-Layer und erstellt eine <code>UserAccount</code>-Klasse um schlußendlich auf der Präsentationsschicht ein <code>UserAccountController</code> und <code>UserAccountView</code> zu erstellen. Diese Verfahrensweise "fördert" den "Symmetrie-Effekt", ist aber nicht die einzige Ursache für Design-Symmetrien. Wie dem auch sei, im Ergebnis hat man ein geradezu perfekt symmetrisches Design des UserAccounts über alle Ebenen hinweg geschaffen (Anmerkung: Bei diesem Beispiel der "Layer-Symmetrie" spricht man auch öfter von <em>linearem Design</em>).</p>
 <p>Auf den ersten Blick ist an so einer Symmetrie ja auch nicht viel auszusetzen: Alles ist ordentlich strukturiert, man findet sich zurecht und kann, mit Unterstützung der Symmetrie, schnell Abhängigkeiten des Systems oder von einzelnen Klassen finden. Dies ist augenscheinlich bei größeren Anwendungen ein Vorteil, denn ähnliche Strukturen und Verfahrensweisen erleichtern nunmal das Verständnis und die Wartung von großen Codeständen (Stichwort: <em>Convention over Configuration</em>).</p>
 <p>Jedoch ist Design-Symmetrie ein zweischneidiges und besonders scharfes Schwert. Es gibt einige Entwickler und sogar Architekten, die solche Symmetrien bedingungslos fordern und auf Teufel komm' raus einzuhalten versuchen. Manche bewußt, manche sogar unbewußt, weil es "woanders ja auch so gemacht ist" oder "schnell von der Hand" geht.</p>
 <p>Genau dort setzt sie ein, die Angst vor Asymmetrie. Denn es ist durchaus denkbar und überdies sinnvoll, sich für jedes Geschäftsobjekt oder -szenario Gedanken darüber zu machen, wie man es konzipiert. Dieser Entwurf kann und soll auch hinterfragen dürfen, ob vorhandene infrastrukturelle Systeme oder Konventionen dem gegebenen aktuellen Problem genügen oder nicht. Im Klartext: Konzeptionelle Symmetrie ist kein Zwang, sondern eine vorteilhafte Erscheinung, die aber im Allgemeinen bei Weitem nicht das Gewicht einer funktionalen Anforderung hat.</p>
 <p>Um beim obigen Beispiel zu bleiben: Wäre ein "UserAccount" physisch auf der Datenbank auf mehrere Tabellen verteilt (z.B. Accounts, Users, UserSettings) und wäre demnächst z.B. eine User-Setting-Verwaltung angedacht, so wäre es sicherlich erwägenswert, statt mit einem JOIN über diese Tabellen einen <code>UserAccountDAO</code> zu erzwingen einfach drei DTO's und DAO's zu erstellen, die dann vom Businessobjekt (dem <code>UserAccount</code>) verwendet werden. Natürlich hängt so eine Entscheidung stark vom Kontext und den Anforderungen ab, aber ich hoffe, ich konnte mit dem Beispiel den Kerngedanken von "Symmetrie vs. Asymmetrie" etwas verdeutlichen.</p>
 <p>Ich persönlich empfinde asymmetrische Designs (mit einigen Symmetrien oder Analogien) sogar "schöner", zumal sie ein deutliches Indiz für starke Objektorientierung sind. In asymmetrischen Konzepten ist die <a href="http://de.wikipedia.org/wiki/Koh%C3%A4sion_(Informatik)">Kohäsion</a> zumeist deutlich stärker, die abstrakte Klassifikation der Objekte ist klar und die <a href="http://de.wikipedia.org/wiki/Mehrstufige_Vererbung">Vererbungshierarchien</a> sind zuweilen kürzer. Im Endeffekt sind in meinen Augen solche asymmetrischen Muster in Software-Designs ein erster rudimentärer Ansatz hin zur Adaption von <a href="http://de.wikipedia.org/wiki/Permakultur">permakulturellem Denken</a> in die Konzeption von Softwarearchitekturen und -systemen.</p>
-<p>Mein Fazit: <strong>Keine Angst vor Asymmetrie</strong> in der Objekt-Orientierung! Auch asymmetrische Strukturen können schön und vor Allem nachhaltig effizient sein.</p>      </div>
+<p>Mein Fazit: <strong>Keine Angst vor Asymmetrie</strong> in der Objekt-Orientierung! Auch asymmetrische Strukturen können schön und vor Allem nachhaltig effizient sein.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>10 September 2008</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/fears-in-oo-angst-vor-asymmetrie.html&title=Fears in OO: Angst vor Asymmetrie">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>10.09.2008</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

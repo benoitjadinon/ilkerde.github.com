@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="vita">
+
+  <body id="vita" class="vita">
     <a href="vita"></a>
-    <div id="page" class="vita-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Vita</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="vita">
-        <p><img alt="Portrait" id="portrait" src="/media/images/portrait-145.jpg" /></p>
+    <div id="body" class="vita">
+      <div class="page">
+        <div id="content">
+          <p><img alt="Portrait" id="portrait" src="/media/images/portrait-145.jpg" /></p>
 <h4 id="ilker-cetinkaya">Ilker Cetinkaya</h4>
 <blockquote>
 <p id="tags">Agil, Aktiv, Anders.</p>
@@ -163,17 +176,18 @@ Betreiber eines Blogs mit Fokus auf Agile Software Entwicklung.</p>
 <h5 id="interessen">Interessen</h5>
 <p>Familie, Kulturen, Modernes Management, Italienische Opern, Jogging, Squash, Kung Fu, Systemtheorie, Moderne Software-Technik, User Interface Design, Mathematik, Innovationen, Internationale Küche, BMW, Computer Animation, Software Art.</p>
 <hr />
-<p id="workwithyou">I'd love to work with you.</p>      </div>
+<p id="workwithyou">I'd love to work with you.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
+    <div id="footer">
+      <div class=page">
         <div class="about">
   <hr />
   <div id="published"></div>
   <div id="reference"></div>
-</div>
-        <div class="location">
-  <hr />
-  <div id="breadcrumb"></div>
 </div>
         <div class="index">
     <hr />
@@ -184,28 +198,15 @@ Betreiber eines Blogs mit Fokus auf Agile Software Entwicklung.</p>
       <li><a href="#bildung">Bildung</a></li>
     </ul>
   </div>      </div>
-      
-      <div id="meta">
-                <hr />                <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
-Impressum</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
-              </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

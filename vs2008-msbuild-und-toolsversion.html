@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,89 +31,79 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="vs2008-msbuild-und-toolsversion">
+
+  <body id="vs2008-msbuild-und-toolsversion" class="article">
     <a href="vs2008-msbuild-und-toolsversion"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>VS2008, MSBuild und /toolsversion</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <h3 id="oder-wie-automatic-properties-fur-net-20-kompiliert-werden-konnen">Oder: Wie Automatic Properties für .NET 2.0 kompiliert werden können</h3>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <h3 id="oder-wie-automatic-properties-fur-net-20-kompiliert-werden-konnen">Oder: Wie Automatic Properties für .NET 2.0 kompiliert werden können</h3>
 <p>In meinem Beitrag über <a href="automatic-properties-in-net-20-aber.html">Automatic Properties in .NET 2.0</a> beschrieb ich, das standardmäßig VS2008 eine Klasse mit Automatic Properties für das .NET Framework 2.0 kompilieren kann, während MSBuild das von Haus aus nicht tut. Dank des Tipps von <a href="http://www.t-sharp.de/">Tobi</a> denke ich nun die Ursache der Verhaltensunterschiede erkannt zu haben.</p>
 <p>Entscheidend für die Verhaltensänderung ist das <a href="http://msdn.microsoft.com/en-us/library/bb397428.aspx">ToolsVersion-Setting</a> von MSBuild. Es scheint so zu sein, das VS2008 immer die ToolsVersion 3.5 verwendet, unabhängig vom eingestellten Target Framework. D.h. das VS2008 MSBuild mit den Parametern <code>p:/TargetFrameworkVersion=v2.0 /toolsversion=3.5</code> aufruft.</p>
 <p>Im Übrigen wäre dies sogar legitim, denn schließlich steht in der (bei einer durch VS2008 angelegten) .csproj-Datei im <code>&lt;Project&gt;</code> Element das Attribut <code>ToolsVersion="3.5"</code>. Zu Schade aber auch, dass VS2008 die Einstellung in der .csproj-Datei zu ignorieren scheint, denn ändert man z.B. manuell den Wert des ToolsVersion-Attributs auf "2.0", kompiliert VS2008 das Projekt und die Klasse mit den Automatic Properties immer noch einwandfrei.</p>
 <p>Anders bei MSBuild. MSBuild achtet auf die csproj-Einstellung genauso wie auch auf das Überschreiben der Einstellung mit Hilfe des /toolsversion-Switches.</p>
-<p>Fazit: Die Build-Tools von MSBuild sind wohl dafür verantwortlich, das die für das kompilieren von Syntactic Sugar (wie z.B. Automatic Properties) benötigten Komponenten (System.Core.dll) geladen und verwendet werden können. So ist es möglich, mit Hilfe der Tools von .NET 3.5 einen mit "den neuen Features" angereicherten Code für das .NET Framework 2.0 zu kompilieren.</p>      </div>
+<p>Fazit: Die Build-Tools von MSBuild sind wohl dafür verantwortlich, das die für das kompilieren von Syntactic Sugar (wie z.B. Automatic Properties) benötigten Komponenten (System.Core.dll) geladen und verwendet werden können. So ist es möglich, mit Hilfe der Tools von .NET 3.5 einen mit "den neuen Features" angereicherten Code für das .NET Framework 2.0 zu kompilieren.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>01 June 2008</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/vs2008-msbuild-und-toolsversion.html&title=VS2008, MSBuild und /toolsversion">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>01.06.2008</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

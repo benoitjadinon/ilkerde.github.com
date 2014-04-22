@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,8 +19,6 @@
 <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
     <script src="/media/js/app.js"></script>
     
-<script type="text/javascript" src="/media/js/barcmd.js?v3"></script>
-
             <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-32542012-1']);
@@ -31,84 +31,74 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="list">
+
+  <body id="list" class="listing">
     <a href="list"></a>
-    <div id="page" class="listing-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>List of Resources</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="listing">
-                                            <ul class="all">
-</ul>
+    <div id="body" class="listing">
+      <div class="page">
+        <div id="content">
+           
+        </div>
+        <div id="remarks">
+                            </div>
       </div>
+    </div>
 
-      <div id="footer">
+    <div id="footer">
+      <div class=page">
                 <div class="about">
           <hr />
-          <div id="published"><span class='no'>written on 
-</span>01 January 2012</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+          <div class="more">
+                        <h5>Website</h5>
+            <ul>
+              <li><a href="articles.html">Article-Index
+</a></li>
+              <li><a href="feed.xml">Newsfeed
+</a></li>
+              <li><a href="imprint.html">Imprint
+</a></li>
+            </ul>
+          </div>
         </div>
         
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/meta/index.html">Meta</a>
-                            / <a href="/meta/refs/index.html">Refs</a>
-                                    </div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                  </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

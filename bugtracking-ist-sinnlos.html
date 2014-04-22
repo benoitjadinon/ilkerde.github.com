@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="bugtracking-ist-sinnlos">
+
+  <body id="bugtracking-ist-sinnlos" class="article">
     <a href="bugtracking-ist-sinnlos"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Bugtracking ist sinnlos!</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Es ist nun schon einige Zeit vergangen, seit dem ich das letzte Mal über Bugs geschrieben habe. Damals habe ich mich etwas näher mit dem Thema <a href="effektives-und-effizientes-bugreporting.html">Bugreporting</a> auseinandergesetzt. Und nach wie vor bin ich der Meinung, dass das Bugreporting ein wichtiger und wesentlicher Bestandteil des Issue Managements ist. Was das Bugtracking allerdings angeht, so bin ich anderer Meinung.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Es ist nun schon einige Zeit vergangen, seit dem ich das letzte Mal über Bugs geschrieben habe. Damals habe ich mich etwas näher mit dem Thema <a href="effektives-und-effizientes-bugreporting.html">Bugreporting</a> auseinandergesetzt. Und nach wie vor bin ich der Meinung, dass das Bugreporting ein wichtiger und wesentlicher Bestandteil des Issue Managements ist. Was das Bugtracking allerdings angeht, so bin ich anderer Meinung.</p>
 <p>Ich möchte gleich mal eine provokante Aussage in den Raum werfen: Bugtracking für Software-Projekte ist sinnlos. Jedenfalls in den meisten Fällen. Mehr noch, Bugtracking sollte soweit wie nur irgend möglich vermieden werden!</p>
 <p>Was will ich damit sagen? Man betrachte einmal das mittlerweile so "selbstverständliche" Tooling bei Software-Projekten: Man nehme ein <a href="http://en.wikipedia.org/wiki/Revision_control">SCM</a> (z.B. SVN oder git), ein <a href="http://en.wikipedia.org/wiki/Continuous_integration">CI-System</a> (z.B. TeamCity oder CruiseControl) und einen <a href="http://en.wikipedia.org/wiki/Bug_tracking_system">IssueTracker</a> (z.B. Bugzilla oder Trac). Man kann das ganze natürlich auch als Gesamtpaket haben, z.B. mit <a href="http://en.wikipedia.org/wiki/Team_Foundation_Server">TFS</a>. So, damit hat man die Eckpfeiler einer Software-Entwicklungsumgebung parat und kann frisch und fröhlich programmieren. Ich denke allerdings das dieses Toolset nicht ganz so glücklich gewählt ist.</p>
 <h3 id="bugtracking-ist-zeitverschwendung">Bugtracking ist Zeitverschwendung</h3>
@@ -59,72 +72,51 @@
 <h3 id="es-gibt-nur-ein-go-oder-nogo-fur-einen-bugfix">Es gibt nur ein Go oder Nogo für einen Bugfix</h3>
 <p>Ich bin der festen Überzeugung, das diese Verfahrensweise vor Allem dann effizient ist, wenn man in der Software-Entwicklung agile Methoden anwendet. Für mich sind Software Craftsmanship, TDD, XP und all die weiteren modernen Methoden einfach nicht mit dem veralteten Zentralverwaltungs-Muff "Bugtracking" vereinbar. Statt dessen sollte man ein leichtgewichtiges Bugreporting etablieren und die Entscheidung über den Fix oder No-Fix des Bugs schnell herbeiführen. Nur so kann man sich selbst dazu erziehen, von Anfang an in der Software-Entwicklung das Qualitätsbewusstsein zu schärfen und die Qualität konstant adequat hoch zu halten. Denn nur mit dieser "KO-Entscheidung" über den Fix eines Bugs kommt man (leidend, aber relativ schnell) zu der Erkenntnis, dass man wenn man wirklich das Produkt stetig weiterentwickeln möchte auch immer sich zum Ziel setzen muss, ein möglichst fehlerfreies Produkt auszuliefern.</p>
 <p>Die Erkenntnis, Bugs nicht zu verwalten und sofort zu entscheiden, ob es gefixed werden soll oder einfach ignoriert werden soll ist meiner Meinung nach ein wichtiger Bestandteil für qualitative, agile Software-Entwicklungs-Methoden.</p>
-<p>Ergo: <strong>Bugtracking ist sinnlos!</strong></p>      </div>
+<p>Ergo: <strong>Bugtracking ist sinnlos!</strong></p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>20 October 2009</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/bugtracking-ist-sinnlos.html&title=Bugtracking ist sinnlos!">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>20.10.2009</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

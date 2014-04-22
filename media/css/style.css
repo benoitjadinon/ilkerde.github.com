@@ -1,125 +1,3 @@
-/*
-style.less
-==========
-
-Master stylesheet definition file.
-
-This is the master stylesheet which composes all required styles for
-the entire website. Note that it serves as a foundation (read: theme)
-for the website rather than covering all use cases. 
-
-
-
-### Supported Elements ###
-
-The master stylesheet specifically is designed to cover 
-the following presentational elements and use cases:
-
-* Article or Blog Post
-  Displaying articles, including comments, a comment feedback form
-  and topic keywords.
-
-* Articles Listing
-  Displaying a set or articles, topic related or chronographically
-  sorted, with article metadata and one main article.
-
-* Home Page (TODO)
-  The starting index page, displaying almost nothing but the main
-  entry points for the web site as well as contact information.
-  It _always_ presents the main topic in focus as well.
-
-* About Page (TODO)
-
-
-
-### Uncovered Use Cases ###
-
-Apart of the abovementioned page types, the website will certainly
-have other presentational cases as well. As for those, a distinct,
-additional stylesheet file is recommended. Other use cases are:
-
-* Presentation Slides
-* Download Pages
-* Documentation Pages
-* Project Presentation (Portfolio) Pages
-* Project Detail Pages
-
-
-
-### Style Organization ###
-
-This master stylesheet contains three distinct sections:
-- Style assets definition
-- Functional elements styles
-- Global site-wide styles
-
-The site-wide, _global styles_ are organized by position,
-that is header, content, footer, meta and disclaimer. Those global
-styles are defined here in the master stylesheet.
-
-The _functional elements_ are defined in separate files. They
-explicitly only take care of a distinct, isolated functionality
-of the website, i.e. article comments.
-
-The _asset definitions_ are fundamental layout definitions,
-such as fonts, colors, images or general style components (so
-called "mixins"). They can be used by any stylesheet definition.
-Even by additional presentation use cases, such as project pages.
-
-
-
-### Layout Fundamentals ###
-
-By convention, this global stylesheet handles the _default_
-layout case, which is the layout for desktop screens. The website
-might have different layouts for special devices or device categories,
-such as mobile devices, as well. These different layouts _must_ be
-treated _completely different_. That is, there should be only 
-very few dependencies between device-specific layouts.
-
-Currently, the only accepted dependency between device-specific
-layouts is everything defined as layout _asset definition_
-(fonts, colors, etc...). All other style definitions _must be separate_.
-
-As a minimum, the website should support 3 different layouts:
-
-* Desktop Screen (default)
-* Mobile Small Screen (only _rudimentary_, still _a lot of things to do_)
-* Print Layout (TODO)
-
-
-
-#### Desktop Screen Layout ####
-
-The desktop screen layout will have a 16-columns based 960-pixels wide
-grid as layout foundation. The 960gs framework will be used for grid
-layouting.
-
-It will also adhere to the rule of using only 3 different typographic styles.
-Basically, it's only 2 fonts used (title type and text type), but there's
-a third monospaced type for source code as well.
-
-The layout is _required_ to have a light background and black typography.
-As a general layout theme, the site should communicate following values
-primarily:
-
-* Professional Content
-  The layout clearly needs to communicate: "Here's pro content." It should
-  put the content under spotlights. That is, the layout should be light,
-  clean and minimal.
-
-* Thoughtful & Trustful Sources
-  The visitor should put into a context of thoughtfulness. The aura of
-  science, knowledge and serious engineering should be translated within
-  the layout. There should be no distractions from main content presented.
-
-* Modern & Progressive Culture
-  The notion of a modern, tolerant and progressive culture should be
-  communicated in a very strong manner. The main goal here is to give
-  the user a feeling of future-awareness and "early adoptership", yet
-  not without having thought about the implications and consequences.
-
-*/
 /* reset and use 960/16 */
 /* http://meyerweb.com/eric/tools/css/reset/ */
 /* v1.0 | 20080212 */
@@ -586,62 +464,6 @@ table {
 }
 /* assets */
 /*
-### fonts.less
-
-Definition of fonts used throughout the entire website.
-
-By convention, the website layout only uses three types.
-
-- A text type in sans
-
-- A heading type in sans black condensed for
-  - headings
-  - menu
-  - buttons
-  - image captions
-  - form labels
-  - info/metadata
-
-- A mono type for
-  - source code
-  - text input elements
-  - comments
-
-*/
-/*
-### colors.less
-
-Definition of colors used throughout the entire website.
-
-The color system divides into two sections. The first section
-defines the colors itself (similar to a palette definition).
-
-The second section actually semantically defines which color
-is used for whatever component on the website. By convention,
-three color types exist:
-
-- Foreground color, suffixed "_fg"
-  This is the (primary) stroke color, used for text
-
-- Background color, suffixed "_bg"
-  This is the fill color, i.e. used for filled boxes
-
-- Line color, suffixed "_line"
-  The (secondary) hairline stroke color, used for borders
-
-Apart from the color type, colors can be defined
-for several object states as well. The default state
-is the "idle" (or passive) state. It's the only state
-which is not explicitly weaved into the color name.
-In addition to the default state there's:
-
-- over: user focuses object with mouse (mouseover/hover)
-- active: highlighted, active object, important in context
-- inactive: dimmed, inactive object, commonly unusable
-- error: strong highlight, object is errornous
-
-*/
-/*
 The main color set only contains greys, light whites
 and the theme blue color called "ease".
 */
@@ -659,17 +481,6 @@ and the theme blue color called "ease".
 /* > input elements */
 /* > command button */
 /* > border colors */
-/*
-images.less
-===========
-
-Definition of images used throughout the entire website.
-
-The images defined herein are solely used for the purpose of
-the website layout. They have no special relevance for the content
-presented on the website. It mostly contains icons, which
-in fact can have multiple states.
-*/
 /* 
 mixins.less
 ===========
@@ -784,7 +595,7 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_page_list li * {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 .is_page_list li a {
@@ -826,7 +637,7 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_page_list li * {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 .is_page_list li a {
@@ -872,8 +683,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_info_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_info_list li a {
   border-top-left-radius: 2px;
@@ -914,8 +725,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_info_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_info_list li a {
   border-top-left-radius: 2px;
@@ -960,8 +771,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_sub_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_sub_list li a {
   border-top-left-radius: 2px;
@@ -1002,8 +813,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_sub_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_sub_list li a {
   border-top-left-radius: 2px;
@@ -1997,7 +1808,6 @@ h4,
 h5,
 h6 {
   color: #443a3a;
-  background-color: #ffffff;
   padding: 8px 0px 8px 0px;
   font-family: 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
   font-weight: normal;
@@ -2009,7 +1819,6 @@ h4 *,
 h5 *,
 h6 * {
   color: #443a3a;
-  background-color: #ffffff;
 }
 h1 a,
 h2 a,
@@ -2252,8 +2061,8 @@ the "home" page (front cover page)
 #content.home .editorpick li *,
 #content.home .mostwanted li *,
 #content.home .mostrecent li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.home .editorpick li a,
 #content.home .mostwanted li a,
@@ -2308,8 +2117,8 @@ the "home" page (front cover page)
 #content.home .editorpick li *,
 #content.home .mostwanted li *,
 #content.home .mostrecent li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.home .editorpick li a,
 #content.home .mostwanted li a,
@@ -2364,8 +2173,8 @@ the "home" page (front cover page)
 #content.home .editorpick li *,
 #content.home .mostwanted li *,
 #content.home .mostrecent li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.home .editorpick li a,
 #content.home .mostwanted li a,
@@ -2420,8 +2229,8 @@ the "home" page (front cover page)
 #content.home .editorpick li *,
 #content.home .mostwanted li *,
 #content.home .mostrecent li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.home .editorpick li a,
 #content.home .mostwanted li a,
@@ -2477,23 +2286,23 @@ listing.less
 
 styles for page mode 'listing', a topic/timelined list of posts.
 */
-#content.listing {
+.listing #content {
   margin-bottom: 80px;
 }
-#content.listing .all {
+.listing #content .all {
   list-style-type: none;
   list-style-position: inside;
 }
-#content.listing .all li {
+.listing #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.listing .all li * {
-  font-size: 16px;
+.listing #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.listing .all li a {
+.listing #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -2509,33 +2318,33 @@ styles for page mode 'listing', a topic/timelined list of posts.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.listing .all li a:hover {
+.listing #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li a:hover * {
+.listing #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li span {
+.listing #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.listing .all li:last-child {
+.listing #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.listing .all li {
+.listing #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.listing .all li * {
-  font-size: 16px;
+.listing #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.listing .all li a {
+.listing #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -2551,33 +2360,33 @@ styles for page mode 'listing', a topic/timelined list of posts.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.listing .all li a:hover {
+.listing #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li a:hover * {
+.listing #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li span {
+.listing #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.listing .all li:last-child {
+.listing #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.listing .all li {
+.listing #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.listing .all li * {
-  font-size: 16px;
+.listing #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.listing .all li a {
+.listing #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -2593,33 +2402,33 @@ styles for page mode 'listing', a topic/timelined list of posts.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.listing .all li a:hover {
+.listing #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li a:hover * {
+.listing #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li span {
+.listing #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.listing .all li:last-child {
+.listing #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.listing .all li {
+.listing #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.listing .all li * {
-  font-size: 16px;
+.listing #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.listing .all li a {
+.listing #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -2635,25 +2444,235 @@ styles for page mode 'listing', a topic/timelined list of posts.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.listing .all li a:hover {
+.listing #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li a:hover * {
+.listing #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li span {
+.listing #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.listing .all li:last-child {
+.listing #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.listing .all order {
+.listing #content .all order {
   width: 160px;
+}
+.category #content .description {
+  clear: both;
+  margin: 20px 0px;
+}
+.category #content > ul {
+  margin: 0px;
+  padding: 0px;
+  height: 160px;
+  list-style-type: none;
+  list-style-position: inside;
+}
+.category #content > ul h3 {
+  margin: 0px;
+  padding: 0px;
+}
+.category #content > ul p {
+  margin: 0px;
+  padding: 0px;
+}
+.category #content > ul #programmieren {
+  background: url("../images/codereview.jpg") no-repeat 0px -280px;
+}
+.category #content > ul #programmieren .name {
+  background: #336699;
+  background: rgba(51, 102, 153, 0.9);
+}
+.category #content > ul #programmieren .name .count {
+  color: #336699;
+}
+.category #content > ul #methode {
+  background: url("../images/ichinisan.jpg") no-repeat -120px -120px;
+}
+.category #content > ul #methode .name {
+  background: #b862ac;
+  background: rgba(184, 98, 172, 0.9);
+  margin-left: 160px;
+}
+.category #content > ul #methode .name .count {
+  color: #b862ac;
+}
+.category #content > ul #methode .item {
+  width: 300px;
+  min-width: 300px;
+  height: 140px;
+  min-height: 140px;
+}
+.category #content > ul #kultur {
+  background: url("../images/repeat.jpg");
+}
+.category #content > ul #kultur .name {
+  background: #9b050c;
+  background: rgba(155, 5, 12, 0.9);
+  margin-left: 320px;
+}
+.category #content > ul #kultur .name .count {
+  color: #9b050c;
+}
+.category #content > ul #kultur .item {
+  width: 300px;
+  min-width: 300px;
+  height: 140px;
+  min-height: 140px;
+  position: absolute;
+}
+.category #content > ul #notiz {
+  background: url("../images/diversity.jpg") no-repeat -320px -400px;
+}
+.category #content > ul #notiz .name {
+  background: #7a6448;
+  background: rgba(122, 100, 72, 0.9);
+  margin-left: 480px;
+}
+.category #content > ul #notiz .name .count {
+  color: #7a6448;
+}
+.category #content > ul #notiz .item {
+  width: 460px;
+  min-width: 460px;
+  height: 140px;
+  min-height: 140px;
+  position: absolute;
+}
+.category #content > ul #werkzeug {
+  background: url("../images/measures.jpg") no-repeat -80px -230px;
+}
+.category #content > ul #werkzeug .name {
+  background: #f38630;
+  background: rgba(243, 134, 48, 0.9);
+  margin-left: 320px;
+}
+.category #content > ul #werkzeug .name .count {
+  color: #f38630;
+}
+.category #content > ul #werkzeug .item {
+  width: 300px;
+  min-width: 300px;
+  height: 140px;
+  min-height: 140px;
+  position: absolute;
+}
+.category #content > ul #undefekt {
+  background: url("../images/mechanics.jpg") no-repeat 0px -200px;
+}
+.category #content > ul #undefekt .name {
+  background: #7faf1b;
+  background: rgba(127, 175, 27, 0.9);
+  margin-left: 160px;
+}
+.category #content > ul #undefekt .name .count {
+  color: #7faf1b;
+}
+.category #content > ul #undefekt .item {
+  width: 300px;
+  min-width: 300px;
+  height: 140px;
+  min-height: 140px;
+}
+.category #content > ul #nebenbei {
+  background: url("../images/minimalism.jpg") no-repeat 0px -240px;
+}
+.category #content > ul #nebenbei .name {
+  background: #94989c;
+  background: rgba(148, 152, 156, 0.9);
+}
+.category #content > ul #nebenbei .name .count {
+  color: #94989c;
+}
+.category #content > ul > li {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  width: 640px;
+  min-width: 640px;
+  height: 160px;
+  min-height: 160px;
+  margin: 0px 0px 40px 0px;
+  padding: 0px;
+}
+.category #content > ul > li h3 * {
+  color: #f0f0f0;
+}
+.category #content > ul > li .name {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  width: 140px;
+  min-width: 140px;
+  height: 140px;
+  min-height: 140px;
+  float: left;
+  display: block;
+  padding: 10px;
+  word-wrap: break-word;
+  text-align: center;
+  font: 32px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  color: #f0f0f0;
+  text-decoration: none;
+}
+.category #content > ul > li .name .count {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #336699;
+  background-color: #f0f0f0;
+  font-size: 48px;
+}
+.category #content > ul > li .name .docs {
+  display: block;
+  font-size: 16px;
+  text-align: center;
+}
+.category #content > ul > li .item {
+  width: 460px;
+  min-width: 460px;
+  height: 140px;
+  min-height: 140px;
+  list-style-type: none;
+  list-style-position: inside;
+  float: left;
+  display: block;
+  padding: 10px;
+}
+.category #content > ul > li .item li {
+  margin: 0px;
+  padding: 4px 12px;
+  float: left;
+  text-align: left;
+}
+.category #content > ul > li .item li a {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border: 0px;
+  padding: 2px 8px 2px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  background: #f0f0f0;
+  color: #000000;
+}
+.category #content > ul > li .item li a .order {
+  display: none;
 }
 /*
 portfolio.less
@@ -2721,8 +2740,8 @@ portfolio.less
   padding: 4px 0px;
 }
 #content.portfolio .seminars li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.portfolio .seminars li a {
   border-top-left-radius: 2px;
@@ -2763,8 +2782,8 @@ portfolio.less
   padding: 4px 0px;
 }
 #content.portfolio .seminars li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.portfolio .seminars li a {
   border-top-left-radius: 2px;
@@ -2805,8 +2824,8 @@ portfolio.less
   padding: 4px 0px;
 }
 #content.portfolio .seminars li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.portfolio .seminars li a {
   border-top-left-radius: 2px;
@@ -2847,8 +2866,8 @@ portfolio.less
   padding: 4px 0px;
 }
 #content.portfolio .seminars li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.portfolio .seminars li a {
   border-top-left-radius: 2px;
@@ -2900,50 +2919,50 @@ portfolio.less
 bio.less
 ================
 */
-#content.bio .portrait {
+.bio #content .portrait {
   float: left;
   margin-right: 40px;
 }
-#content.bio .name {
+.bio #content .name {
   font-family: 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
   font-size: 24px;
   line-height: 30px;
   display: block;
 }
-#content.bio .tags {
+.bio #content .tags {
   color: #336699;
 }
-#content.bio .areas li {
+.bio #content .areas li {
   font-size: 14px;
   list-style: none;
 }
-#content.bio .areas li:first-child {
+.bio #content .areas li:first-child {
   font-family: 'Source Code Pro', 'Monaco', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace;
   font-weight: bold;
 }
-#content.bio .bio {
+.bio #content .bio {
   clear: both;
   font-size: 14px;
   line-height: 20px;
 }
-#content.bio .journal li {
+.bio #content .journal li {
   list-style: none;
   margin: 10px 0px;
 }
-#content.bio .journal .time {
+.bio #content .journal .time {
   float: left;
   display: block;
   width: 160px;
   font-size: 14px;
 }
-#content.bio .journal .event {
+.bio #content .journal .event {
   float: left;
   width: 460px;
   margin-left: 10px;
   border-left: 2px solid #dddddd;
   padding-left: 8px;
 }
-#content.bio .journal .description {
+.bio #content .journal .description {
   float: left;
   width: 460px;
   font-size: 14px;
@@ -2953,19 +2972,19 @@ bio.less
   padding-left: 8px;
   margin-bottom: 20px;
 }
-#content.bio .profile {
+.bio #content .profile {
   clear: both;
   margin: 10px 0px;
   height: 80px;
   margin-left: 180px;
 }
-#content.bio .profile li {
+.bio #content .profile li {
   list-style: none;
   float: left;
   margin-right: 20px;
   margin-left: 0px;
 }
-#content.bio .profile li a {
+.bio #content .profile li a {
   min-height: 32px;
   height: 32px;
   display: block;
@@ -2975,22 +2994,22 @@ bio.less
   padding-right: 10px;
   width: 80px;
 }
-#content.bio #xing {
+.bio #content #xing {
   background: url("../images/xing_32.png") no-repeat;
 }
-#content.bio #linkedin {
+.bio #content #linkedin {
   background: url("../images/linkedin_32.png") no-repeat;
 }
-#content.bio #twitter {
+.bio #content #twitter {
   background: url("../images/twitter_32.png") no-repeat;
 }
-#content.bio #github {
+.bio #content #github {
   background: url("../images/github_32.png") no-repeat;
 }
-#content.bio #amazon {
+.bio #content #amazon {
   background: url("../images/amazon_32.png") no-repeat;
 }
-#content.bio #gplus {
+.bio #content #gplus {
   background: url("../images/google-plus_32.png") no-repeat;
 }
 /*
@@ -2999,23 +3018,23 @@ talks.less
 
 styles for page mode 'talks', a topic/timelined list of talks.
 */
-#content.talks {
+.talks #content {
   margin-bottom: 80px;
 }
-#content.talks .all {
+.talks #content .all {
   list-style-type: none;
   list-style-position: inside;
 }
-#content.talks .all li {
+.talks #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talks .all li * {
-  font-size: 16px;
+.talks #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.talks .all li a {
+.talks #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -3031,33 +3050,33 @@ styles for page mode 'talks', a topic/timelined list of talks.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.talks .all li a:hover {
+.talks #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li a:hover * {
+.talks #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li span {
+.talks #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talks .all li:last-child {
+.talks #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.talks .all li {
+.talks #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talks .all li * {
-  font-size: 16px;
+.talks #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.talks .all li a {
+.talks #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -3073,33 +3092,33 @@ styles for page mode 'talks', a topic/timelined list of talks.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.talks .all li a:hover {
+.talks #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li a:hover * {
+.talks #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li span {
+.talks #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talks .all li:last-child {
+.talks #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.talks .all li {
+.talks #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talks .all li * {
-  font-size: 16px;
+.talks #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.talks .all li a {
+.talks #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -3115,33 +3134,33 @@ styles for page mode 'talks', a topic/timelined list of talks.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.talks .all li a:hover {
+.talks #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li a:hover * {
+.talks #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li span {
+.talks #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talks .all li:last-child {
+.talks #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.talks .all li {
+.talks #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talks .all li * {
-  font-size: 16px;
+.talks #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.talks .all li a {
+.talks #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -3157,24 +3176,24 @@ styles for page mode 'talks', a topic/timelined list of talks.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.talks .all li a:hover {
+.talks #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li a:hover * {
+.talks #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li span {
+.talks #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talks .all li:last-child {
+.talks #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.talks .all order {
+.talks #content .all order {
   width: 160px;
 }
 /*
@@ -3186,12 +3205,12 @@ styles for page mode 'talksummary', an informational index page for talks.
 .talksummary-page #published {
   display: none;
 }
-#content.talksummary .go {
+.talksummary #content .go {
   float: right;
   margin-left: 8px;
   margin-top: 10px;
 }
-#content.talksummary .go a {
+.talksummary #content .go a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -3205,47 +3224,47 @@ styles for page mode 'talksummary', an informational index page for talks.
   padding: 8px;
   text-align: left;
 }
-#content.talksummary .facts * {
+.talksummary #content .facts * {
   font-size: 14px;
 }
-#content.talksummary .facts td {
+.talksummary #content .facts td {
   width: 100px;
   padding: 2px 0px;
 }
-#content.talksummary .facts th {
+.talksummary #content .facts th {
   text-align: left;
   font-weight: normal;
   border-bottom: 1px solid #c2c3c4;
   padding: 2px 0px;
 }
-#content.talksummary .facts th:first-child {
+.talksummary #content .facts th:first-child {
   padding-left: 10px;
 }
-#content.talksummary .facts th:last-child {
+.talksummary #content .facts th:last-child {
   padding-right: 10px;
 }
-#content.talksummary .facts tr td:first-child {
+.talksummary #content .facts tr td:first-child {
   padding-left: 10px;
 }
-#content.talksummary .facts tr td:last-child {
+.talksummary #content .facts tr td:last-child {
   width: 320px;
   padding-right: 10px;
 }
-#content.talksummary .journal {
+.talksummary #content .journal {
   list-style-type: none;
   list-style-position: inside;
   padding-bottom: 4px;
 }
-#content.talksummary .journal li {
+.talksummary #content .journal li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talksummary .journal li * {
-  font-size: 14px;
-  line-height: 18px;
+.talksummary #content .journal li * {
+  font-size: 16px;
+  line-height: 20px;
 }
-#content.talksummary .journal li a {
+.talksummary #content .journal li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -3261,33 +3280,33 @@ styles for page mode 'talksummary', an informational index page for talks.
   padding-top: 4px;
   padding-bottom: 4px;
 }
-#content.talksummary .journal li a:hover {
+.talksummary #content .journal li a:hover {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li a:hover * {
+.talksummary #content .journal li a:hover * {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li span {
+.talksummary #content .journal li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talksummary .journal li:last-child {
+.talksummary #content .journal li:last-child {
   border-bottom: 0px;
 }
-#content.talksummary .journal li {
+.talksummary #content .journal li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talksummary .journal li * {
-  font-size: 14px;
-  line-height: 18px;
+.talksummary #content .journal li * {
+  font-size: 16px;
+  line-height: 20px;
 }
-#content.talksummary .journal li a {
+.talksummary #content .journal li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -3303,36 +3322,36 @@ styles for page mode 'talksummary', an informational index page for talks.
   padding-top: 4px;
   padding-bottom: 4px;
 }
-#content.talksummary .journal li a:hover {
+.talksummary #content .journal li a:hover {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li a:hover * {
+.talksummary #content .journal li a:hover * {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li span {
+.talksummary #content .journal li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talksummary .journal li:last-child {
+.talksummary #content .journal li:last-child {
   border-bottom: 0px;
 }
-#content.talksummary .journal li a span {
+.talksummary #content .journal li a span {
   color: #443a3a;
 }
-#content.talksummary .journal li {
+.talksummary #content .journal li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talksummary .journal li * {
-  font-size: 14px;
-  line-height: 18px;
+.talksummary #content .journal li * {
+  font-size: 16px;
+  line-height: 20px;
 }
-#content.talksummary .journal li a {
+.talksummary #content .journal li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -3348,33 +3367,33 @@ styles for page mode 'talksummary', an informational index page for talks.
   padding-top: 4px;
   padding-bottom: 4px;
 }
-#content.talksummary .journal li a:hover {
+.talksummary #content .journal li a:hover {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li a:hover * {
+.talksummary #content .journal li a:hover * {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li span {
+.talksummary #content .journal li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talksummary .journal li:last-child {
+.talksummary #content .journal li:last-child {
   border-bottom: 0px;
 }
-#content.talksummary .journal li {
+.talksummary #content .journal li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talksummary .journal li * {
-  font-size: 14px;
-  line-height: 18px;
+.talksummary #content .journal li * {
+  font-size: 16px;
+  line-height: 20px;
 }
-#content.talksummary .journal li a {
+.talksummary #content .journal li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -3390,37 +3409,37 @@ styles for page mode 'talksummary', an informational index page for talks.
   padding-top: 4px;
   padding-bottom: 4px;
 }
-#content.talksummary .journal li a:hover {
+.talksummary #content .journal li a:hover {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li a:hover * {
+.talksummary #content .journal li a:hover * {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li span {
+.talksummary #content .journal li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talksummary .journal li:last-child {
+.talksummary #content .journal li:last-child {
   border-bottom: 0px;
 }
-#content.talksummary .journal li a span {
+.talksummary #content .journal li a span {
   color: #443a3a;
 }
-#content.talksummary .journal .order {
+.talksummary #content .journal .order {
   width: 160px;
 }
-#content.talksummary .journal .location {
+.talksummary #content .journal .location {
   text-align: left;
   width: 160px;
 }
-#content.talksummary img {
+.talksummary #content img {
   margin-bottom: 12px;
 }
-#content.talksummary h5 {
+.talksummary #content h5 {
   clear: both;
 }
 .slide-page #published {
@@ -3729,62 +3748,9 @@ styles for the commandbox functionality (title bar line coupled with keyboard co
   font-weight: normal;
 }
 /* extensions /*
-/*
-### fonts.less
-
-Definition of fonts used throughout the entire website.
-
-By convention, the website layout only uses three types.
-
-- A text type in sans
-
-- A heading type in sans black condensed for
-  - headings
-  - menu
-  - buttons
-  - image captions
-  - form labels
-  - info/metadata
-
-- A mono type for
-  - source code
-  - text input elements
-  - comments
-
-*/
-/*
-### colors.less
-
-Definition of colors used throughout the entire website.
-
-The color system divides into two sections. The first section
-defines the colors itself (similar to a palette definition).
-
-The second section actually semantically defines which color
-is used for whatever component on the website. By convention,
-three color types exist:
-
-- Foreground color, suffixed "_fg"
-  This is the (primary) stroke color, used for text
-
-- Background color, suffixed "_bg"
-  This is the fill color, i.e. used for filled boxes
-
-- Line color, suffixed "_line"
-  The (secondary) hairline stroke color, used for borders
-
-Apart from the color type, colors can be defined
-for several object states as well. The default state
-is the "idle" (or passive) state. It's the only state
-which is not explicitly weaved into the color name.
-In addition to the default state there's:
-
-- over: user focuses object with mouse (mouseover/hover)
-- active: highlighted, active object, important in context
-- inactive: dimmed, inactive object, commonly unusable
-- error: strong highlight, object is errornous
-
-*/
+@type_text:'Source Sans Pro','Helvetica','Ubuntu','Droid Sans','Cantarell','Arial',sans-serif;
+@type_black:'Source Sans Pro','Helvetica','Ubuntu','Droid Sans','Cantarell','Arial',sans-serif;
+@type_mono:'Source Code Pro','Monaco','Ubuntu Mono','Droid Sans Mono','Consolas',monospace;
 /*
 The main color set only contains greys, light whites
 and the theme blue color called "ease".
@@ -3917,7 +3883,7 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_page_list li * {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 .is_page_list li a {
@@ -3959,7 +3925,7 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_page_list li * {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 .is_page_list li a {
@@ -4005,8 +3971,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_info_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_info_list li a {
   border-top-left-radius: 2px;
@@ -4047,8 +4013,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_info_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_info_list li a {
   border-top-left-radius: 2px;
@@ -4093,8 +4059,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_sub_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_sub_list li a {
   border-top-left-radius: 2px;
@@ -4135,8 +4101,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_sub_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_sub_list li a {
   border-top-left-radius: 2px;
@@ -4210,73 +4176,53 @@ Style components used by multiple website elements.
   margin-bottom: 8px;
   border-radius: 2px;
 }
-/* 
-### Global Layout ###
-*/
-#page {
+.page {
   margin: 0 auto;
   width: 960px;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 #header {
-  height: 120px;
-  /*
-  * the 'pin' is the home button of the website.
-  * as home button, it provides always a link to start
-  * as well as context-aware links/info.
-  */
-  /*
-  * the 'bar' is a long title/text line, usually
-  * representing the page/blog/article/project title.
-  * it may be context-aware as well (like pin).
-  */
-
+  height: 100px;
 }
-#header #pin {
+#header .page {
+  height: 100px;
+}
+#header #logo {
+  left: 720px;
   display: inline;
   float: left;
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
-  width: 40px;
+  width: 220px;
+  min-width: 220px;
+  height: 80px;
+  min-height: 80px;
   margin-top: 20px;
+  background: url("../images/ilkerde.png") no-repeat;
 }
-#header #pin a {
-  width: 40px;
-  min-width: 40px;
-  height: 40px;
-  min-height: 40px;
-  width: 60px;
-  min-width: 60px;
-  background: url("../images/pin.png") no-repeat 0px 4px;
-  display: block;
-  position: relative;
-  left: -20px;
-}
-#header #pin a:hover {
-  background: url("../images/pin_active.png") no-repeat 0px 4px;
-}
-#header #pin a * {
+#header #logo * {
   display: none;
 }
-#header #bar {
+#title {
+  height: 60px;
+}
+#title .page {
+  height: 60px;
+}
+#title #bar {
+  padding-left: 60px;
+  padding-right: 240px;
   display: inline;
   float: left;
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
   width: 640px;
-  margin-top: 12px;
-  padding-top: 2px;
-  display: block;
-  height: 42px;
-  z-index: -1;
 }
-#header #bar h2 {
-  padding-top: 6px;
+#title #bar h2 {
+  padding: 10px 0px;
 }
-#content {
+#body #content {
   padding-left: 60px;
   display: inline;
   float: left;
@@ -4284,84 +4230,48 @@ Style components used by multiple website elements.
   margin-left: 10px;
   margin-right: 10px;
   width: 640px;
-  background-color: #ffffff;
+  font: 18px/26px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
 }
-#content h5 {
-  margin-top: 20px;
-}
-#footer {
+#body #remarks {
   display: inline;
   float: left;
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
   width: 220px;
-  height: 150px;
 }
-#footer .about {
-  left: -660px;
-  width: 640px;
-  min-width: 640px;
-  height: 30px;
-  min-height: 30px;
-  color: #c2c3c4;
-  background-color: #ffffff;
-  font: 12px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
-  display: block;
-  position: relative;
-  top: -128px;
-  z-index: -2;
-  text-align: right;
+#footer {
+  height: 100px;
 }
-#footer .location {
-  left: -660px;
-  width: 480px;
-  min-width: 480px;
-  height: 30px;
-  min-height: 30px;
-  color: #c2c3c4;
-  background-color: #ffffff;
-  font: 12px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
-  display: block;
-  top: -158px;
-  position: relative;
-  z-index: -1;
+#footer .page {
+  height: 100px;
 }
-#footer .location * {
-  color: #c2c3c4;
-  background-color: #ffffff;
+#footer #menu {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -480px;
+  height: 40px;
 }
-#footer .location a {
-  text-decoration: none;
+#footer #menu .page {
+  height: 40px;
 }
-#footer .location a:hover {
-  text-decoration: underline;
-}
-#footer .index {
-  clear: both;
-  position: relative;
-  top: -160px;
-}
-#logo {
-  width: 220px;
-  min-width: 220px;
-  height: 66px;
-  min-height: 66px;
-  background: url("../images/ilkerde.png") no-repeat;
-}
-#logo * {
-  display: none;
-}
-#menu {
-  position: relative;
-  top: 40px;
-}
-#menu li {
-  margin-left: 80px;
-  width: 160px;
+#footer #menu ul {
+  padding-left: 60px;
+  padding-right: 300px;
+  display: inline;
   float: left;
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 580px;
+  background: url("../images/1pin.png") no-repeat 0px 20px;
 }
-#menu li a {
+#footer #menu li {
+  float: left;
+  margin-right: 20px;
+}
+#footer #menu li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -4371,288 +4281,98 @@ Style components used by multiple website elements.
   font: 16px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
   padding: 4px 20px 4px 20px;
   display: block;
-  width: 100px;
-  margin-bottom: 8px;
+  margin-top: 20px;
+  width: 80px;
   text-align: center;
   text-decoration: none;
 }
-#menu li a:hover {
+#footer #menu li a:hover {
   color: #f0f0f0;
   background-color: #336699;
   text-decoration: none;
 }
-#meta {
+#footer .about {
   display: inline;
   float: left;
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
   width: 220px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#related,
-#website {
-  margin-left: 80px;
-}
-#related *,
-#website * {
-  font-size: 9pt;
-  color: #94989c;
-}
-#related h5,
-#website h5 {
-  text-align: center;
+  color: #c2c3c4;
+  font: 12px/20px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  display: block;
   text-transform: uppercase;
-  color: #94989c;
-  padding: 0px 10px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #c2c3c4;
-  margin-top: 20px;
 }
-#related ul li a,
-#website ul li a {
+#footer .about * {
+  font: 12px/20px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  color: #c2c3c4;
+}
+#footer .about .more {
+  float: right;
+  width: 140px;
+  text-align: right;
+}
+#footer .about .more h5 {
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 1px 8px;
+  margin-bottom: 4px;
+}
+#footer .about .more ul,
+#footer .about .more p {
+  margin-bottom: 16px;
+}
+#footer .about .more ul > li {
+  margin: 0px 0px 4px;
+}
+#footer .about .more ul > li a {
+  display: block;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
   border: 0px;
   padding: 2px 8px 2px 8px;
-  cursor: pointer;
-  color: #94989c;
-  background-color: #ffffff;
-  display: block;
-  margin: 0px 10px;
-  padding: 0px 10px;
-  text-align: center;
   text-decoration: none;
+  cursor: pointer;
+  color: #c2c3c4;
+  background-color: #ffffff;
+  padding: 1px 8px;
 }
-#related ul li a:hover,
-#website ul li a:hover {
-  color: #443a3a;
+#footer .about .more ul > li a:hover {
+  color: #94989c;
   background-color: #f0f0f0;
 }
-#related table,
-#website table {
-  margin: 0px 10px;
-  width: 120px;
-}
-#related td,
-#website td {
-  width: 60px;
+#footer .about .more ul > li span {
+  padding: 1px 8px;
 }
 #disclaimer {
+  height: 20px;
+}
+#disclaimer .page {
+  height: 20px;
+}
+#disclaimer * {
+  color: #c2c3c4;
+  font: 12px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  line-height: 12px;
+  padding: 0px;
+}
+#disclaimer p {
   padding-left: 60px;
+  padding-right: 60px;
   display: inline;
   float: left;
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
-  width: 880px;
-  font-size: 10px;
-  font-weight: normal;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#disclaimer * {
-  color: #c2c3c4;
-  font-size: 10px;
-  font-weight: normal;
-  line-height: 12px;
-  padding: 0px;
-}
-#disclaimer p {
+  width: 820px;
   text-align: left;
+  margin-bottom: 40px;
 }
 #disclaimer a,
 #disclaimer a:hover,
 #disclaimer a:visited {
   color: #c2c3c4;
   text-decoration: underline;
-}
-#see ul {
-  list-style-type: none;
-  list-style-position: inside;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  color: #443a3a;
-  background-color: #f7f7f7;
-  border: 1px solid #c2c3c4;
-  padding: 4px 8px;
-}
-#see ul li {
-  margin-left: 0px;
-  border-bottom: 1px solid #c2c3c4;
-  padding: 4px 0px;
-}
-#see ul li * {
-  font-size: 14px;
-  line-height: 18px;
-}
-#see ul li a {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  border: 0px;
-  padding: 2px 8px 2px 8px;
-  text-decoration: none;
-  cursor: pointer;
-  color: #443a3a;
-  background-color: transparent;
-  display: block;
-  text-align: left;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-#see ul li a:hover {
-  color: #f7f7f7;
-  background-color: #94989c;
-}
-#see ul li a:hover * {
-  color: #f7f7f7;
-  background-color: #94989c;
-}
-#see ul li span {
-  color: #94989c;
-  background-color: transparent;
-  text-align: right;
-  float: right;
-}
-#see ul li:last-child {
-  border-bottom: 0px;
-}
-#see ul li {
-  margin-left: 0px;
-  border-bottom: 1px solid #c2c3c4;
-  padding: 4px 0px;
-}
-#see ul li * {
-  font-size: 14px;
-  line-height: 18px;
-}
-#see ul li a {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  border: 0px;
-  padding: 2px 8px 2px 8px;
-  text-decoration: none;
-  cursor: pointer;
-  color: #443a3a;
-  background-color: transparent;
-  display: block;
-  text-align: left;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-#see ul li a:hover {
-  color: #f7f7f7;
-  background-color: #94989c;
-}
-#see ul li a:hover * {
-  color: #f7f7f7;
-  background-color: #94989c;
-}
-#see ul li span {
-  color: #94989c;
-  background-color: transparent;
-  text-align: right;
-  float: right;
-}
-#see ul li:last-child {
-  border-bottom: 0px;
-}
-#see ul li a span {
-  color: #443a3a;
-}
-#see ul li {
-  margin-left: 0px;
-  border-bottom: 1px solid #c2c3c4;
-  padding: 4px 0px;
-}
-#see ul li * {
-  font-size: 14px;
-  line-height: 18px;
-}
-#see ul li a {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  border: 0px;
-  padding: 2px 8px 2px 8px;
-  text-decoration: none;
-  cursor: pointer;
-  color: #443a3a;
-  background-color: transparent;
-  display: block;
-  text-align: left;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-#see ul li a:hover {
-  color: #f7f7f7;
-  background-color: #94989c;
-}
-#see ul li a:hover * {
-  color: #f7f7f7;
-  background-color: #94989c;
-}
-#see ul li span {
-  color: #94989c;
-  background-color: transparent;
-  text-align: right;
-  float: right;
-}
-#see ul li:last-child {
-  border-bottom: 0px;
-}
-#see ul li {
-  margin-left: 0px;
-  border-bottom: 1px solid #c2c3c4;
-  padding: 4px 0px;
-}
-#see ul li * {
-  font-size: 14px;
-  line-height: 18px;
-}
-#see ul li a {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  border: 0px;
-  padding: 2px 8px 2px 8px;
-  text-decoration: none;
-  cursor: pointer;
-  color: #443a3a;
-  background-color: transparent;
-  display: block;
-  text-align: left;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-#see ul li a:hover {
-  color: #f7f7f7;
-  background-color: #94989c;
-}
-#see ul li a:hover * {
-  color: #f7f7f7;
-  background-color: #94989c;
-}
-#see ul li span {
-  color: #94989c;
-  background-color: transparent;
-  text-align: right;
-  float: right;
-}
-#see ul li:last-child {
-  border-bottom: 0px;
-}
-#see ul li a span {
-  color: #443a3a;
 }

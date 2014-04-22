@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="automatic-properties-in-net-20-aber">
+
+  <body id="automatic-properties-in-net-20-aber" class="article">
     <a href="automatic-properties-in-net-20-aber"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Automatic Properties in .NET 2.0, aber...</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Mittlerweile kennen ja einige schon die neuen Features von .NET 3.5 / C# 3.0. Einer der hilfreichen neuen Features sind die <a href="http://msdn.microsoft.com/en-us/library/bb384054.aspx">Automatic Properties</a>. Mit ihnen lassen sich schnell einfache "nur" get-set Properties implementieren:</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Mittlerweile kennen ja einige schon die neuen Features von .NET 3.5 / C# 3.0. Einer der hilfreichen neuen Features sind die <a href="http://msdn.microsoft.com/en-us/library/bb384054.aspx">Automatic Properties</a>. Mit ihnen lassen sich schnell einfache "nur" get-set Properties implementieren:</p>
 <div class="codehilite"><pre><span class="k">public</span> <span class="k">class</span> <span class="nc">Parameters</span> <span class="p">{</span>
   <span class="k">public</span> <span class="kt">string</span> <span class="n">Option</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
   <span class="k">public</span> <span class="kt">int</span> <span class="n">Code</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
@@ -57,72 +70,51 @@
 
 
 <p>Nun, das liegt wohl wiederum ein wenig an der Art der Implementierung der Automatic Properties als auch an Visual Studio 2008. Denn eigentlich hat MSBuild vollkommen recht, die Automatic Properties nicht zu übersetzen, denn für einige neue <a href="http://amroamroamro.wordpress.com/2007/06/26/understanding-linq-c-an-article-describing-the-new-language-features-of-linq/#FinalNotes">C# 3.0 Features ist das ExtensionAttribute (System.Runtime.CompilerServices) von System.Core.dll notwendig (.NET 3.5)</a> - so auch für Automatic Properties.</p>
-<p>Trotzdem schafft es VS2008, die Automatic Properties für .NET 2.0 zu kompilieren. Ich kenne die Interna von VS2008 nicht, ich nehme aber mal an das wird wohl daran liegen, das VS2008 die System.Core.dll während des Builds aufruft und refenzieren lässt, obwohl der Target der Assembly auf .NET 2.0 steht.</p>      </div>
+<p>Trotzdem schafft es VS2008, die Automatic Properties für .NET 2.0 zu kompilieren. Ich kenne die Interna von VS2008 nicht, ich nehme aber mal an das wird wohl daran liegen, das VS2008 die System.Core.dll während des Builds aufruft und refenzieren lässt, obwohl der Target der Assembly auf .NET 2.0 steht.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>29 May 2008</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/automatic-properties-in-net-20-aber.html&title=Automatic Properties in .NET 2.0, aber...">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>29.05.2008</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

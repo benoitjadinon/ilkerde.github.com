@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="the-elegant-guard">
+
+  <body id="the-elegant-guard" class="article">
     <a href="the-elegant-guard"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>The Elegant Guard</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>I'm a firm believer and proponent of <a href="/polyglotism.html">Polyglotism</a>. Within the last 2 years, I travelled through various languages like F#, Python and Ruby, to name a few. Nonetheless, I'm still around the C# landscape and happen to find the language as well as parts of the .NET framework yet quite elegant from time to time.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>I'm a firm believer and proponent of <a href="/polyglotism.html">Polyglotism</a>. Within the last 2 years, I travelled through various languages like F#, Python and Ruby, to name a few. Nonetheless, I'm still around the C# landscape and happen to find the language as well as parts of the .NET framework yet quite elegant from time to time.</p>
 <p>Recently, I stumbled upon a code fragment from a smart developer who wrote a class to check preconditions a la <a href="http://research.microsoft.com/en-us/projects/contracts/">Code Contracts</a>. I personally like to guard methods to have them express explicitly the context they operate in. As I saw the code and its usage, I thought to myself: "A quite nice piece of C#". Well, be the judge for yourself:</p>
 <div class="codehilite"><pre><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Guard</span> <span class="p">{</span>
   <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">ArgumentNotNull</span><span class="p">(</span><span class="n">Expression</span><span class="p">&lt;</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;&gt;</span> <span class="n">argumentAccessor</span><span class="p">)</span> <span class="p">{</span>
@@ -108,72 +121,51 @@
 
 
 <p>This isn't that bad, is it? I find this type of guarding quite readable and fluent. Plus, it just finds the parameter name in question all by itself for proper a <code>ArgumentNullException</code> message.</p>
-<p><em>Note</em>: I am <em>well aware</em> of the fact that such an approach can cause (serious) performance issues. Especially when you're using the guarded method in loops or recursion. I'm not telling you that this is <em>the way</em> to do guarding, I'm just telling you that I find it to be an elegant approach.</p>      </div>
+<p><em>Note</em>: I am <em>well aware</em> of the fact that such an approach can cause (serious) performance issues. Especially when you're using the guarded method in loops or recursion. I'm not telling you that this is <em>the way</em> to do guarding, I'm just telling you that I find it to be an elegant approach.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>11 October 2012</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>11.10.2012</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/the-elegant-guard.html&title=The Elegant Guard">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

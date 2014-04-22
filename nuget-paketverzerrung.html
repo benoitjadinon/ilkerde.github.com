@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="nuget-paketverzerrung">
+
+  <body id="nuget-paketverzerrung" class="article">
     <a href="nuget-paketverzerrung"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Nuget Paketverzerrung</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Diesmal soll es um ein technisches Thema aus der .NET-Welt gehen. Ich möchte in diesem kurzen Artikel meine Eindrücke zu <a href="http://www.nuget.org">Nuget</a>, dem "Package Manager for .NET", schildern.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Diesmal soll es um ein technisches Thema aus der .NET-Welt gehen. Ich möchte in diesem kurzen Artikel meine Eindrücke zu <a href="http://www.nuget.org">Nuget</a>, dem "Package Manager for .NET", schildern.</p>
 <p>Zunächst einmal gilt festzuhalten, dass Nuget sehr hilfreich für das gesamte .NET-Ökosystem ist. Es ist eine Anlaufstelle für Libraries, Tools und Produkte rund um die .NET-Software-Entwicklung. Manche gehen sogar so weit und nutzen es als <a href="https://chocolatey.org/">Software-Packaging-System</a>. Doch um diese Spielereien soll es hier nicht gehen. Als .NET-Entwickler möchte ich die Kernfunktionalität von Nuget in den Vordergrund stellen.</p>
 <h3 id="funktionsbereich">Funktionsbereich</h3>
 <p>Der Anwendungsbereich von Nuget ist leider wesentlich breiter als der Funktionsbereich. Auf Grund der gar schauderhaften Integration von Nuget in Visual Studio und der irreführenden Kommunikation des Nuget/Microsoft-Teams zu der Funktionalität, wird Nuget gern als "die Allzweckwaffe für Libraries" betrachtet.</p>
@@ -88,72 +101,51 @@
 <p>Das Ergebnis: ein Paketmanager, der sich konzeptlos in die Abhängigkeitsverwaltung einmischt. Ein Paketmanager, der Versionsverwaltung nur rudimentär mit Journalfunktionalität, Konfliktmitigation und Kompatibilitätsgraphen auseinandersetzt. Ein Paketmanager, der Paketverwendung beschleunigt, aber Paketentwicklung bremst.</p>
 <p>Unterm Strich darf sich der engagierte Entwickler damit begnügen, Nuget mit Bedacht und Vorsicht anzuwenden. Wenn möglich nur von der Kommandozeile, um unüberlegte Eingriffe der "Logik" der weiteren Nuget-Helfer zu vermeiden. Doch auch mit dieser eingeschränkten Anwendung bleibt Nuget verbesserungsbedürftig. Teilweise in Nuancen, teilweise grundlegend. Die Verbesserungsversuche der Community mit <a href="http://darthfubumvc.github.io/ripple/">Ripple</a> und <a href="https://github.com/mavnn/NuGetPlus">NugetPlus</a> sind lobenswert, allerdings konzeptionell mindestens genau so fragwürdig wie Nuget selbst.</p>
 <p>Es bleibt der .NET-Entwicklergemeinde nichts anderes übrig, als demütig und treudoof Nuget zu akzeptieren wie es ist. Natürlich ist - verglichen mit den Jahren zuvor - Nuget ein großer Fortschritt. Die Frage ist nur, ob man sich nun damit begnügen möchte. Es ist eine verzwickte Situation mit der Paketverwaltung bei .NET-Projekten. </p>
-<p>Besser gesagt: es ist eine verzerrte Situation mit der Nuget Paketverzerrung.</p>      </div>
+<p>Besser gesagt: es ist eine verzerrte Situation mit der Nuget Paketverzerrung.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>24 March 2014</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/nuget-paketverzerrung.html&title=Nuget Paketverzerrung">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>24.03.2014</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

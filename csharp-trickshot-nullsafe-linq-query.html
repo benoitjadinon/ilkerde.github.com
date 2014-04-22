@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="csharp-trickshot-nullsafe-linq-query">
+
+  <body id="csharp-trickshot-nullsafe-linq-query" class="article">
     <a href="csharp-trickshot-nullsafe-linq-query"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>C# Trickshot: Nullsafe LINQ Query</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>From time to time I write code in C#. Even more, I read a lot of C# code, too. While reading code, I happen to see nice concepts and - not so nice concepts. I often see code and think to myself "this could've been done more elegant". I'm sure you've had a similar situation as well when you're a developer, tester, architect or hacker.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>From time to time I write code in C#. Even more, I read a lot of C# code, too. While reading code, I happen to see nice concepts and - not so nice concepts. I often see code and think to myself "this could've been done more elegant". I'm sure you've had a similar situation as well when you're a developer, tester, architect or hacker.</p>
 <p>Most recently, I see code similar like the following quite often:</p>
 <div class="codehilite"><pre><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;</span> <span class="n">GetCustomersOfSection</span><span class="p">(</span><span class="n">Filter</span> <span class="n">regionAndNameFilter</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;</span> <span class="n">customersOfSection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;();</span>
@@ -87,72 +100,51 @@
 
 
 <p>Well, looks better, isn't it? I for one think that the code is now much more readable and even has gained preciseness in telling me what it's actually doing. Call it a little improvement. Nonetheless, it's an improvement worth doing it. Catch that low hanging fruit when you happen to stop by to similar situations.</p>
-<p><em>PS: No, I'm not going to tell you now what this little nicety has to do with monads ;-)</em></p>      </div>
+<p><em>PS: No, I'm not going to tell you now what this little nicety has to do with monads ;-)</em></p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>06 March 2012</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>06.03.2012</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/csharp-trickshot-nullsafe-linq-query.html&title=C# Trickshot: Nullsafe LINQ Query">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

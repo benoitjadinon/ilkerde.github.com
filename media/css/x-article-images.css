@@ -1,60 +1,4 @@
 /*
-### fonts.less
-
-Definition of fonts used throughout the entire website.
-
-By convention, the website layout only uses three types.
-
-- A text type in sans
-
-- A heading type in sans black condensed for
-  - headings
-  - menu
-  - buttons
-  - image captions
-  - form labels
-  - info/metadata
-
-- A mono type for
-  - source code
-  - text input elements
-  - comments
-
-*/
-/*
-### colors.less
-
-Definition of colors used throughout the entire website.
-
-The color system divides into two sections. The first section
-defines the colors itself (similar to a palette definition).
-
-The second section actually semantically defines which color
-is used for whatever component on the website. By convention,
-three color types exist:
-
-- Foreground color, suffixed "_fg"
-  This is the (primary) stroke color, used for text
-
-- Background color, suffixed "_bg"
-  This is the fill color, i.e. used for filled boxes
-
-- Line color, suffixed "_line"
-  The (secondary) hairline stroke color, used for borders
-
-Apart from the color type, colors can be defined
-for several object states as well. The default state
-is the "idle" (or passive) state. It's the only state
-which is not explicitly weaved into the color name.
-In addition to the default state there's:
-
-- over: user focuses object with mouse (mouseover/hover)
-- active: highlighted, active object, important in context
-- inactive: dimmed, inactive object, commonly unusable
-- error: strong highlight, object is errornous
-
-*/
-/*
 The main color set only contains greys, light whites
 and the theme blue color called "ease".
 */
@@ -186,7 +130,7 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_page_list li * {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 .is_page_list li a {
@@ -232,8 +176,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_info_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_info_list li a {
   border-top-left-radius: 2px;
@@ -278,8 +222,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_sub_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_sub_list li a {
   border-top-left-radius: 2px;

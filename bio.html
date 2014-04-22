@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="bio">
+
+  <body id="bio" class="bio">
     <a href="bio"></a>
-    <div id="page" class="bio-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Biographie</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="bio">
-        <img src="/media/images/portrait-145.jpg" class="portrait">
+    <div id="body" class="bio">
+      <div class="page">
+        <div id="content">
+          <img src="/media/images/portrait-145.jpg" class="portrait">
 <p class="person"><span class="name">Ilker Cetinkaya</span> <span class="tags">Agil, Aktiv, Anders.</p>
  
 <ul class="areas">
@@ -90,72 +103,50 @@ Ich bin ein erfahrener Unternehmensberater für IT- und Softwareunternehmen. Mei
   <span class="description"><p>Entwicklung und Wartung von branchenspezifischer Backend- und Internet-Portal-Software. Schwerpunkte auf der Entwicklung von hochperformanten Software-Komponenten für Internet- und Buchungsanwendungen. Spezialgebiete: C++, .NET, C#, PHP, JavaScript, Oracle, Linux, MySQL</p></span></li></ul>
 
 <div class="notes">
-</div>      </div>
+</div>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
+    <div id="footer">
+      <div class=page">
                 <div class="about">
           <hr />
-          <div id="published"><span class='no'>written on 
-</span>01 January 2012</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/bio.html&title=Biographie">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+          <div class="more">
+                        <h5>Website</h5>
+            <ul>
+              <li><a href="articles.html">
+Verzeichnis</a></li>
+              <li><a href="feed.xml">
+Abonnement</a></li>
+              <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
+        
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
+        </div>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

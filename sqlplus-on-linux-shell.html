@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,88 +31,78 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="sqlplus-on-linux-shell">
+
+  <body id="sqlplus-on-linux-shell" class="article">
     <a href="sqlplus-on-linux-shell"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>SQLPlus on Linux</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Lately, I had to do some little hacking with Oracle databases again. I'm kind of a fan of the Oracle database philosophy and overall system layout. Despite Forms and Java, of course. But that's a story of its own, actually. Other RDBMS are surely great as well.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Lately, I had to do some little hacking with Oracle databases again. I'm kind of a fan of the Oracle database philosophy and overall system layout. Despite Forms and Java, of course. But that's a story of its own, actually. Other RDBMS are surely great as well.</p>
 <p class="articleimage"></p>
 <p>As it is with everything shining, there's shadow as well. One of the things I'm really sort of <em>irritated</em> every time again and again is the weak onboard toolset. One of the core tools every Oracle developer or DBA is required to deal with certainly is <a href="http://docs.oracle.com/cd/E16655_01/server.121/e18404/toc.htm">SQLPlus</a>. I like using SQLPlus, since it gives me a quick REPL plus some additional script execution features.</p>
 <p>Having this extraordinary importance of SQLPlus in mind, it's sort of ridiculous that SQLPlus does not even support the most simple command line features such as command history, cursor movement or history search. More precisely, SQLPlus doesn't support this for Linux boxes actually. This lack of usability on the CLI sometimes can be a real pain. The reason for this uncomfy behavior in fact is quite simple: SQLPlus wasn't developed with a decent (read: human friendly) character input implementation.</p>
-<p>How lucky we are to have Linux as a platform! Why? Well, because we surely have a program to fix this issue. And indeed there is a magic tool which enables us to use SQLPlus with all the comfort of a standard Bash shell: <a href="http://utopia.knoware.nl/~hlub/uck/rlwrap/">rlwrap</a>. Just install it, type <code>rlwrap sqlplus</code>, and suddenly SQLPlus happens to be user-friendly! Obviously, <em>rlwrap</em> can be used as a wrapper for any CLI program to enrich it with <a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">readline</a> features.</p>      </div>
+<p>How lucky we are to have Linux as a platform! Why? Well, because we surely have a program to fix this issue. And indeed there is a magic tool which enables us to use SQLPlus with all the comfort of a standard Bash shell: <a href="http://utopia.knoware.nl/~hlub/uck/rlwrap/">rlwrap</a>. Just install it, type <code>rlwrap sqlplus</code>, and suddenly SQLPlus happens to be user-friendly! Obviously, <em>rlwrap</em> can be used as a wrapper for any CLI program to enrich it with <a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">readline</a> features.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>19 July 2013</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/sqlplus-on-linux-shell.html&title=SQLPlus on Linux">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>19.07.2013</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

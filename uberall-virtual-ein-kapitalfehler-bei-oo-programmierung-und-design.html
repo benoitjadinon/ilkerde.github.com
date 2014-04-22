@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="uberall-virtual-ein-kapitalfehler-bei-oo-programmierung-und-design">
+
+  <body id="uberall-virtual-ein-kapitalfehler-bei-oo-programmierung-und-design" class="article">
     <a href="uberall-virtual-ein-kapitalfehler-bei-oo-programmierung-und-design"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Überall &#34;virtual&#34;</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <h4 id="ein-kapitalfehler-bei-oo-programmierung-und-design">Ein Kapitalfehler bei OO-Programmierung und Design</h4>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <h4 id="ein-kapitalfehler-bei-oo-programmierung-und-design">Ein Kapitalfehler bei OO-Programmierung und Design</h4>
 <p>Jetzt wird's schwierig. Ich möchte mich heute ein wenig detaillierter mit einem essentiellen Konzept der Objekt-orientierten Programmierung und dessen OO-Design beschäftigen: Dem Einsatz von virtuellen Methoden.</p>
 <p><a href="http://en.wikipedia.org/wiki/Virtual_function">Virtuelle Methoden</a> sind eines der Kernkonzepte in der Objekt-orientierung, um <a href="http://en.wikipedia.org/wiki/Polymorphism_%28computer_science%29">Polymorphie</a> zu ermöglichen. Das interessante an virtuellen Methoden ist ihre grundlegende Charakter-Eigenschaft, eine gewisse Aufruf- und Kontext-Konvention zu definieren, ohne das der Aufrufer der Methode die konkrete Implementierung oder besser das Verhalten der Methode hervorsehen kann.</p>
 <p>Dieses Konzept in der Objektorientierung wurde im Laufe der Zeit stetig erweitert und verfeinert. So sind z.B. die abstrakten Methoden/Klassen sowie Interfaces eine Weiterentwicklung des Polymorphie-Gedankens von virtuellen Methoden. In C++ ist z.B. die Definition einer "puren" virtuellen Klasse (eine Klasse mit ausschließlich pur virtuellen Methoden) vergleichbar mit einem Interface in neueren Sprachen, wie z.B. C# oder Java.</p>
@@ -104,72 +117,51 @@
 <p>There are two schools of thought about virtual methods. The academic school of thought says, "Everything should be virtual, because I might want to override it someday." The pragmatic school of thought, which comes from building real applications that run in the real world, says, "We've got to be real careful about what we make virtual."</p>
 </blockquote>
 <p>Ich persönlich schließe mich der Schule des "Lasst uns virtual nur dann verwenden, wenn es wirklich notwendig ist" an. Es ist vollkommen klar, das eine virtuelle Methode ein wichtiges Werkzeug für gutes OO-Design ist. Das wird alleine schon dadurch deutlich, das sie öfter zum Einsatz kommt, wenn man essentielle Design Patterns wie z.B. <a href="http://en.wikipedia.org/wiki/Template_method_pattern">Template Method</a>, <a href="http://en.wikipedia.org/wiki/Composite_pattern">Composite</a>, <a href="http://en.wikipedia.org/wiki/Decorator_pattern">Decorator</a> oder <a href="http://en.wikipedia.org/wiki/Visitor_pattern">Visitor</a> (um nur einige zu nennen) implementiert.</p>
-<p>Jedoch ist es meiner Meinung nach besonders wichtig zu erkennen, dass man virtuelle Methoden wirklich nur dann einsetzt, wenn es notwendig bzw. sinnvoll ist. Eine pauschale Deklaration einer virtuellen Methode mit der Begründung der Erweiterbarkeit ist unüberlegt und in den meisten Fällen nicht sinnvoll. Folgerichtig ist in meinen Augen jeder Entwickler mit Sicherheit gut beraten, die <a href="http://msdn.microsoft.com/en-us/library/ms229044.aspx">Microsoft Guidelines zum Einsatz virtueller Methoden</a> zu beachten.</p>      </div>
+<p>Jedoch ist es meiner Meinung nach besonders wichtig zu erkennen, dass man virtuelle Methoden wirklich nur dann einsetzt, wenn es notwendig bzw. sinnvoll ist. Eine pauschale Deklaration einer virtuellen Methode mit der Begründung der Erweiterbarkeit ist unüberlegt und in den meisten Fällen nicht sinnvoll. Folgerichtig ist in meinen Augen jeder Entwickler mit Sicherheit gut beraten, die <a href="http://msdn.microsoft.com/en-us/library/ms229044.aspx">Microsoft Guidelines zum Einsatz virtueller Methoden</a> zu beachten.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>22 May 2008</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/uberall-virtual-ein-kapitalfehler-bei-oo-programmierung-und-design.html&title=Überall &#34;virtual&#34;">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>22.05.2008</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

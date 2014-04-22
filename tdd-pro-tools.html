@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="tdd-pro-tools">
+
+  <body id="tdd-pro-tools" class="article">
     <a href="tdd-pro-tools"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>TDD Pro Tools</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Im letzten Coding Dojo ging es um ein wohl eher "normales" Thema zu TDD: Tools.  Die Toolfrage ist ja eine ganz beliebte und oft diskutierte Frage. Im Coding Dojo bei <a href="http://www.it-agile.de/">IT-Agile</a> ging es allerdings etwas spezifischer um "Pro Tools". Also die Werkzeuge, die man als professioneller Entwickler für tägliches und effektives TDD benötigt.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Im letzten Coding Dojo ging es um ein wohl eher "normales" Thema zu TDD: Tools.  Die Toolfrage ist ja eine ganz beliebte und oft diskutierte Frage. Im Coding Dojo bei <a href="http://www.it-agile.de/">IT-Agile</a> ging es allerdings etwas spezifischer um "Pro Tools". Also die Werkzeuge, die man als professioneller Entwickler für tägliches und effektives TDD benötigt.</p>
 <p>Entgegen der nun vielleicht offensichtlich erscheinenden Frage um Frameworks, Testrunner und co. haben wir uns im Dojo auf die "wesentlichen" Dinge konzentriert. Zwar haben wir auch über <a href="http://www.jetbrains.com/resharper/">ReSharper</a>, <a href="https://github.com/machine/machine.specifications">MSpec</a>, <a href="https://github.com/FakeItEasy/FakeItEasy">FakeItEasy</a>, <a href="http://www.ncrunch.net/">NCrunch</a> und <a href="http://nsubstitute.github.io/">NSub</a> geredet, aber wir sind schnell von diesem üblichen Diskussionstrampelpfad wieder runter. Statt dessen wollten wir per Code Kata drei weitere "Werkzeuge" probieren, die uns als essentielles Rüstzeug für TDD erschienen.</p>
 <p>Nach kurzer Diskussion standen Kata, Modus, und die 3 Rundenversuche fest: Wir würden die beliebte <a href="http://codingdojo.org/cgi-bin/wiki.pl?KataFizzBuzz">KataFizzBuzz</a> im Randori mit 4 Teams über 3 Runden a 30 Minuten angehen. Pro Runde galt dabei die Fokussierung an eines der "Pro Tools". Die Runden-Themen waren:</p>
 <ul>
@@ -63,72 +76,51 @@
 <p>Wenn man das - auch ruhig mal in C# oder Java - ausprobiert hat, stellt man schnell fest, das so ein Test-Runner für eine "kleine Session" gar nicht so entscheidend ist. Natürlich ist es aufwendiger - gerade wenn man dann auch noch Mocks selber zusammenschreibt - aber bedeutend "schlechter" wird die TDD-Erfahrung dadurch nicht. Ganz im Gegenteil: man wird oft kreativer und baut sich schnell sehr treffende <code>Should()</code>-Extensions oder <code>Given()</code>-Factories zusammen.</p>
 <h3 id="fazit">Fazit</h3>
 <p>Alles in Allem kann man sagen: Wenn man im Alltag professionell TDD umsetzt, spielt das klassische, technische "Tooling" eine nicht so prominente Rolle wie man es vielleicht vermuten mag. Vielmehr sind es die methodischen Werkzeuge, die die Professionalität in Puncto Qualität und Geschwindigkeit potenziell steigern können. </p>
-<p>Gerade vor diesem Hintergrund ist es richtig und wichtig, immer weiter an den methodischen Elementen des TDD zu arbeiten und zu üben.</p>      </div>
+<p>Gerade vor diesem Hintergrund ist es richtig und wichtig, immer weiter an den methodischen Elementen des TDD zu arbeiten und zu üben.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>06 April 2013</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/tdd-pro-tools.html&title=TDD Pro Tools">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>06.04.2013</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

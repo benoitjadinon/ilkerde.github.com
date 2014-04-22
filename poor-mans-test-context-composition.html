@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="poor-mans-test-context-composition">
+
+  <body id="poor-mans-test-context-composition" class="article">
     <a href="poor-mans-test-context-composition"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Poor Man&#39;s Test Context Composition</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <h3 id="or-mixin-strategies-in-the-fields">Or: Mixin strategies in the fields</h3>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <h3 id="or-mixin-strategies-in-the-fields">Or: Mixin strategies in the fields</h3>
 <p>Before I continue on my little post about Unit Tests and their test context, let me just be one thing very clear: A handful of unit test frameworks out there have dozens of other approaches for complex context setup. The one I'm going to blog about right now is just one out of those. The following context composition method is rare to be found, because it has some obvious downsides. More about the pros and cons later, let's just start.</p>
 <p>With TDD, BDD and Unit Testing in general you always need to set the stage of your test. That is, you need to <em>establish a test context</em>, where you prepare your environment and all involved parties for your system under test. Basically it's the first A (= Arrange) of the <a href="http://c2.com/cgi/wiki?ArrangeActAssert">AAA-Rule</a>. Now that's nothing new.</p>
 <p>In everyday testing, contexts can get fairly complex. Although I personally consider a complex (or large) context to be a smell, it's sometimes unavoidable. One practical application of large and complex contexts is the dissection of a brownfield. Once you're faced with a large context, your test/spec will be bloated by contextual setup. </p>
@@ -240,72 +253,51 @@
 <p>Fine, so we mixed our context, tests are looking good and can be read (and understood) easily. Does this mean that this is the way to do test context composition?</p>
 <p>Straight Answer: <em>No</em>.</p>
 <p>Sometimes, <em>it might be helpful</em>, yes. However, in TDD development it most likely won't be of a great benefit. I always felt a good pay-off when I used this pattern in brown-field safari. For plain development, this slightly sophisticated kind of context establishment felt too heavy for me. Obviously, there's a maintenance and controllability issue with this approach. That said, I haven't seen the usage of mixins in context establishment anywhere else, which in turn is the primary reason I wanted to share this pattern with you. </p>
-<p>Conclusion: Mixins as test context composition strategy can be beneficial, if used wisely and rarely. It can be a good interim stage method to get existing systems under test.</p>      </div>
+<p>Conclusion: Mixins as test context composition strategy can be beneficial, if used wisely and rarely. It can be a good interim stage method to get existing systems under test.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>14 March 2011</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>14.03.2011</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/poor-mans-test-context-composition.html&title=Poor Man&#39;s Test Context Composition">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

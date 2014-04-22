@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="i-mock-you-moq-net-mocking-deluxe">
+
+  <body id="i-mock-you-moq-net-mocking-deluxe" class="article">
     <a href="i-mock-you-moq-net-mocking-deluxe"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>I Mock You! MoQ – .NET Mocking Deluxe</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Es gibt ja schon einige Mocking-Frameworks für .NET, die bekanntesten sind wohl <a href="http://www.ayende.com/projects/rhino-mocks/downloads.aspx">Rhino Mocks</a> und <a href="http://www.nmock.org/">NMock</a>. Aber es gibt auch Neuigkeiten in diesem Bereich.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Es gibt ja schon einige Mocking-Frameworks für .NET, die bekanntesten sind wohl <a href="http://www.ayende.com/projects/rhino-mocks/downloads.aspx">Rhino Mocks</a> und <a href="http://www.nmock.org/">NMock</a>. Aber es gibt auch Neuigkeiten in diesem Bereich.</p>
 <p><strong><a href="http://code.google.com/p/moq/">MoQ</a></strong> <em>(sprich: "Mock-You")</em> ist ein unglaublich einfaches, stabiles Mocking-Framework. Im Gegensatz zu den anderen Libraries ist es von vornherein mit und für die Features von C# 3.0 (.NET 3.5) geschrieben worden. Für die Verhaltens-Aussagen verwendet es die Expressions von Linq. Diese Herangehensweise ist nicht nur mit Lambda-Ausdrücken schön anzuschauen, sondern erleichtert die Mock-Definition ungemein. So fallen z.B. die "lästigen" und unhandlichen Record/Playback-Ausdrücke weg.</p>
 <p>Beispiel gefällig?</p>
 <div class="codehilite"><pre><span class="kt">var</span> <span class="n">mock</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">ILoveThisFramework</span><span class="p">&gt;();</span>
@@ -51,72 +64,51 @@
   <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Someone wanted version {0}!&quot;</span><span class="p">,</span> <span class="n">version</span><span class="p">))</span>
   <span class="p">.</span><span class="n">Returns</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
   <span class="p">.</span><span class="n">AtMostOnce</span><span class="p">();</span>
-</pre></div>      </div>
+</pre></div>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>14 May 2008</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/i-mock-you-moq-net-mocking-deluxe.html&title=I Mock You! MoQ – .NET Mocking Deluxe">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>14.05.2008</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

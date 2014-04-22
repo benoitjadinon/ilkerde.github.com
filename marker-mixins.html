@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="marker-mixins">
+
+  <body id="marker-mixins" class="article">
     <a href="marker-mixins"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Marker Mixins in C#</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>It's been a while since I wrote my last C# code. Frankly, I don't have much time to get into the pleasure of writing code in C#. In last couple of months my main area was Java and Python. I even had the chance to take a glimpse to <a href="http://www.scala-lang.org/">Scala</a>. Despite of that, I currently deal with <a href="http://www.java.com/en/">Java</a> (JavaEE and <a href="http://glassfish.java.net/">Glassfish</a>) and <a href="http://www.python.org/">Python</a> (and <a href="http://www.pygtk.org/">pyGTK</a>) in my main projects.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>It's been a while since I wrote my last C# code. Frankly, I don't have much time to get into the pleasure of writing code in C#. In last couple of months my main area was Java and Python. I even had the chance to take a glimpse to <a href="http://www.scala-lang.org/">Scala</a>. Despite of that, I currently deal with <a href="http://www.java.com/en/">Java</a> (JavaEE and <a href="http://glassfish.java.net/">Glassfish</a>) and <a href="http://www.python.org/">Python</a> (and <a href="http://www.pygtk.org/">pyGTK</a>) in my main projects.</p>
 <p>Enough of that. Let's talk about programming languages. In C#, there's no out of the box support for multiple inheritance. Let's not dig into the details on why that is. With C# 3.0 and the landing of <a href="http://msdn.microsoft.com/en-us/library/vstudio/bb383977.aspx">extension methods</a>, the disadvantages of not having multiple inheritance have been cirumvented in a certain sense.</p>
 <p>With extension methods, one can easily add or overload functionality to existing types. This brings a couple of great advantages, as it equally brings a few challenges as well.</p>
 <p>I've been thinking about <a href="mehrfachvererbung-in-c.html">multiple inheritance in C#</a> and possible <a href="poor-mans-test-context-composition.html">everyday usage of mixins</a> already. I've been using it quite often within last 2 years. </p>
@@ -110,72 +123,51 @@
 <p>Hopefully now the <em>mixin</em> part of the pattern is a little more obvious. The <code>ConsoleBehavior</code> itself is really a <em>marker interface</em> to the extension methods from <code>ConsoleAction</code>. In this case, they selectively change the behavior of <code>WriteLine</code>, while keeping <code>ReadKey</code> intact. </p>
 <p>To me, the benefit actually is twofold: first, the extension methods layer the usage (and the usage <em>change</em>) transparently. They can be tested (even TDD'ed) quite easily. Most of the time, I TDD those extension methods to document the behavioral change I'm going to introduce to the legacy component.</p>
 <p>Second, I'm now able to selectively change the behavior of <code>MainClass</code> easily. I could revert it back to its initial behavior with other extension methods to <code>ConsoleBehavior</code> and linking them from another assembly, for instance. Surprisingly, I use this possibility more often than I ever thought I would use. It's a very powerful thing to change parts of the cross-cutting infrastructure just with a single assembly reference.</p>
-<p>Now, in the end, this <em>marker mixin</em> thing is nothing really special. However, it shows how powerful mixin strategies and extension methods can be in everyday C# programming. I for one solved a couple of challenges with this type of thinking and design. Especially when it comes to legacy code, mixin strategies are a great way to gradually enhance the code using small and approachable steps.</p>      </div>
+<p>Now, in the end, this <em>marker mixin</em> thing is nothing really special. However, it shows how powerful mixin strategies and extension methods can be in everyday C# programming. I for one solved a couple of challenges with this type of thinking and design. Especially when it comes to legacy code, mixin strategies are a great way to gradually enhance the code using small and approachable steps.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>12 March 2013</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>12.03.2013</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/marker-mixins.html&title=Marker Mixins in C#">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

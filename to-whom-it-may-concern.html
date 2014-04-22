@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="to-whom-it-may-concern">
+
+  <body id="to-whom-it-may-concern" class="article">
     <a href="to-whom-it-may-concern"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>To Whom It May Concern ?!?</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Note: <em>Diesen Artikel gibt es auch auf <a href="unit-tests-sind-immer-dabei.html">Deutsch</a></em></p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Note: <em>Diesen Artikel gibt es auch auf <a href="unit-tests-sind-immer-dabei.html">Deutsch</a></em></p>
 <p>It’s been something like a week since Stefan asked a provoking question in his blog (german): „<a href="http://www.lieser-online.de/blog/?p=235">Where to put the Tests?</a>” He wrote that he’s strictly separating tests from their implementation in separate projects. However, motivated by a statement of me, he gave the idea of having tests &amp; implementation in the same project a try. Wow, all code in one assembly. He as well as a punch of commentators on his blog came to the conclusion, that separating tests from implementation using separate projects is better. I argue the converse.</p>
 <p>It’s simply <a href="auf-dem-eisberg.html">old-fashioned style to separate tests &amp; implementation with separate projects</a>. I did separate my tests from implementation code for years. However, about half a year ago, I realized that this separation doesn’t help me much. Instead, it hinders my development process. Since then I keep tests &amp; implementation together in one project. They are located as near to each other as possible. Let’s name this “side-by-side” residency. In this post I want to show and explain the main reasons, consequences and experiences in favor of “side-by-side specifications” or “near specs”.</p>
 <p>Well, first of all, I reduce the practice of „near specs” to unit tests only. Just as in classical sense of TDD. Integration tests and verification-driven tests are located in separate projects (thus being “far specs”), as usual. For me, putting tests and implementation altogether in one project makes sense in test-first approaches. That is, TDD testing or BDD specifications. Ergo: It’s about tests I use to drive my implementation. Tests, which I’m using to design and develop the desired functionality.</p>
@@ -68,72 +81,51 @@
 <h3 id="feels-just-like-it-should">Feels just like it should</h3>
 <p>Let’s face it. Once developing a reasonable time in TDD/BDD style, you clearly realize one thing: Whenever you need to change or extend the system, you have at least two „changepoints“. First, you change tests. Right afterwards, you change your implementation. One single behavior, one single concern. But two perspectives, two edits. That’s the case for „far specs“ (that is, tests located in a separate project) as well as for “near specs” (that is, tests residing in the same project along with the implementation “side-by-side”).</p>
 <p>The difference: With near specs, you change and develop the system faster, &amp; easier. It’s simply more efficient and intuitive. Near specs foster „Completeness of Concern“. This essentially contributes to better readability, maintainability and flexibility of the overall system.</p>
-<p>It’s been more than 3 months now since I started to structure my unit tests strictly side-by-side along to my implementation. For me, this “different” style of code organization is absolutely pleasant and effective. Right now, I can’t think of switching back. In my opinion, putting tests and implementation as near as possible is in favor of the “TDD spirit”. With tests and implementation being at the same place, for me TDD now more and more “<a href="http://www.youtube.com/watch?v=9LCEsRno1cg">feels just like it should</a>” ;-)</p>      </div>
+<p>It’s been more than 3 months now since I started to structure my unit tests strictly side-by-side along to my implementation. For me, this “different” style of code organization is absolutely pleasant and effective. Right now, I can’t think of switching back. In my opinion, putting tests and implementation as near as possible is in favor of the “TDD spirit”. With tests and implementation being at the same place, for me TDD now more and more “<a href="http://www.youtube.com/watch?v=9LCEsRno1cg">feels just like it should</a>” ;-)</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>12 July 2010</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>12.07.2010</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/to-whom-it-may-concern.html&title=To Whom It May Concern ?!?">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

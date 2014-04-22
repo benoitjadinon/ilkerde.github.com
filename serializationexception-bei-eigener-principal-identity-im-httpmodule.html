@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,91 +31,81 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="serializationexception-bei-eigener-principal-identity-im-httpmodule">
+
+  <body id="serializationexception-bei-eigener-principal-identity-im-httpmodule" class="article">
     <a href="serializationexception-bei-eigener-principal-identity-im-httpmodule"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>SerializationException bei eigener Identity im HttpModule</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Letztens habe ich ein eigenes <code>HttpModule</code> geschrieben, in dem ich spezielle (eigens geschriebenene) Principal- und Identity-Instanzen dem <code>HttpContext</code> zuweise. Ich habe mir nichts böses dabei gedacht, der Code war auch ziemlich einfach gehalten. Als ich das HttpModule mit der Webanwendung in Visual Studio gestartet habe, hat's gescheppert:</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Letztens habe ich ein eigenes <code>HttpModule</code> geschrieben, in dem ich spezielle (eigens geschriebenene) Principal- und Identity-Instanzen dem <code>HttpContext</code> zuweise. Ich habe mir nichts böses dabei gedacht, der Code war auch ziemlich einfach gehalten. Als ich das HttpModule mit der Webanwendung in Visual Studio gestartet habe, hat's gescheppert:</p>
 <div class="codehilite"><pre><span class="go">SerializationException: Type is not resolved for member AuthTest.UserPrincipal</span>
 </pre></div>
 
 
 <p>Komisch. Ich hatte alle Objekte <code>[Serializable]</code> markiert - dennoch die Exception. Als ich die Anwendung mit dem Modul auf dem IIS ausgeführt habe, ging alles einwandfrei. Schlußfolgerung: Der Visual Studio Development Server (Cassini) hat wohl Probleme, mit dem mit eigenen Objekten angerereicherten HttpContext umzugehen.</p>
 <p>Ein <a href="http://www.c-designed.com/">Kumpel</a> von mir ging dem Problem auf die Spur und entdeckte schließlich, das <a href="http://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=274696">Cassini tatsächlich einen Bug hat</a> (Cassini fährt u.U. mehrere AppDomains hoch).</p>
-<p>Zum Glück gibt es eine <a href="http://leandrodg.wordpress.com/2007/12/18/cassini-serializationexception-type-is-not-resolved-for-member/">Reihe von Workarounds</a> zu diesem Problem, wovon wohl die einfachste das erben von <code>MarshalByRefObject</code> ist. So, jetzt funktioniert auch das HttpModule in Cassini wieder einwandfrei.</p>      </div>
+<p>Zum Glück gibt es eine <a href="http://leandrodg.wordpress.com/2007/12/18/cassini-serializationexception-type-is-not-resolved-for-member/">Reihe von Workarounds</a> zu diesem Problem, wovon wohl die einfachste das erben von <code>MarshalByRefObject</code> ist. So, jetzt funktioniert auch das HttpModule in Cassini wieder einwandfrei.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>09 June 2008</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/serializationexception-bei-eigener-principal-identity-im-httpmodule.html&title=SerializationException bei eigener Identity im HttpModule">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>09.06.2008</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

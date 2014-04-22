@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="tdd-ist-keine-wissenschaft">
+
+  <body id="tdd-ist-keine-wissenschaft" class="article">
     <a href="tdd-ist-keine-wissenschaft"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>TDD ist keine Wissenschaft!</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>In letzter Zeit wird viel über TDD geredet und diskutiert. Das ist gut, denn offensichtlich gibt es da noch einiges zu besprechen und zu lernen. Ich habe erst kürzlich gelernt, dass es absolut sinnlos ist, bestehende Projekte ohne TDD anzugehen. Auch wenn ich viele Tests im nachhinein schreibe. Ich schreibe sie einfach so wie ich die Anforderungen verstanden habe. Mal nähert sich der Code an die Tests, mal die Tests an den Code. Das schöne daran ist, dass man wesentlich schneller den bestehenden Code versteht und auch deren Schwachstellen identifiziert. Dadurch wird auch die Wartung des Brownfield-Projektes gestärkt. Innerhalb von kurzer Zeit kann ich Aufwände und Problemstellungen gut einschätzen.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>In letzter Zeit wird viel über TDD geredet und diskutiert. Das ist gut, denn offensichtlich gibt es da noch einiges zu besprechen und zu lernen. Ich habe erst kürzlich gelernt, dass es absolut sinnlos ist, bestehende Projekte ohne TDD anzugehen. Auch wenn ich viele Tests im nachhinein schreibe. Ich schreibe sie einfach so wie ich die Anforderungen verstanden habe. Mal nähert sich der Code an die Tests, mal die Tests an den Code. Das schöne daran ist, dass man wesentlich schneller den bestehenden Code versteht und auch deren Schwachstellen identifiziert. Dadurch wird auch die Wartung des Brownfield-Projektes gestärkt. Innerhalb von kurzer Zeit kann ich Aufwände und Problemstellungen gut einschätzen.</p>
 <h3 id="tdd-im-rampenlicht">TDD im Rampenlicht</h3>
 <p>Naja, das nur nebenbei. Mir geht es eigentlich um ein anderes Thema. Mir geht es um etwas Generelles. Als Pete und ich mit den .NET Coding Dojos angefangen haben, gab es positive Resonanz. Es wurden Dojo's veranstaltet und Code Kata's exerziert. Super! Meiner Ansicht nach kam TDD dadurch ein kleines Stück mehr in's Rampenlicht als es schon durch <a href="http://clean-code-developer.de/">Clean Code Developer</a> bereits war. In zahlreichen Posts gab es Diskussionen um die <a href="http://www.des-eisbaeren-blog.de/post/2009/11/01/Wie-viel-Sinn-machen-Unittests.aspx">Sinnhaftigkeit von Unit Tests</a>, die <a href="http://ralfw.blogspot.com/2009/09/code-kata-statt-thai-chi-vor-dem.html">Kata Berichte</a> und grundlegender <a href="http://ralfw.blogspot.com/2009/10/tdd-wofur-oop-2010-endlich-cleannet.html">Erkenntnisse über TDD</a>. Eine besonders positive Sache, denn Weiterentwicklung und Entdeckung sind schöne Dinge.</p>
 <p>Doch eine Sache stört mich. Manchmal stört es mich sogar gewaltig. Dieses Trara und <a href="http://de.wikipedia.org/wiki/Tamtam">Tamtam</a> um TDD und <a href="http://www.des-eisbaeren-blog.de/post/2009/11/07/Auch-Kirchen-haben-Kragsteine.aspx">Beeinflussung des OO-Designs durch Tests</a> und das <a href="http://ralfw.blogspot.com/2009/11/zustand-als-abhangigkeit-ioc-konsequent.html">Entkoppeln von Zustand</a>. Bei dem einen oder anderen Post kann ich mir das Kopfschütteln während des Lesens einfach nicht verkneifen. Die Spitzfindigkeit und unnötige Verkomplizierung einfacher Sachverhalte geht mir zuwider. Für manch einen mag es Anspruch sein, über ein Feuerwerk an <a href="http://de.wikipedia.org/wiki/Sprachfertigkeit">Eloquenz</a> einfachste Dinge mit fesselnden Trapezschwüngen der <a href="http://de.wikipedia.org/wiki/Rhetorik">Rhetorik</a> auf das Hochseil des Softewareentwicklungszirkusses zu katapultieren. Die lufterhitzenden Spots, der nervöse Trommelwirbel, der adrenalisierende Schweiß der Konzentration inklusive. Für manch einen. Für mich jedenfalls nicht.</p>
@@ -57,72 +70,51 @@ Doch man kann es übertreiben. Die ständige, gestelzte und wie ein Ritus sich s
 <p>Fazit: Beim Verständnis und der Anwendung von Test-Driven-Development gilt, obgleich TDD ein bis Dato <a href="http://research.microsoft.com/en-us/projects/esm/nagappan_tdd.pdf">empirisch betrachtetes, jedoch theoretisch nicht ausreichend erforschtes</a> Vorgehensmodell ist, das Prinzip von <a href="http://de.wikipedia.org/wiki/Ockhams_Rasiermesser">Ockhams Rasiermesser</a>. Der praxisorientierte, frequentive Einsatz sowie das Erkennen der Grundtheoreme der TDD-Methodik sind das Fundament für den erfolgreichen Einsatz.</p>
 <p>Und wenn ich das für alle diejenigen, die wie ich auch in der Kommunikation Wert auf Einfachheit legen, mal übersetzen darf:</p>
 <p><strong>TDD ist keine Wissenschaft!</strong></p>
-<p>Man kann viel darüber Lesen. Das ist auch gut. Besser ist es jedoch, <a href="http://blog.thomasbandt.de/39/2291/de/blog/unit-tests-sind-gut.html">TDD zu machen</a>! Nicht viel über "dies und das" nachdenken. Die Devise lautet: "<a href="http://www.quotes.net/quote/9349">Mach es einfach, aber nicht einfacher</a>". Es wird von alleine gut und mit der Zeit sogar besser werden.</p>      </div>
+<p>Man kann viel darüber Lesen. Das ist auch gut. Besser ist es jedoch, <a href="http://blog.thomasbandt.de/39/2291/de/blog/unit-tests-sind-gut.html">TDD zu machen</a>! Nicht viel über "dies und das" nachdenken. Die Devise lautet: "<a href="http://www.quotes.net/quote/9349">Mach es einfach, aber nicht einfacher</a>". Es wird von alleine gut und mit der Zeit sogar besser werden.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>16 November 2009</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/tdd-ist-keine-wissenschaft.html&title=TDD ist keine Wissenschaft!">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>16.11.2009</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

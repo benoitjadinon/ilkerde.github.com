@@ -119,62 +119,6 @@ table {
 }
 /* assets */
 /*
-### fonts.less
-
-Definition of fonts used throughout the entire website.
-
-By convention, the website layout only uses three types.
-
-- A text type in sans
-
-- A heading type in sans black condensed for
-  - headings
-  - menu
-  - buttons
-  - image captions
-  - form labels
-  - info/metadata
-
-- A mono type for
-  - source code
-  - text input elements
-  - comments
-
-*/
-/*
-### colors.less
-
-Definition of colors used throughout the entire website.
-
-The color system divides into two sections. The first section
-defines the colors itself (similar to a palette definition).
-
-The second section actually semantically defines which color
-is used for whatever component on the website. By convention,
-three color types exist:
-
-- Foreground color, suffixed "_fg"
-  This is the (primary) stroke color, used for text
-
-- Background color, suffixed "_bg"
-  This is the fill color, i.e. used for filled boxes
-
-- Line color, suffixed "_line"
-  The (secondary) hairline stroke color, used for borders
-
-Apart from the color type, colors can be defined
-for several object states as well. The default state
-is the "idle" (or passive) state. It's the only state
-which is not explicitly weaved into the color name.
-In addition to the default state there's:
-
-- over: user focuses object with mouse (mouseover/hover)
-- active: highlighted, active object, important in context
-- inactive: dimmed, inactive object, commonly unusable
-- error: strong highlight, object is errornous
-
-*/
-/*
 The main color set only contains greys, light whites
 and the theme blue color called "ease".
 */
@@ -192,17 +136,6 @@ and the theme blue color called "ease".
 /* > input elements */
 /* > command button */
 /* > border colors */
-/*
-images.less
-===========
-
-Definition of images used throughout the entire website.
-
-The images defined herein are solely used for the purpose of
-the website layout. They have no special relevance for the content
-presented on the website. It mostly contains icons, which
-in fact can have multiple states.
-*/
 /* 
 mixins.less
 ===========
@@ -317,7 +250,7 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_page_list li * {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 }
 .is_page_list li a {
@@ -363,8 +296,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_info_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_info_list li a {
   border-top-left-radius: 2px;
@@ -409,8 +342,8 @@ Style components used by multiple website elements.
   padding: 4px 0px;
 }
 .is_sub_list li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 .is_sub_list li a {
   border-top-left-radius: 2px;
@@ -1410,7 +1343,6 @@ h4,
 h5,
 h6 {
   color: #443a3a;
-  background-color: #ffffff;
   padding: 8px 0px 8px 0px;
   font-family: 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
   font-weight: normal;
@@ -1422,7 +1354,6 @@ h4 *,
 h5 *,
 h6 * {
   color: #443a3a;
-  background-color: #ffffff;
 }
 h1 a,
 h2 a,
@@ -1766,8 +1697,8 @@ the "home" page (front cover page)
 #content.home .editorpick li *,
 #content.home .mostwanted li *,
 #content.home .mostrecent li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.home .editorpick li a,
 #content.home .mostwanted li a,
@@ -1848,23 +1779,23 @@ listing.less
 
 styles for page mode 'listing', a topic/timelined list of posts.
 */
-#content.listing {
+.listing #content {
   margin-bottom: 80px;
 }
-#content.listing .all {
+.listing #content .all {
   list-style-type: none;
   list-style-position: inside;
 }
-#content.listing .all li {
+.listing #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.listing .all li * {
-  font-size: 16px;
+.listing #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.listing .all li a {
+.listing #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -1880,27 +1811,27 @@ styles for page mode 'listing', a topic/timelined list of posts.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.listing .all li a:hover {
+.listing #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li a:hover * {
+.listing #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.listing .all li span {
+.listing #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.listing .all li:last-child {
+.listing #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.listing .all order {
+.listing #content .all order {
   width: 160px;
 }
-#content.listing .order {
+.listing #content .order {
   display: none;
 }
 /*
@@ -1969,8 +1900,8 @@ portfolio.less
   padding: 4px 0px;
 }
 #content.portfolio .seminars li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #content.portfolio .seminars li a {
   border-top-left-radius: 2px;
@@ -2022,50 +1953,50 @@ portfolio.less
 bio.less
 ================
 */
-#content.bio .portrait {
+.bio #content .portrait {
   float: left;
   margin-right: 40px;
 }
-#content.bio .name {
+.bio #content .name {
   font-family: 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
   font-size: 24px;
   line-height: 30px;
   display: block;
 }
-#content.bio .tags {
+.bio #content .tags {
   color: #336699;
 }
-#content.bio .areas li {
+.bio #content .areas li {
   font-size: 14px;
   list-style: none;
 }
-#content.bio .areas li:first-child {
+.bio #content .areas li:first-child {
   font-family: 'Source Code Pro', 'Monaco', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace;
   font-weight: bold;
 }
-#content.bio .bio {
+.bio #content .bio {
   clear: both;
   font-size: 14px;
   line-height: 20px;
 }
-#content.bio .journal li {
+.bio #content .journal li {
   list-style: none;
   margin: 10px 0px;
 }
-#content.bio .journal .time {
+.bio #content .journal .time {
   float: left;
   display: block;
   width: 160px;
   font-size: 14px;
 }
-#content.bio .journal .event {
+.bio #content .journal .event {
   float: left;
   width: 460px;
   margin-left: 10px;
   border-left: 2px solid #dddddd;
   padding-left: 8px;
 }
-#content.bio .journal .description {
+.bio #content .journal .description {
   float: left;
   width: 460px;
   font-size: 14px;
@@ -2075,19 +2006,19 @@ bio.less
   padding-left: 8px;
   margin-bottom: 20px;
 }
-#content.bio .profile {
+.bio #content .profile {
   clear: both;
   margin: 10px 0px;
   height: 80px;
   margin-left: 180px;
 }
-#content.bio .profile li {
+.bio #content .profile li {
   list-style: none;
   float: left;
   margin-right: 20px;
   margin-left: 0px;
 }
-#content.bio .profile li a {
+.bio #content .profile li a {
   min-height: 32px;
   height: 32px;
   display: block;
@@ -2097,32 +2028,32 @@ bio.less
   padding-right: 10px;
   width: 80px;
 }
-#content.bio #xing {
+.bio #content #xing {
   background: url("../images/xing_32.png") no-repeat;
 }
-#content.bio #linkedin {
+.bio #content #linkedin {
   background: url("../images/linkedin_32.png") no-repeat;
 }
-#content.bio #twitter {
+.bio #content #twitter {
   background: url("../images/twitter_32.png") no-repeat;
 }
-#content.bio #github {
+.bio #content #github {
   background: url("../images/github_32.png") no-repeat;
 }
-#content.bio #amazon {
+.bio #content #amazon {
   background: url("../images/amazon_32.png") no-repeat;
 }
-#content.bio #gplus {
+.bio #content #gplus {
   background: url("../images/google-plus_32.png") no-repeat;
 }
-#content.bio .journal li {
+.bio #content .journal li {
   clear: both;
 }
-#content.bio .journal .time {
+.bio #content .journal .time {
   width: auto;
   float: left;
 }
-#content.bio .journal .event {
+.bio #content .journal .event {
   width: auto;
   clear: both;
   margin-bottom: 10px;
@@ -2130,22 +2061,22 @@ bio.less
   border-left: 3px solid #dddddd;
   padding-left: 7px;
 }
-#content.bio .journal .description {
+.bio #content .journal .description {
   display: none;
 }
-#content.bio h5 {
+.bio #content h5 {
   clear: both;
   margin-top: 10px;
 }
-#content.bio .profile {
+.bio #content .profile {
   clear: both;
   margin: 10px 0px;
   height: auto;
 }
-#content.bio .profile li {
+.bio #content .profile li {
   margin-bottom: 20px;
 }
-#content.bio .profile li a {
+.bio #content .profile li a {
   width: 60px;
 }
 /*
@@ -2160,23 +2091,23 @@ talks.less
 
 styles for page mode 'talks', a topic/timelined list of talks.
 */
-#content.talks {
+.talks #content {
   margin-bottom: 80px;
 }
-#content.talks .all {
+.talks #content .all {
   list-style-type: none;
   list-style-position: inside;
 }
-#content.talks .all li {
+.talks #content .all li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talks .all li * {
-  font-size: 16px;
+.talks #content .all li * {
+  font-size: 18px;
   line-height: 24px;
 }
-#content.talks .all li a {
+.talks #content .all li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -2192,27 +2123,27 @@ styles for page mode 'talks', a topic/timelined list of talks.
   padding-top: 8px;
   padding-bottom: 8px;
 }
-#content.talks .all li a:hover {
+.talks #content .all li a:hover {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li a:hover * {
+.talks #content .all li a:hover * {
   color: #f7f7f7;
   background-color: #336699;
 }
-#content.talks .all li span {
+.talks #content .all li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talks .all li:last-child {
+.talks #content .all li:last-child {
   border-bottom: 0px;
 }
-#content.talks .all order {
+.talks #content .all order {
   width: 160px;
 }
-#content.talks .order {
+.talks #content .order {
   display: none;
 }
 /*
@@ -2224,12 +2155,12 @@ styles for page mode 'talksummary', an informational index page for talks.
 .talksummary-page #published {
   display: none;
 }
-#content.talksummary .go {
+.talksummary #content .go {
   float: right;
   margin-left: 8px;
   margin-top: 10px;
 }
-#content.talksummary .go a {
+.talksummary #content .go a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -2243,47 +2174,47 @@ styles for page mode 'talksummary', an informational index page for talks.
   padding: 8px;
   text-align: left;
 }
-#content.talksummary .facts * {
+.talksummary #content .facts * {
   font-size: 14px;
 }
-#content.talksummary .facts td {
+.talksummary #content .facts td {
   width: 100px;
   padding: 2px 0px;
 }
-#content.talksummary .facts th {
+.talksummary #content .facts th {
   text-align: left;
   font-weight: normal;
   border-bottom: 1px solid #c2c3c4;
   padding: 2px 0px;
 }
-#content.talksummary .facts th:first-child {
+.talksummary #content .facts th:first-child {
   padding-left: 10px;
 }
-#content.talksummary .facts th:last-child {
+.talksummary #content .facts th:last-child {
   padding-right: 10px;
 }
-#content.talksummary .facts tr td:first-child {
+.talksummary #content .facts tr td:first-child {
   padding-left: 10px;
 }
-#content.talksummary .facts tr td:last-child {
+.talksummary #content .facts tr td:last-child {
   width: 320px;
   padding-right: 10px;
 }
-#content.talksummary .journal {
+.talksummary #content .journal {
   list-style-type: none;
   list-style-position: inside;
   padding-bottom: 4px;
 }
-#content.talksummary .journal li {
+.talksummary #content .journal li {
   margin-left: 0px;
   border-bottom: 1px solid #c2c3c4;
   padding: 4px 0px;
 }
-#content.talksummary .journal li * {
-  font-size: 14px;
-  line-height: 18px;
+.talksummary #content .journal li * {
+  font-size: 16px;
+  line-height: 20px;
 }
-#content.talksummary .journal li a {
+.talksummary #content .journal li a {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   border-bottom-left-radius: 2px;
@@ -2299,56 +2230,56 @@ styles for page mode 'talksummary', an informational index page for talks.
   padding-top: 4px;
   padding-bottom: 4px;
 }
-#content.talksummary .journal li a:hover {
+.talksummary #content .journal li a:hover {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li a:hover * {
+.talksummary #content .journal li a:hover * {
   color: #f7f7f7;
   background-color: #94989c;
 }
-#content.talksummary .journal li span {
+.talksummary #content .journal li span {
   color: #94989c;
   background-color: transparent;
   text-align: right;
   float: right;
 }
-#content.talksummary .journal li:last-child {
+.talksummary #content .journal li:last-child {
   border-bottom: 0px;
 }
-#content.talksummary .journal li a span {
+.talksummary #content .journal li a span {
   color: #443a3a;
 }
-#content.talksummary .journal .order {
+.talksummary #content .journal .order {
   width: 160px;
 }
-#content.talksummary .journal .location {
+.talksummary #content .journal .location {
   text-align: left;
   width: 160px;
 }
-#content.talksummary img {
+.talksummary #content img {
   margin-bottom: 12px;
 }
-#content.talksummary h5 {
+.talksummary #content h5 {
   clear: both;
 }
-#content.talksummary .journal .order {
+.talksummary #content .journal .order {
   display: none;
 }
-#content.talksummary .journal .location {
+.talksummary #content .journal .location {
   text-align: right;
 }
-#content.talksummary .facts {
+.talksummary #content .facts {
   width: 100%;
 }
-#content.talksummary .facts th + th,
-#content.talksummary .facts td + td {
+.talksummary #content .facts th + th,
+.talksummary #content .facts td + td {
   width: auto;
 }
-#content.talksummary .facts th + th + th,
-#content.talksummary .facts th + th + th + th,
-#content.talksummary .facts td + td + td,
-#content.talksummary .facts td + td + td + td {
+.talksummary #content .facts th + th + th,
+.talksummary #content .facts th + th + th + th,
+.talksummary #content .facts td + td + td,
+.talksummary #content .facts td + td + td + td {
   display: none;
 }
 /*
@@ -2548,8 +2479,8 @@ styles for the commandbox functionality (title bar line coupled with keyboard co
   padding: 4px 0px;
 }
 #see ul li * {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
 }
 #see ul li a {
   border-top-left-radius: 2px;

@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="talksummary">
+
+  <body id="talksummary" class="talksummary">
     <a href="talksummary"></a>
-    <div id="page" class="talksummary-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>The notable reference talk.</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="talksummary">
-        <img class='small alignleft' src='/media/images/screen_s.png' />
+    <div id="body" class="talksummary">
+      <div class="page">
+        <div id="content">
+          <img class='small alignleft' src='/media/images/screen_s.png' />
 <i>A talk being a reference to itself. How meta.</i>
 <div class='go'><a href='talks/cool-talk/start.html'>Get Slides
 </a></div>
@@ -76,9 +89,14 @@
 </table>
 <h5>Notes
 </h5>
-<p><p>Short notice about the talk.</p></p>      </div>
+<p><p>Short notice about the talk.</p></p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
+    <div id="footer">
+      <div class=page">
         <div class="about">
   <hr />
   <div id="published"><span class='no'>presented in 
@@ -87,59 +105,27 @@
 </span></div>
 </div>
 
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/meta/index.html">Meta</a>
-                            / <a href="/meta/refs/index.html">Refs</a>
-                                    </div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                  </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

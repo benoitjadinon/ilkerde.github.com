@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="csharp-trickshot-inferred-generic-construction">
+
+  <body id="csharp-trickshot-inferred-generic-construction" class="article">
     <a href="csharp-trickshot-inferred-generic-construction"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>C# Trickshot: Inferred Generic Construction</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Ok, yesterday I showed a little trick <em>(I don't know if I should name these bits "trick", actually)</em> on how you can perform <a href="csharp-trickshot-nullsafe-linq-query.html">Nullsafe LINQ Queries</a> with C#. Today, it's time to showcase another (very) little trickshot in C#. This time I'm going to show you how you can improve readability of your code when working with generics.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Ok, yesterday I showed a little trick <em>(I don't know if I should name these bits "trick", actually)</em> on how you can perform <a href="csharp-trickshot-nullsafe-linq-query.html">Nullsafe LINQ Queries</a> with C#. Today, it's time to showcase another (very) little trickshot in C#. This time I'm going to show you how you can improve readability of your code when working with generics.</p>
 <p>In C#, generics are a powerful thing. Most C# developers use them day by day, especially with collection types like <code>List&lt;T&gt;</code> or <code>Dictionary&lt;K,V&gt;</code>. From Time to time, even custom generic types can be very useful. I've seen quite a lot of custom generic types recently on a project where a generalized request/response communication system is being implemented for component interaction.</p>
 <p>Consider you want to create a pair of values for a simple configuration file model, something like a setting with a name and a value. One might easily implement this with the (quite) new <code>Tuple&lt;F,S&gt;</code> type:</p>
 <div class="codehilite"><pre><span class="kt">var</span> <span class="n">foreground</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="kt">string</span><span class="p">&gt;(</span><span class="s">&quot;foreground&quot;</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">);</span>
@@ -72,72 +85,51 @@
 </pre></div>
 
 
-<p>Far better me thinks! Notice that the generic types for the tuple are being <em>inferred from the parameters</em> of the <code>Tuple&lt;K,V&gt;</code> static method. Yet another tiny gimmick with quite a big value delivered in terms of readable and concise code. All thanks to type inference.</p>      </div>
+<p>Far better me thinks! Notice that the generic types for the tuple are being <em>inferred from the parameters</em> of the <code>Tuple&lt;K,V&gt;</code> static method. Yet another tiny gimmick with quite a big value delivered in terms of readable and concise code. All thanks to type inference.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>07 March 2012</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>07.03.2012</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
         </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">Articles
-</a></li>
-            <li><a href="/talks.html">Talks
-</a></li>
-            <li><a href="/bio.html">Profile
-</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>Options
-</h5>
-                    <ul>
-                        <li><a href="/feed.xml">Subscribe To Feed
-</a></li>
-                                    <li><a href="/comments.html?ref=/csharp-trickshot-inferred-generic-construction.html&title=C# Trickshot: Inferred Generic Construction">Write A Comment
-</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">Colophon
-</a></li>
-            <li><a href="/imprint.html">Imprint
-</a></li>
-          </ul>
-        </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

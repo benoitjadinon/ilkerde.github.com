@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="singleton-die-hyperbel-der-design-patterns">
+
+  <body id="singleton-die-hyperbel-der-design-patterns" class="article">
     <a href="singleton-die-hyperbel-der-design-patterns"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Singleton, die Hyperbel der Design Patterns</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <p>Als ob es schon nicht genug Content im Internet gäbe, gibt's hier noch ein Artikel über das "berühmt berüchtigte" Singleton Design Pattern.</p>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>Als ob es schon nicht genug Content im Internet gäbe, gibt's hier noch ein Artikel über das "berühmt berüchtigte" Singleton Design Pattern.</p>
 <p>Die Motivation für diesen Artikel habe ich dennoch relativ schnell gefunden. Nachdem ich vor einiger Zeit das Pattern für den Einsatz in einer Anwendung propagiert hatte, sah ich mich bestürzten Kommentaren ausgesetzt: "Wie kannst Du nur? Wer setzt denn heutzutage noch Singleton ein? Das ist doch das Anti-Pattern schlechthin..."</p>
 <p>Schnell hatte ich begriffen, dass meinem gegenüber wohl der Sinn und Zweck des Singleton nicht ganz geläufig war. Nach einigen Minuten war die Sache schnell geklärt. Trotzdem hatte es mich überrascht, wie viele Entwickler doch einen verzerrten Eindruck des Entwurfsmusters haben.</p>
 <p>Das Singleton-Pattern ist wohl eines der bekanntesten Design Patterns überhaupt. Als klassisches GoF-Pattern und obendrauf noch konzeptionell einfaches Entwurfsmuster ist das Singleton der kleine Popstar unter den Design Patterns.</p>
@@ -243,72 +256,51 @@ Abb 2: Die Kernobjekte der Implementierung</p>
 <p>Nun kann man berechtigterweise einwenden, dass das Problem der Threadsicherheit auch dann gegeben wäre, wenn man nicht das Singleton-Pattern angewendet hätte, sondern zum Beispiel die WhiteBoard-Instanz den Workern bei der Konstruktion mitgeteilt hätte. Das ist auch richtig, denn wann immer der gleichzeitige Zugriff erfolgt, ist eine threadsichere Implementierung erforderlich.</p>
 <p>Das essentielle an obigem Beispiel ist allerdings die Aussage, dass bei einem Singleton - einer strikt reglementierten Instanz einer Klasse - prinzipiell ein Augenmerk auf die Threadsicherheit gegeben sein soll. Ist eine Singleton-Implementierung beispielsweise Teil eines Frameworks oder einer Hilfskomponente, wobei die Einsatzumgebung dessen nicht von vornherein klar ist, dann ist es vehement wichtig, das Thema Threadsicherheit umfassend zu klären.</p>
 <p>Schlußfolgernd lässt sich sagen, dass das Singleton-Pattern eine threadsichere Implementierung zwar nicht per se erfordert - aber - das Singleton hat eine latente Neigung dazu, dass mehrere Parteien beziehungsweise Threads auf dieses zugreifen möchten. Genau aus diesem Grund ist Threadsicherheit beim Singleton ein Thema, welches unbedingt durchleuchtet werden sollte.</p>
-<p><em>(Der Quellcode zum "Lehrer von Bacoli" ist verfügbar auf <a href="https://github.com/ilkerde/teacher-of-bacoli">Github</a>)</em></p>      </div>
+<p><em>(Der Quellcode zum "Lehrer von Bacoli" ist verfügbar auf <a href="https://github.com/ilkerde/teacher-of-bacoli">Github</a>)</em></p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>15 March 2007</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/singleton-die-hyperbel-der-design-patterns.html&title=Singleton, die Hyperbel der Design Patterns">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>15.03.2007</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });

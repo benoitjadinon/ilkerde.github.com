@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="de">
   <head>
@@ -29,19 +31,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>          </head>
-  <body id="code-contracts-to-contract-or-not-to-contract">
+
+  <body id="code-contracts-to-contract-or-not-to-contract" class="article">
     <a href="code-contracts-to-contract-or-not-to-contract"></a>
-    <div id="page" class="article-page">
-      <div id="header">
-        <div id="pin"><a href="http://www.ilker.de"><span class='no'>Home
-</span></a></div>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
         <div id="bar">
           <h2>Code Contracts: To Contract Or Not To Contract...</h2>
         </div>
       </div>
+    </div>
 
-      <div id="content" class="article">
-        <h3 id="oder-wurdet-ihr-auf-geschenke-die-das-leben-vereinfachen-verzichten">Oder: Würdet Ihr auf Geschenke, die das Leben vereinfachen, verzichten?</h3>
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <h3 id="oder-wurdet-ihr-auf-geschenke-die-das-leben-vereinfachen-verzichten">Oder: Würdet Ihr auf Geschenke, die das Leben vereinfachen, verzichten?</h3>
 <p>Viele werden schon davon gehört haben, und viele werden es auch schon kennen: <a href="http://research.microsoft.com/en-us/projects/contracts/">Code Contracts</a>. Obwohl Code Contracts noch nicht offiziell veröffentlicht wurden, sind Code Contracts mittlerweile keine neue Sache. Im Gegenteil, Durch die massive, jahrelange Forschungsarbeit von Microsoft sind Code Contracts seit über einem Jahr sehr stabil und zuverlässig. Interessanterweise wurden Code Contracts nicht spezifisch erforscht, sondern sind als "Nebenprodukt" der Forschungen zu Boogie/Clousot (der statischen Verifikationskomponente von <a href="http://research.microsoft.com/en-us/projects/specsharp/">Spec#</a>) entstanden.</p>
 <p>Man findet mittlerweile sehr viele Beispiele und Casts zu Code Contracts und all den Features, die Code Contracts mit sich bringen. Ein aktuelles Video und eine wirklich sehenswerte, einfache Einführung in die Features ist die <a href="http://microsoftpdc.com/Sessions/VTL01">PDC09 Session über Code Contracts und PEX</a> (dem automatisierten Unit Testing Tool). Es ist konsequenterweise nicht verwunderlich, dass Code Contracts seit über einem halben Jahr in den <a href="http://msdn.microsoft.com/en-us/devlabs/dd491992.aspx">DevLabs zur Verfügung gestellt werden</a> und mit .NET 4.0 in der mscorlib integriert sein werden (also in .NET 4.0 mit enthalten sein werden).</p>
 <h3 id="parameterverifikation-mit-stil">Parameterverifikation mit Stil</h3>
@@ -84,72 +97,51 @@
 <p>Dafür spricht, dass die Code Contract API schon seit über einem Jahr stabil ist. Die Contract-Assembly wurde sehr sorgfältig über einige Jahre hinweg entwickelt. Ein weiteres Pro-Argument ist sicherlich die definitive Integration mit .NET 4.0. Schon heute steht fest, dass System.Diagnostics.Contracts eine fester Bestandteil der neuen .NET-Version sein wird. Die Vorteile, die die Code Contracts selbst mit sich bringen (also verbesserte Verifikation zur Laufzeit, statische Verifikation, erleichterter Einsatz von weiterführenden Tools wie z.B. PEX) erwähne ich nur nebenbei.</p>
 <p>Dagegen würde wohl momentan nur die Tatsache sprechen, dass die Contracts noch nicht Final sind. Die API kann sich in den einigen Monaten bis zur Veröffentlichung von .NET 4.0 noch ändern (obwohl es lt. Aussage der Entwicklungsmannschaft wohl unwahrscheinlich ist). Ein weiteres Gegenargument für den sofortigen Einsatz ist wohl das Deployment. Abhängig vom Anwendungstyp muss man da einige Parameter berücksichtigen. Doch für den jetzigen Anwendungsfall möge man von einem agilen Software-Projekt mit frequentiven Releases ausgehen, z.B. ganz klassisch bei einer Web-Anwendung. Hier muss man abwägen, ob man die Contracts-Assembly auf den Webservern im GAC installiert oder mit den eigenen Assemblies mit ausliefert.</p>
 <p>Nach dieser kurzen Pro-Contra-Gegenüberstellung würde mich Eure Meinung interessieren. Was meint Ihr? Wer setzt es heute schon ein? Wer möchte es noch vor dem .NET 4.0 Release einsetzen? Wer möchte lieber abwarten bis .NET 4.0?</p>
-<p>Die Frage ist: Das Geschenk "Code Contracts" heute schon annehmen und einsetzen? Ja oder Nein?</p>      </div>
+<p>Die Frage ist: Das Geschenk "Code Contracts" heute schon annehmen und einsetzen? Ja oder Nein?</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
 
-      <div id="footer">
-                <div class="about">
-          <hr />
-          <div id="published"><span class='no'>written on 
-</span>15 December 2009</div>
-          <div id="reference"><span class='no'>by Ilker Cetinkaya.
-</span></div>
-        </div>
-        
-                <div class="location">
-          <hr />
-          <div id="breadcrumb">
-                        <a href="/index.html">Main</a>
-                            / <a href="/articles.html">Articles</a>
-                                    </div>
-        </div>
-        
-                <div class="index">
-          <hr />
-          <div id="logo"><span class='no'>Index of ilker.de
-</span></div>
-          <ul id="menu">
-            <li><a href="/articles.html">
-Artikel</a></li>
-            <li><a href="/talks.html">
-Vorträge</a></li>
-            <li><a href="/bio.html">
-Person</a></li>
-          </ul>
-        </div>
-              </div>
-      
-      <div id="meta">
-                        <div id="related">
-          <hr />
-          <h5>
-Aktionen</h5>
-                    <ul>
-                        <li><a href="/feed.xml">
-Abonnieren</a></li>
-                                    <li><a href="/comments.html?ref=/code-contracts-to-contract-or-not-to-contract.html&title=Code Contracts: To Contract Or Not To Contract...">
-Kommentieren</a></li>
-                      </ul>
-                  </div>
-                        <div id="website">
-          <hr />
-          <h5>Website
-</h5>
-          <ul>
-            <li><a href="/about.html">
-Kolophon</a></li>
-            <li><a href="/imprint.html">
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>15.12.2009</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
 Impressum</a></li>
-          </ul>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
         </div>
-                      </div>
-
-      <div id="disclaimer">
-                <hr />
-        <p>(c) Copyright <span class='no'>.
-</span>1998 - 2013<span class='no'>.
-</span> Ilker Cetinkaya.</p>
               </div>
     </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
     <script type="text/javascript">
       require(['main'], function(app){
                               });
