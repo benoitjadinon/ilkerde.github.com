@@ -7,11 +7,35 @@
         <link href="/"/>
     
         
-    <updated>2014-04-22T07:34:17Z</updated>
+    <updated>2014-06-02T21:32:44Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Serious Powershell</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/serious-powershell.html"/>
+            <updated>2014-06-02T21:32:00Z</updated>
+            <published>2014-06-02T21:32:00Z</published>
+            <id>/serious-powershell.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>I don't like Windows. Yes, it sounds like yet-another-MS-bashing-blog. But it's just the way it is, I simply don't like the Windows Operating System. At least I'm honest about it, you know.</p>
+<p>Nonetheless, I have to deal with it. Day by day. Interestingly, being forced to deal with it brings up perspectives I do like on the Windows Platform. It's not much, but at least I can find good - yes even great things as well.</p>
+<p>One of the good parts of Windows is Powershell. I liked Powershell from its early years on. Admittedly, it's not as good as Bash as a shell. However, it isn't bad either. Apart of that, the Powershell Language actually is quite good.</p>
+<h3 id="powershell-is-a-language-too">Powershell is a language, too</h3>
+<p>As a scripting language, Powershell does have niceties. It can leverage .NET Framework easily. It has a graceful usage style with powerful aliasing. It even sports functional programming concepts like higher order functions and pattern matching.</p>
+<p>It's been quite a few years now Powershell is around. With Windows 8, you got Powershell version 3, which significantly improves the shell. We even have Powershell v4 since a few months now. According to the infamous "Microsoft gets things right earliest with v3", we now seem to be on the right path with Powershell.</p>
+<p>That's about the praise for Powershell.</p>
+<p>Recently, I got into Powershell programming back again. Last time I wrote (more serious) Powershell scripts was with the release of v2, around 2009. Five years later, I'm back on the scene, this time with a different setting and a different project. A lot of things have changed since then. Even more things stayed the same.</p>
+<p>One thing that got me wondering actually is that with all the years of evolvement and progress on the shell and the language, no serious Powershell coding (or scripting) guidelines were authored. I know, most of the scripts are <em>just scripts</em>, little programs to help you getting your work done. However, sometimes more programming is needed to get the work done. Even more, sometimes a full team writes a lot of Powershell code to get the work done. This is the point were guidelines can be real beneficiary.</p>
+<p>After researching without success for Powershell guidelines for a week, I decided to write down my perspective on this, an here's the result:</p>
+<p><strong>PSGuide, aka <a href="https://github.com/ilkerde/psguide">Powershell Serious Scripting Guidelines</a></strong></p>
+<p>As already stated before, this "guideline" was written because I did not find any Powershell coding or scripting guidelines out there. It is by far not complete or perfect. As always with guidelines, the most important thing is consistency. <em>Remember: style is debatable, consistency is not.</em> I happen to be an irregular Powershell user and scripter for a few years now, but just recently got back into more "serious" Powershell scripting. If you have any suggestions, feel free to fork, change and open a pull request on Github.</p>
+<p>Hope it helps.</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Nuget Paketverzerrung</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/nuget-paketverzerrung.html"/>
