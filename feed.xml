@@ -7,11 +7,34 @@
         <link href="/"/>
     
         
-    <updated>2014-06-02T21:32:44Z</updated>
+    <updated>2014-06-04T21:36:30Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">Fake-Driven-Development</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/fake-driven-development.html"/>
+            <updated>2014-06-04T21:22:00Z</updated>
+            <published>2014-06-04T21:22:00Z</published>
+            <id>/fake-driven-development.html</id>
+            
+            <content type="html"><![CDATA[
+                <p><strong>"Test-Driven-Development"</strong>: This thing called 'TDD' is mentioned so often in past years on conferences. One might think that TDD has become some sort of 'standard' or <em>State-Of-The-Art</em>. It is not a standard. It is far away from being a standard.</p>
+<p>Even unit testing is not standard. TDD is being looked at as if it is some sort of school for enthusiastic nerd coders. Although it should be in the toolbelt of the <em>average programmer</em>. For unit testing, we have a similar situation. A lot of programmers just do it because they <em>have to do</em> unit testing, not because they <em>want to do</em> unit testing.</p>
+<p>This is certainly a circumstance I do not like much. However, I get along with it. Since years. I kind of got used to it. Yet there is one thing I couldn't get along with in all those years. It's this strange thing I like to refer to as <em>Fake-Driven-Development</em>.</p>
+<h3 id="purists-doers-fakers">Purists, Doers, Fakers</h3>
+<p>To describe <em>Fake-Driven-Development</em>, I want you to get a picture of my view on TDD practitioners. To me, there are 3 kinds of coders in TDD land: Purists, Doers and Fakers.</p>
+<p>The <em>purists</em> are the evangelists of TDD. They TDD <em>everything</em> and <em>everytime</em>. They reach out for 100% coverage, practice regularly Code Katas, try to test even UI and SQL DML statements.</p>
+<p>The <em>doers</em> just do it. They practice TDD in a very natural and pragmatic way. Do it whenever it is 'suitable', always improve a little here and a little there, refactor tests regularly, start reviews by reading tests.</p>
+<p>The last category are the <em>fakers</em>. Fakers pretend to do and praise unit testing, but in fact they don't treat it as a skill. They talk as if they are TDD evangelists and write tests while pair programming as if it is a day-by-day thing.</p>
+<p>The fakers are even worse than those who actually write unit tests just because they have to. They're even worse than those cowboy coders not writing a single test. Fakers let you think that they actually do unit testing while in reality they don't care about code quality. If pressure is hard, they just find an excuse to write "quick solutions". If refactoring is needed, they refactor the code and throw away tests.</p>
+<p>What bothers me most is not their Fake-Driven-Development results, but their Fake-Driven-Development attitude. This attitude of <em>pretending</em> and not <em>being</em> something is dangerous in software development teams. Apart from dishonesty to others, this is dishonesty to themselves.</p>
+<p>I never liked to work with this kind of coder. It is hard to pair with them, because they always need to prove (themselves) that they <em>really</em> do care. They constantly tell you to improve names, refactor every literal into consts. But when it comes to hard decisions on what to test and how to grow software with it, they mute.</p>
+<p>No. I can't get used to Fake-Driven-Development.</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Serious Powershell</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/serious-powershell.html"/>
