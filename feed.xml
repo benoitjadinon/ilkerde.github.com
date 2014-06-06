@@ -7,11 +7,66 @@
         <link href="/"/>
     
         
-    <updated>2014-06-04T21:36:30Z</updated>
+    <updated>2014-06-06T22:08:11Z</updated>
 
     <id>/feed.xml/</id>
 
                   <entry>
+            <title type="html">PSake self-booting with Nuget</title>
+            <author><name>Ilker Cetinkaya</name></author>
+            <link href="/psake-self-booting-with-nuget.html"/>
+            <updated>2014-06-06T21:52:00Z</updated>
+            <published>2014-06-06T21:52:00Z</published>
+            <id>/psake-self-booting-with-nuget.html</id>
+            
+            <content type="html"><![CDATA[
+                <p>I have to do some Powershell. Among other things, I use Powershell for regular file operations and some other OS-related stuff. I use it for common tasks in software development as well. For this purpose, <a href="https://github.com/psake/psake">PSake</a> really is a nice and stable task runner. Of course, <a href="http://www.nuget.org/packages/psake/">PSake is available on Nuget</a> as well.</p>
+<p>Interestingly, there's no real recommendation on how to use PSake via Nuget. After some unsatisfiable research, I decided to come up with my own usage pattern.</p>
+<p>The result is a short ~20 lines script which actually acts as a self-boot script. With this technique, invoking a build task is as easy as</p>
+<div class="codehilite"><pre><span class="p">.</span><span class="err">\</span><span class="n">make</span><span class="p">.</span><span class="n">ps1</span> <span class="n">hello</span> <span class="o">-</span><span class="n">prop</span> <span class="err">@</span><span class="p">{</span> <span class="n">me</span><span class="o">=</span><span class="err">&#39;</span><span class="n">Coder</span><span class="err">&#39;</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>given you create a file called <code>make.ps1</code> in the root of your .NET repository with this contents:</p>
+<div class="codehilite"><pre><span class="n">param</span> <span class="p">(</span>
+    <span class="p">[</span><span class="n">string</span><span class="p">[]]</span> <span class="err">$</span><span class="n">TaskListPsake</span> <span class="o">=</span> <span class="err">@</span><span class="p">(),</span>
+    <span class="p">[</span><span class="n">string</span><span class="p">]</span> <span class="err">$</span><span class="n">FrameworkPsake</span> <span class="o">=</span> <span class="err">&#39;</span><span class="mf">4.0</span><span class="err">&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="k">switch</span><span class="p">]</span> <span class="err">$</span><span class="n">DocsPsake</span> <span class="o">=</span> <span class="err">$</span><span class="nb">false</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">hashtable</span><span class="p">]</span> <span class="err">$</span><span class="n">ParametersPsake</span> <span class="o">=</span> <span class="err">@</span><span class="p">{},</span>
+    <span class="p">[</span><span class="n">hashtable</span><span class="p">]</span> <span class="err">$</span><span class="n">PropertiesPsake</span> <span class="o">=</span> <span class="err">@</span><span class="p">{}</span>
+<span class="p">)</span>
+
+<span class="err">$</span><span class="n">main</span> <span class="o">=</span> <span class="o">-</span><span class="n">not</span> <span class="err">$</span><span class="n">MyInvocation</span><span class="p">.</span><span class="n">PSScriptRoot</span>
+<span class="err">$</span><span class="n">root</span> <span class="o">=</span> <span class="err">$</span><span class="n">PSScriptRoot</span>
+<span class="err">$</span><span class="n">nugetExe</span> <span class="o">=</span> <span class="s">&quot;$root\.nuget</span><span class="se">\n</span><span class="s">uget.exe&quot;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="err">$</span><span class="n">main</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">&amp;</span> <span class="err">$</span><span class="n">nugetExe</span> <span class="n">restore</span> <span class="s">&quot;$root\.nuget\packages.config&quot;</span> <span class="o">-</span><span class="n">PackagesDirectory</span> <span class="s">&quot;$root\packages&quot;</span> <span class="o">|</span> <span class="n">Out</span><span class="o">-</span><span class="n">Null</span>
+
+    <span class="n">Remove</span><span class="o">-</span><span class="n">Module</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="n">sake</span>
+    <span class="n">Import</span><span class="o">-</span><span class="n">Module</span> <span class="s">&quot;$root\packages\psake*</span><span class="se">\t</span><span class="s">ools\psake.psm1&quot;</span>
+
+    <span class="n">Invoke</span><span class="o">-</span><span class="n">PSake</span> <span class="err">$</span><span class="n">PSCommandPath</span> <span class="err">$</span><span class="n">TaskListPsake</span> <span class="err">$</span><span class="n">FrameworkPsake</span> <span class="err">$</span><span class="n">DocsPsake</span> <span class="err">$</span><span class="n">ParametersPsake</span> <span class="err">$</span><span class="n">PropertiesPsake</span> <span class="o">-</span><span class="n">nologo</span>
+
+    <span class="k">return</span>
+<span class="p">}</span>
+
+<span class="n">properties</span> <span class="p">{</span>
+    <span class="n">me</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">You</span><span class="err">&#39;</span>
+<span class="p">}</span>
+
+<span class="n">task</span> <span class="n">Hello</span> <span class="p">{</span>
+    <span class="n">Write</span><span class="o">-</span><span class="n">Output</span> <span class="s">&quot;Hello $me!&quot;</span>
+<span class="p">}</span>
+
+<span class="n">task</span> <span class="n">Default</span> <span class="o">-</span><span class="n">depends</span> <span class="n">Hello</span>
+</pre></div>
+
+
+<p>The script is available as a <a href="https://gist.github.com/ilkerde/34c4527aea40a6e90464">Gist</a> as well. Hope it helps!</p>
+            ]]></content>
+        </entry>
+                        <entry>
             <title type="html">Fake-Driven-Development</title>
             <author><name>Ilker Cetinkaya</name></author>
             <link href="/fake-driven-development.html"/>

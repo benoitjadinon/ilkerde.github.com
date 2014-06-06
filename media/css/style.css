@@ -463,6 +463,48 @@ table {
   height: 0;
 }
 /* assets */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway Regular'), url(//media/fonts/raleway/400.woff) format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Raleway Italic'), url(//media/fonts/raleway/400i.woff) format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Raleway SemiBold'), url(//media/fonts/raleway/600.woff) format('woff');
+}
+@font-face {
+  font-family: 'Linux Biolinum';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Linux Biolinum O'), url(//media/fonts/linuxbiolinum/400.woff) format('woff');
+}
+@font-face {
+  font-family: 'Linux Biolinum';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Linux Biolinum O Italic'), url(//media/fonts/linuxbiolinum/400i.woff) format('woff');
+}
+@font-face {
+  font-family: 'Linux Biolinum';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Linux Biolinum O Bold'), url(//media/fonts/linuxbiolinum/700.woff) format('woff');
+}
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''), url(//media/fonts/inconsolata/400.woff) format('woff');
+}
 /*
 The main color set only contains greys, light whites
 and the theme blue color called "ease".
@@ -540,7 +582,7 @@ Style components used by multiple website elements.
   border-bottom-right-radius: 2px;
   color: #c2c3c4;
   background-color: #ffffff;
-  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12pt 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   display: block;
 }
 .is_icon a {
@@ -1798,7 +1840,7 @@ standard html tag elements / components definitions.
 body {
   color: #443a3a;
   background-color: #ffffff;
-  font: 16px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 16px 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   line-height: 24px;
 }
 h1,
@@ -1809,7 +1851,7 @@ h5,
 h6 {
   color: #443a3a;
   padding: 8px 0px 8px 0px;
-  font-family: 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font-family: 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   font-weight: normal;
 }
 h1 *,
@@ -1951,7 +1993,7 @@ pre {
 }
 #content pre,
 #content code {
-  font-family: 'Source Code Pro', 'Monaco', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace;
+  font-family: 'Inconsolata', 'Droid Sans Mono', 'Monaco', 'Consolas', monospace;
 }
 #content p code {
   border-top-left-radius: 2px;
@@ -1961,7 +2003,7 @@ pre {
   color: #443a3a;
   background-color: #f7f7f7;
   border: 1px solid #c2c3c4;
-  font-size: 14px;
+  font-size: 16px;
   padding: 1px 3px;
 }
 #content pre {
@@ -2000,7 +2042,7 @@ pre {
   margin: 0px auto;
 }
 #content .figure .caption {
-  font: 10px 'Source Code Pro', 'Monaco', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace;
+  font: 10px 'Inconsolata', 'Droid Sans Mono', 'Monaco', 'Consolas', monospace;
   float: right;
   text-align: right;
   padding-top: 0px;
@@ -2620,7 +2662,7 @@ styles for page mode 'listing', a topic/timelined list of posts.
   padding: 10px;
   word-wrap: break-word;
   text-align: center;
-  font: 32px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 32px 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   color: #f0f0f0;
   text-decoration: none;
 }
@@ -2924,7 +2966,7 @@ bio.less
   margin-right: 40px;
 }
 .bio #content .name {
-  font-family: 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font-family: 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   font-size: 24px;
   line-height: 30px;
   display: block;
@@ -2937,7 +2979,7 @@ bio.less
   list-style: none;
 }
 .bio #content .areas li:first-child {
-  font-family: 'Source Code Pro', 'Monaco', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace;
+  font-family: 'Inconsolata', 'Droid Sans Mono', 'Monaco', 'Consolas', monospace;
   font-weight: bold;
 }
 .bio #content .bio {
@@ -3546,7 +3588,7 @@ styles for page mode 'talksummary', an informational index page for talks.
   border-bottom-right-radius: 2px;
   color: #c2c3c4;
   background-color: #ffffff;
-  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12pt 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   position: relative;
   display: block;
 }
@@ -3681,7 +3723,7 @@ pages and the like.
   text-align: center;
 }
 .support div.mailr a + span {
-  font: 12px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12px 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   color: #c2c3c4;
   background-color: #ffffff;
   display: block;
@@ -3721,13 +3763,13 @@ styles for the commandbox functionality (title bar line coupled with keyboard co
 }
 #commandbox label span {
   margin: 8px 4px 4px 10px;
-  font: 20px/24px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif normal;
+  font: 20px/24px 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif normal;
   display: block;
 }
 #commandbox input {
   color: #443a3a;
   background-color: #ffffff;
-  font: 20px/24px 'Source Code Pro', 'Monaco', 'Ubuntu Mono', 'Droid Sans Mono', 'Consolas', monospace normal;
+  font: 20px/24px 'Inconsolata', 'Droid Sans Mono', 'Monaco', 'Consolas', monospace normal;
   padding: 6px 4px 2px 10px;
   margin: 2px 0px;
   border: none;
@@ -3744,13 +3786,15 @@ styles for the commandbox functionality (title bar line coupled with keyboard co
   border: none;
   font-size: 32px;
   line-height: 36px;
-  font-family: 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font-family: 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   font-weight: normal;
 }
 /* extensions /*
-@type_text:'Source Sans Pro','Helvetica','Ubuntu','Droid Sans','Cantarell','Arial',sans-serif;
-@type_black:'Source Sans Pro','Helvetica','Ubuntu','Droid Sans','Cantarell','Arial',sans-serif;
-@type_mono:'Source Code Pro','Monaco','Ubuntu Mono','Droid Sans Mono','Consolas',monospace;
+@font-face{font-family:'Raleway';font-style:normal;font-weight:400;src:local('Raleway Regular'),url(//media/fonts/raleway/400.woff) format('woff')}@font-face{font-family:'Raleway';font-style:italic;font-weight:400;src:local('Raleway Italic'),url(//media/fonts/raleway/400i.woff) format('woff')}@font-face{font-family:'Raleway';font-style:normal;font-weight:600;src:local('Raleway SemiBold'),url(//media/fonts/raleway/600.woff) format('woff')}@font-face{font-family:'Linux Biolinum';font-style:normal;font-weight:400;src:local('Linux Biolinum O'),url(//media/fonts/linuxbiolinum/400.woff) format('woff')}@font-face{font-family:'Linux Biolinum';font-style:italic;font-weight:400;src:local('Linux Biolinum O Italic'),url(//media/fonts/linuxbiolinum/400i.woff) format('woff')}@font-face{font-family:'Linux Biolinum';font-style:normal;font-weight:700;src:local('Linux Biolinum O Bold'),url(//media/fonts/linuxbiolinum/700.woff) format('woff')}@font-face{font-family:'Inconsolata';font-style:normal;font-weight:400;src:local(''),url(//media/fonts/inconsolata/400.woff) format('woff')}
+
+@type_text:'Raleway','Droid Sans','Helvetica','Cantarell',sans-serif;
+@type_black:'Linux Biolinum','Droid Sans','Helvetica','Cantarell',sans-serif;
+@type_mono:'Inconsolata','Droid Sans Mono','Monaco','Consolas',monospace;
 /*
 The main color set only contains greys, light whites
 and the theme blue color called "ease".
@@ -3828,7 +3872,7 @@ Style components used by multiple website elements.
   border-bottom-right-radius: 2px;
   color: #c2c3c4;
   background-color: #ffffff;
-  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12pt 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   display: block;
 }
 .is_icon a {
@@ -4230,7 +4274,7 @@ Style components used by multiple website elements.
   margin-left: 10px;
   margin-right: 10px;
   width: 640px;
-  font: 18px/26px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 16px/26px 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
 }
 #body #remarks {
   display: inline;
@@ -4278,7 +4322,7 @@ Style components used by multiple website elements.
   border-bottom-right-radius: 2px;
   color: #94989c;
   background-color: #f0f0f0;
-  font: 16px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 16px 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   padding: 4px 20px 4px 20px;
   display: block;
   margin-top: 20px;
@@ -4299,12 +4343,12 @@ Style components used by multiple website elements.
   margin-right: 10px;
   width: 220px;
   color: #c2c3c4;
-  font: 12px/20px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12px/20px 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   display: block;
   text-transform: uppercase;
 }
 #footer .about * {
-  font: 12px/20px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12px/20px 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   color: #c2c3c4;
 }
 #footer .about .more {
@@ -4354,7 +4398,7 @@ Style components used by multiple website elements.
 }
 #disclaimer * {
   color: #c2c3c4;
-  font: 12px 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12px 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   line-height: 12px;
   padding: 0px;
 }

@@ -1,0 +1,150 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PSake self-booting with Nuget</title>
+    <meta name="description" content="A short script on how to create a self-booting PSake build script using Nuget.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+
+  <body id="psake-self-booting-with-nuget" class="article">
+    <a href="psake-self-booting-with-nuget"></a>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
+        <div id="bar">
+          <h2>PSake self-booting with Nuget</h2>
+        </div>
+      </div>
+    </div>
+
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p>I have to do some Powershell. Among other things, I use Powershell for regular file operations and some other OS-related stuff. I use it for common tasks in software development as well. For this purpose, <a href="https://github.com/psake/psake">PSake</a> really is a nice and stable task runner. Of course, <a href="http://www.nuget.org/packages/psake/">PSake is available on Nuget</a> as well.</p>
+<p>Interestingly, there's no real recommendation on how to use PSake via Nuget. After some unsatisfiable research, I decided to come up with my own usage pattern.</p>
+<p>The result is a short ~20 lines script which actually acts as a self-boot script. With this technique, invoking a build task is as easy as</p>
+<div class="codehilite"><pre><span class="p">.</span><span class="err">\</span><span class="n">make</span><span class="p">.</span><span class="n">ps1</span> <span class="n">hello</span> <span class="o">-</span><span class="n">prop</span> <span class="err">@</span><span class="p">{</span> <span class="n">me</span><span class="o">=</span><span class="err">&#39;</span><span class="n">Coder</span><span class="err">&#39;</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>given you create a file called <code>make.ps1</code> in the root of your .NET repository with this contents:</p>
+<div class="codehilite"><pre><span class="n">param</span> <span class="p">(</span>
+    <span class="p">[</span><span class="n">string</span><span class="p">[]]</span> <span class="err">$</span><span class="n">TaskListPsake</span> <span class="o">=</span> <span class="err">@</span><span class="p">(),</span>
+    <span class="p">[</span><span class="n">string</span><span class="p">]</span> <span class="err">$</span><span class="n">FrameworkPsake</span> <span class="o">=</span> <span class="err">&#39;</span><span class="mf">4.0</span><span class="err">&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="k">switch</span><span class="p">]</span> <span class="err">$</span><span class="n">DocsPsake</span> <span class="o">=</span> <span class="err">$</span><span class="nb">false</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">hashtable</span><span class="p">]</span> <span class="err">$</span><span class="n">ParametersPsake</span> <span class="o">=</span> <span class="err">@</span><span class="p">{},</span>
+    <span class="p">[</span><span class="n">hashtable</span><span class="p">]</span> <span class="err">$</span><span class="n">PropertiesPsake</span> <span class="o">=</span> <span class="err">@</span><span class="p">{}</span>
+<span class="p">)</span>
+
+<span class="err">$</span><span class="n">main</span> <span class="o">=</span> <span class="o">-</span><span class="n">not</span> <span class="err">$</span><span class="n">MyInvocation</span><span class="p">.</span><span class="n">PSScriptRoot</span>
+<span class="err">$</span><span class="n">root</span> <span class="o">=</span> <span class="err">$</span><span class="n">PSScriptRoot</span>
+<span class="err">$</span><span class="n">nugetExe</span> <span class="o">=</span> <span class="s">&quot;$root\.nuget</span><span class="se">\n</span><span class="s">uget.exe&quot;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="err">$</span><span class="n">main</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">&amp;</span> <span class="err">$</span><span class="n">nugetExe</span> <span class="n">restore</span> <span class="s">&quot;$root\.nuget\packages.config&quot;</span> <span class="o">-</span><span class="n">PackagesDirectory</span> <span class="s">&quot;$root\packages&quot;</span> <span class="o">|</span> <span class="n">Out</span><span class="o">-</span><span class="n">Null</span>
+
+    <span class="n">Remove</span><span class="o">-</span><span class="n">Module</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="n">sake</span>
+    <span class="n">Import</span><span class="o">-</span><span class="n">Module</span> <span class="s">&quot;$root\packages\psake*</span><span class="se">\t</span><span class="s">ools\psake.psm1&quot;</span>
+
+    <span class="n">Invoke</span><span class="o">-</span><span class="n">PSake</span> <span class="err">$</span><span class="n">PSCommandPath</span> <span class="err">$</span><span class="n">TaskListPsake</span> <span class="err">$</span><span class="n">FrameworkPsake</span> <span class="err">$</span><span class="n">DocsPsake</span> <span class="err">$</span><span class="n">ParametersPsake</span> <span class="err">$</span><span class="n">PropertiesPsake</span> <span class="o">-</span><span class="n">nologo</span>
+
+    <span class="k">return</span>
+<span class="p">}</span>
+
+<span class="n">properties</span> <span class="p">{</span>
+    <span class="n">me</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">You</span><span class="err">&#39;</span>
+<span class="p">}</span>
+
+<span class="n">task</span> <span class="n">Hello</span> <span class="p">{</span>
+    <span class="n">Write</span><span class="o">-</span><span class="n">Output</span> <span class="s">&quot;Hello $me!&quot;</span>
+<span class="p">}</span>
+
+<span class="n">task</span> <span class="n">Default</span> <span class="o">-</span><span class="n">depends</span> <span class="n">Hello</span>
+</pre></div>
+
+
+<p>The script is available as a <a href="https://gist.github.com/ilkerde/34c4527aea40a6e90464">Gist</a> as well. Hope it helps!</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>06.06.2014</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">Article-Index
+</a></li>
+      <li><a href="feed.xml">Newsfeed
+</a></li>
+      <li><a href="imprint.html">Imprint
+</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">Contents
+</a></li>
+              <li><a href="/bio.html">Profile
+</a></li>
+            </ul>
+          </div>
+        </div>
+              </div>
+    </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>

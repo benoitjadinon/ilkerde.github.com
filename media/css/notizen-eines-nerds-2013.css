@@ -16,6 +16,48 @@ and the theme blue color called "ease".
 /* > input elements */
 /* > command button */
 /* > border colors */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway Regular'), url(//media/fonts/raleway/400.woff) format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Raleway Italic'), url(//media/fonts/raleway/400i.woff) format('woff');
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Raleway SemiBold'), url(//media/fonts/raleway/600.woff) format('woff');
+}
+@font-face {
+  font-family: 'Linux Biolinum';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Linux Biolinum O'), url(//media/fonts/linuxbiolinum/400.woff) format('woff');
+}
+@font-face {
+  font-family: 'Linux Biolinum';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Linux Biolinum O Italic'), url(//media/fonts/linuxbiolinum/400i.woff) format('woff');
+}
+@font-face {
+  font-family: 'Linux Biolinum';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Linux Biolinum O Bold'), url(//media/fonts/linuxbiolinum/700.woff) format('woff');
+}
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''), url(//media/fonts/inconsolata/400.woff) format('woff');
+}
 /* 
 mixins.less
 ===========
@@ -75,7 +117,7 @@ Style components used by multiple website elements.
   border-bottom-right-radius: 2px;
   color: #c2c3c4;
   background-color: #ffffff;
-  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12pt 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   display: block;
 }
 .is_icon a {
@@ -296,7 +338,7 @@ Style components used by multiple website elements.
   background-color: #f7f7f7;
   display: block;
   float: left;
-  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12pt 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   text-decoration: none;
   text-align: center;
   position: relative;
@@ -356,7 +398,7 @@ Style components used by multiple website elements.
   background-color: #f7f7f7;
   display: block;
   float: left;
-  font: 12pt 'Source Sans Pro', 'Helvetica', 'Ubuntu', 'Droid Sans', 'Cantarell', 'Arial', sans-serif;
+  font: 12pt 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
   text-decoration: none;
   text-align: center;
   position: relative;
