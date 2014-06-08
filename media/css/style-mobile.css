@@ -122,43 +122,19 @@ table {
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 400;
-  src: local('Raleway Regular'), url(//media/fonts/raleway/400.woff) format('woff');
+  src: local('Raleway Regular'), url('/media/fonts/raleway/400.woff') format('woff');
 }
 @font-face {
   font-family: 'Raleway';
   font-style: italic;
   font-weight: 400;
-  src: local('Raleway Italic'), url(//media/fonts/raleway/400i.woff) format('woff');
+  src: local('Raleway Italic'), url('/media/fonts/raleway/400i.woff') format('woff');
 }
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 600;
-  src: local('Raleway SemiBold'), url(//media/fonts/raleway/600.woff) format('woff');
-}
-@font-face {
-  font-family: 'Linux Biolinum';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Linux Biolinum O'), url(//media/fonts/linuxbiolinum/400.woff) format('woff');
-}
-@font-face {
-  font-family: 'Linux Biolinum';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Linux Biolinum O Italic'), url(//media/fonts/linuxbiolinum/400i.woff) format('woff');
-}
-@font-face {
-  font-family: 'Linux Biolinum';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Linux Biolinum O Bold'), url(//media/fonts/linuxbiolinum/700.woff) format('woff');
-}
-@font-face {
-  font-family: 'Inconsolata';
-  font-style: normal;
-  font-weight: 400;
-  src: local(''), url(//media/fonts/inconsolata/400.woff) format('woff');
+  src: local('Raleway SemiBold'), url('/media/fonts/raleway/600.woff') format('woff');
 }
 /*
 The main color set only contains greys, light whites
@@ -237,7 +213,7 @@ Style components used by multiple website elements.
   border-bottom-right-radius: 2px;
   color: #c2c3c4;
   background-color: #ffffff;
-  font: 12pt 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
+  font: 12pt 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', 'Arial', sans-serif;
   display: block;
 }
 .is_icon a {
@@ -1375,7 +1351,7 @@ standard html tag elements / components definitions.
 body {
   color: #443a3a;
   background-color: #ffffff;
-  font: 16px 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
+  font: 16px 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', 'Arial', sans-serif;
   line-height: 24px;
 }
 h1,
@@ -1386,7 +1362,7 @@ h5,
 h6 {
   color: #443a3a;
   padding: 8px 0px 8px 0px;
-  font-family: 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
+  font-family: 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', 'Arial', sans-serif;
   font-weight: normal;
 }
 h1 *,
@@ -1596,7 +1572,7 @@ pre {
   color: #94989c;
 }
 body {
-  font: 12pt 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
+  font: 12pt 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', 'Arial', sans-serif;
   line-height: 16pt;
 }
 h1 {
@@ -2000,7 +1976,7 @@ bio.less
   margin-right: 40px;
 }
 .bio #content .name {
-  font-family: 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
+  font-family: 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', 'Arial', sans-serif;
   font-size: 24px;
   line-height: 30px;
   display: block;
@@ -2363,7 +2339,7 @@ styles for the commandbox functionality (title bar line coupled with keyboard co
 }
 #commandbox label span {
   margin: 8px 4px 4px 10px;
-  font: 20px/24px 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif normal;
+  font: 20px/24px 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', 'Arial', sans-serif normal;
   display: block;
 }
 #commandbox input {
@@ -2386,7 +2362,7 @@ styles for the commandbox functionality (title bar line coupled with keyboard co
   border: none;
   font-size: 32px;
   line-height: 36px;
-  font-family: 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
+  font-family: 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', 'Arial', sans-serif;
   font-weight: normal;
 }
 /* do nothing since default style hides away the form. anyway. */
@@ -2453,7 +2429,7 @@ styles for the commandbox functionality (title bar line coupled with keyboard co
   border-bottom-right-radius: 2px;
   color: #f0f0f0;
   background-color: #336699;
-  font: 12pt 'Linux Biolinum', 'Droid Sans', 'Helvetica', 'Cantarell', sans-serif;
+  font: 12pt 'Raleway', 'Droid Sans', 'Helvetica', 'Cantarell', 'Arial', sans-serif;
   padding: 4px 8px 4px 8px;
   display: block;
   text-decoration: none;
