@@ -1,0 +1,127 @@
+
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Das Bindungsproblem</title>
+    <meta name="description" content="Eine kurze Beschreibung des Bindungsproblems (Kreis-Ellipse-Problem) in der objekt-orientierten Programmierung und meiner Ansichten dazu.">
+    <meta name="author" content="Ilker Cetinkaya">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="shortcut icon" href="/favicon.ico?i3">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="ilker.de/articles">
+
+        <link rel="stylesheet" href="http://app.ilker.de/devy?q=http://www.ilker.de/media/css/style.css?i3">
+    
+    
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="/media/js/app.js"></script>
+    
+            <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32542012-1']);
+  _gaq.push(['_setDomainName', 'ilker.de']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>          </head>
+
+  <body id="das-bindungsproblem" class="article">
+    <a href="das-bindungsproblem"></a>
+
+    <div id="header">
+      <div class="page">
+        <div id="logo"><span class='no'>ilker.de: Creative Computing
+</span></div>
+      </div>
+    </div>
+
+    <div id="title">
+      <div class="page">
+        <hr />
+        <div id="bar">
+          <h2>Das Bindungsproblem</h2>
+        </div>
+      </div>
+    </div>
+
+    <div id="body" class="article">
+      <div class="page">
+        <div id="content">
+          <p><em>Das Bindungsproblem</em> ist eines der schwierigsten Probleme der objekt-orientierten Modellierung. Gleichzeitig ist es nicht ganz so sichtbar und prominent wie z.B. das Generalisierungsproblem. Erstaunlicherweise haben beide Probleme sehr viel gemein.</p>
+<p>Nähern wir uns der Problemstellung mit einem Beispiel, <em>dem</em> klassischen Beispiel des Bindungsproblems, nämlich dem <a href="http://de.wikipedia.org/wiki/Kreis-Ellipse-Problem">Kreis-Ellipse-Problem</a>.</p>
+<p><img alt="Wo kommt der Kreis hin?" src="media/images/yuml_6e541129.png" /></p>
+<p>Hier stellt sich die Frage: Was tun mit <code>Kreis</code> und <code>Quadrat</code>? Sie sind eine <em>Spezialisierung</em> von <code>Ellipse</code> (respektive <code>Rechteck</code>), erben aber nicht ihre vollständigen Eigenschaften. In der Praxis führt das zur Verletzung des <a href="http://de.wikipedia.org/wiki/Liskovsches_Substitutionsprinzip">Liskovschen Substitutionsprinzips</a>.</p>
+<p>Dieser Umstand wird allgemein als Defizit der Objekt-Orientierung gewertet, denn es ist kaum möglich, restriktive Beziehungen mit Klassen zu gestalten. Manche gehen sogar noch weiter und bezeichnen das Problem als "Bankrott-Erklärung der Objekt-Orientierung".</p>
+<h3 id="bindung-der-nachricht">Bindung der Nachricht</h3>
+<p>Theoretisch gesprochen ist es im obigen Beispiel schwer, eine jederzeit gültige Bindung der Nachrichten <code>ScaleX()</code> oder <code>ScaleY()</code> herzustellen. Es dient exemplarisch für den Fakt, dass <em>jede Nachricht</em> keinen absoluten Bindungsanspruch stellen kann. Es ist demnach laut Theorie nicht möglich, eine Klasse mit einer Methode zu versehen, die niemals semantisch falsch sein kann (im Sinne der Bindung des Objektes zur Nachricht).</p>
+<p>An dieser Stelle erwidern Befürworter der Objekt-Orientierung, dass gerade die Abstraktion inhärent diese Unvollständigkeit der Nachricht bedingt. Dem ist zu widersprechen, denn die Nachricht besteht ja nicht nur aus dem Signal und der Bedeutung an sich, sondern in erheblichem Maße auch aus Sender, Empfänger und Zeitpunkt. Die Nachricht ändert also ihre interpretative Aussage, je nach dem, von wem sie kommt und für wen sie gedacht ist.</p>
+<p>Die Objekt-Orientierung versucht eben diesen Aspekt mit der Inklusionspolymorphie mit in das Programmiersystem mit einzubeziehen, scheitert allerdings dabei mit dem Zirkelschluß, dass es keinen absoluten Pfad der Interpretation einer Nachricht geben kann.</p>
+<h3 id="anwendung-und-ausweg">Anwendung und Ausweg</h3>
+<p>Es soll hier nicht weiter auf die Konsequenzen dieser Problematik eingegangen werden. Denn alleine schon die oberflächliche Auseinandersetzung mit der Tragweite des Bindungsproblems würde das Ausmaß dieses Artikels deutlich überschreiten. Statt dessen werfen wir einen konstruktiven Blick in die Praxis und nähern uns möglichen Auswegen.</p>
+<p>Die bekanntesten "Lösungswege" (wenn man überhaupt von Lösungsweg sprechen kann) sind definitiv die <em>Interferenz</em> und die <em>Redundanz</em>. Bei der Interferenz wird auf die Spezialisierung des restriktiven Typs verzichtet. Indes wird der Typ als Eigenschaft des vermeintlichen Basistyps modelliert. Ich nenne dieses Vorgehen gerne auch scherzhaft "property typing".</p>
+<p>Der zweite, von mir vorzugsweise gewählte Weg der <em>Redundanz</em> vermag zunächst noch nachteilhafter als der eben genannte Weg erscheinen. Bei der Redundanz wird schlichtweg auf die Modellierung des Subtypus per Vererbung verzichtet. Die zueinander in einem Restriktionsverhältnis stehenden Typen werden statt dessen auf einer Ebene definiert.</p>
+<p><img alt="Lösung des Bindungsproblems per Redundanz" src="media/images/yuml_e1108da5.png" /></p>
+<p>Der Weg der tolerierten Redundanz ist meines Erachtens nach nicht nur flexibel im Sinne der Evolvierbarkeit, sondern legt auch klar fest, dass es das Problem als Ausnahme in dem objekt-orientierten Programmierverfahren betrachtet. Das wird meiner Meinung nach besonders dadurch deutlich, dass es bei gleichzeitiger Ausnahmeregelung dennoch in dem Verfahrensrahmen der Objekt-Orientierung verharrt.</p>
+<h3 id="objekt-orientierung-ist-ungenau">Objekt-Orientierung ist Ungenau</h3>
+<p>Bei einer Sache ist im Dilemma des Bindungsproblems ein Credo der Objekt-Orientierung wiedererkennbar: Der bewußte Verzicht auf Genauigkeit (man könnte sogar fast sagen: <em>Verzicht auf Korrektheit</em>). Das Bindungsproblem ist für mich ein Spiegelbild der Unzulänglichkeiten des gesamten objekt-orientierten Programmierens.</p>
+<p>Doch gerade eben diese Unzulänglichkeiten machen die Objekt-Orientierung zu dem, was es ist: ein populäres, weit verbreitetes, schwer meisterbares und oft missverstandenes Paradigma. Es ist zweifelsohne anderen Paradigmen (wie der modularen oder funktionalen Programmierung) zwar hoffnungslos unterlegen, zeichnet sich jedoch durch Pragmatismus und vermeintlich intuitive Modellierung aus.</p>
+<p>Das Bindungsproblem stellt aus meiner Sicht eindrucksvoll dar, wie eingeschränkt und überbewertet die objekt-orientierte Programmierung ist. Dennoch empfinde ich die Objekt-Orientierung als vielmals wichtiges und richtiges Mittel. In der modernen, trivialisierten Welt der Informatik ist die Objekt-Orientierung eben das triviale Werkzeug des Entwicklers von Heute.</p>
+<p>Ich für meinen Teil wende gut und gerne die Prinzipien der Objekt-Orientierung an. Sie haben sich oft als nützlich und hilfreich herausgestellt. Sie haben mir auch die <em>wirkliche</em> Informatik näher gebracht.</p>
+<p>Andererseits gebe ich auch gerne und offen zu: Oftmals ist die objekt-orientierte Programmierung weder die erstbeste, noch die zweitbeste Wahl. Ich hoffe, dass es in der Zukunft Software-Projekte gibt, die auf eine differenzierte Art und Weise Paradigmen einsetzen. Und ich hoffe, dass es zu einer Renaissance der modularen und funktionalen Programmierstile kommt.</p>        </div>
+        <div id="remarks">
+                            </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class=page">
+        <div class="about">
+  <hr />
+  <div class="more">
+    <h5>Verfasst</h5>
+    <ul><li><span>09.06.2014</span></li></ul>
+        <h5>Website</h5>
+    <ul>
+      <li><a href="articles.html">
+Verzeichnis</a></li>
+      <li><a href="feed.xml">
+Abonnement</a></li>
+      <li><a href="imprint.html">
+Impressum</a></li>
+    </ul>
+  </div>
+</div>
+                <div id="menu">
+          <div class="page">
+            <hr />
+            <ul>
+              <li><a href="/index.html">
+Inhalt</a></li>
+              <li><a href="/bio.html">
+Person</a></li>
+            </ul>
+          </div>
+        </div>
+              </div>
+    </div>
+
+        <div id="disclaimer">
+      <div class="page">
+        <hr />
+        <p>(c) Copyright 1998 - 2014 Ilker Cetinkaya.</p>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+      require(['main'], function(app){
+                              });
+    </script>
+  </body>
+</html>
